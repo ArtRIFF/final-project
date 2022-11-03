@@ -1,17 +1,17 @@
-import {createContext, useState} from "react";
+// import {createContext, useState} from "react";
 
-export const ViewContext = createContext({});
+// export const ViewContext = createContext({});
 
-const ViewProvider = ({children}) =>{
-  const [rowView, setRowView] = useState(false);
- const changeInRowView = (value) => {
-  setRowView(value);
- }
- return(
-  <ViewContext.Provider value={{rowView,changeInRowView}}>
-			{children}
-  </ViewContext.Provider>
- )
-}
+// const ViewProvider = ({children}) =>{
+//   const [rowView, setRowView] = useState(false);
+//  const changeInRowView = (value) => {
+//   setRowView(value);
+//  }
+//  return(
+//   <ViewContext.Provider value={{rowView,changeInRowView}}>
+// 			{children}
+//   </ViewContext.Provider>
+//  )
+// }
 
-export default ViewProvider;
+// export default ViewProvider;
