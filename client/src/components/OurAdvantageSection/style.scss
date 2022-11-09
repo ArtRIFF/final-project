@@ -1,0 +1,28 @@
+@import '../../global_scss/vars.scss';
+@import '../../global_scss/mixins.scss';
+
+
+.our-advantage-section {
+  padding: 120px 0;
+  background-color: $accent-background-color;
+
+  &__title {
+    margin-bottom: 64px;
+    text-align: center;
+    
+  }
+
+  &__container {
+    @include flex-kit(space-beetween);
+  }
+}
+
+.advantage-item {
+  text-align: center;
+  &__title {
+    @include font-value(500,20px,25px);
+  }
+  &__desc {
+    @include font-value(400,16px,140%);
+  }
+}

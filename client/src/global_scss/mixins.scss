@@ -19,10 +19,10 @@
 }
 
 @mixin mainFont($weight, $font-size, $line-height, $color) {
-  font-family: $mainFont;
+  font-family: $main-font;
   @include font($weight, $font-size, $line-height, $color)
 }
 @mixin secondaryFont($weight, $font-size, $line-height, $color) {
-  font-family: $secondaryFont;
+  font-family: $secondary-font;
   @include font($weight, $font-size, $line-height, $color)
 }
