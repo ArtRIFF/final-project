@@ -1,28 +1,29 @@
 @mixin flex-kit($jcontent) {
   display: flex;
   justify-content: $jcontent;
-  align-items:center;
+  align-items: center;
 }
 
 
-@mixin font-value($weight,$size,$height,$t-transform:none){
- font-weight: $weight;
- font-size: $size;
- line-height: $height;
- text-transform: $t-transform;
+@mixin font-value($weight, $size, $height, $t-transform: none) {
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+  text-transform: $t-transform;
 }
 
 @mixin bg-img {
-  background-size:cover;
-  background-position:center;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
 @mixin mainFont($weight, $font-size, $line-height, $color) {
-  font-family: $mainFont;
+  font-family: $main-font;
   @include font($weight, $font-size, $line-height, $color)
 }
+
 @mixin secondaryFont($weight, $font-size, $line-height, $color) {
-  font-family: $secondaryFont;
+  font-family: $secondary-font;
   @include font($weight, $font-size, $line-height, $color)
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import OurAdvantageSection from './OurAdvantageSection/OurAdvantageSection';
 
 const App = () => {
   return (
