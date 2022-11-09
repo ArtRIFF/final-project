@@ -7,6 +7,8 @@ import './global_scss/global_style.scss'
 // import store from './store/store';
 // import { Provider } from 'react-redux'
 
+ReactDOM.render(<App/>, document.getElementById('root'));
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
