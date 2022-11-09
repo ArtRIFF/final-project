@@ -6,7 +6,6 @@ const App = () => {
     <>
     <h1 className='title'>Start Project</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nihil est eveniet labore illum, repudiandae aperiam assumenda possimus earum, laborum velit voluptate autem fugiat provident. Suscipit architecto consequuntur voluptatibus sint.</p>
-   <OurAdvantageSection/>
     </>
   );
 }
