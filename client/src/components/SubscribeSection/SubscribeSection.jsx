@@ -1,31 +1,17 @@
 import './style.scss'
 
-const OurAdvantageSection = () => {
+/* FIXME button to be changed later by the Button component done by A.Myroshnychenko */
+
+const SubscribeSection = () => {
   return (
-    <section className="our-advantage-section">
+    <section className="subscribe-section">
       <div className="container">
-        <h2 className="our-advantage-section__title">Why People Choose Us</h2>
-        <div className="our-advantage-section__container">
-          <div className="advantage-item">
-            <img src="img/advantage-icon/advantage-icon__star.svg" alt="high quality icon star" className="advantage-item__img" />
-            <h4 className="advantage-item__title">High Quality</h4>
-            <p className="advantage-item__desc">
-              All of our products go through very strict inspection before we dispatch them.
-            </p>
-          </div>
-          <div className="advantage-item">
-            <img src="img/advantage-icon/advantage-icon__weight.svg" alt="high quality icon star" className="advantage-item__img" />
-            <h4 className="advantage-item__title">High Quality</h4>
-            <p className="advantage-item__desc">
-              All of our products go through very strict inspection before we dispatch them.
-            </p>
-          </div>
-          <div className="advantage-item">
-            <img src="img/advantage-icon/advantage-icon__customer.svg" alt="high quality icon star" className="advantage-item__img" />
-            <h4 className="advantage-item__title">High Quality</h4>
-            <p className="advantage-item__desc">
-              All of our products go through very strict inspection before we dispatch them.
-            </p>
+        <h2 className="subscribe-section__title">Subscribe to our Newsletter</h2>
+        <div className="subscribe-section__container">
+          <p className="subscribe-section__text">We promise to be polite and not bore you</p>
+          <div className="subscribe-section__input">
+            <input className="subscribe-section__input-email" type="email" placeholder="Your email"/>
+            <button type="submit" className="subscribe-section__input-btn">Subscribe</button>
           </div>
         </div>
       </div>
@@ -33,4 +19,4 @@ const OurAdvantageSection = () => {
   );
 }
 
-export default OurAdvantageSection;
+export default SubscribeSection;

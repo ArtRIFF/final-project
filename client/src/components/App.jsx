@@ -1,5 +1,6 @@
 import * as React from 'react';
 import OurAdvantageSection from './OurAdvantageSection/OurAdvantageSection';
+import SubscribeSection from "./SubscribeSection/SubscribeSection";
 
 const App = () => {
   return (
