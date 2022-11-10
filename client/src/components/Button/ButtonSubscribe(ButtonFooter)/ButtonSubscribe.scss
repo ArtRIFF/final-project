@@ -1,0 +1,17 @@
+@import '../../../global_scss/vars.scss';
+@import '../../../global_scss/mixins.scss';
+
+.section__btn-subscribe {
+    font-family: $main-font;
+    @include font-value(500, 16px, 20px);
+    color: $accent-background-color;
+    border: none;
+    cursor: pointer;
+    padding: 14px 48.5px;
+    background-color: #311C1C;
+    transition: ease-in-out 0.5s;
+    &:hover {
+        background-color: $accent-color;
+        color: #311C1C;
+    }
+}
