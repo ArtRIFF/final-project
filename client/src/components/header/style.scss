@@ -2,8 +2,7 @@
 @import "../../global_scss/mixins.scss";
 @import "../../global_scss/global_style.scss";
 
-a .header-logo__wrap{
-  // background-color: black;
+.header__wrap{
+  background-color: $accent-background-color;
   // font-family: $main-font;
-  display: none;
 }

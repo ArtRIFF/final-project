@@ -6,7 +6,11 @@ class HeaderFavorites extends React.Component {
     return (
       <div className="header-favorites">
         <a className="header-favorites__icon_wrap">
-          <img className="header-favorites__icon" src="../../../../../public/img/header-icon/Favouritesicon.png" alt="favorites jewelry"></img>
+          <img
+            className="header-favorites__icon"
+            src="img/header-icon/Favouritesicon.svg"
+            alt="favorites jewelry"
+          ></img>
         </a>
       </div>
     );

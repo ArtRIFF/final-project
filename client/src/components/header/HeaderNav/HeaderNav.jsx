@@ -1,16 +1,8 @@
 import React from "react";
-import { object } from "yup";
 import "./HeaderNav.scss";
 
 class HeaderNav extends React.Component {
   render() {
-    // let nav = {
-    //   nav1: "jewelry",
-    //   nav2: "collections",
-    //   nav3: "outlet",
-    //   nav4: "production",
-    // };
-
     return (
       <ul className="header-nav__menu">
         <li>
