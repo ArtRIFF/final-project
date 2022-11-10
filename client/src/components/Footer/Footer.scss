@@ -1,0 +1,222 @@
+@import '../../global_scss/mixins.scss';
+@import '../../global_scss/vars.scss';
+@import '../../global_scss/global_style.scss';
+
+.footer {
+    padding-top: 54.05px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: $accent-background-color;
+}
+
+.footer__conteiner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;  
+    @media (max-width:$desktop-size) {
+        width: 100%;
+        padding: 0;
+        // display: grid;
+        // display: flex;
+        display: block;
+        text-align: center;
+        justify-content: center;
+    }
+    @media (max-width:$mobile-size) {
+        width: 100%;
+        padding: 0;
+        // display: none;
+    }
+}
+
+
+.footer__img {
+    width: 120px;
+    height: 171.89px;
+    @media (max-width:$desktop-size) {
+        padding-left: auto;
+        padding-right: auto;
+    }
+}
+
+.table_buyer {
+    padding-left: 36px;
+    @media (max-width:$desktop-size) {
+        width: 100%;
+        padding: 0;
+        padding-left: 0;
+        display: none;
+    }
+    @media (max-width:$mobile-size) {
+        width: 100%;
+        padding: 0;
+        display: none;
+    }
+}
+
+.table_about {
+    padding-left: 12px;
+    @media (max-width:$desktop-size) {
+        width: 100%;
+        padding: 0;
+        padding-left: 0;
+        display: none;
+    }
+    @media (max-width:$mobile-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+}
+
+.table_catalog {
+    padding-left: 12px;
+    @media (max-width:$desktop-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+    @media (max-width:$mobile-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+}
+
+.table_work-time{
+    padding-left: 0;
+    @media (max-width:$desktop-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+    @media (max-width:$mobile-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+}
+
+.table__input {
+    display: flex;
+    margin-top: 24px;
+    @media (max-width:$desktop-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+    @media (max-width:$mobile-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+}
+
+.footer__title {
+    margin: 0;
+    font-family: $main-font;
+    @include font-value(600, 20px, 25px);
+    color: #311C1C;
+    margin-top: 20px;
+    @media (max-width:$desktop-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+    @media (max-width:$mobile-size) {
+        // width: 100%;
+        // padding: 0;
+        display: none;
+    }
+}
+
+.footer__list {
+    padding-top: 16px;
+    width: 161px;
+    cursor: pointer;
+    font-family: $secondary-font;
+    @include font-value(400, 15px, 140%);
+    color: #311C1C;
+    @media (max-width:$desktop-size) {
+        width: 100%;
+        padding: 0;
+        display: grid;
+        text-align: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
+
+.footer__catalog {
+    padding-top: 16px;
+    width: 161px;
+    cursor: pointer;
+    font-family: $secondary-font;
+    @include font-value(400, 15px, 140%);
+    color: #311C1C;
+}
+
+.footer__work-time {
+    padding-top: 10px;
+    width: 161px;
+    cursor: pointer;
+    font-family: $secondary-font;
+    @include font-value(400, 15px, 140%);
+    color: #311C1C;
+    @media (max-width:$desktop-size) {
+        width: 100%;
+        padding: 0;
+        display: grid;
+        text-align: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
+
+.footer__media {
+    padding-top: 24px;
+    @media (max-width:$desktop-size) {
+        // width: 100%;
+        padding: 0;
+        display: grid;
+        text-align: center;
+        align-items: center;
+        margin-top: 20px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media (max-width:$mobile-size) {
+        display: block;
+        margin-top: 20px;
+    }
+}
+
+.social {
+    margin-right: 27.5px;
+    cursor: pointer;
+    @media (max-width:$desktop-size) {
+        width: 100%;
+        padding: 0;
+        display: grid;
+        text-align: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    @media (max-width:$mobile-size) {
+        display: block;
+        margin-top: 20px;
+    }
+
+}
+
+.line {
+    border-bottom: 1px solid #B5ABAA;
+    padding-top: 60px;
+}
+
+.design {
+    font-family: $secondary-font;
+    @include font-value(400, 16px, 26px);
+    color: #B5ABAA;
+    
+}
