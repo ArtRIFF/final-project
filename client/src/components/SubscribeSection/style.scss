@@ -1,0 +1,107 @@
+@import '../../global_scss/vars.scss';
+@import '../../global_scss/mixins.scss';
+
+
+.subscribe-section {
+  padding: 120px 0;
+  background-color: #FFFFFF;
+  @media (max-width:$desktop-size) {
+    padding: 100px 0;
+  }
+  @media (max-width:$mobile-size) {
+    padding: 80px 0;
+  }
+
+  &__title {
+    margin: 0 5px 20px;
+    text-align: center;
+    @media (max-width:$desktop-size) {
+      font-size: 36px;
+      margin: 0 5px 16px;
+    }
+    @media (max-width:$mobile-size) {
+      font-size: 26px;
+      margin: 0 5px 10px;
+      line-height: 30px;
+    }
+  }
+  &__text {
+    @include font-value(400, 16px, 140%);
+    text-align: center;
+    margin: 0 5px 40px;
+    font-family: $secondary-font;
+    @media (max-width:$desktop-size) {
+      font-size: 12px;
+      margin: 0 5px 28px;
+    }
+    @media (max-width:$mobile-size) {
+      font-size: 10px;
+      margin: 0 5px 18px;
+    }
+  }
+
+  &__container {
+    @include flex-kit(normal);
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__input {
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    @media (max-width:$mobile-size) {
+      flex-direction: column;
+    }
+  }
+  &__input-email {
+    padding: 12px 170px 12px 12px;
+    @include font-value(400, 16px, 140%);
+    font-family: $secondary-font;
+    border-radius: 0;
+    border: 1px solid $basic-text-color;
+    color: $basic-text-color;
+    border-right-style: none;
+    &::placeholder {
+      color: #B5ABAA;
+    }
+    &:focus {
+      outline: none;
+      border: 1.5px solid $basic-text-color;
+    }
+
+    @media (max-width:$desktop-size) {
+      padding: 10px 40px 10px 10px;
+      @include font-value(400, 12px, 110%);
+    }
+    @media (max-width:$mobile-size) {
+      padding: 10px 26px 10px 10px;
+      margin-bottom: 6px;
+      @include font-value(400, 12px, 110%);
+      border-right-style: solid;
+
+    }
+  }
+
+  &__input-btn {
+    font-family: $main-font;
+    padding: 12px 48px;
+    background-color: $basic-text-color;
+    color: #EDE8E7;
+    @include font-value(500, 16px, 20px);
+    border: none;
+    cursor: pointer;
+
+    @media (max-width:$desktop-size) {
+      padding: 0 28px;
+      @include font-value(500, 12px, 16px);
+
+    }
+    @media (max-width:$mobile-size) {
+      padding: 8px 22px;
+      @include font-value(500, 10px, 12px);
+      align-self: center;
+    }
+  }
+}
+

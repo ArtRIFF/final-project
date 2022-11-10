@@ -2,6 +2,7 @@ import * as React from "react";
 import OurAdvantageSection from "./OurAdvantageSection/OurAdvantageSection";
 import CollectionSection from "./CollectionSection";
 import CategorySection from "./CategorySection";
+import SubscribeSection from "./SubscribeSection/SubscribeSection";
 
 const App = () => {
   return (
