@@ -1,20 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './components/App';
-import './global_scss/global_style.scss'
-// import { BrowserRouter } from 'react-router-dom';
-// import ViewProvider from './context';
-// import store from './store/store';
-// import { Provider } from 'react-redux'
-
-ReactDOM.render(<App/>, document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Manipulation } from "swiper";
+import App from "./components/App";
+import "./global_scss/global_style.scss";
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-        <App className='global'/>
-);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App className="global" />);
 
-
-
-
+export default App;
