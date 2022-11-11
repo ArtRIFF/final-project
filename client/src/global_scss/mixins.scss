@@ -1,9 +1,10 @@
+@import "./vars.scss";
+
 @mixin flex-kit($jcontent) {
   display: flex;
   justify-content: $jcontent;
   align-items: center;
 }
-
 
 @mixin font-value($weight, $size, $height, $t-transform: none) {
   font-weight: $weight;
@@ -20,10 +21,16 @@
 
 @mixin mainFont($weight, $font-size, $line-height, $color) {
   font-family: $main-font;
-  @include font($weight, $font-size, $line-height, $color)
+  @include font($weight, $font-size, $line-height, $color);
 }
 
 @mixin secondaryFont($weight, $font-size, $line-height, $color) {
   font-family: $secondary-font;
-  @include font($weight, $font-size, $line-height, $color)
+  @include font($weight, $font-size, $line-height, $color);
 }
+
+// @mixin secondaryFont($color) {
+//   // font-family: $secondary-font;
+//   color: $color;
+//   // @include font($weight, $font-size, $line-height, $color);
+// }
