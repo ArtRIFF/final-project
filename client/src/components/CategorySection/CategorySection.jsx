@@ -53,7 +53,7 @@ const CategorySection = (props) => {
             navigation
             effect
             speed={900}
-            slidesPerView={window.innerWidth < 768 ? 2 : 3}
+            slidesPerView={window.innerWidth <= 552 ? 1 : 3}
             loop
             className="category__content-cards"
           >
