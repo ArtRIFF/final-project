@@ -37,8 +37,7 @@
   .swiper-button-next {
     background-image: url("./img/icon.png");
     position: absolute;
-    right: -6px;
-    width: 56px;
+    width: 30px;
   }
 
   .swiper-button-prev,
@@ -66,6 +65,7 @@
 @media screen and (max-width: 591px) {
   .category {
     &__content {
+      gap: 20px;
       &-sidebar {
         &__link {
           font-size: 16px;

@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonCollection from "../../Button/ButtonCollection/ButtonCollection";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import "./CollectionSectionCard.scss";
@@ -18,8 +19,8 @@ const CollectionSectionCard = (props) => {
         <h5 className="collection-section-card__content-title">{name}</h5>
         <p className="collection-section-card__content-subtitle">{subtitle}</p>
         <h5 className="collection-section-card__content-price">{price}</h5>
-        <button>See More</button>
-        {/* <Button/> */}
+
+        <ButtonCollection />
       </div>
     </div>
   );
