@@ -2,5 +2,11 @@
 @import "../../global_scss/mixins.scss";
 
 .header-search {
-  padding-left: 52px;
+  padding-left: 30%;
+  padding-top: 65%;
+}
+@media screen and (max-width: $desktop-size) {
+  .header-search {
+    padding-left: 10%;
+  }
 }

@@ -3,11 +3,12 @@
 @import "../../../../global_scss/vars.scss";
 @import "../../../../global_scss/mixins.scss";
 
-.header-favorites {
-  padding-left: 52px;
+.header-redistration {
+  padding-left: 20%;
+  padding-top: 60%;
 }
 @media screen and (max-width: $desktop-size) {
-  .header-favorites {
-    padding-left: 20px;
+  .header-redistration {
+    padding-left: 10%;
   }
 }

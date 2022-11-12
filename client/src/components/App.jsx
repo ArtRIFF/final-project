@@ -4,12 +4,10 @@ import OurAdvantageSection from "./OurAdvantageSection/OurAdvantageSection";
 import Header from "./Header/Header";
 
 const App = () => {
-
   return (
     <div className="App">
       <Header />
       <OurAdvantageSection />
-    
     </div>
   );
 };

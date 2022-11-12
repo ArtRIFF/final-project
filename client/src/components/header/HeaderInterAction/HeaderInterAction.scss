@@ -3,11 +3,13 @@
 
 .header-interaction__wrap {
   display: flex;
-  // justify-content: start;
-  padding-left: 2%;
+  justify-content: flex-end;
 }
-@media screen and (max-width: $desktop-size) {
-  .header-favorites {
-    padding-left: 20px;
+@media screen and (max-width: 955px) {
+  .header-interaction__wrap {
+    padding-top: 44px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }

@@ -4,47 +4,52 @@
 .header-nav {
   display: flex;
   justify-content: space-around;
-  // width: 100%;
+  flex-grow: 1;
+  width: 140px;
   &__menu-wrap {
-    max-width: 500px;
     display: flex;
-    justify-content: center;
+    flex-basis: 40%;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    @media (min-width: 860px) {
+      padding-left: 10%;
+    }
+
+    @media (max-width: 769px) {
+      display: none;
+    }
   }
   &__menu_item {
-    padding-left: 3px;
+    padding-left: 10%;
     color: $basic-text-color;
   }
 }
+
 @media screen and (max-width: 570px) {
   .header-nav {
     display: none;
   }
 }
-@media screen and (min-width: 569px) {
-  .header-nav__button {
+@media screen and (max-width: 569px) {
+  .burger-menu {
     display: none;
   }
 }
-.header-nav__button-icon {
-  width: 45px;
-  height: 45px;
+
+.menu-container {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
 }
-.header-nav__button {
-  cursor: pointer;
-  position: absolute;
-  @media (max-width: 569px) {
-  }
-}
+
 /*------------Navbar and burger menu -----------------------*/
 nav {
   width: 100%;
-  height: 5em;
+  height: 4em;
   background-color: $accent-background-color;
   display: flex;
   justify-content: flex-start;
-  padding: 1em;
+  padding: 0.5em;
 }
 .burger-menu {
   height: 100%;
@@ -69,20 +74,19 @@ nav {
 }
 
 .menu {
-  width: 60%;
-  height: 40vh;
-  background-color: rgb(114, 105, 105, 0.25);
+  background-color: rgba(133, 116, 116, 0.25);
   position: absolute;
+  width: 34em;
   border-radius: 10px;
-  top: 40;
   z-index: 3;
 }
 @media screen and (max-width: $desktop-size) {
   .menu {
     width: 50%;
-    height: 30vh;
+    height: 40vh;
   }
 }
+
 /*----------sliding menu------------*/
 
 .hidden {
@@ -90,6 +94,7 @@ nav {
 }
 .visible {
   display: inherit;
+  top: 140px;
 }
 /*------------animation-------------*/
 /*cliked*/
@@ -123,10 +128,11 @@ nav {
 .header-nav-mobil {
   padding-top: 37px;
   font-size: 40px;
+  padding-bottom: 27px;
 }
 @media screen and (max-width: $desktop-size) {
   .header-nav-mobil {
-    font-size: 20px;
+    font-size: 23px;
   }
 }
 .header-nav-mobil__menu_item {
