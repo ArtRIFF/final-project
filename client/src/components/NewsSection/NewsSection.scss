@@ -1,0 +1,66 @@
+@import "../../global_scss/vars.scss";
+@import "../../global_scss/global_style.scss";
+
+
+.news-section-container {
+  width: 100%;
+  padding: 0 0;
+  margin: 0 0;
+  display: flex;
+  justify-content: space-between;
+  max-height: 792px;
+
+}
+
+.news-section {
+  padding: 0 0;
+  margin: 0 0;
+  max-width: 1920px;
+  max-height: 792px;
+  background-color: $accent-background-color;
+
+  &__body {
+    position: relative;
+    top: 0;
+    left: 0;
+    // @media screen and (max-width: 400px) до наступного значення 
+    width: 490px;
+    height: 612px;
+    margin: 90px 1105px 90px 325px;
+  }
+
+  &__hand {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  margin: 281px 945px 251px 715px;
+  }
+
+  &__title {
+    position: absolute;
+    margin: 171px 476px 561px 1105px;
+    // max-height: 100px;
+    width: 339px;
+  }
+
+  &__summary {
+    position: absolute;
+    margin: 261px 325px 284px 1105px;
+    max-width: 490px;
+    max-height: 247px;
+    &_red {
+      color: $accent-color;
+    }
+    &_margin {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
