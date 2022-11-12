@@ -1,0 +1,117 @@
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+.category-card {
+  position: relative;
+  border: solid 1px $accent-background-color;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+  }
+  &__sale,
+  &__bestseller,
+  &__new {
+    position: absolute;
+    padding: 7px 15px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: $accent-background-color;
+  }
+  &__sale {
+    background-color: $accent-color;
+    top: 10px;
+    left: 10px;
+  }
+  &__bestseller {
+    background-color: #aa1377;
+    top: 50px;
+    left: 10px;
+  }
+  &__new {
+    background-color: #004c3f;
+    top: 90px;
+    left: 10px;
+  }
+  &__content {
+    &-title {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 25px;
+      text-transform: uppercase;
+    }
+    &-price {
+      @include flex-kit(center);
+      align-items: center;
+      margin-top: 10px;
+
+      &__old-price {
+        text-decoration: line-through;
+        margin-right: 10px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+      }
+      &__new-price {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 35px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 991px) {
+  .category-card {
+    margin-right: 20px;
+  }
+}
+@media screen and (max-width: $desktop-size) {
+  .category-card {
+    &__sale,
+    &__bestseller,
+    &__new {
+      padding: 3px 7px;
+      font-size: 8px;
+    }
+    &__content {
+      &-title {
+        text-align: center;
+        font-size: 16px;
+      }
+      &-price {
+        &__old-price {
+          font-size: 12px;
+        }
+        &__new-price {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 491px) {
+  .category-card__content {
+    &-title {
+      text-align: center;
+      font-size: 12px;
+    }
+    &-price {
+      &__old-price {
+        font-size: 10px;
+      }
+      &__new-price {
+        font-size: 12px;
+      }
+    }
+  }
+}

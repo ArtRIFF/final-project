@@ -1,0 +1,58 @@
+@import './vars.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.global {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  font-family: $main-font;
+  color: $basic-text-color;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+}
+
+p {
+  margin: 0;
+  font-family: $secondary-font;
+  color: $basic-text-color;
+}
+
+.container {
+  width: $notebook-size;
+  margin: 0 auto;
+  padding: 0 10px;
+  align-self: center;
+
+  @media (max-width:$notebook-size) {
+    width: 100%;
+    padding: 0;
+  }
+}
