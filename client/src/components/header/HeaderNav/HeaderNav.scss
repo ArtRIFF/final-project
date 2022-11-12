@@ -4,7 +4,7 @@
 .header-nav {
   display: flex;
   justify-content: space-around;
-  width: 100%;
+  // width: 100%;
   &__menu-wrap {
     max-width: 500px;
     display: flex;
@@ -55,18 +55,23 @@ nav {
   align-items: flex-start;
   justify-content: space-between;
   cursor: pointer;
+  @media screen and (max-width: $desktop-size) {
+    .burger-menu {
+      display: none;
+    }
+  }
 }
 .burger-bar {
   width: 4em;
   height: 0.5em;
-  background-color: black;
+  background-color: rgb(153, 139, 139);
   border-radius: 0.5em;
 }
 
 .menu {
   width: 50%;
   height: 100vh;
-  background-color: black;
+  background-color: rgb(114, 105, 105);
   position: absolute;
   top: 0;
   z-index: -1;

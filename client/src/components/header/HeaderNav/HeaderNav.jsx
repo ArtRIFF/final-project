@@ -20,7 +20,7 @@ const HeaderNav = () => {
   };
 
   return (
-    <div style={{ width: "100", height: "100vh" }}>
+    <div style={{ width: "100", height: "10vh" }}>
       <ul className="header-nav__menu-wrap">
         <li className="header-nav">
           <a name="jewelry" href="/" className="header-nav__menu_item">
@@ -43,14 +43,6 @@ const HeaderNav = () => {
           </a>
         </li>
       </ul>
-
-      <div className="header-nav__button">
-        <img
-          className="header-nav__button-icon"
-          alt="arrow"
-          src="img/header-icon/horizontal_menu.png"
-        ></img>
-      </div>
       <nav>
         <div className="burger-menu" onClick={updateMenu}>
           <div className={burger_class}></div>
