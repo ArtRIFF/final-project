@@ -50,7 +50,30 @@ const HeaderNav = () => {
           <div className={burger_class}></div>
         </div>
       </nav>
-      <div className={menu_class}></div>
+      <div className={menu_class}>
+        <ul className="header-nav-mobil__menu-wrap">
+          <li className="header-nav-mobil">
+            <a name="jewelry" href="/" className="header-nav-mobil__menu_item">
+              Jewerly
+            </a>
+          </li>
+          <li className="header-nav-mobil">
+            <a href="/collection" className="header-nav-mobil__menu_item">
+              Collections
+            </a>
+          </li>
+          <li className="header-nav-mobil">
+            <a href=" /outlet" className="header-nav-mobil__menu_item">
+              %Outlet
+            </a>
+          </li>
+          <li className="header-nav-mobil">
+            <a href="/production " className="header-nav-mobil__menu_item">
+              Our production
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
