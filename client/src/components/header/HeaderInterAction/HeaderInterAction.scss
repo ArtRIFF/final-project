@@ -1,2 +1,12 @@
 @import "../../../global_scss/vars.scss";
 @import "../../../global_scss/mixins.scss";
+
+.header-interaction__wrap {
+  @include flex-kit(flex-end);
+  padding-left: 2%;
+}
+@media screen and (max-width: $desktop-size) {
+  .header-favorites {
+    padding-left: 20px;
+  }
+}

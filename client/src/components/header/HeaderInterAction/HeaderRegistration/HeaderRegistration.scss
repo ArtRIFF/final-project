@@ -1,2 +1,13 @@
+@import "../../../../global_scss/global_style.scss";
+@import "../../../../global_scss/fonts.scss";
 @import "../../../../global_scss/vars.scss";
 @import "../../../../global_scss/mixins.scss";
+
+.header-favorites {
+  padding-left: 52px;
+}
+@media screen and (max-width: $desktop-size) {
+  .header-favorites {
+    padding-left: 20px;
+  }
+}

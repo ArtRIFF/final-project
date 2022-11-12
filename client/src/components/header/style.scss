@@ -2,7 +2,11 @@
 @import "../../global_scss/mixins.scss";
 @import "../../global_scss/global_style.scss";
 
-.header__wrap{
-  background-color: $accent-background-color;
-  // font-family: $main-font;
+.header-wrap {
+  // background-color: $accent-background-color;
+  font-family: $main-font;
+}
+.header-wrap__display {
+  @include flex-kit(space-around);
+  padding-top: 20px;
 }

@@ -1,2 +1,10 @@
 @import "../../../../global_scss/vars.scss";
 @import "../../../../global_scss/mixins.scss";
+.header-redistration {
+  padding-left: 52px;
+}
+@media screen and (max-width: $desktop-size) {
+  .header-redistration {
+    padding-left: 20px;
+  }
+}

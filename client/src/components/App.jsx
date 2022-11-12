@@ -1,16 +1,17 @@
-import * as React from 'react';
+import * as React from "react";
 // import ReactDOM from 'react-dom'
-import OurAdvantageSection from './OurAdvantageSection/OurAdvantageSection';
-import Header from './Header/Header';
+import OurAdvantageSection from "./OurAdvantageSection/OurAdvantageSection";
+import Header from "./Header/Header";
 
 const App = () => {
+
   return (
-    <div className = "App">
-      <Header/>
-      <OurAdvantageSection/>
-     </div>
+    <div className="App">
+      <Header />
+      <OurAdvantageSection />
     
+    </div>
   );
-}
+};
 
 export default App;

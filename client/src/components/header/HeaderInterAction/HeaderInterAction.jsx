@@ -8,7 +8,7 @@ import "./HeaderInterAction.scss";
 class HeaderInterAction extends React.Component {
   render() {
     return(
-    <div className="header__inteaction__wrap">
+    <div className="header-interaction__wrap">
       <HeaderSearch />
       <HeaderFavorites />
       <HeaderRegistration />
