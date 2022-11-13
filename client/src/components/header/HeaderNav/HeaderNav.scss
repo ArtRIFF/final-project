@@ -6,42 +6,42 @@
   justify-content: space-around;
   flex-grow: 1;
   width: 140px;
+  white-space: nowrap;
+  &__menu_item {
+    padding-left: 8%;
+    color: $basic-text-color;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  &__menu_item:hover {
+    color: #270707;
+    transition: 0.45c;
+    font-size: 21px;
+  }
   &__menu-wrap {
     display: flex;
     flex-basis: 40%;
     justify-content: space-between;
     align-items: center;
-    @media (min-width: 860px) {
-      padding-left: 10%;
+    @media (min-width: 769px) {
+      padding-top: 20px;
     }
-
-    @media (max-width: 769px) {
+    @media (max-width: 768px) {
       display: none;
     }
   }
-  &__menu_item {
-    padding-left: 10%;
-    color: $basic-text-color;
-  }
 }
-
-@media screen and (max-width: 570px) {
-  .header-nav {
-    display: none;
-  }
+.header-nav__menu_item:last-child {
+  padding-left: 18%;
 }
-@media screen and (max-width: 569px) {
-  .burger-menu {
-    display: none;
-  }
+.header-nav__menu_item:first-child {
+  padding-left: 2%;
 }
-
 .menu-container {
   display: flex;
   justify-content: space-around;
   width: 30%;
 }
-
 /*------------Navbar and burger menu -----------------------*/
 nav {
   width: 100%;
@@ -50,6 +50,9 @@ nav {
   display: flex;
   justify-content: flex-start;
   padding: 0.5em;
+  @media (max-width: $desktop-size) {
+    margin-top: 10px;
+  }
 }
 .burger-menu {
   height: 100%;
@@ -60,35 +63,36 @@ nav {
   align-items: flex-start;
   justify-content: space-between;
   cursor: pointer;
-  @media screen and (max-width: $desktop-size) {
-    .burger-menu {
-      display: none;
-    }
-  }
 }
 .burger-bar {
-  width: 4em;
+  width: 60px;
   height: 0.5em;
-  background-color: rgb(153, 139, 139);
+  background-color: $basic-text-color;
   border-radius: 0.5em;
+  @media (min-width: 768px) and (max-width: 2000px) {
+    display: none;
+  }
+  @media (max-width: $desktop-size) {
+    display: block;
+  }
 }
-
 .menu {
-  background-color: rgba(133, 116, 116, 0.25);
+  background-color: $basic-text-color;
   position: absolute;
-  width: 34em;
+  left: 0;
+  right: 0;
+  width: 75%;
   border-radius: 10px;
   z-index: 3;
 }
-@media screen and (max-width: $desktop-size) {
+
+@media (max-width: $desktop-size) {
   .menu {
-    width: 50%;
-    height: 40vh;
+    left: 12.5%;
+    width: 75%;
   }
 }
-
 /*----------sliding menu------------*/
-
 .hidden {
   display: none;
 }
@@ -110,9 +114,7 @@ nav {
   transform: rotate(135deg) translate(-0.5em, 1em);
   transition: ease-out 0.5s;
 }
-
 /*uncliked*/
-
 .burger-bar.unclicked {
   transform: rotate(0) translate(0);
   transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
@@ -124,7 +126,6 @@ nav {
   align-items: center;
   flex-direction: column;
 }
-
 .header-nav-mobil {
   padding-top: 37px;
   font-size: 40px;
@@ -136,5 +137,10 @@ nav {
   }
 }
 .header-nav-mobil__menu_item {
-  color: rgb(87, 78, 78);
+  color: $accent-background-color;
+}
+.header-nav-mobil__menu_item:hover {
+  color: rgb(238, 210, 168);
+  cursor: pointer;
+  font-size: 23.5px;
 }

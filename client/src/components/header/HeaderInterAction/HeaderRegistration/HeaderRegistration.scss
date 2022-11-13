@@ -5,10 +5,12 @@
 
 .header-redistration {
   padding-left: 20%;
-  padding-top: 60%;
+  padding-top: 35%;
+  cursor: pointer;
 }
 @media screen and (max-width: $desktop-size) {
   .header-redistration {
     padding-left: 10%;
+    padding-top: 45%;
   }
 }

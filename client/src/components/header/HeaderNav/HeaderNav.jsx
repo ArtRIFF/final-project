@@ -18,32 +18,23 @@ const HeaderNav = () => {
     }
     setIsMenuClicked(!isMenuCliked);
   };
-
   return (
     <div style={{ width: "100", height: "10vh" }}>
       <ul className="header-nav__menu-wrap">
-        <li className="header-nav">
-          <a name="jewelry" href="/" className="header-nav__menu_item">
+        <li className="header-nav header-nav__menu_item">
             Jewerly
-          </a>
         </li>
-        <li className="header-nav">
-          <a href="/collection" className="header-nav__menu_item">
+        <li className="header-nav header-nav__menu_item">
             Collections
-          </a>
         </li>
-        <li className="header-nav">
-          <a href=" /outlet" className="header-nav__menu_item">
-            %Outlet
-          </a>
+        <li className="header-nav header-nav__menu_item"> 
+      %Outlet
         </li>
-        <li className="header-nav">
-          <a href="/production " className="header-nav__menu_item">
-            Our production
-          </a>
+        <li className="header-nav header-nav__menu_item">
+          Our Production
         </li>
       </ul>
-      <nav>
+      <nav className="nav">
         <div className="burger-menu" onClick={updateMenu}>
           <div className={burger_class}></div>
           <div className={burger_class}></div>
