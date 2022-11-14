@@ -1,5 +1,5 @@
 import "./NewsSection.scss";
-import ButtonHeader from "../Button/ButtonHeader(ButtonCollection)/ButtonHeader"
+// import ButtonHeader from "../Button/ButtonHeader(ButtonCollection)/ButtonHeader"
 
 const NewsSection = () => {
   return (
@@ -27,15 +27,15 @@ const NewsSection = () => {
           </div>
           <div className="news-section__summary_margin">
             Sometimes the mood is calm, like a sea surface, and sometimes it is
-            stormy. But as soon as the storm subsides, thoughts
+            stormy. But as soon as the storm subsides, thoughts{" "}
             <i className="news-section__summary_red">fly to the shores</i> in a
             breeze - to where it is cozy and carefree. Where a ring of yellow
             gold with mother-of-pearl makes sense.
           </div>
           <div className="news-section__summary_margin">
-            After all, the
+            After all, the {"  "}
             <i className="news-section__summary_red">
-              details become noticeable
+              details become noticeable{"  "}
             </i>
             when significant problems subside. And we dream that thanks to this
             jewelry story you will feel the ease of life.

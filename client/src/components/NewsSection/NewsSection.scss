@@ -10,6 +10,9 @@
   justify-content: space-between;
   max-height: 792px;
 
+  @media screen and (max-width: $mobile-size) {
+    height: 620px;
+  };  
 }
 
 .news-section {
@@ -18,15 +21,32 @@
   max-width: 1920px;
   max-height: 792px;
   background-color: $accent-background-color;
+  @media screen and (max-width: $mobile-size) {
+    max-width: 320px;
+  };  
 
   &__body {
     position: relative;
     top: 0;
     left: 0;
-    // @media screen and (max-width: 400px) до наступного значення 
     width: 490px;
     height: 612px;
     margin: 90px 1105px 90px 325px;
+    @media screen and (max-width: $notebook-size) {
+      width: 306px; 
+      height: 382px;
+      margin: 56px 690px 56px 203px;
+    };
+    @media screen and (max-width: $desktop-size) {
+      width:196px; 
+      height: 245px;
+      margin: 36px 442px 36px 130px;
+    };
+    @media screen and (max-width: $mobile-size) {
+      width: 240px; 
+      height: 306px;
+      margin: 15px 30px 15px 30px;
+    };
   }
 
   &__hand {
@@ -34,13 +54,41 @@
   width: 260px;
   height: 260px;
   margin: 281px 945px 251px 715px;
+    @media screen and (max-width: $notebook-size) {
+      width: 162px; 
+      height: 162px;
+      margin: 176px 590px 157px 447px;
+    };
+    @media screen and (max-width: $desktop-size) {
+      width: 104px; 
+      height: 104px;
+      margin: 112px 378px 100px 286px;
+    };
+    @media screen and (max-width: $mobile-size) {
+      width: 107px; 
+      height: 107px;
+      margin: 130px 0px 42px 190px;
+    };
   }
 
   &__title {
     position: absolute;
     margin: 171px 476px 561px 1105px;
-    // max-height: 100px;
     width: 339px;
+
+    @media screen and (max-width: $notebook-size) {
+      margin: 30px 298px 350px 690px;
+      width: 342px;
+    };
+    @media screen and (max-width: $desktop-size) {
+      font-size: large;
+      margin: 12px 190px 224px 442px;
+      width: 136px;
+    };
+    @media screen and (max-width: $mobile-size) {
+      margin: 329px 97px 94px 97px;
+      width: 127px;
+    };
   }
 
   &__summary {
@@ -48,6 +96,24 @@
     margin: 261px 325px 284px 1105px;
     max-width: 490px;
     max-height: 247px;
+
+    @media screen and (max-width: $notebook-size) {
+      margin: 100px 150px 178px 690px;
+      max-width: 496px;
+      max-height: 154px;
+    };
+    @media screen and (max-width: $desktop-size) {
+      font-size: xx-small;;
+      margin: 64px 130px 114px 442px;
+      max-width: 196px;
+      max-height: 99px;
+    };
+    @media screen and (max-width: $mobile-size) {
+      margin: 380px 59px 47px 59px;
+      width: 192px;
+      height: 241px;
+    };
+
     &_red {
       color: $accent-color;
     }
