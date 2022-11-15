@@ -1,0 +1,226 @@
+@import "../../global_scss/vars.scss";
+@import "../../global_scss/mixins.scss";
+
+.header-hero-section{
+    background-color: $accent-background-color;
+    &__conteiner{
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+}
+.header-hero{ 
+    position: relative;
+    display: flex;
+    justify-content: center;
+    &__line{
+    position: absolute;
+    z-index: 1;
+    padding-right: 1320px;
+}
+    &__picture{
+        padding: 0 0 206px 58px;
+       }
+    &__items{
+    padding-top: 231px;
+    z-index: 10;
+    }
+    &__item{ 
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    }
+    &__item:last-child{
+        padding-bottom: 0px;
+        }
+    &__title{
+        position: absolute;
+        font-size: 96px;
+        text-align: center;
+    }
+    &__titleOne{
+        font-family: $main-font;
+        font-style: italic;
+        font-weight: 700;
+        line-height: 120px;
+        padding:  80px 0px 0px 485px;
+    }
+    &__titleTwo{
+        font-family: $main-font;
+        font-style: italic;
+        font-weight: 700;
+        line-height: 120px;
+        padding-left: 746px;
+    }
+}
+.header-hero-picture{
+    &__pict{
+        display: none;
+    }
+    &__girlTwo{
+        display: none;
+    }
+   &__jewelry{
+    position: absolute;
+    padding-top: 391px;
+    padding-left: 18px;
+   }
+   &__jewel{
+    display: none;
+   }
+}
+
+@media screen and (max-width: 1201px){
+    .header-hero{ 
+        position: relative;
+        display: flex;
+        justify-content: center;
+        &__line{
+        position: absolute;
+        z-index: 1;
+        padding-right: 1024px;
+    }  
+    &__picture{
+        padding: 0 0 206px 5px;
+       }
+        &__item{ 
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        margin-left: -85px;
+        }
+        &__item:last-child{
+            padding-bottom: 0px;
+            }
+        &__title{
+            position: absolute;
+            font-size: 80px;
+            text-align: center;
+        }
+        &__titleOne{
+            font-family: $main-font;
+            font-style: italic;
+            font-weight: 700;
+            padding:  10px 0px 0px 604px;
+        }
+        &__titleTwo{
+            font-family: $main-font;
+            font-style: italic;
+            padding-left: 702px;
+        }
+    }
+    .header-hero-picture{
+        &__jewelry{
+         padding-top: 347px;
+         padding-left: 1px;
+        }
+     }
+}
+
+@media screen and (max-width: 769px){
+    .header-hero{ 
+        display: flex;
+        justify-content: center;
+        &__picture{
+        padding: 0 0 206px 18px;
+        height: 50%;
+        width:50%;
+       }
+       &__line{
+        padding-top: 53px;
+        padding-right: 579px;
+       }
+       &__items{
+        padding-top: 251px;
+       }
+        &__item{ 
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        }
+        &__item:last-child{
+            padding-bottom: 0px;
+            }
+        &__title{
+            font-size: 80px;
+        }
+        &__titleOne{
+            font-family: $main-font;
+            font-style: italic;
+            font-weight: 700;
+            padding-left: 55px;
+            padding-top: 719px;
+        }
+        &__titleTwo{
+            font-family: $main-font;
+            font-style: italic;
+            padding-left: 158px;
+        }
+    }
+    .header-hero-picture{
+        &__jewelry{
+         display: none;
+        }
+        &__pictures{
+            display: none;
+           }
+        &__pict{
+        display: flex;
+        padding-left: 35px;
+        }
+        &__jewel{
+            display: flex;
+        }
+     }
+}
+
+@media screen and (max-width: 321px){
+    .header-hero{ 
+        display: flex;
+        justify-content: center;
+        &__picture{
+        padding: 0 0 206px 18px;
+        height: 50%;
+        width:50%;
+       }
+       &__line{
+        display: none;
+       }
+       &__items{
+        display: none;
+       }
+        &__item{ 
+            display: none;
+        }
+        
+        &__titleOne{
+            display: none;
+        }
+        &__titleTwo{
+            display: none;
+        }
+    }
+    .header-hero-picture{
+        &__jewelry{
+         display: none;
+        }
+        &__pictures{
+            display: none;
+           }
+        &__pict{
+        display: none;
+        }
+        &__jewel{
+            display: none;
+        }
+        &__girlTwo{
+            display: flex;
+        }
+     }
+}

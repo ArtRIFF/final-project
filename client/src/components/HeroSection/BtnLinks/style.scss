@@ -1,0 +1,85 @@
+@import '../../../global_scss/vars.scss';
+@import '../../../global_scss/mixins.scss';
+
+.btn-links{
+    display: flex;
+    position: relative;
+    &__medias{
+    position: absolute;
+    z-index: 10;
+    padding-top: 70px;
+    }
+    &__media{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-left: 699px;
+    }
+    &__line{
+        position: absolute;
+        z-index: 1;
+        padding-left: 721px;
+        padding-top: 106px;
+    }
+}
+
+@media screen and (max-width: 1201px){
+    .btn-links{
+        &__medias{
+            position: absolute;
+            z-index: 10;
+            padding-top: 175px;
+            }
+        &__media{
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-left: 370px;
+
+        }
+        &__line{
+            position: absolute;
+            z-index: 1;
+            padding-left: 394px;
+            padding-top: 231px;
+        }
+    }
+}
+@media screen and (max-width: 769px){
+    .btn-links{
+        &__medias{
+            position: absolute;
+            z-index: 10;
+            padding-top: 1px;
+            }
+        &__media{
+            display: flex;
+            flex-direction: column;
+            margin-top: 88px;
+            margin-bottom: -73px;
+            padding-left: 202px;
+        }
+        &__line{
+            position: absolute;
+            z-index: 1;
+            padding-left: 224px;
+            padding-top: 126px;
+          
+        }
+    }
+}
+@media screen and (max-width: 321px){
+    .btn-links{
+        &__medias{
+       display: none;
+            }
+        &__media{
+ display: none;
+        }
+        &__line{
+            display: none;
+        }
+    }
+}
