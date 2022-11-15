@@ -1,0 +1,18 @@
+@import "../../global_scss/vars.scss";
+@import "../../global_scss/mixins.scss";
+@import "../../global_scss/global_style.scss";
+
+.header-wrap {
+  background-color: $accent-background-color;
+  font-family: $main-font;
+  height: 14vh;
+}
+.header-wrap__display {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  height: 50px;
+}
+.header-logo{
+  height: 90px;
+}

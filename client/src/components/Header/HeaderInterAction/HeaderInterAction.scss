@@ -1,0 +1,17 @@
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+.header-interaction__wrap {
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+  margin-left: 10px;
+}
+@media screen and (max-width: 977px) {
+  .header-interaction__wrap {
+    padding-top: 44px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
