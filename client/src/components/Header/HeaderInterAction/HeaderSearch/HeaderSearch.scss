@@ -1,0 +1,15 @@
+@import "../../../../global_scss/global_style.scss";
+@import "../../../../global_scss/fonts.scss";
+
+.header-search {
+  padding-left: 30%;
+  padding-top: 35%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: $desktop-size) {
+  .header-search {
+    padding-left: 10%;
+    padding-top: 5px;
+  }
+}
