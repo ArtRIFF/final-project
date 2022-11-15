@@ -12,6 +12,8 @@ export const defaultState = {
   category: {
     earrings: [],
   },
+  bestsellers: [],
+  outlet: [],
 };
 
 export default createReducer(defaultState, {
@@ -23,6 +25,12 @@ export default createReducer(defaultState, {
   },
   [actions.setCategoryEarrings]: (state, { payload }) => {
     state.category.earrings = payload;
+  },
+  [actions.setBestsellers]: (state, {payload}) => {
+    state.bestsellers = payload;
+  },
+  [actions.setOutlet]: (state, {payload}) => {
+    state.outlet = payload;
   },
   // [actions.toDefault]: () => defaultState,
 });

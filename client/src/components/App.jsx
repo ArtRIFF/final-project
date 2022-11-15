@@ -3,11 +3,15 @@ import OurAdvantageSection from "./OurAdvantageSection/OurAdvantageSection";
 import CollectionSection from "./CollectionSection";
 import CategorySection from "./CategorySection";
 import SubscribeSection from "./SubscribeSection/SubscribeSection";
+import Bestsellers from "./Bestsellers";
+import Outlet from "./Outlet";
 
 const App = () => {
   return (
     <>
       <h1 className="title">Start Project</h1>
+      <Bestsellers/>
+      <Outlet/>
       <CollectionSection />
       <CategorySection />
       <p>
