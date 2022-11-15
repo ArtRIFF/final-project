@@ -1,0 +1,16 @@
+@import "../../../../global_scss/global_style.scss";
+@import "../../../../global_scss/fonts.scss";
+@import "../../../../global_scss/vars.scss";
+@import "../../../../global_scss/mixins.scss";
+
+.header-redistration {
+  padding-left: 20%;
+  padding-top: 35%;
+  cursor: pointer;
+}
+@media screen and (max-width: $desktop-size) {
+  .header-redistration {
+    padding-left: 10%;
+    padding-top: 45%;
+  }
+}

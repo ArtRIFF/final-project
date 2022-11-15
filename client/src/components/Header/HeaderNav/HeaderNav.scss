@@ -1,0 +1,146 @@
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+.header-nav {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+  width: 140px;
+  white-space: nowrap;
+  &__menu_item {
+    padding-left: 8%;
+    color: $basic-text-color;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  &__menu_item:hover {
+    color: #270707;
+    transition: 0.45c;
+    font-size: 21px;
+  }
+  &__menu-wrap {
+    display: flex;
+    flex-basis: 40%;
+    justify-content: space-between;
+    align-items: center;
+    @media (min-width: 769px) {
+      padding-top: 20px;
+    }
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+.header-nav__menu_item:last-child {
+  padding-left: 18%;
+}
+.header-nav__menu_item:first-child {
+  padding-left: 2%;
+}
+.menu-container {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+}
+/*------------Navbar and burger menu -----------------------*/
+nav {
+  width: 100%;
+  height: 4em;
+  background-color: $accent-background-color;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.5em;
+  @media (max-width: $desktop-size) {
+    margin-top: 10px;
+  }
+}
+.burger-menu {
+  height: 100%;
+  background-color: $accent-background-color;
+  width: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.burger-bar {
+  width: 60px;
+  height: 0.5em;
+  background-color: $basic-text-color;
+  border-radius: 0.5em;
+  @media (min-width: 768px) and (max-width: 2000px) {
+    display: none;
+  }
+  @media (max-width: $desktop-size) {
+    display: block;
+  }
+}
+.menu {
+  background-color: $basic-text-color;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 75%;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+@media (max-width: $desktop-size) {
+  .menu {
+    left: 12.5%;
+    width: 75%;
+  }
+}
+/*----------sliding menu------------*/
+.hidden {
+  display: none;
+}
+.visible {
+  display: inherit;
+  top: 140px;
+}
+/*------------animation-------------*/
+/*cliked*/
+.burger-bar.clicked:nth-child(1) {
+  transform: rotate(45deg) translate(0.75em, 1.25em);
+  transition: ease-out 0.5s;
+}
+.burger-bar.clicked:nth-child(2) {
+  transform: scale(0.1);
+  transition: ease-out 0.5s;
+}
+.burger-bar.clicked:nth-child(3) {
+  transform: rotate(135deg) translate(-0.5em, 1em);
+  transition: ease-out 0.5s;
+}
+/*uncliked*/
+.burger-bar.unclicked {
+  transform: rotate(0) translate(0);
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+}
+/*------style for burger mobil------*/
+.header-nav-mobil__menu-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.header-nav-mobil {
+  padding-top: 37px;
+  font-size: 40px;
+  padding-bottom: 27px;
+}
+@media screen and (max-width: $desktop-size) {
+  .header-nav-mobil {
+    font-size: 23px;
+  }
+}
+.header-nav-mobil__menu_item {
+  color: $accent-background-color;
+}
+.header-nav-mobil__menu_item:hover {
+  color: rgb(238, 210, 168);
+  cursor: pointer;
+  font-size: 23.5px;
+}
