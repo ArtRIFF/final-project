@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade } from "swiper";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import CategorySectionCard from "./CategorySectionCard";
 import { selectorCategoryEarrings } from "../../store/selectors";
