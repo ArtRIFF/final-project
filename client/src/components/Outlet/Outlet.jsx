@@ -1,7 +1,7 @@
 import React, { useEffect, useContext} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ButtonViewAll from '../Button/ViewAll/ViewAll';
-import CategorySectionCard from '../CategorySection/CategorySectionCard';
+import CategorySectionCard from '../CatalogSection/CategorySectionCard';
 import {selectOutlet} from '../../store/selectors';
 import {fetchOutlet} from '../../store/actions';
 
