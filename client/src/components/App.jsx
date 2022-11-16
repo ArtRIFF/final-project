@@ -2,6 +2,7 @@ import * as React from "react";
 import Header from "./Header/Header";
 import CollectionSection from "./CollectionSection";
 import CategorySection from "./CategorySection";
+import ProductCard from "../pages/ProductCard/ProductCard";
 // import NewsSection from "./NewsSection/NewsSection";
 
 // import SubscribeSection from "./SubscribeSection/SubscribeSection";
