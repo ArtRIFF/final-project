@@ -5,13 +5,16 @@ import CategorySection from "./CategorySection";
 // import NewsSection from "./NewsSection/NewsSection";
 
 // import SubscribeSection from "./SubscribeSection/SubscribeSection";
-
+import Bestsellers from "./Bestsellers";
+import Outlet from "./Outlet";
 const App = () => {
   return (
+
     <>
       <h1 className="title"></h1>
       <Header />
-
+      <Bestsellers/>
+      <Outlet/>
       <CollectionSection />
       <CategorySection />
     </>
