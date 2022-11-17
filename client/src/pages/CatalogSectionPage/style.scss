@@ -1,41 +1,46 @@
 .grid-wrapper {
-  background-color: rgb(45, 130, 96);
-  padding: 40px 0 95px;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-areas:
-  "breadcrumbs breadcrumbs"
-  "asideFilter catalogPageImg"
-  "asideFilter filter"
-  "asideFilter categoryCards"
-  "asideFilter paginnation";
+   background-color: rgb(45, 130, 96);
+   padding: 40px 0 95px;
+   display: grid;
+   grid-gap: 10px;
+   grid-template-areas:
+      "breadcrumbs breadcrumbs"
+      "asideFilter catalogPageImg"
+      "asideFilter filter"
+      "asideFilter categoryCards"
+      "asideFilter paginnation";
 }
 
 .catalogPageImg-wrapper {
-  grid-area: catalogPageImg;
-  width: 850px;
-  min-height: 315px;
+   grid-area: catalogPageImg;
+   width: 850px;
+   min-height: 315px;
 
-  img {
-    display: inline-block;
-    width: inherit;
-    height: inherit;
-  }
+   img {
+      display: inline-block;
+      width: inherit;
+      height: inherit;
+   }
 }
 
 .breadcrumbs-wrapper {
    grid-area: breadcrumbs;
+   align-items: center;
 }
+
 .asideFilter-wrapper {
    grid-area: asideFilter;
 }
+
 .filter-wrapper {
    grid-area: filter;
    width: 850px;
 }
+
 .categoryCards-wrapper {
    grid-area: categoryCards;
 }
+
 .paginnation-wrapper {
    grid-area: paginnation;
 }
