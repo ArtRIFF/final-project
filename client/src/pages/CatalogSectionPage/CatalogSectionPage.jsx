@@ -1,5 +1,5 @@
 import './style.scss';
-
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 import CategoryFilter from './components/CategoryFilter/CategoryFilter';
 import AsideFilter from './components/AsideFilter/AsideFilter';
 
@@ -8,7 +8,9 @@ const CatalogSectionPage = () => {
   return (
     <div className="container">
       <div className="grid-wrapper">
-      <div style={{backgroundColor: "red", width:'200px', height: '52px'}} className='breadcrumbs-wrapper'>Breadcrumbs</div>
+      <div className='breadcrumbs-wrapper'>
+          <Breadcrumbs />
+        </div>
       <div className="catalogPageImg-wrapper"><img src="img/catalogSectionPage/CategorySectionMainImg.jpg" alt="Category Section Main Imgage" /></div>
       <aside style={{backgroundColor: "olive", width:'300px', height: '800px'}} className='asideFilter-wrapper'>
         <AsideFilter/>

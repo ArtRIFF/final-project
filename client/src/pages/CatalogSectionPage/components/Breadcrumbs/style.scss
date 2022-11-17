@@ -3,7 +3,7 @@
 
 .breadcrumbs a {
   @include font-value(400, 16px, 140%);
-  font-family: $secondary-font;
+  font-family: $secondary-font,sans-serif;
   margin-left: 5px;
   margin-right: 5px;
 }

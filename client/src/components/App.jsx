@@ -4,7 +4,7 @@ import CollectionSection from "./CollectionSection";
 // import CategorySection from "./CategorySection";
 import ProductCard from "../pages/ProductCard/ProductCard";
 // import NewsSection from "./NewsSection/NewsSection";
-import CatalogSectionPage from '../pages/CatalogSectionPage/CatalogSectionPage'
+import CatalogSectionPage from '../pages/CatalogSectionPage/CatalogSectionPage';
 // import SubscribeSection from "./SubscribeSection/SubscribeSection";
 import Bestsellers from "./Bestsellers";
 import Outlet from "./Outlet";
@@ -18,7 +18,7 @@ const App = () => {
       <Outlet/>
       <CollectionSection />
       <CategorySection /> */}
-      <CatalogSectionPage/>
+    <CatalogSectionPage/>
     </>
   );
 };

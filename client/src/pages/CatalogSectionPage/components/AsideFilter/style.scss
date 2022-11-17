@@ -1,0 +1,101 @@
+@import '../../../../global_scss/mixins.scss';
+@import '../../../../global_scss/vars.scss';
+
+.aside-filter {
+  &__header {
+    @include flex-kit(space-between);
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    @include font-value(700, 36px, 45px);
+  }
+
+  &__button {
+    @include font-value(400, 24px, 150%);
+    font-family: $secondary-font, sans-serif;
+    color: rgba(49, 28, 28, 0.5);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    @include flex-kit(space-between);
+    flex-direction: column;
+  }
+}
+
+.filter-parameter {
+  border-bottom: 1px solid rgba(49, 28, 28, 0.5);
+  width: 100%;
+  padding: 10px 0;
+  &__header {
+    @include flex-kit(space-between);
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    @include font-value(500, 20px, 25px);
+  }
+
+  &__button {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    background-image: url('../../icons/arrow-down.svg');
+    background-position: right;
+    transform: rotate(180deg);
+    background-size: 28px 23px;
+    background-repeat: no-repeat;
+  }
+
+  &__container {
+    @include font-value(400, 16px, 140%);
+    font-family: $secondary-font, sans-serif;
+    color: #311C1C;
+    padding-left: 14px;
+    label {
+      margin-bottom: 18px;
+    }
+  }
+
+  &__checkbox {
+    @include flex-kit(flex-start);
+    cursor: pointer;
+  }
+
+  &__checkbox span{
+    margin-left: 14px;
+  }
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(49, 28, 28, 0.7);
+  border-radius: 2px;
+}
+
+input[type="checkbox"]:checked{
+  background-color:#311C1C;
+  position: relative;
+}
+
+input[type="checkbox"]:checked::before{
+  content: '';
+  width: 30px;
+  height: 30px;
+  position: relative;
+  display: block;
+  background-image: url('../../icons/vector.svg');
+  left: 0;
+  top: 3px;
+  background-repeat: no-repeat;
+}
