@@ -1,0 +1,28 @@
+@import '../../../../global_scss/vars.scss';
+@import '../../../../global_scss/mixins.scss';
+
+.category-filter {
+  @include flex-kit(space-between);
+  width: inherit;
+  height: inherit;
+
+  font-family: $main-font__regular;
+  @include font-value(300, 20px, 25px);
+
+  select {
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('./icons/arrow-down.svg') ;
+    background-position: right;
+    background-size: 28px 23px;
+    background-repeat: no-repeat;
+    padding-right: 25px;
+  }
+
+}
