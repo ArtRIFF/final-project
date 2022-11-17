@@ -59,3 +59,19 @@
         color: #311C1C;
     }
 }
+
+//Checkout Page and Login Page
+.section__btn-checkout {
+    font-family: $main-font;
+    @include font-value(500, 16px, 20px);
+    color: $accent-background-color;
+    border: none;
+    cursor: pointer;
+    padding: 14px 48.5px;
+    background-color: #B5ABAA;
+    transition: ease-in-out 0.5s;
+    &:hover {
+        background-color: $accent-color;
+        color: #311C1C;
+    }
+}
