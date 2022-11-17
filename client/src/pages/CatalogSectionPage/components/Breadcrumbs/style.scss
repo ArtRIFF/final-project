@@ -1,0 +1,17 @@
+@import '../../../../global_scss/mixins.scss';
+@import '../../../../global_scss/vars.scss';
+
+.breadcrumbs a {
+  @include font-value(400, 16px, 140%);
+  font-family: $secondary-font;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.breadcrumb-not-active {
+  color: rgba(49, 28, 28, 0.7);
+}
+
+.breadcrumb-active {
+  color: $accent-color;
+}
