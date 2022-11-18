@@ -29,11 +29,11 @@
 .filter-parameter {
   border-bottom: 1px solid rgba(49, 28, 28, 0.5);
   width: 100%;
-  padding: 10px 0;
+  padding-top: 10px;
 
   &__header {
     @include flex-kit(space-between);
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   &__title {
@@ -79,13 +79,23 @@
     transition: max-height 0.2s ease-out;
   }
   
-  &:not(.filter-parameter__show) .filter-parameter__container {
-    // display: none;
-  }
 
-  &:not(.filter-parameter__show) .filter-parameter__button {
+  &:not(.filter-parameter__hide) .filter-parameter__button {
     transform: rotate(0deg);
     transform: translateX(5px);
+  }
+
+  .price-container {
+    flex-direction: row;
+    input {
+      width: 90px;
+      border: 2px solid rgba(49, 28, 28, 0.7);
+      border-radius: 2px;
+      @include font-value(400, 16px, 140%);
+      font-family: $secondary-font, sans-serif;
+      color: #311C1C;
+      margin-bottom: 10px;
+    }
   }
 }
 

@@ -12,7 +12,7 @@ const CatalogSectionPage = () => {
           <Breadcrumbs />
         </div>
       <div className="catalogPageImg-wrapper"><img src="img/catalogSectionPage/CategorySectionMainImg.jpg" alt="Category Section Main Imgage" /></div>
-      <aside style={{backgroundColor: "olive", width:'300px', height: '800px'}} className='asideFilter-wrapper'>
+      <aside style={{backgroundColor: "olive", width:'300px', minHeight: '800px'}} className='asideFilter-wrapper'>
         <AsideFilter/>
       </aside>
       <div style={{backgroundColor: "grey",  height: '43px'}}className='filter-wrapper'>
