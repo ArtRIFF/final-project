@@ -3,19 +3,21 @@
 
 
 .product-review {
-    max-width: 810px;
-    padding: 20px 0px 30px;
+    // max-width: 810px;
+    // padding: 20px 0px 30px;
     // margin: $margin-center;
+    margin-right: 90px;
     box-sizing: border-box;
     &__item {
         border-bottom: 1px solid $basic-background-color;
+        margin-bottom: 56px;
     }
     &__item_header {
         display: flex;
         @include flex-kit(space-between);
         align-items: center;
         margin-bottom: 36px;
-        margin-top: 56px;
+        
     }
     &__item_rating {
         display: flex;

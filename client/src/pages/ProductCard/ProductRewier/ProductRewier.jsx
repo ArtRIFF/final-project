@@ -7,7 +7,6 @@ const ProductRewier = () => {
   return (
     <>
       <section className="product-review">
-        <h2 className="product-review__title">Review</h2>
         <div className="product-review__item">
           <div className="product-review__item_header">
             <div className="product-review__item_rating">
