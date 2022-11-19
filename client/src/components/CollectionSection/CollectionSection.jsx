@@ -16,14 +16,16 @@ const CollectionSection = (props) => {
 
   return (
     <div className="collection-section">
-      <div className="collection-section__header">
-        <h2 className="collection-section__header_title">New Collection</h2>
-        <p className="collection-section__header_all">Viev All</p>
-      </div>
-      <div className="collection-section__content">
-        {newCollectionArray.map((card, index) => {
-          return <CollectionSectionCard product={card} key={index} />;
-        })}
+      <div className="container">
+        <div className="collection-section__header">
+          <h2 className="collection-section__header_title">New Collection</h2>
+          <p className="collection-section__header_all">Viev All</p>
+        </div>
+        <div className="collection-section__content">
+          {newCollectionArray.map((card, index) => {
+            return <CollectionSectionCard product={card} key={index} />;
+          })}
+        </div>
       </div>
     </div>
   );

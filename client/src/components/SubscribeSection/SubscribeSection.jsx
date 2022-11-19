@@ -1,4 +1,5 @@
 import './style.scss'
+import ButtonAll from '../Button/BattonAll/ButtonAll'
 
 /* FIXME button to be changed later by the Button component done by A.Myroshnychenko */
 
@@ -11,7 +12,7 @@ const SubscribeSection = () => {
           <p className="subscribe-section__text">We promise to be polite and not bore you</p>
           <div className="subscribe-section__input">
             <input className="subscribe-section__input-email" type="email" placeholder="Your email"/>
-            <button type="submit" className="subscribe-section__input-btn">Subscribe</button>
+            <ButtonAll text='Subscribe' className='section__btn-subscribe'/>
           </div>
         </div>
       </div>

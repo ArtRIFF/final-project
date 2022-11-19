@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import "./CollectionSectionCard.scss";
-import ButtonCollection from "../../Button/ButtonCollection/ButtonCollection";
+import ButtonAll from "../../Button/BattonAll/ButtonAll";
 
 const CollectionSectionCard = (props) => {
   const { product } = props;
@@ -20,7 +20,7 @@ const CollectionSectionCard = (props) => {
         <p className="collection-section-card__content-subtitle">{subtitle}</p>
         <h5 className="collection-section-card__content-price">{price}</h5>
 
-        <ButtonCollection />
+        <ButtonAll text='See More' className='section__btn-collection'/>
       </div>
     </div>
   );

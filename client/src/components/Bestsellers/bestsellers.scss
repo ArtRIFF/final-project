@@ -16,7 +16,7 @@
         position: relative;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 1fr;
+        grid-template-rows: 1fr 1fr;
         grid-auto-rows: 0;
         overflow-y: hidden;
         align-items: center;

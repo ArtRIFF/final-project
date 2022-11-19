@@ -4,21 +4,38 @@
 
 .footer {
     padding-top: 54.05px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 195px;
+    padding-right: 195px;
     background-color: $accent-background-color;
+    @media (max-width:1400px) {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+    @media (max-width:1300px) {
+        padding-left: 65px;
+        padding-right: 65px;
+    }
+    @media (max-width:$notebook-size) {
+        padding-left: 105px;
+        padding-right: 105px;
+    }
+    @media (max-width:1100px) {
+        padding-left: 55px;
+        padding-right: 55px;
+    }
+    @media (max-width:1000px) {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
 }
 
 .footer__conteiner {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: space-around;
     width: 100%;  
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
-        // display: grid;
-        // display: flex;
         display: block;
         text-align: center;
         justify-content: center;
@@ -26,7 +43,6 @@
     @media (max-width:$mobile-size) {
         width: 100%;
         padding: 0;
-        // display: none;
     }
 }
 
@@ -34,14 +50,28 @@
 .footer__img {
     width: 120px;
     height: 171.89px;
+    margin-left: -50px;
+    @media (max-width:1400px) {
+        margin-left: 0;
+    }
+    @media (max-width:1300px) {
+        margin-left: 0;
+    }
+    @media (max-width:$notebook-size) {
+        margin-left: 0;
+    }
     @media (max-width:$desktop-size) {
-        padding-left: auto;
         padding-right: auto;
+        width: 120px;
+        height: 171.89px;
     }
 }
 
 .table_buyer {
-    padding-left: 36px;
+    padding-left: 140px;
+    @media (max-width:$notebook-size) {
+        padding-left: 9px;
+    }
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
@@ -64,8 +94,6 @@
         display: none;
     }
     @media (max-width:$mobile-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
     }
 }
@@ -73,27 +101,22 @@
 .table_catalog {
     padding-left: 12px;
     @media (max-width:$desktop-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
     }
     @media (max-width:$mobile-size) {
-        // width: 100%;
-        // padding: 0;
+
         display: none;
     }
 }
 
 .table_work-time{
     padding-left: 0;
+    @media (max-width:$notebook-size) {
+    }
     @media (max-width:$desktop-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
     }
     @media (max-width:$mobile-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
     }
 }
@@ -102,14 +125,31 @@
     display: flex;
     margin-top: 24px;
     @media (max-width:$desktop-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
     }
     @media (max-width:$mobile-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
+    }
+}
+
+.input {
+    width: 231px;
+    padding-left: 19px;
+    @media (max-width:$notebook-size) {
+        width: 165px;
+    }
+}
+
+.table__subscribe {
+    margin-right: -50px;
+    @media (max-width:1400px) {
+        margin-right: 0;
+    }
+    @media (max-width:1300px) {
+        margin-right: 0;
+    }
+    @media (max-width:$notebook-size) {
+        margin-right: 0;
     }
 }
 
@@ -119,25 +159,26 @@
     @include font-value(600, 20px, 25px);
     color: #311C1C;
     margin-top: 20px;
+    @media (max-width:$notebook-size) {
+        @include font-value(600, 16px, 20px);
+    }
     @media (max-width:$desktop-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
     }
     @media (max-width:$mobile-size) {
-        // width: 100%;
-        // padding: 0;
         display: none;
     }
 }
 
 .footer__list {
     padding-top: 16px;
-    width: 161px;
     cursor: pointer;
     font-family: $secondary-font;
     @include font-value(400, 15px, 140%);
     color: #311C1C;
+    @media (max-width:$notebook-size) {
+        @include font-value(400, 15px, 80%);
+    }
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
@@ -150,7 +191,6 @@
 
 .footer__catalog {
     padding-top: 16px;
-    width: 161px;
     cursor: pointer;
     font-family: $secondary-font;
     @include font-value(400, 15px, 140%);
@@ -159,11 +199,13 @@
 
 .footer__work-time {
     padding-top: 10px;
-    width: 161px;
-    cursor: pointer;
     font-family: $secondary-font;
     @include font-value(400, 15px, 140%);
     color: #311C1C;
+    @media (max-width:$notebook-size) {
+        @include font-value(400, 15px, 80%);
+
+    }
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
@@ -177,7 +219,6 @@
 .footer__media {
     padding-top: 24px;
     @media (max-width:$desktop-size) {
-        // width: 100%;
         padding: 0;
         display: grid;
         text-align: center;
@@ -218,5 +259,10 @@
     font-family: $secondary-font;
     @include font-value(400, 16px, 26px);
     color: #B5ABAA;
-    
+    @media (max-width: $desktop-size) {
+        @include font-value(400, 16px, 24px);
+    }
+    @media (max-width: $mobile-size) {
+        @include font-value(400, 12px, 22px);
+    }
 }

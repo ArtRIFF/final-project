@@ -5,14 +5,33 @@
 .header-wrap {
   background-color: $accent-background-color;
   font-family: $main-font;
-  height: 14vh;
 }
 .header-wrap__display {
   display: flex;
-  justify-content: space-around;
-  padding-top: 20px;
-  height: 50px;
+  justify-content: space-between;
+  padding-top: 23.75px;
+  height: 140px;
 }
 .header-logo{
   height: 90px;
+  margin-left: -180px;
+@media (max-width:1400px) {
+  margin-left: -40px;
+  margin-right: 150px;
+}
+@media (max-width:1300px) {
+  margin-left: 25px;
+  margin-right: 125px;
+}
+@media (max-width:$notebook-size) {
+  margin-left: 100px;
+  margin-right: 55px;
+}
+@media (max-width:1100px) {
+  margin-left: 50px;
+  margin-right: 55px;
+}
+@media (max-width:1000px) {
+  margin-left: 25px;
+}
 }
