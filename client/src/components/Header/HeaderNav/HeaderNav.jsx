@@ -19,7 +19,7 @@ const HeaderNav = () => {
     setIsMenuClicked(!isMenuCliked);
   };
   return (
-    <div style={{ width: "100", height: "10vh" }}>
+    <div className="nav">
       <ul className="header-nav__menu-wrap">
         <li className="header-nav header-nav__menu_item">
             Jewerly

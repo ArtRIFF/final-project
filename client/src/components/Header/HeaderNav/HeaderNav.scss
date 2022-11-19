@@ -3,19 +3,20 @@
 
 .header-nav {
   display: flex;
-  justify-content: space-around;
-  flex-grow: 1;
-  width: 140px;
+  justify-content: space-between;
   white-space: nowrap;
+  margin-top: 10px;
+  margin-bottom: -10px;
   &__menu_item {
-    padding-left: 8%;
+    padding-left: 40px;
     color: $basic-text-color;
     font-size: 20px;
+    line-height: 25px;
     cursor: pointer;
   }
   &__menu_item:hover {
     color: #270707;
-    transition: 0.45c;
+    transition: 0.5s;
     font-size: 21px;
   }
   &__menu-wrap {
@@ -73,7 +74,11 @@ nav {
     display: none;
   }
   @media (max-width: $desktop-size) {
+    margin-left: 80px;
     display: block;
+  }
+  @media (max-width: $mobile-size) {
+    margin-left: 35px;
   }
 }
 .menu {
