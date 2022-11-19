@@ -1,0 +1,179 @@
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+.product-card__price {
+  &__header {
+    &-title {
+      font-family: $main-font;
+      @include font-value(700, 36px, 45px);
+      margin-top: 40px;
+      &::after {
+        content: "";
+        display: block;
+        border-top: 1px solid $accent-background-color;
+        margin: 30px 0px 30px 0px;
+      }
+    }
+  }
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    &__cost {
+      display: flex;
+      align-items: center;
+
+      &-old-price {
+        text-decoration: line-through;
+        font-family: $main-font;
+        @include font-value(500, 20px, 25px);
+        color: $additional-text-color;
+        margin-right: 10px;
+      }
+      &-new-price {
+        font-family: $main-font;
+        @include font-value(700, 36px, 45px);
+        color: $basic-text-color;
+      }
+    }
+    &__selector {
+      position: relative;
+      width: 110px;
+      margin: 20px 0;
+      border: 1px solid $additional-text-color;
+      padding: 10px;
+      select {
+        width: 100px;
+        height: 28px;
+        padding: 0 20px 0 40px;
+        background: transparent;
+        appearance: none;
+        font-family: $main-font;
+        @include font-value(500, 16px, 20px);
+        color: $basic-text-color;
+        border: 0;
+        &:focus-visible {
+          border: none;
+
+          outline: none;
+        }
+      }
+
+      &:hover {
+        background: none;
+        box-shadow: 0px 0px 3px gray;
+      }
+      .select-arrow {
+        width: 8px;
+        height: 0px;
+        background: #6c7231;
+        position: absolute;
+        z-index: -9999;
+        right: 12px;
+        top: 14px;
+        &::after {
+          content: url("./img/Vector.png");
+          position: absolute;
+          top: 0;
+        }
+        &::before {
+          content: "Size:";
+          position: absolute;
+          top: 0;
+          right: 50px;
+
+          @include font-value(500, 16px, 20px);
+          color: $additional-text-color;
+        }
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    .section__btn-header {
+      padding: 16px 45px;
+      height: 50px;
+    }
+  }
+  &__footer {
+    &::before {
+      content: "";
+      display: block;
+      border-top: 1px solid $accent-background-color;
+      margin: 30px 0px 30px 0px;
+    }
+    &__additionally {
+      display: flex;
+      padding: 20px 20px 20px 0;
+      &-icon {
+        width: 25px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.white-button {
+  background-color: white;
+  color: $accent-color;
+  border: 1px solid $accent-color;
+
+  &-favorite {
+    &::after {
+      content: url("./img/Favourite.svg");
+    }
+  }
+}
+
+@media screen and (max-width: 981px) {
+  .product-card__price {
+    &__buttons {
+      .section__btn-header {
+        padding: 8px 30px;
+        height: 50px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 833px) {
+  .product-card__price {
+    &__buttons {
+      .section__btn-header {
+        padding: 8px 20px;
+        height: 50px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .product-card__price {
+    &__body {
+      flex-direction: column;
+    }
+    &__buttons {
+      flex-direction: column;
+      .section__btn-header {
+        width: 200px;
+        height: 50px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 590px) {
+  .product-card__price {
+    text-align: center;
+    &__body {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  .product-card__price {
+    &__body {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

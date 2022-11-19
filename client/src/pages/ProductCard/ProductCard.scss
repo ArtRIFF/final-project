@@ -1,0 +1,111 @@
+@import "../../global_scss/vars.scss";
+@import "../../global_scss/mixins.scss";
+.product-card__main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 70px;
+  &-images {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+  &-description {
+    &__subtitle {
+      font-family: $main-font;
+      @include font-value(500, 20px, 25px);
+      color: $basic-text-color;
+      margin-bottom: 10px;
+      &::before {
+        content: "";
+        display: block;
+        border-top: 1px solid $accent-background-color;
+        margin: 30px 0px 30px 0px;
+      }
+
+      &__details {
+        font-family: $secondary-font;
+        @include font-value(normal, 16px, 150%);
+      }
+    }
+  }
+}
+
+.product-card-photo-slider {
+  max-width: 600px;
+  margin-bottom: 10px;
+  .swiper-slide {
+    padding-top: 10%;
+    overflow: hidden;
+    position: relative;
+    object-fit: cover;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .swiper-button-prev {
+    display: none;
+  }
+  .swiper-button-next {
+    right: 5px;
+    top: 50%;
+    color: $accent-background-color;
+  }
+}
+
+.product-card-photo-slider-thumbs {
+  max-width: 600px;
+  .swiper-slide {
+    border: 1px solid $accent-background-color;
+    cursor: pointer;
+
+    &-thumb-active {
+      border-color: $basic-text-color;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-button-prev {
+    display: none;
+  }
+  .swiper-button-next {
+    display: none;
+  }
+}
+@media screen and (max-width: 1161px) {
+  .product-card__main {
+    gap: 35px;
+  }
+  .product-card-photo-slider {
+    max-width: 400px;
+  }
+  .product-card-photo-slider-thumbs {
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .product-card-photo-slider {
+    max-width: 350px;
+  }
+  .product-card-photo-slider-thumbs {
+    max-width: 350px;
+  }
+}
+@media screen and (max-width: 590px) {
+  .product-card__main {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (max-width: 320px) {
+  .product-card-photo-slider {
+    max-width: 300px;
+  }
+  .product-card-photo-slider-thumbs {
+    max-width: 300px;
+  }
+}

@@ -1,6 +1,6 @@
 [
   {
-    "name": "gold earring with pearl",
+    "name": "Gold earring with pearl",
     "price": "$2,130",
     "oldPrice": "$43,880",
     "url": "/img/new-collection/jewelry-1.png",
@@ -11,7 +11,13 @@
     "newProduct": "false",
     "stars": "4",
     "reviews": "6",
-    "article": "743874"
+    "article": "743874",
+    "additionalPhotos": [
+      "/img/productCard/Rectangle42.jpg",
+      "/img/productCard/Rectangle43.jpg",
+      "/img/productCard/Rectangle44.jpg",
+      "/img/productCard/Rectangle45.jpg"
+    ]
   },
   {
     "name": "gold ring with pearl",
