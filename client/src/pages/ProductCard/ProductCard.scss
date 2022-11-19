@@ -9,6 +9,10 @@
     flex-direction: column;
     text-align: start;
   }
+  &-additionally {
+    display: flex;
+    padding-top: 56px;
+  } 
   &-description {
     &__subtitle {
       font-family: $main-font;
@@ -95,10 +99,25 @@
   .product-card-photo-slider-thumbs {
     max-width: 350px;
   }
+  .product-card__main-additionally {
+    flex-direction: column;
+  }
+  .product-card__review-title {
+    font-size: 35px;
+    line-height: 40px;
+    margin: 30px;
+  }
+  .product-review {
+    margin-right: 0;
+  }
 }
 @media screen and (max-width: 590px) {
   .product-card__main {
     grid-template-columns: repeat(1, 1fr);
+    &__review-title {
+      font-size: 25px;
+      line-height: 30px;
+      margin: 15px;}
   }
 }
 @media screen and (max-width: 320px) {
@@ -107,5 +126,5 @@
   }
   .product-card-photo-slider-thumbs {
     max-width: 300px;
-  }
+  } 
 }

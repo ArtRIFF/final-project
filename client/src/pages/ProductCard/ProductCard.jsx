@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
 
 import ProductPrice from "./ProductPrice";
-import OtherProduct from "./OtherProduct";
+import AdditionalProducts from "./AdditionalProducts";
 import ProductRewier from "./ProductRewier";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,6 +12,7 @@ import "swiper/css/effect-fade";
 import "./ProductCard.scss";
 
 const ProductCard = (props) => {
+
   const [aciveThumb, setAciveThumb] = useState();
   const card = {
     name: "Gold earring with pearl",
@@ -32,7 +33,7 @@ const ProductCard = (props) => {
       "/img/productCard/Rectangle43.jpg",
       "/img/productCard/Rectangle44.jpg",
       "/img/productCard/Rectangle45.jpg",
-    ],
+    ]
   };
   const {
     name,
@@ -47,7 +48,7 @@ const ProductCard = (props) => {
     stars,
     reviews,
     article,
-    additionalPhotos,
+    additionalPhotos
   } = card;
 
   return (
@@ -145,13 +146,19 @@ const ProductCard = (props) => {
               </p>
             </div>
           </div>
-          <OtherProduct cards={"similar cards"} title={"similar cards"} />
-          <div className="product-card__main-additionally">
-            <ProductRewier />
-            <ProductPrice name={name} oldPrice={oldPrice} price={price} />
-          </div>
-          <OtherProduct cards={"popular cards"} title={"popular cards"} />
+          
+          
+          <AdditionalProducts cards={"similar cards"} title={"similar cards"} sectionTitle = 'Similar'/>
+          <section className="product-card__review">
+            <h2 className="product-card__review-title">Review</h2>
+            <div className="product-card__main-additionally">
+              <ProductRewier />
+              <ProductPrice name={name} oldPrice={oldPrice} price={price} />
+            </div>
+          </section>
+          <AdditionalProducts cards={"popular cards"} title={"popular cards"} sectionTitle = 'Popular'/>
         </div>
+
       </div>
     </>
   );
