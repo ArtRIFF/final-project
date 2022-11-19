@@ -1,11 +1,15 @@
 @import '../../../../global_scss/mixins.scss';
 @import '../../../../global_scss/vars.scss';
 
-.breadcrumbs a {
-  @include font-value(400, 16px, 140%);
-  font-family: $secondary-font;
-  margin-left: 5px;
-  margin-right: 5px;
+.breadcrumbs {
+  align-items: flex-start;
+
+  a {
+    @include font-value(400, 16px, 140%);
+    font-family: $secondary-font, sans-serif;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 }
 
 .breadcrumb-not-active {

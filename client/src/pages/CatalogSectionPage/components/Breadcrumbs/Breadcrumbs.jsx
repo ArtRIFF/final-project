@@ -7,9 +7,9 @@ const Breadcrumbs = () => {
   return (
     <nav className='breadcrumbs'>
       <a href="#" className="breadcrumb-not-active">Shop</a>
-      /
+      <p>/</p>
       <a href="#" className="breadcrumb-not-active">Rolex</a>
-      /
+      <p>/</p>
       <a href="#" className="breadcrumb-active">Oyster</a>
       {/* <Link to="/"
         className={location.pathname === "/" ? "breadcrumb-active" : "breadcrumb-not-active"}
