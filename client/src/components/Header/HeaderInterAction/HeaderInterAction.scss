@@ -3,13 +3,34 @@
 
 .header-interaction__wrap {
   display: flex;
-  justify-content: flex-end;
-  height: 30px;
+  // justify-content: flex-end;
   margin-left: 10px;
+  margin-right: -50px;
+  padding-left: 150px;
+  @media (max-width:1400px) {
+    margin-right: 75px;
+  }
+  @media (max-width:1300px) {
+    margin-right: 135px;
+  }
+  @media (max-width:$notebook-size) {
+    margin-right: 225px;
+  }
+  @media (max-width:1100px) {
+    margin-right: 175px;
+  }
+  @media (max-width:1000px) {
+    margin-right: 225px;
+  }
+  @media (max-width: $desktop-size) {
+    margin-right: 50px;
+  }
+  @media (max-width: $mobile-size) {
+    margin-left: -75px;
+  }
 }
 @media screen and (max-width: 977px) {
   .header-interaction__wrap {
-    padding-top: 44px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
