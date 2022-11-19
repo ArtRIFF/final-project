@@ -1,4 +1,4 @@
-import ButtonSubscribe from '../Button/ButtonSubscribe(ButtonFooter)/ButtonSubscribe'
+// import ButtonSubscribe from '../Button/ButtonSubscribe(ButtonFooter)/ButtonSubscribe'
 import './Footer.scss'
 
 const Footer = () => {
@@ -48,7 +48,7 @@ const Footer = () => {
                                 <p className='footer__title'>Subscribe our Newsletters</p>
                                 <div className='table__input'>
                                     <input type="email" placeholder="Your email"/>
-                                    <ButtonSubscribe />
+                                    {/* <ButtonSubscribe /> */}
                                 </div>
                                 <div className='footer__media'>
                                     <svg className='social' width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

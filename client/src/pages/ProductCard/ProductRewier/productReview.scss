@@ -1,0 +1,40 @@
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+
+.product-review {
+    max-width: 810px;
+    padding: 20px 0px 30px;
+    // margin: $margin-center;
+    box-sizing: border-box;
+    &__item {
+        border-bottom: 1px solid $basic-background-color;
+    }
+    &__item_header {
+        display: flex;
+        @include flex-kit(space-between);
+        align-items: center;
+        margin-bottom: 36px;
+        margin-top: 56px;
+    }
+    &__item_rating {
+        display: flex;
+    }
+    .reviewer-name {
+        text-transform: uppercase;
+        padding-left: 12.4px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        color: #311C1C;
+    }
+    &__item_content {
+        font-style: italic;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 30px;
+        color: #311C1C;
+        margin-bottom: 40px;
+    }
+    
+}

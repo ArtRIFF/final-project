@@ -1,7 +1,7 @@
 import * as React from "react";
 import Header from "./Header/Header";
 import CollectionSection from "./CollectionSection";
-import CategorySection from "./CategorySection";
+// import CategorySection from "./CategorySection";
 import ProductCard from "../pages/ProductCard/ProductCard";
 // import NewsSection from "./NewsSection/NewsSection";
 
@@ -13,11 +13,12 @@ const App = () => {
 
     <>
       <h1 className="title"></h1>
-      <Header />
+      <ProductCard/>
+      {/* <Header />
       <Bestsellers/>
       <Outlet/>
       <CollectionSection />
-      <CategorySection />
+      <CategorySection /> */}
     </>
   );
 };
