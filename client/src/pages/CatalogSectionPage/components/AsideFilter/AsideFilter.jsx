@@ -2,6 +2,16 @@ import './style.scss';
 
 const AsideFilter = () => {
   const accordionAnimate = (e) => {
+    const panels = [...e.target.closest('.aside-filter__wrapper').children];
+    const indexTargetElem = panels.indexOf(e.target.closest('.filter-parameter'));
+    panels.forEach((panel, i) => {
+      if (i !== indexTargetElem && !panel.classList.contains('filter-parameter__hide')) {
+        let panelContainer = panel.closest('.filter-parameter').children[1];
+        panel.classList.add('filter-parameter__hide');
+        panelContainer.style.maxHeight = null;
+      }
+    })
+
     e.target.closest('.filter-parameter').classList.toggle('filter-parameter__hide');
     const container = e.target.closest('.filter-parameter').children[1];
     if (container.style.maxHeight) {
@@ -9,6 +19,7 @@ const AsideFilter = () => {
     } else {
       container.style.maxHeight = container.scrollHeight + "px";
     }
+
   }
   return (
     <div className="aside-filter">
@@ -17,17 +28,17 @@ const AsideFilter = () => {
         <button className="aside-filter__button">Reset all</button>
       </div>
       <div className='aside-filter__wrapper'>
-      <div className="filter-parameter filter-parameter__hide">
+        <div className="filter-parameter filter-parameter__hide">
           <div className="filter-parameter__header">
             <h5 className="filter-parameter__title">Price</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container price-container">
-            <input type="text" placeholder='51'/><span>-</span>
-            <input  type="text" placeholder='214453'/>
+            <input type="text" placeholder='51' /><span>-</span>
+            <input type="text" placeholder='214453' />
           </div>
         </div>
-      <div className="filter-parameter filter-parameter__hide">
+        <div className="filter-parameter filter-parameter__hide">
           <div className="filter-parameter__header">
             <h5 className="filter-parameter__title">Collection</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
@@ -67,7 +78,7 @@ const AsideFilter = () => {
             </label>
           </div>
         </div>
-      <div className="filter-parameter filter-parameter__hide">
+        <div className="filter-parameter filter-parameter__hide">
           <div className="filter-parameter__header">
             <h5 className="filter-parameter__title">Insert</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
@@ -112,14 +123,6 @@ const AsideFilter = () => {
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Cub.zirconium</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Lace synthetic</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Enamel</span>
             </label>
           </div>
         </div>
