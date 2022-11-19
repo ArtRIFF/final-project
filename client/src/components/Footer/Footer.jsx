@@ -1,4 +1,4 @@
-import ButtonSubscribe from '../Button/ButtonSubscribe(ButtonFooter)/ButtonSubscribe'
+import ButtonAll from '../Button/BattonAll/ButtonAll'
 import './Footer.scss'
 
 const Footer = () => {
@@ -9,7 +9,6 @@ const Footer = () => {
                 <div className='footer__info'>
                     <div className='footer__conteiner'>
                         <img src="img/logo.png" alt="SoVa_logo" className='footer__img'/>
-                        
                             <div className='table_buyer'>
                                     <p className='footer__title'>To the buyer</p>
                                 <ul>
@@ -33,7 +32,7 @@ const Footer = () => {
                                 <ul>
                                     <li className='footer__list'>Jewelry</li>
                                     <li className='footer__list'>Collections</li>
-                                    <li className='footer__list'>Outlet</li>
+                                    <li className='footer__list'>%Outlet</li>
                                 </ul>
                             </div>
                             <div className='table_work-time'>
@@ -47,8 +46,8 @@ const Footer = () => {
                             <div className='table__subscribe'>
                                 <p className='footer__title'>Subscribe our Newsletters</p>
                                 <div className='table__input'>
-                                    <input type="email" placeholder="Your email"/>
-                                    <ButtonSubscribe />
+                                    <input type="email" placeholder="Your email" className='input'/>
+                                    <ButtonAll text='Subscribe' className='section__btn-footer'/>
                                 </div>
                                 <div className='footer__media'>
                                     <svg className='social' width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,12 +118,13 @@ const Footer = () => {
                             </div>
                         
                     </div>
+                   
                 </div>
             </div>
             <div className='conteiner'>
-                <div className='line'></div>
-                <p className='design'>© 2022 Watches. All rights reserved.</p>
-            </div>
+                        <div className='line'></div>
+                        <p className='design'>© 2022 Watches. All rights reserved.</p>
+                    </div>
         </footer>
     )
 }
