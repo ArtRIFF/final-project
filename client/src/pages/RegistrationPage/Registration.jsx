@@ -11,7 +11,7 @@ import InputWithStrength from "./InputWithStrength/InputWithStrength";
 
 import './Registration.scss';
 
-const validationSchema = Yup.object().shape({
+export const validationSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Wow! That is a super long name!')
@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
   password: Yup.string()
     .min(5)
-    .required(),
+    .required('Required'),
   passwordConfirm: Yup.string()
     .oneOf([Yup.ref('password')], "Passwords don't match"),
   phoneNumber: Yup.string()
