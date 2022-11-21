@@ -1,0 +1,40 @@
+@import '../../../../global_scss/vars.scss';
+@import '../../../../global_scss/mixins.scss';
+
+.category-filter {
+  @include flex-kit(space-between);
+  width: inherit;
+  height: inherit;
+
+  font-family: $main-font__regular;
+  @include font-value(300, 20px, 25px);
+  
+  &__result {
+    @media (max-width: 460px) {
+      display: none;
+  }
+  }
+
+  &--btn {
+    display: none;
+    @media (max-width:$desktop-size) {
+      display: inline-block;
+  }
+  }
+
+  select {
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('../../icons/arrow-down.svg') ;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding-right: 25px;
+  }
+
+}

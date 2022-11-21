@@ -1,0 +1,140 @@
+@import '../../../../global_scss/mixins.scss';
+@import '../../../../global_scss/vars.scss';
+
+.aside-filter {
+  position: absolute;
+  width: inherit;
+
+  &__header {
+    @include flex-kit(space-between);
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    @include font-value(700, 36px, 45px);
+    @media (max-width:$desktop-size) {
+      @include font-value(700, 30px, 27px);
+   }
+  }
+
+  &__button {
+    @include font-value(400, 24px, 150%);
+    font-family: $secondary-font, sans-serif;
+    color: rgba(49, 28, 28, 0.5);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    @media (max-width:$desktop-size) {
+      @include font-value(700, 18px, 27px);
+   }
+  }
+
+  &__wrapper {
+    @include flex-kit(space-between);
+    flex-direction: column;
+  }
+}
+
+.filter-parameter {
+  border-bottom: 1px solid rgba(49, 28, 28, 0.5);
+  width: 100%;
+  padding-top: 10px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__header {
+    @include flex-kit(space-between);
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    @include font-value(500, 20px, 25px);
+  }
+
+  &__button {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    background-image: url('../../icons/arrow-down.svg');
+    background-position: right;
+    transform: rotate(180deg);
+    background-size: 28px 23px;
+    background-repeat: no-repeat;
+  }
+
+  &__container {
+    @include font-value(400, 16px, 140%);
+    font-family: $secondary-font, sans-serif;
+    padding-left: 14px;
+
+    label {
+      margin-bottom: 18px;
+    }
+  }
+
+  &__checkbox {
+    @include flex-kit(flex-start);
+    cursor: pointer;
+  }
+
+  &__checkbox span {
+    margin-left: 14px;
+  }
+
+  &__container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  
+
+  &:not(.filter-parameter__hide) .filter-parameter__button {
+    transform: rotate(360deg);
+    transform: translateX(4px);
+  }
+
+  .price-container {
+    flex-direction: row;
+    input {
+      width: 90px;
+      border: 2px solid rgba(49, 28, 28, 0.7);
+      border-radius: 2px;
+      @include font-value(400, 16px, 140%);
+      font-family: $secondary-font, sans-serif;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(49, 28, 28, 0.7);
+  border-radius: 2px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #311C1C;
+  position: relative;
+}
+
+input[type="checkbox"]:checked::before {
+  content: '';
+  width: 30px;
+  height: 30px;
+  position: relative;
+  display: block;
+  background-image: url('../../icons/vector.svg');
+  transform: rotate(0deg);
+  left: 0;
+  top: 3px;
+  background-repeat: no-repeat;
+}

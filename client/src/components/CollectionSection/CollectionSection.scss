@@ -1,9 +1,12 @@
 @import "../../global_scss/vars.scss";
 @import "../../global_scss/mixins.scss";
+@import "../../global_scss/global_style.scss";
 
 .collection-section {
   max-width: 1200px;
   border-color: $basic-background-color;
+  margin: $margin-center;
+  box-sizing: border-box;
   &__header {
     @include flex-kit(space-between);
     align-items: center;
