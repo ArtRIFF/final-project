@@ -1,0 +1,14 @@
+@import '../../../../global_scss/vars.scss';
+@import '../../../../global_scss/mixins.scss';
+@import '../../../../global_scss/mixins.scss';
+
+.error {
+  color: $accent-color;
+  padding: 6px;
+}
+.registration__section-field {
+
+  padding-top: 20px;
+  font-family: $main-font;
+  @include font-value(500, 16px, 20px);
+}
