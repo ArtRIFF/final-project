@@ -13,11 +13,10 @@
     font-size: 20px;
     line-height: 25px;
     cursor: pointer;
+    transition: ease-in-out 0.5s;
   }
   &__menu_item:hover {
-    color: #270707;
-    transition: 0.5s;
-    font-size: 21px;
+    color: $accent-color;
   }
   &__menu-wrap {
     display: flex;
@@ -70,15 +69,15 @@ nav {
   height: 0.5em;
   background-color: $basic-text-color;
   border-radius: 0.5em;
-  @media (min-width: 768px) and (max-width: 2000px) {
+  @media (min-width: 768px) and (max-width: 10000px) {
     display: none;
   }
   @media (max-width: $desktop-size) {
-    margin-left: 80px;
+    margin-left: 60px;
     display: block;
   }
   @media (max-width: $mobile-size) {
-    margin-left: 35px;
+    margin-left: -10px;
   }
 }
 .menu {

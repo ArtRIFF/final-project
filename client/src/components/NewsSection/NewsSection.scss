@@ -3,7 +3,7 @@
 
 
 .news-section-container {
-  width: 100%;
+  width: 100%; //прибрати
   padding: 0 0;
   margin: 0 0;
   display: flex;
@@ -18,8 +18,13 @@
 .news-section {
   padding: 0 0;
   margin: 0 0;
-  max-width: 1920px;
-  max-height: 792px;
+  //------------------------//
+  max-width: 1920px; //прибрати
+  max-height: 792px; //прибрати
+  // margin: $margin-center; //додати
+  // box-sizing: border-box; //додати
+  // додати центровку картинок та тексту згідно макету у фігмі, щоб контент при збільшенні розширення залишався по центру дививтись компоненти вище/нижче background має розтягуватись по всій ширині
+  //------------------------//
   background-color: $accent-background-color;
   @media screen and (max-width: $mobile-size) {
     max-width: 320px;

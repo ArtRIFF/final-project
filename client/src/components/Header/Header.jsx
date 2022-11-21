@@ -9,11 +9,12 @@ class Header extends React.Component {
       <section className="header-wrap">
         <div className="container">
           <div className="header-wrap__display ">
-              <img
+              <a href="#"><img
                 src="img/header-icon/logoHeader.svg"
                 className="header-logo"
                 alt="logo"
               />
+              </a>
             <HeaderNav />
             <HeaderInterAction />
           </div>

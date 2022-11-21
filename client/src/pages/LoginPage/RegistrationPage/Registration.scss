@@ -1,6 +1,6 @@
-@import '../../global_scss/vars.scss';
-@import '../../global_scss/mixins.scss';
-@import '../../global_scss/global_style.scss';
+@import '../../../global_scss/vars.scss';
+@import '../../../global_scss/mixins.scss';
+@import '../../../global_scss/global_style.scss';
 
 .registration__section {
     padding-top: 30px;
@@ -88,12 +88,25 @@
     border: none;
 }
 
+
+#hide_show-mistake {
+  position: absolute;
+  right: 16px;
+  bottom: 36px;
+  cursor: pointer;
+  border: none;
+}
+
 .login__registration-section {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 30px;
+  @media screen and (max-width: $mobile-size) {
+    justify-content: center;
+  }
+
 }
 
 .login__registration-title {
@@ -111,7 +124,11 @@
 
 .login__section-btn {
   display: flex;
-  justify-content: center}
+  justify-content: end;
+  @media screen and (max-width: $mobile-size) {
+    justify-content: center;
+  }
+}
 
 // ------ //
 

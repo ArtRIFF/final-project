@@ -45,7 +45,6 @@ const InputWithStrength = ({ label, className, placeholder, name, handleChange, 
       setType('text')
       setToggleIcon('✅')
       setRipple('ripple-active')
-      // setPassInputClasses('toggle-icon-classes')
     } else {
       setType('password')
       setToggleIcon('❌')
@@ -66,7 +65,7 @@ const InputWithStrength = ({ label, className, placeholder, name, handleChange, 
 
         </label>
         <span onClick={togglePassInput} className={`toggle ${toggleIconClasses}`}
-              id='hide_show'>{toggleIcon}</span>
+              id={document.querySelector('.error') ? 'hide_show-mistake' : 'hide_show'}>{toggleIcon}</span>
         <span className={`ripple ${ripple}`}></span>
       </div>
       <div className="pass-strength">

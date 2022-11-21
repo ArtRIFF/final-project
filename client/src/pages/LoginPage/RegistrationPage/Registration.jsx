@@ -3,15 +3,15 @@ import { Form, Formik} from "formik";
 import * as Yup from 'yup';
 import "yup-phone-lite";
 
-import Header from '../../components/Header/Header';
-import Button from '../../components/Button/BattonAll/ButtonAll';
-import Footer from '../../components/Footer/Footer';
+import Header from '../../../components/Header/Header';
+import Button from '../../../components/Button/BattonAll/ButtonAll';
+import Footer from '../../../components/Footer/Footer';
 import Input from "./Input/Input";
 import InputWithStrength from "./InputWithStrength/InputWithStrength";
 
 import './Registration.scss';
 
-const validationSchema = Yup.object().shape({
+export const validationSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Wow! That is a super long name!')
@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
   password: Yup.string()
     .min(5)
-    .required(),
+    .required('Required'),
   passwordConfirm: Yup.string()
     .oneOf([Yup.ref('password')], "Passwords don't match"),
   phoneNumber: Yup.string()

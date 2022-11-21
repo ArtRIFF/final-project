@@ -1,0 +1,59 @@
+@import '../../../global_scss/vars.scss';
+@import '../../../global_scss/mixins.scss';
+
+.btn-seemore{    
+    padding: 16px 96px;
+    background: $accent-color;
+    margin: 383px 0 0 392px;
+    &__btn{
+    font-family: $main-font;
+    font-size: 16px;
+    line-height: 20px;
+    width: 500;
+    color: white;
+    }
+}
+
+@media screen and (max-width: 1201px){
+    .btn-seemore{    
+        padding: 16px 50px;
+        background: $accent-color;
+        margin: 257px 0 0 149px;
+        &__btn{
+        font-family: $main-font;
+        font-size: 16px;
+        line-height: 20px;
+        width: 500;
+        color: white;
+        }
+    }
+}
+
+@media screen and (max-width: 769px){
+    .btn-seemore{    
+        padding: 16px 50px;
+        background: $accent-color;
+        margin: 487px 0 0 -13px;
+        &__btn{
+        font-family: $main-font;
+        font-size: 16px;
+        line-height: 20px;
+        width: 500;
+        color: white;
+        }
+    }
+}
+@media screen and (max-width: 321px){
+    .btn-seemore{    
+        padding: 11px 100px;
+        background: $accent-color;
+        margin: 345px 0 0 -144px;
+        &__btn{
+        font-family: $main-font;
+        font-size: 16px;
+        line-height: 20px;
+        width: 500;
+        color: white;
+        }
+    }
+}
