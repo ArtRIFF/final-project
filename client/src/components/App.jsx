@@ -1,26 +1,34 @@
 import * as React from "react";
 import Header from "./Header/Header";
-import CollectionSection from "./CollectionSection";
-
+import HeroSection from "./HeroSection/HeroSection";
 import CategorySection from "../components/CatalogSection/CategorySection";
-
 import ProductCard from "../pages/ProductCard/ProductCard";
-// import NewsSection from "./NewsSection/NewsSection";
+import NewsSection from "./NewsSection/NewsSection";
 
-// import SubscribeSection from "./SubscribeSection/SubscribeSection";
-import Bestsellers from "./Bestsellers";
+import OurAdvantageSection from "./OurAdvantageSection/OurAdvantageSection";
 import Outlet from "./Outlet";
+import Bestsellers from "./Bestsellers";
+import SubscribeSection from "./SubscribeSection/SubscribeSection";
+import Footer from "./Footer/Footer";
+
+import CheckOutPage from '../pages/CheckOutPage/CheckOutPage'
+
 const App = () => {
   return (
     <>
-
-      {/* <h1 className="title"></h1>
+      <h1 className="title"></h1>
       <Header />
+      <HeroSection />
       <Bestsellers />
+      <NewsSection />
       <Outlet />
-      <CollectionSection />
-      <CategorySection /> */}
+      <CategorySection />
       <ProductCard />
+      <OurAdvantageSection />
+      <SubscribeSection />
+      <Footer />
+    {/* <CheckOutPage/> */}
+
     </>
   );
 };
