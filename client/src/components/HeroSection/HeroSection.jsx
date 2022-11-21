@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import BtnLinks from './BtnLinks/BtnLinks';
-import BtnSeeMore from './BtnSeeMore/BtnSeeMore';
+import Button from '../Button/BattonAll/ButtonAll';
 
 const HeroSection = () => {
     return (
@@ -28,10 +28,13 @@ const HeroSection = () => {
                         <p className='header-hero__titleOne'>ELEGANT</p>
                         <p className='header-hero__titleTwo'>JEWELRY</p>
                     </div>
-                    <div><BtnSeeMore /> <BtnLinks />
+                    <div> <BtnLinks />
                     </div>
-                </div>
+                </div><div className='header-hero__btn-see'>
+                <Button text='SeeMore' className='section__btn-header' id='section__btn' /></div>
             </div>
+            
+
         </section>
     )
 }
