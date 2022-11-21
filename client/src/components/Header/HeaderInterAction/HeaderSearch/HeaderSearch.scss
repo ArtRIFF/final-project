@@ -9,7 +9,12 @@
 
 @media screen and (max-width: $desktop-size) {
   .header-search {
-    padding-left: 10%;
-    padding-top: 5px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: $mobile-size) {
+  .header-search {
+    display: none;
   }
 }
