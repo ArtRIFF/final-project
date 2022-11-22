@@ -12,11 +12,13 @@ import SubscribeSection from "./SubscribeSection/SubscribeSection";
 import Footer from "./Footer/Footer";
 
 import CheckOutPage from '../pages/CheckOutPage/CheckOutPage'
+//
+import CatalogSectionPage from "../pages/CatalogSectionPage/CatalogSectionPage";
 
 const App = () => {
   return (
     <>
-      <h1 className="title"></h1>
+      {/* <h1 className="title"></h1>
       <Header />
       <HeroSection />
       <Bestsellers />
@@ -26,9 +28,9 @@ const App = () => {
       <ProductCard />
       <OurAdvantageSection />
       <SubscribeSection />
-      <Footer />
+      <Footer /> */}
     {/* <CheckOutPage/> */}
-
+    <CatalogSectionPage/>
     </>
   );
 };

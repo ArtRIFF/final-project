@@ -2,10 +2,9 @@
 @import '../../global_scss/vars.scss';
 
 .grid-wrapper {
-   background-color: rgb(45, 130, 96);
    padding: 40px 0 95px;
    display: grid;
-   grid-gap: 5px;
+   grid-gap: 10px;
    grid-template-areas:
       "breadcrumbs breadcrumbs"
       "asideFilter catalogPageImg"
