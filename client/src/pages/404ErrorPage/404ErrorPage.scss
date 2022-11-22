@@ -1,0 +1,22 @@
+@import "../../global_scss/global_style.scss";
+@import "../../global_scss/mixins.scss";
+@import "../../global_scss/vars.scss";
+
+.error__page {
+    text-align: center;
+}
+
+.error__img {
+    max-width: 1200px;
+    padding: 100px 0;
+    @media (max-width: $notebook-size) {
+        max-width: 800px;
+    }
+    @media (max-width: $desktop-size) {
+        max-width: 500px;
+    }
+    @media (max-width: $mobile-size) {
+        max-width: 250px;
+    }
+}
+

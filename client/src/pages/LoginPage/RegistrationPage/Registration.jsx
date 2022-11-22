@@ -11,6 +11,8 @@ import InputWithStrength from "./InputWithStrength/InputWithStrength";
 
 import './Registration.scss';
 
+import { NavLink } from "react-router-dom";
+
 export const validationSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'Too Short!')
@@ -92,7 +94,7 @@ const Registration = () => {
             />
             <div className='login__registration-section'>
               {/*FIXME create a link to Login page*/}
-              <h4 className='login__registration-title'>Already have an account?<a href="" className='login__registration-link'> Go to the Login page</a></h4>
+              <h4 className='login__registration-title'>Already have an account?<NavLink to="/login" className='login__registration-link'> Go to the Login page</NavLink></h4>
             </div>
             <div className='login__section-btn'>
               <Button text="Register" className="section__btn-checkout"/>

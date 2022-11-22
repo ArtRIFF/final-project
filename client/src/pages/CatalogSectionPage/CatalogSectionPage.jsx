@@ -16,12 +16,11 @@ const CatalogSectionPage = () => {
   
   const newCollectionArray = useSelector(selectorNewCollectionProduct);
   
-  const [showProducts, setProducts] = useState();
+  const [showProducts, setProducts] = useState(newCollectionArray);
   
   
   useEffect(() => {
     dispatch(fetchNewCollectionProduct());
-    setProducts(newCollectionArray);
     console.log(Array.isArray(showProducts));
   }, []);
 
