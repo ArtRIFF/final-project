@@ -16,10 +16,10 @@
     &__line{
     position: absolute;
     z-index: 1;
-    padding-right: 1320px;
+    padding-right: 1429px;
 }
     &__picture{
-        padding: 0 0 206px 58px;
+        padding: 0 537px 202px 267px;
        }
     &__items{
     padding-top: 231px;
@@ -41,18 +41,24 @@
         text-align: center;
     }
     &__titleOne{
-        font-family: $main-font;
+        font-family:$Bodoni-Italic;
         font-style: italic;
         font-weight: 700;
         line-height: 120px;
-        padding:  80px 0px 0px 485px;
+        padding:  80px 0px 0px 839px;
     }
     &__titleTwo{
-        font-family: $main-font;
+        font-family:$Bodoni-Italic;
         font-style: italic;
         font-weight: 700;
         line-height: 120px;
-        padding-left: 746px;
+        padding-left: 992px;
+    }
+    &__btn-see{
+        position: absolute;
+        z-index: 13;
+        padding-top: 279px;
+        padding-left: 1329px;
     }
 }
 .header-hero-picture{
@@ -83,7 +89,7 @@
         padding-right: 1024px;
     }  
     &__picture{
-        padding: 0 0 206px 5px;
+        padding: 0 302px 206px 14px;
        }
         &__item{ 
         width: 80px;
@@ -102,15 +108,21 @@
             text-align: center;
         }
         &__titleOne{
-            font-family: $main-font;
-            font-style: italic;
+            font-family:$Bodoni-Italic;
+        font-style: italic;
             font-weight: 700;
             padding:  10px 0px 0px 604px;
         }
         &__titleTwo{
-            font-family: $main-font;
-            font-style: italic;
+            font-family:$Bodoni-Italic;
+        font-style: italic;
             padding-left: 702px;
+        }
+        &__btn-see{
+            position: absolute;
+            z-index: 13;
+            padding-top: 202px;
+            padding-left: 924px;
         }
     }
     .header-hero-picture{
@@ -119,6 +131,7 @@
          padding-left: 1px;
         }
      }
+
 }
 
 @media screen and (max-width: 769px){
@@ -126,7 +139,7 @@
         display: flex;
         justify-content: center;
         &__picture{
-        padding: 0 0 206px 18px;
+        padding: 0 400px 206px 69px;
         height: 50%;
         width:50%;
        }
@@ -151,16 +164,22 @@
             font-size: 80px;
         }
         &__titleOne{
-            font-family: $main-font;
-            font-style: italic;
+            font-family:$Bodoni-Italic;
+        font-style: italic;
             font-weight: 700;
             padding-left: 55px;
             padding-top: 719px;
         }
         &__titleTwo{
-            font-family: $main-font;
-            font-style: italic;
+            font-family:$Bodoni-Italic;
+        font-style: italic;
             padding-left: 158px;
+        }
+        &__btn-see{
+            position: absolute;
+            z-index: 13;
+            padding-top: 533px;
+            padding-left: 457px;
         }
     }
     .header-hero-picture{
@@ -185,10 +204,16 @@
         display: flex;
         justify-content: center;
         &__picture{
-        padding: 0 0 206px 18px;
+        padding: 0 271px 206px 1px;
         height: 50%;
         width:50%;
        }
+       &__btn-see{
+        position: absolute;
+        z-index: 13;
+        padding-top: 313px;
+        padding-left: 1px;
+    }
        &__line{
         display: none;
        }

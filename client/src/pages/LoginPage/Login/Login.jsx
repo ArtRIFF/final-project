@@ -6,6 +6,7 @@ import {validationSchema} from "../RegistrationPage/Registration";
 import {Form, Formik} from "formik";
 import Input from "../RegistrationPage/Input/Input";
 import InputPassword from "../RegistrationPage/InputWithStrength/InputPassword";
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
 return(
@@ -45,7 +46,7 @@ return(
                               />
                               <div className='login__registration-section'>
                                   {/*FIXME create a link to Login page*/}
-                                  <h4 className='login__registration-title'>Don't have an account yet?<a href="" className='login__registration-link'> Register</a></h4>
+                                  <h4 className='login__registration-title'>Don't have an account yet?<NavLink to="/registration" className='login__registration-link'> Register</NavLink></h4>
                               </div>
                               <div className='login__section-btn'>
                                   <Button text="Continue" className="section__btn-checkout"/>
