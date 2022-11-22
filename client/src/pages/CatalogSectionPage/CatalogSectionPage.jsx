@@ -16,19 +16,18 @@ const CatalogSectionPage = () => {
   
   const newCollectionArray = useSelector(selectorNewCollectionProduct);
   
-  const [showProducts, setProducts] = useState(newCollectionArray);
+  const [showProducts, setProducts] = useState('');
   
   
   useEffect(() => {
     dispatch(fetchNewCollectionProduct());
-    console.log(Array.isArray(showProducts));
   }, []);
-
 
 
   const callAsideFilter = () => {
     setModalRender(true);
-    setProducts([1,2,3,4,5,6]);
+    const newArray = newCollectionArray.filter(item => item.alt === "Bracelet");
+    setProducts(newArray);
   }
 
   const hideAsideFilter = (event) => {
@@ -53,7 +52,17 @@ const CatalogSectionPage = () => {
         <div className='filter-wrapper'>
           <CategoryFilter onClickFunc={callAsideFilter}  setResult={array}/>
         </div>
-        <div style={{ backgroundColor: "rgba(100, 85, 45, 0.5)", width: '850px', height: '510px' }} className='categoryCards-wrapper'>Cards</div>
+        <div style={{ backgroundColor: "rgba(100, 85, 45, 0.5)", width: '850px', height: '510px' }} className='categoryCards-wrapper'>{
+       !Array.isArray(showProducts)?
+       newCollectionArray.map((item, i)=> {
+          const {name,price,alt,bestseller,newProduct} = item;
+          return (<p key={i}>{i} Product:{name} price:{price} alt:{alt} bestseller:{bestseller} newProduct:{newProduct}</p>)
+        })
+        :showProducts.map((item, i)=> {
+          const {name,price,alt,bestseller,newProduct} = item;
+          return (<p key={i}>{i} Product:{name} price:{price} alt:{alt} bestseller:{bestseller} newProduct:{newProduct}</p>)
+        })
+        }</div>
         <div style={{ backgroundColor: "grey", width: '396px', height: '88px' }} className='paginnation-wrapper'>paginnation</div>
       </div>
     </div>
