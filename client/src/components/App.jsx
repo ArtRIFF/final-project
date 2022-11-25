@@ -35,6 +35,7 @@ const App = () => {
         <Route path="/constract" element={<UnderConstractionPage/>}/>
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
+
     </>
   );
 };

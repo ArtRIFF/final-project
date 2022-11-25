@@ -14,6 +14,7 @@ const ContactInfoPage = () => {
             <input type="text" className='contact-info-section__text' placeholder='elonamail@gmail' /></form>
         </div>
         <p className='contact-info-section__titleLogin'>Already have an account? <NavLink to="/login" className='contact-info-section__login'>Login</NavLink> </p>
+
       </div>
     </section>
     
