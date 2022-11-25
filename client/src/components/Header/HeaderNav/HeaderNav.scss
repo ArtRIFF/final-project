@@ -134,6 +134,10 @@ nav {
   padding-top: 37px;
   font-size: 40px;
   padding-bottom: 27px;
+  
+  &:hover {
+    color: $accent-color
+  }
 }
 @media screen and (max-width: $desktop-size) {
   .header-nav-mobil {
@@ -143,8 +147,11 @@ nav {
 .header-nav-mobil__menu_item {
   color: $accent-background-color;
 }
-.header-nav-mobil__menu_item:hover {
+.header-nav-mobil__menu_item {
   color: rgb(238, 210, 168);
   cursor: pointer;
   font-size: 23.5px;
+  &:hover {
+    color: $accent-color;
+  }
 }

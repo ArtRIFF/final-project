@@ -1,0 +1,17 @@
+@import "../../global_scss/global_style.scss";
+@import "../../global_scss/mixins.scss";
+@import "../../global_scss/vars.scss";
+
+.section__title {
+    font-family: $main-font;
+    @include font-value(500, 28px, 30px);
+    color: #311C1C;
+    padding: 50px 0;
+}
+
+.about__section {
+    font-family: $main-font;
+    @include font-value(400, 22px, 36px);
+    padding-bottom: 50px;
+    
+}

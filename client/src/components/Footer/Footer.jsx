@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import ButtonAll from '../Button/BattonAll/ButtonAll'
 import './Footer.scss'
 
@@ -12,27 +13,41 @@ const Footer = () => {
                             <div className='table_buyer'>
                                     <p className='footer__title'>To the buyer</p>
                                 <ul>
-                                    <li className='footer__list'>Payment and delivery</li>
-                                    <li className='footer__list'>Exchange and return</li>
-                                    <li className='footer__list'>Privacy Policy</li>
-                                    <li className='footer__list'>Shops</li>
+                                    <NavLink to="/constract">
+                                        <li className='footer__list'>
+                                            Payment and delivery
+                                        </li>
+                                    </NavLink>
+                                    <NavLink to="/constract">
+                                        <li className='footer__list'>
+                                            Shops
+                                        </li>
+                                    </NavLink>
                                 </ul>
                             </div>
                             <div className='table_about'>
                                     <p className='footer__title'>About</p>
                                 <ul>
-                                    <li className='footer__list'>About us</li>
-                                    <li className='footer__list'>SOVA CLUB</li>
-                                    <li className='footer__list'>Contract offers</li>
-                                    <li className='footer__list'>Contacts</li>
+                                    <NavLink to="/about">
+                                        <li className='footer__list'>About us</li>
+                                    </NavLink>
+                                    <NavLink to="/contact">
+                                        <li className='footer__list'>Contacts</li>
+                                    </NavLink>
                                 </ul>
                             </div>
                             <div className='table_catalog'>
                                     <p className='footer__title' id='title'>Catalog</p>
                                 <ul>
+                                <NavLink to="/jewelry">
                                     <li className='footer__list'>Jewelry</li>
+                                </NavLink>
+                                <NavLink to="/collection">
                                     <li className='footer__list'>Collections</li>
+                                </NavLink>
+                                <NavLink to="/outlet">
                                     <li className='footer__list'>%Outlet</li>
+                                </NavLink>
                                 </ul>
                             </div>
                             <div className='table_work-time'>
