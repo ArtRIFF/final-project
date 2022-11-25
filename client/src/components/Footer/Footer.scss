@@ -176,6 +176,10 @@
     font-family: $secondary-font;
     @include font-value(400, 15px, 140%);
     color: #311C1C;
+    transition: ease-in-out 0.5s;
+    &:hover {
+        color: $accent-color;
+    }
     @media (max-width:$notebook-size) {
         @include font-value(400, 15px, 80%);
     }

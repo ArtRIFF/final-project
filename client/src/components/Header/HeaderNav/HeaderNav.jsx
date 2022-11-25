@@ -23,7 +23,7 @@ const HeaderNav = () => {
     <div className="nav">
       <ul className="header-nav__menu-wrap">
           <li className="header-nav header-nav__menu_item">
-          <NavLink to="/jewelry" className="header-nav__menu_item">Jewerly</NavLink>
+          <NavLink to="/jewelry" className="header-nav__menu_item">Jewelry</NavLink>
           </li>
           <li className="header-nav header-nav__menu_item">
           <NavLink to="/collection" className="header-nav__menu_item">Collections</NavLink>
