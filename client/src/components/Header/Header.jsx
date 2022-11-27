@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss";
 import HeaderNav from "./HeaderNav/HeaderNav";
 import HeaderInterAction from "./HeaderInterAction/HeaderInterAction";
+import { NavLink } from 'react-router-dom';
 
 class Header extends React.Component {
   render() {
@@ -9,11 +10,12 @@ class Header extends React.Component {
       <section className="header-wrap">
         <div className="container">
           <div className="header-wrap__display ">
-              <img
+              <NavLink to="/"><img
                 src="img/header-icon/logoHeader.svg"
                 className="header-logo"
                 alt="logo"
               />
+              </NavLink>
             <HeaderNav />
             <HeaderInterAction />
           </div>

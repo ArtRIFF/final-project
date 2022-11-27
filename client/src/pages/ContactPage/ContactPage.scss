@@ -1,0 +1,30 @@
+@import "../../global_scss/global_style.scss";
+@import "../../global_scss/mixins.scss";
+@import "../../global_scss/vars.scss";
+
+.contact__section {
+    padding: 50px 0;
+    text-align: center;
+}
+.contact__title {
+    font-family: $main-font;
+    @include font-value(500, 28px, 30px);
+    color: #311C1C;
+    padding: 25px 0;
+}
+
+.contact__section-title {
+    font-family: $main-font;
+    @include font-value(400, 22px, 36px);  
+}
+
+.contact__section-map, .contact__section-number {
+    font-family: $main-font;
+    @include font-value(200, 18px, 24px);
+    padding-bottom: 25px; 
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+    &:hover {
+        color: $accent-color;
+    }
+}

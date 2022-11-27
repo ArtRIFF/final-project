@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./HeaderNav.scss";
+import { NavLink } from 'react-router-dom';
 
 const HeaderNav = () => {
   // to change burger classes
@@ -21,17 +22,17 @@ const HeaderNav = () => {
   return (
     <div className="nav">
       <ul className="header-nav__menu-wrap">
+          <li className="header-nav header-nav__menu_item">
+          <NavLink to="/jewelry" className="header-nav__menu_item">Jewelry</NavLink>
+          </li>
+          <li className="header-nav header-nav__menu_item">
+          <NavLink to="/collection" className="header-nav__menu_item">Collections</NavLink>
+          </li>
+          <li className="header-nav header-nav__menu_item"> 
+          <NavLink to="/outlet" className="header-nav__menu_item">%Outlet</NavLink>
+          </li>
         <li className="header-nav header-nav__menu_item">
-            Jewerly
-        </li>
-        <li className="header-nav header-nav__menu_item">
-            Collections
-        </li>
-        <li className="header-nav header-nav__menu_item"> 
-      %Outlet
-        </li>
-        <li className="header-nav header-nav__menu_item">
-          Our Production
+        <NavLink to="/our_production" className="header-nav__menu_item">Our Production</NavLink>
         </li>
       </ul>
       <nav className="nav">
@@ -44,24 +45,24 @@ const HeaderNav = () => {
       <div className={menu_class}>
         <ul className="header-nav-mobil__menu-wrap">
           <li className="header-nav-mobil">
-            <a name="jewelry" href="/" className="header-nav-mobil__menu_item">
+            <NavLink to="/jewelry" className="header-nav-mobil__menu_item">
               Jewerly
-            </a>
+            </NavLink>
           </li>
           <li className="header-nav-mobil">
-            <a href="/collection" className="header-nav-mobil__menu_item">
+            <NavLink to="/collection" className="header-nav-mobil__menu_item">
               Collections
-            </a>
+            </NavLink>
           </li>
           <li className="header-nav-mobil">
-            <a href=" /outlet" className="header-nav-mobil__menu_item">
+            <NavLink to="/outlet" className="header-nav-mobil__menu_item">
               %Outlet
-            </a>
+            </NavLink>
           </li>
           <li className="header-nav-mobil">
-            <a href="/production " className="header-nav-mobil__menu_item">
+            <NavLink to="/our_production" className="header-nav-mobil__menu_item">
               Our production
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>

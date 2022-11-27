@@ -4,6 +4,7 @@
 .aside-filter {
   position: absolute;
   width: inherit;
+
   &__header {
     @include flex-kit(space-between);
     margin-bottom: 30px;
@@ -11,6 +12,9 @@
 
   &__title {
     @include font-value(700, 36px, 45px);
+    @media (max-width:$desktop-size) {
+      @include font-value(700, 30px, 27px);
+   }
   }
 
   &__button {
@@ -20,6 +24,9 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    @media (max-width:$desktop-size) {
+      @include font-value(700, 18px, 27px);
+   }
   }
 
   &__wrapper {
@@ -32,6 +39,10 @@
   border-bottom: 1px solid rgba(49, 28, 28, 0.5);
   width: 100%;
   padding-top: 10px;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   &__header {
     @include flex-kit(space-between);
