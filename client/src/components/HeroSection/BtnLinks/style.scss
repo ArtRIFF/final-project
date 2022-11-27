@@ -14,15 +14,18 @@
         flex-direction: column;
         margin-top: 20px;
         margin-bottom: 20px;
-        padding-left: 699px;
     }
     &__line{
         position: absolute;
         z-index: 1;
-        padding-left: 721px;
-        padding-top: 106px;
+        padding-left: 23px;
+        padding-top: 540px;
+    }
+    &__medias{
+        padding-top: 508px;
     }
 }
+
 
 @media screen and (max-width: 1201px){
     .btn-links{
@@ -30,20 +33,19 @@
             position: absolute;
             z-index: 10;
             padding-top: 175px;
+            margin-top: 344px;
             }
         &__media{
             display: flex;
             flex-direction: column;
             margin-top: 20px;
             margin-bottom: 20px;
-            padding-left: 370px;
+            padding-left: 58px;
 
         }
         &__line{
             position: absolute;
-            z-index: 1;
-            padding-left: 394px;
-            padding-top: 231px;
+            padding-left: 82px;
         }
     }
 }
@@ -52,20 +54,18 @@
         &__medias{
             position: absolute;
             z-index: 10;
-            padding-top: 1px;
+            padding-top: 228px;
             }
         &__media{
             display: flex;
             flex-direction: column;
             margin-top: 88px;
             margin-bottom: -73px;
-            padding-left: 202px;
         }
         &__line{
             position: absolute;
             z-index: 1;
-            padding-left: 224px;
-            padding-top: 126px;
+            padding-top: 664px;
           
         }
     }

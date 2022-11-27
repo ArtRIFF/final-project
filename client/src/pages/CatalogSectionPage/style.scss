@@ -1,8 +1,11 @@
+@import '../../global_scss/mixins.scss';
+@import '../../global_scss/vars.scss';
+
 .grid-wrapper {
    background-color: rgb(45, 130, 96);
    padding: 40px 0 95px;
    display: grid;
-   grid-gap: 10px;
+   grid-gap: 5px;
    grid-template-areas:
       "breadcrumbs breadcrumbs"
       "asideFilter catalogPageImg"
@@ -13,8 +16,8 @@
 
 .catalogPageImg-wrapper {
    grid-area: catalogPageImg;
-   width: 850px;
-   min-height: 315px;
+   width: 100%;
+   min-height: 100%;
 
    img {
       display: inline-block;
@@ -29,14 +32,44 @@
 }
 
 .asideFilter-wrapper {
+   @media (max-width:$desktop-size) {
+      width: 0;
+      overflow: hidden;
+   }
+
    grid-area: asideFilter;
+   width: 300px;
    min-height: 508px;
    position: relative;
+   width: '300px'
+
+   &--show {
+      width: 200px;
+   }
+}
+
+.asideFilter-wrapper--show .aside-filter {
+   background-color: $additional-text-color;
+   border-radius: 4px;
+   animation: slide 0.8s ease-in-out;
+   padding: 10px;
+}
+
+
+@keyframes slide {
+   0% {
+      left: -100%;
+   }
+
+   100% {
+      left: 0%;
+   }
 }
 
 .filter-wrapper {
    grid-area: filter;
-   width: 850px;
+   width: 100%;
+   min-height: 43px;
 }
 
 .categoryCards-wrapper {

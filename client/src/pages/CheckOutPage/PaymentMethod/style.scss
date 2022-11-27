@@ -1,0 +1,91 @@
+@import '../../../global_scss/vars.scss';
+@import '../../../global_scss/mixins.scss';
+
+.payment-method-section{
+    width: 100%;
+    margin: 0 auto;
+    border:  1px solid #B5ABAA;
+    width: 1010px;
+    height: 600px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    &__title{
+        padding: 0 0 25px 30px;
+        font-family: $main-font;
+        font-size: 20px;
+        line-height: 25px;
+        width: 500;
+        padding-top: 40px;
+    }
+    &__name{
+        font-family: 'Mulish';
+        font-size: 16px;
+        line-height: 22px;
+        width: 400;
+        display: flex;
+        padding-right: 600px;
+    }
+    &__creaditInfo{
+        display: inline-flex;
+        padding-left: 30px;
+        padding-bottom: 5px;
+    }
+    &__firstName{
+        display: flow-root;
+        padding-bottom: 5px;
+    }
+    &__infos{
+        display: inline-grid;
+        padding-left: 30px;
+        padding-bottom: 5px;
+    }
+    &__names{
+        padding-right: 50px;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        font-family: $main-font;
+        font-size: 16px;
+        line-height: 20px;
+        width: 500;
+    }
+    &__texts{
+        width: 290px;
+        padding: 15px;
+        outline: none;
+        border:  1px solid #B5ABAA;
+    }
+    &__info{
+        display: inline-grid;
+        padding-left: 30px;
+        padding-bottom: 5px;
+    }
+    &__name{
+        flex-direction: column;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        font-family: $main-font;
+        font-size: 16px;
+        line-height: 20px;
+        width: 500;
+    }
+    &__text{
+        width: 930px;
+        padding: 15px;
+        outline: none;
+        border:  1px solid #B5ABAA;
+    }
+    &__checkBox{
+        padding-top: 15px;
+        padding-left: 30px;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 400;
+    }
+    &__img{
+        padding-right: 10px;
+    }
+    &__btn{
+        padding-top: 15px;
+        padding-left: 800px;
+    }
+}

@@ -3,12 +3,18 @@
 
 
 .news-section-container {
-  width: 100%;
-  padding: 0 0;
-  margin: 0 0;
+  margin: $margin-center;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   max-height: 792px;
+
+  margin-left: auto; 
+  margin-right: auto; 
+  left: 0; 
+  right: 0; 
+  max-width: fit-content;
+
 
   @media screen and (max-width: $mobile-size) {
     height: 620px;
@@ -18,8 +24,7 @@
 .news-section {
   padding: 0 0;
   margin: 0 0;
-  max-width: 1920px;
-  max-height: 792px;
+
   background-color: $accent-background-color;
   @media screen and (max-width: $mobile-size) {
     max-width: 320px;

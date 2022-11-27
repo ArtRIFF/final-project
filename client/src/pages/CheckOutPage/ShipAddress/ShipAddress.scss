@@ -1,0 +1,85 @@
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+.ship-info-section {
+  margin: 0 auto;
+  border: 1px solid #b5abaa;
+  width: 87%;
+  margin-top: 20px;
+  padding: 0 30px 0 30px;
+  &__wrap {
+    display: block;
+  }
+  &__title {
+    padding: 40px 0 10px 0;
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  &__firstName {
+    display: flex;
+    flex-direction: row;
+  }
+  &__infos {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+    &_item {
+      padding-left: 15px;
+    }
+  }
+  &__texts {
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #b5abaa;
+  }
+  &__info {
+    cursor: pointer;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__name {
+    flex-direction: column;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-family: $main-font;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  &__text {
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    border: 1px solid #b5abaa;
+  }
+  &__line {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-family: "Mulish";
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+  &__checkBox {
+    padding: 15px 0 30px 0;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+  }
+}
+@media (max-width: 650px) {
+  .ship-info-section__firstName {
+    flex-direction: column;
+  }
+}
+@media (max-width: 650px) {
+  .ship-info-section__infos_item {
+    padding-left: 0px;
+  }
+}
