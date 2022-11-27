@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import MainPage from "../pages/MainPage/MainPage"
 import Header from "./Header/Header";
 
-
 import CheckOutPage from "../pages/CheckOutPage/CheckOutPage";
 import Login from "../pages/LoginPage/Login/Login";
 import Registration from "../pages/LoginPage/RegistrationPage/Registration";
