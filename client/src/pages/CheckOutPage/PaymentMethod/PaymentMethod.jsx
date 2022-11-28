@@ -1,7 +1,7 @@
 import React from "react";
 import "./PaymentMethod.scss";
 import Button from "../../../components/Button/BattonAll/ButtonAll";
-import StripeCheckout from "react-stripe-checkout";
+// import StripeCheckout from "react-stripe-checkout";
 
 const PaymentMethod = () => {
   return (
