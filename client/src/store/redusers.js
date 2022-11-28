@@ -26,11 +26,12 @@ export default createReducer(defaultState, {
   [actions.setCategoryEarrings]: (state, { payload }) => {
     state.category.earrings = payload;
   },
-  [actions.setBestsellers]: (state, {payload}) => {
+  [actions.setBestsellers]: (state, { payload }) => {
     state.bestsellers = payload;
   },
-  [actions.setOutlet]: (state, {payload}) => {
+  [actions.setOutlet]: (state, { payload }) => {
     state.outlet = payload;
   },
+
   // [actions.toDefault]: () => defaultState,
 });

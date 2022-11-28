@@ -29,13 +29,13 @@ const CategorySection = (props) => {
           <a href="#" className="category__content-sidebar__link">
             Bracelets
           </a>
-          <a href="#" className="category__content-sidebar__link active">
+          <a href="#" className="category__content-sidebar__link ">
             Necklace
           </a>
           <a href="#" className="category__content-sidebar__link">
             Rings
           </a>
-          <a href="#" className="category__content-sidebar__link">
+          <a href="#" className="category__content-sidebar__link active">
             Earrings
           </a>
           <a href="#" className="category__content-sidebar__link">
@@ -58,7 +58,7 @@ const CategorySection = (props) => {
             loop
             className="category__content-cards"
           >
-            {earringsArray.map((card, index) => {
+            {earringsArray.slice(0, 4).map((card, index) => {
               return (
                 <SwiperSlide key={index}>
                   <CategorySectionCard product={card} />
