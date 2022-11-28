@@ -4,6 +4,7 @@ import ButtonViewAll from '../Button/ViewAll/ViewAll';
 import CategorySectionCard from '../CatalogSection/CategorySectionCard';
 import {selectBestsellers} from '../../store/selectors';
 import {fetchBestsellers} from '../../store/actions';
+import { getCards } from '../../helpers/sendRequest';
 
 
 import "./bestsellers.scss"
@@ -15,9 +16,11 @@ const Bestsellers = (props) => {
     const bestsellers = useSelector(selectBestsellers);
 
     useEffect(() => {
-        dispatch(fetchBestsellers())
+        dispatch(fetchBestsellers());
+        getCards()
+    .then(data => console.log('DataBase',data))
     },[]);
-
+     
 
     return (
         <section className='bestsellers'>
