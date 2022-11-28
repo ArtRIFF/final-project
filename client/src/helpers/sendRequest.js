@@ -1,9 +1,10 @@
+import { API, token } from "../config/API";
 // export const sendRequest = async (url) => {
 // 	const response = await fetch(url);
 // 	const result = await response.json();
 // 	return result;
 // }
-import { API, token } from "../config/API";
+
 export const sendRequest = async (url, method = "GET", config) => {
   return await fetch(url, {
     method,
@@ -25,7 +26,7 @@ export const getCards = () =>
       Authorization: token,
     },
   });
-export const getOneCard = (id) =>
+export const getOneCards = (id) =>
   sendRequest(`${API}products/${id}`, "GET", {
     headers: {
       Authorization: token,
