@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import "yup-phone-lite";
 
 import Button from "../../../components/Button/BattonAll/ButtonAll";
+
 import Input from "./Input/Input";
 import InputWithStrength from "./InputWithStrength/InputWithStrength";
 

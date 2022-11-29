@@ -1,3 +1,4 @@
+
 import "./AboutUsPage.scss";
 
 const AboutUs = () => {

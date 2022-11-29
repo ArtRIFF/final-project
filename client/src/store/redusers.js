@@ -9,6 +9,7 @@ export const defaultState = {
   cartArray: [],
   favoriteProd: [],
   newCollectionProduct: [],
+  allCollectionProduct: [],
   category: {
     earrings: [],
   },
@@ -20,17 +21,21 @@ export default createReducer(defaultState, {
   [actions.setModalRender]: (state, { payload }) => {
     state.modalRender = payload;
   },
+  [actions.setAllCollectionProduct]: (state, { payload }) => {
+    state.allCollectionProduct = payload;
+  },
   [actions.setNewCollectionProduct]: (state, { payload }) => {
     state.newCollectionProduct = payload;
   },
   [actions.setCategoryEarrings]: (state, { payload }) => {
     state.category.earrings = payload;
   },
-  [actions.setBestsellers]: (state, {payload}) => {
+  [actions.setBestsellers]: (state, { payload }) => {
     state.bestsellers = payload;
   },
-  [actions.setOutlet]: (state, {payload}) => {
+  [actions.setOutlet]: (state, { payload }) => {
     state.outlet = payload;
   },
+
   // [actions.toDefault]: () => defaultState,
 });

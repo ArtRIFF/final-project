@@ -1,3 +1,4 @@
+
 import "./ContactPage.scss";
 
 const Contact = () => {
