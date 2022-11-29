@@ -21,11 +21,23 @@ const AsideFilter = () => {
     }
 
   }
+  const resetAllParam = () => {
+   const checkboxElements = document.querySelectorAll('.filter-parameter__checkbox input');
+   const inputElements = document.querySelectorAll('.price-container input');
+   checkboxElements.forEach(checkbox => {
+    checkbox.checked = false;
+   })
+
+   inputElements.forEach(input => {
+    input.value = '';
+    console.log(input);
+   })
+  }
   return (
     <div className="aside-filter">
       <div className='aside-filter__header'>
         <h3 className="aside-filter__title">Filters</h3>
-        <button className="aside-filter__button">Reset all</button>
+        <button onClick={resetAllParam} className="aside-filter__button">Reset all</button>
       </div>
       <div className='aside-filter__wrapper'>
         <div className="filter-parameter filter-parameter__hide">
@@ -46,35 +58,23 @@ const AsideFilter = () => {
           <div className="filter-parameter__container">
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>UNITED24</span>
+              <span>Vintage</span>
+            </label>
+            <label className='filter-parameter__checkbox'>
+              <input type="checkbox"/>
+              <span>Seabed</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Easyen</span>
+              <span>Refinement</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>TOKYOen</span>
+              <span>Capsule</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Sophieen</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Bloomen</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>First Loveen</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Smart & Beautifulen</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Poweren</span>
+              <span>Max Spass</span>
             </label>
           </div>
         </div>
@@ -90,11 +90,11 @@ const AsideFilter = () => {
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Amethyst</span>
+              <span>Pearl</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Australian opal</span>
+              <span>Zirconia</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
@@ -106,75 +106,35 @@ const AsideFilter = () => {
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Rubber</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Ceramics</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Leather</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Pearl</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Cub.zirconium</span>
+              <span>Semi-precious</span>
             </label>
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">
           <div className="filter-parameter__header">
-            <h5 className="filter-parameter__title">Insert color</h5>
+            <h5 className="filter-parameter__title">Insert number</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>White</span>
+              <span>1</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Colorless</span>
+              <span>2</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Boulder opal</span>
+              <span>12</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Light blue</span>
+              <span>24</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Yellow</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Red</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Pink</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Blue</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Fantasy</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Purple</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Black</span>
+              <span>37</span>
             </label>
           </div>
         </div>
@@ -191,6 +151,10 @@ const AsideFilter = () => {
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Gold</span>
+            </label>
+            <label className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Silver</span>
             </label>
           </div>
         </div>
@@ -211,6 +175,10 @@ const AsideFilter = () => {
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Red</span>
+            </label>
+            <label className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Black rhodium</span>
             </label>
           </div>
         </div>
@@ -246,7 +214,7 @@ const AsideFilter = () => {
           <div className="filter-parameter__container">
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Bracelets</span>
+              <span>Bracelet</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
@@ -254,23 +222,23 @@ const AsideFilter = () => {
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Rings</span>
+              <span>Ring</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Earrings</span>
+              <span>Earring</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Chains</span>
+              <span>Cross</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Brooches</span>
+              <span>Pendant</span>
             </label>
             <label className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Hairpins</span>
+              <span>Pearl</span>
             </label>
           </div>
         </div>
@@ -279,35 +247,9 @@ const AsideFilter = () => {
             <h5 className="filter-parameter__title">Size</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
-          <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>20</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>160</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>165</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>170</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>175</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>180</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>185</span>
-            </label>
+          <div className="filter-parameter__container price-container">
+            <input type="text" placeholder='15' /><span>-</span>
+            <input type="text" placeholder='24' />
           </div>
         </div>
       </div>
