@@ -1,12 +1,13 @@
-import './viewall.scss'
+import "./viewall.scss";
 
-const ButtonViewAll = () => {
-   
-    return(
-        <div>
-            <p className='btn-viewall'>VIEW ALL</p>
-        </div>
-    )  
-}
+const ButtonViewAll = ({ onClick }) => {
+  return (
+    <div>
+      <p className="btn-viewall" onClick={onClick}>
+        VIEW ALL
+      </p>
+    </div>
+  );
+};
 
 export default ButtonViewAll;

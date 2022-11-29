@@ -7,12 +7,12 @@ import ShipAddress from "./ShipAddress/ShipAddress";
 import Footer from "../../components/Footer/Footer";
 
 import "./style.scss";
-import Registration from "../RegistrationPage/Registration";
+import Registration from "../LoginPage/RegistrationPage/Registration";
 
 const CheckOutPage = () => {
   return (
     <section className="">
-      <Header/>
+      <Header />
       <ContactInfoPage />
       <ShipAddress />
       <PaymentMethod />
