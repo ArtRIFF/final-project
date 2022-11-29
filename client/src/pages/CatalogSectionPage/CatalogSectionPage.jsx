@@ -6,21 +6,21 @@ import AsideFilter from './components/AsideFilter/AsideFilter';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from 'react';
 
-import { selectorNewCollectionProduct } from "../../store/selectors";
-import { fetchNewCollectionProduct } from "../../store/actions";
+import { selectorAllCollectionProduct } from "../../store/selectors";
+import { fetchAllCollectionProduct } from "../../store/actions";
 
 const CatalogSectionPage = () => {
   const dispatch = useDispatch();
   
   const [showAsideFilter, setModalRender] = useState(false);
   
-  const newCollectionArray = useSelector(selectorNewCollectionProduct);
+  const newCollectionArray = useSelector(selectorAllCollectionProduct);
   
   const [showProducts, setProducts] = useState('');
   
   
   useEffect(() => {
-    dispatch(fetchNewCollectionProduct());
+    dispatch(fetchAllCollectionProduct());
   }, []);
 
 

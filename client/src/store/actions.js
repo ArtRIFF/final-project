@@ -2,6 +2,9 @@ import { createAction } from "@reduxjs/toolkit";
 import { sendRequest, getCards } from "../helpers/sendRequest";
 
 export const setModalRender = createAction("SET_MODAL_RENDER");
+export const setAllCollectionProduct = createAction(
+  "SET_ALL_COLLECTION_PRODUCT"
+);
 export const setNewCollectionProduct = createAction(
   "SET_NEW_COLLECTION_PRODUCT"
 );
@@ -16,6 +19,16 @@ export const setOutlet = createAction("SET_OUTLET");
 // 			dispatch(setProductArray(data));
 // 		})
 // }
+
+export const fetchAllCollectionProduct = () => (dispatch) => {
+  return getCards().then((data) => {
+    dispatch(
+      setAllCollectionProduct(
+        data
+      )
+    );
+  });
+};
 
 export const fetchNewCollectionProduct = () => (dispatch) => {
   return getCards().then((data) => {
