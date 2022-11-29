@@ -2,9 +2,8 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "yup-phone-lite";
 
-import Header from "../../../components/Header/Header";
 import Button from "../../../components/Button/BattonAll/ButtonAll";
-import Footer from "../../../components/Footer/Footer";
+
 import Input from "./Input/Input";
 import InputWithStrength from "./InputWithStrength/InputWithStrength";
 
@@ -31,7 +30,6 @@ export const validationSchema = Yup.object().shape({
 const Registration = () => {
   return (
     <div>
-      <Header />
       <section className="registration__section">
         <div className="container">
           <h2 className="login__breadcrumbs">
@@ -111,7 +109,6 @@ const Registration = () => {
           </Formik>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

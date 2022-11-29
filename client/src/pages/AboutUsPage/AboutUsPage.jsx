@@ -1,11 +1,9 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+
 import "./AboutUsPage.scss";
 
 const AboutUs = () => {
     return (
         <>
-            <Header/>
                 <section className="about__section">
                     <div className="container">
                         <h2 className="section__title">ABOUT US</h2>
@@ -21,7 +19,6 @@ const AboutUs = () => {
                         </p>
                     </div>
                 </section>
-            <Footer/>
         </>
     )
 }
