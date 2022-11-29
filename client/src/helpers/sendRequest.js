@@ -26,7 +26,7 @@ export const getCards = () =>
       Authorization: token,
     },
   });
-export const getOneCards = (id) =>
+export const getOneCard = (id) =>
   sendRequest(`${API}products/${id}`, "GET", {
     headers: {
       Authorization: token,

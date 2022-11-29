@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Gold earring with pearl",
+    "price": "$2,130",
+    "oldPrice": "$43,880",
+    "url": "/img/new-collection/jewelry-1.png",
+    "subtitle": "Breeze - a collection of variability. That we adapt to circumstances just as water adapts to wind currents.",
+    "alt": "earring",
+    "sale": "true",
+    "bestseller": "false",
+    "newProduct": "false",
+    "stars": "4",
+    "reviews": "6",
+    "article": "743874",
+    "additionalPhotos": [
+      "/img/productCard/Rectangle42.jpg",
+      "/img/productCard/Rectangle43.jpg",
+      "/img/productCard/Rectangle44.jpg",
+      "/img/productCard/Rectangle45.jpg"
+    ]
+  },
+  {
+    "name": "gold ring with pearl",
+    "price": "$1,037",
+    "oldPrice": "false",
+    "url": "/img/new-collection/jewelry-2.png",
+    "subtitle": "Breeze - a collection of variability. That we adapt to circumstances just as water adapts to wind currents.",
+    "alt": "ring",
+    "sale": "true",
+    "bestseller": "false",
+    "newProduct": "false",
+    "stars": "4",
+    "reviews": "6",
+    "article": "743874"
+  },
+  {
+    "name": "gold Bracelet with pearl",
+    "price": "$3,554",
+    "url": "/img/new-collection/jewelry-3.png",
+    "subtitle": "Breeze - a collection of variability. That we adapt to circumstances just as water adapts to wind currents.",
+    "alt": "Bracelet",
+    "oldPrice": "$12,564",
+    "sale": "true",
+    "bestseller": "false",
+    "newProduct": "false",
+    "stars": "4",
+    "reviews": "6",
+    "article": "743874"
+  },
+  {
+    "name": "gold earring with pearl",
+    "price": "$1,139",
+    "url": "/img/new-collection/jewelry-4.png",
+    "subtitle": "Breeze - a collection of variability. That we adapt to circumstances just as water adapts to wind currents.",
+    "alt": "earring",
+    "oldPrice": "$2,880",
+    "sale": "true",
+    "bestseller": "false",
+    "newProduct": "false",
+    "stars": "4",
+    "reviews": "6",
+    "article": "743874"
+  }
+]

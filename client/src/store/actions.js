@@ -16,6 +16,11 @@ export const setOutlet = createAction("SET_OUTLET");
 // 			dispatch(setProductArray(data));
 // 		})
 // }
+export const setInCart = createAction('SET_IN_CART');
+export const removeFromCart = createAction('REMOVE_FROM_CART')
+export const setInFavorite = createAction('SET_IN_FAVORITE')
+export const removeFromFavorite = createAction('REMOVE_FROM_IN_FEVORITE')
+
 
 export const fetchNewCollectionProduct = () => (dispatch) => {
   return getCards().then((data) => {
