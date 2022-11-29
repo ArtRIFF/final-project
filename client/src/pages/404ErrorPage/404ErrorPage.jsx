@@ -1,11 +1,8 @@
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import './404ErrorPage.scss';
 
 const ErrorPage = () => {
     return (
         <>
-        <Header />
         <div className='error__page container'>
             <a href="#" >
                 <img 
@@ -14,7 +11,6 @@ const ErrorPage = () => {
                 className='error__img'/>
             </a>
         </div>
-        <Footer />
         </>
     )
 }
