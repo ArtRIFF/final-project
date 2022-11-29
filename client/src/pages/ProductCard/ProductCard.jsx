@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
-import { sendRequest, getOneCard } from "../../helpers/sendRequest";
+import { sendRequest, getOneCards } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductRewier from "./ProductRewier";
@@ -18,7 +18,7 @@ const ProductCard = () => {
   const { cardID } = useParams();
 
   useEffect(() => {
-    getOneCard(cardID).then((data) => {
+    getOneCards(cardID).then((data) => {
       setCard(data);
     });
   }, [cardID]);

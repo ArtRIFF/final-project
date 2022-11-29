@@ -4,6 +4,7 @@
 .breadcrumbs {
   align-items: flex-start;
   max-height: 50px;
+  background-color: white;
 
   a {
     @include font-value(400, 16px, 140%);
