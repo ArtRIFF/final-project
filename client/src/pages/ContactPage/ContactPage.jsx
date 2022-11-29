@@ -1,11 +1,8 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import "./ContactPage.scss";
 
 const Contact = () => {
     return (
         <>
-            <Header/>
                 <section className="contact__section">
                     <div className="container">
                         <h2 className="contact__title">CONTACT</h2>
@@ -35,7 +32,6 @@ const Contact = () => {
                         </a>
                     </div>
                 </section>
-            <Footer/>
         </>
     )
 }

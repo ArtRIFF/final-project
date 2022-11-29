@@ -1,6 +1,4 @@
-import Header from '../../../components/Header/Header';
 import Button from '../../../components/Button/BattonAll/ButtonAll';
-import Footer from '../../../components/Footer/Footer';
 import '../RegistrationPage/Registration.scss';
 import {validationSchema} from "../RegistrationPage/Registration";
 import {Form, Formik} from "formik";
@@ -11,7 +9,6 @@ import { NavLink } from 'react-router-dom';
 const Login = () => {
 return(
         <>
-            <Header/>
             <section className='login__section'>
                 <div className='container'>
                     <h2 className='login__breadcrumbs'>Shop / <span>Login</span></h2>
@@ -56,7 +53,6 @@ return(
                     </Formik>
                 </div>
             </section>
-            <Footer/>
         </>
     )
 }

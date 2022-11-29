@@ -13,7 +13,10 @@ const ProductPrice = (props) => {
         <div className="product-card__price__header__rewiews">
           <ProductRating />
         </div>
-        <h3 className="product-card__price__header-title">{name}</h3>
+        <h3 className="product-card__price__header-title">
+          {/* {name.toUpperCase()} */}
+          {name}
+        </h3>
       </div>
       <div className="product-card__price__body">
         <div className="product-card__price__body__cost">
