@@ -2,11 +2,11 @@ import "./ButtonAll.scss";
 import React from "react";
 import PropTypes from 'prop-types';
 
-const Button = ({text, className}) => {
+const Button = ({text, className, ...props}) => {
 
     return (
         <div>
-            <button className={className}>
+            <button className={className} {...props}>
                 {text}
             </button>
         </div>
