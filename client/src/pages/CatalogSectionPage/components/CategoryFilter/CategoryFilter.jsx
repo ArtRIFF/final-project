@@ -2,14 +2,14 @@ import './style.scss';
 import ButtonAll from '../../../../components/Button/BattonAll/ButtonAll';
 import PropTypes from 'prop-types';
 
-const CategoryFilter = ({onClickFunc}) => {
+const CategoryFilter = ({onClickFunc,setResult}) => {
 
   return (
     <div className="category-filter">
       <div onClick={onClickFunc} className='category-filter--btn'>
       <ButtonAll text='Filter' className='section__btn-subscribe' />
       </div>
-      <div className='category-filter__result'>Results: <span>122</span></div>
+      <div className='category-filter__result'>Results: <span>{setResult}</span></div>
         <select name="select-sortBy" defaultValue={'DEFAULT'} >
           <option value="DEFAULT" disabled>Sort by</option>
           <option value="price">Price</option>

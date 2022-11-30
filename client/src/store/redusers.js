@@ -12,6 +12,7 @@ export const defaultState = {
   cartArray: [],
   favoriteProd: [],
   newCollectionProduct: [],
+  allCollectionProduct: [],
   category: {
     earrings: [],
   },
@@ -24,6 +25,9 @@ export const defaultState = {
 export default createReducer(defaultState, {
   [actions.setModalRender]: (state, { payload }) => {
     state.modalRender = payload;
+  },
+  [actions.setAllCollectionProduct]: (state, { payload }) => {
+    state.allCollectionProduct = payload;
   },
   [actions.setNewCollectionProduct]: (state, { payload }) => {
     state.newCollectionProduct = payload;

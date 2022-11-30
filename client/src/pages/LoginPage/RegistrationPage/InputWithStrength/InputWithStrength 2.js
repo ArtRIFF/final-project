@@ -28,10 +28,10 @@ const InputWithStrength = ({ label, className, placeholder, name, handleChange, 
     if (value.length === 0) {
       setPassLable('Strength');
       addClass()
-    } else if (value.length <= 8) {
+    } else if (value.length <= 6) {
       setPassLable('Weak')
       addClass('weak')
-    } else if (value.length <= 11) {
+    } else if (value.length <= 10) {
       setPassLable('Not Bad')
       addClass('average')
     } else {
