@@ -109,7 +109,7 @@ const PaymentMethod = () => {
         </div>
       </div>
       <div className="payment-method-section__btn">
-        <Button text="Continue" className="section__btn-checkout" />
+        <Button type="submit" text="Continue" className="section__btn-checkout" />
       </div>
     </section>
   );
