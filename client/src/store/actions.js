@@ -1,71 +1,78 @@
 import { createAction } from "@reduxjs/toolkit";
-
-import { sendRequest } from "../helpers/sendRequest";
-import API_PRODUCTS from "../config/API";
+import { sendRequest, getCards } from "../helpers/sendRequest";
 
 export const setModalRender = createAction("SET_MODAL_RENDER");
+export const setAllCollectionProduct = createAction(
+  "SET_ALL_COLLECTION_PRODUCT"
+);
 export const setNewCollectionProduct = createAction(
   "SET_NEW_COLLECTION_PRODUCT"
 );
 export const setCategoryEarrings = createAction("SET_CATEGORY_EARRINGS");
 
-export const setBestsellers = createAction ('SET_BESTSELLERS');
+export const setBestsellers = createAction("SET_BESTSELLERS");
 
-export const setOutlet = createAction ('SET_OUTLET');
+export const setOutlet = createAction("SET_OUTLET");
 // export const fetchProducts = () => (dispatch) => {
 // 	return sendRequest(API_PRODUCTS)
 // 		.then(data => {
 // 			dispatch(setProductArray(data));
 // 		})
 // }
+export const setInCart = createAction('SET_IN_CART');
+export const removeFromCart = createAction('REMOVE_FROM_CART')
+export const setInFavorite = createAction('SET_IN_FAVORITE')
+export const removeFromFavorite = createAction('REMOVE_FROM_IN_FEVORITE')
+
+
+export const fetchAllCollectionProduct = () => (dispatch) => {
+  return getCards().then((data) => {
+    dispatch(
+      setAllCollectionProduct(
+        data
+      )
+    );
+  });
+};
 
 export const fetchNewCollectionProduct = () => (dispatch) => {
-  return fetch(`./newCollection.json`, {
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch(setNewCollectionProduct(data));
-    });
+  return getCards().then((data) => {
+    dispatch(
+      setNewCollectionProduct(
+        data.filter((element) => element.collectionName === "NEW")
+      )
+    );
+  });
 };
 
 export const fetchCategoryEarrings = () => (dispatch) => {
-  return fetch(`./categoryEarrings.json`, {
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch(setCategoryEarrings(data));
-    });
+  return getCards().then((data) => {
+    dispatch(
+      setCategoryEarrings(
+        data.filter(
+          (element) =>
+            element.categories === "earring" ||
+            element.categories === "child-earrings"
+        )
+      )
+    );
+  });
 };
+
 export const fetchBestsellers = () => (dispatch) => {
-  return fetch(`./productBase.json`, {
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch(setBestsellers(data));
-    });
-}
+  return getCards().then((data) => {
+    dispatch(
+      setBestsellers(
+        data.filter((element) => element.statusProduct === "BESTSELLER")
+      )
+    );
+  });
+};
 
 export const fetchOutlet = () => (dispatch) => {
-  return fetch(`./productBase.json`, {
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch(setOutlet(data));
-    });
-}
+  return getCards().then((data) => {
+    dispatch(
+      setOutlet(data.filter((element) => element.statusProduct === "OUTLET"))
+    );
+  });
+};

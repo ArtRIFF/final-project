@@ -123,6 +123,11 @@
       content: url("./img/Favourite.svg");
     }
   }
+  &-favorite-select {
+      &::after {
+        content: url("./img/FavoriteSelected.svg");
+      }
+  }
 }
 
 @media screen and (max-width: 981px) {

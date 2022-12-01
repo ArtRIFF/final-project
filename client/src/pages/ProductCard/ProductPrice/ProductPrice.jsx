@@ -1,12 +1,31 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";
 import { ReactComponent as Box } from "./img/box.svg";
+import { selectInFavorite } from "../../../store/selectors";
 import ButtonAll from "../../../components/Button/BattonAll/ButtonAll";
 import "./ProductPrice.scss";
 
 const ProductPrice = (props) => {
-  const { name, oldPrice, price } = props;
+  const { name, oldPrice, price, addToCart, addRemoveFavorite,cardID } = props;
+  const dispatch = useDispatch();
+  const inFavoriteStore = useSelector (selectInFavorite);
+  const changeIsFavorite = () => {
+    setIsFavorite(!isFavorite);
+    console.log('isFavorite',isFavorite)
+}
+console.log('inFavoriteStore',inFavoriteStore)
+
+const [isFavorite, setIsFavorite] = useState(false);
+useEffect(() => {
+    if (inFavoriteStore.includes(cardID)) {
+        setIsFavorite(true)
+    } 
+    console.log('isFavorite',isFavorite)
+},[])
+
+  
   return (
     <div className="product-card__price">
       <div className="product-card__price__header">
@@ -23,7 +42,7 @@ const ProductPrice = (props) => {
           <p className="product-card__price__body__cost-old-price">
             {oldPrice}
           </p>
-          <p className="product-card__price__body__cost-new-price">{price}</p>
+          <p className="product-card__price__body__cost-new-price">${price}</p>
         </div>
         <div className="product-card__price__body__selector">
           <select name="product-size" required="required">
@@ -41,15 +60,15 @@ const ProductPrice = (props) => {
         </div>
       </div>
       <div className="product-card__price__buttons">
-        <ButtonAll className={"section__btn-header"} text={"Buy it now"} />
+        <div onClick={()=>addToCart(cardID)}><ButtonAll className={"section__btn-header"} text={"Add to cart"} /></div>
         <ButtonAll
           className={"section__btn-header white-button"}
-          text={"Buy by Klick"}
+          text={"Buy it now"}
         />
-        <ButtonAll
-          className={"section__btn-header white-button white-button-favorite "}
+        <div onClick={()=>{addRemoveFavorite(cardID);changeIsFavorite(cardID)}}><ButtonAll
+          className={isFavorite? "section__btn-header white-button white-button-favorite-select":"section__btn-header white-button white-button-favorite"}
           text={""}
-        />
+        /></div>
       </div>
       <div className="product-card__price__footer">
         <p className="product-card__main-description__details">

@@ -1,22 +1,29 @@
 @import '../../../../global_scss/mixins.scss';
 @import '../../../../global_scss/vars.scss';
 
-.breadcrumbs {
+.breadcrumb {
   align-items: flex-start;
   max-height: 50px;
+  background-color: white;
 
   a {
-    @include font-value(400, 16px, 140%);
+    @include font-value(400, 16px, 22.4px);
     font-family: $secondary-font, sans-serif;
     margin-left: 5px;
     margin-right: 5px;
   }
 }
 
-.breadcrumb-not-active {
-  color: rgba(49, 28, 28, 0.7);
+.breadcrumbs-wrapper {
+  @include font-value(400, 18px, 140%);
+  font-family: $secondary-font, sans-serif;
+  
+  padding-bottom: 30px;
+  span {
+    text-decoration: none;
+  }
 }
 
-.breadcrumb-active {
+.active span {
   color: $accent-color;
 }
