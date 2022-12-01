@@ -1,32 +1,38 @@
 import './style.scss';
+import useBreadcrumbs from "use-react-router-breadcrumbs";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+const userNamesById = { 1: "John" };
 
-// import { Link, useLocation } from 'react-router-dom'
+const DynamicUserBreadcrumb = ({ match }) => (
+  <span>{userNamesById[match.params.userId]}</span>
+);
 
+const CustomPropsBreadcrumb = ({ someProp }) => <span>{someProp}</span>;
+
+// define custom breadcrumbs for certain routes.
+// breadcrumbs can be components or strings.
+const routes = [
+  { path: "/users/:userId", breadcrumb: DynamicUserBreadcrumb },
+  { path: "/example", breadcrumb: "Custom Example" },
+  {
+    path: "/custom-props",
+    breadcrumb: CustomPropsBreadcrumb,
+    props: { someProp: "Hi" },
+  },
+];
+
+// map & render your breadcrumb components however you want.
 const Breadcrumbs = () => {
-  // const location = useLocation();
+  const breadcrumbs = useBreadcrumbs(routes);
   return (
-    <nav className='breadcrumbs'>
-      <a href="#" className="breadcrumb-not-active">Shop</a>
-      <p>/</p>
-      <a href="#" className="breadcrumb-not-active">Rolex</a>
-      <p>/</p>
-      <a href="#" className="breadcrumb-active">Oyster</a>
-      {/* <Link to="/"
-        className={location.pathname === "/" ? "breadcrumb-active" : "breadcrumb-not-active"}
-      >
-        Home
-      </Link>
-      <Link to="/products"
-        className={location.pathname.startsWith("/products") ? "breadcrumb-active" : "breadcrumb-not-active"}
-      >
-        Products
-      </Link>
-      <Link to="/products/1"
-        className={location.pathname === "/products/1" ? "breadcrumb-active" : "breadcrumb-not-active"}
-      >
-        Product 1
-      </Link> */}
-    </nav>
+    <>
+      {breadcrumbs.map(({ match, breadcrumb }) => (
+        <NavLink key={match.pathname} to={match.pathname}>
+          {breadcrumb} {" / "}
+        </NavLink>
+      ))}
+    </>
   );
 };
 export default Breadcrumbs;

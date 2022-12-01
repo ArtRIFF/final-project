@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
+import { sendRequest, getOneCard } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductRewier from "./ProductRewier";
@@ -23,11 +24,11 @@ const ProductCard = () => {
   const inCart = useSelector(selectInCart);
   const inFavoriteStore = useSelector (selectInFavorite);
 
-  // useEffect(() => {
-  //   getOneCards(cardID).then((data) => {
-  //     setCard(data);
-  //   });
-  // }, [cardID]);
+  useEffect(() => {
+    getOneCard(cardID).then((data) => {
+      setCard(data);
+    });
+  }, [cardID]);
   useEffect(() => {
     localStorage.setItem("inCart", JSON.stringify(inCart))},[inCart]);
   useEffect(() => {    
