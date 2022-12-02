@@ -1,74 +1,73 @@
-import './style.scss';
-import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
-import CategoryFilter from './components/CategoryFilter/CategoryFilter';
-import AsideFilter from './components/AsideFilter/AsideFilter';
+import "./style.scss";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
+import AsideFilter from "./components/AsideFilter/AsideFilter";
 import Items from "./components/Pagination/Items";
 import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
 
-const CatalogSectionPage = () => {
+const CatalogSectionPage = (props) => {
+  const { arrProduct } = props;
+  const [items, setitems] = useState([
+    11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
+    124, 15, 12, 53735, 12312,
+  ]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
 
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+  const currentItem = items.slice(firstItemIndex, lastItemIndex);
 
-
-   const [items, setitems] = useState([
-     11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
-     124, 15, 12, 53735, 12312,
-   ]);
-   const [loading, setLoading] = useState(false);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(5);
-
-   const lastItemIndex = currentPage * itemsPerPage;
-   const firstItemIndex = lastItemIndex - itemsPerPage;
-   const currentItem = items.slice(firstItemIndex, lastItemIndex);
-
-   useEffect(() => {
-     const getItems = async () => {
-       setLoading(true);
-       // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
-       // setitems(res.data);
-       setLoading(false);
-     };
-     getItems();
-   }, []);
-
-
-
+  useEffect(() => {
+    const getItems = async () => {
+      setLoading(true);
+      // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
+      // setitems(res.data);
+      setLoading(false);
+    };
+    getItems();
+  }, []);
 
   const dispatch = useDispatch();
-  
+
   const [showAsideFilter, setModalRender] = useState(false);
-  
+
   const newCollectionArray = useSelector(selectorAllCollectionProduct);
-  
-  const [showProducts, setProducts] = useState('');
-  
-  
+
+  const [showProducts, setProducts] = useState(arrProduct);
+
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
 
-
   const callAsideFilter = () => {
     setModalRender(true);
-    const newArray = newCollectionArray.filter(item => item.alt === "Bracelet");
+    const newArray = newCollectionArray.filter(
+      (item) => item.alt === "Bracelet"
+    );
     setProducts(newArray);
-  }
+  };
 
   const hideAsideFilter = (event) => {
-    const isFilterElement = !!event.target.closest('.asideFilter-wrapper--show');
-    const isCallButton = !!event.target.closest('.category-filter--btn');
+    const isFilterElement = !!event.target.closest(
+      ".asideFilter-wrapper--show"
+    );
+    const isCallButton = !!event.target.closest(".category-filter--btn");
     if (event && !isFilterElement && !isCallButton) {
       setModalRender(false);
     }
-  }
-  
-  const array = (Array.isArray(showProducts))?showProducts.length:newCollectionArray.length;
+  };
+
+  const array = Array.isArray(showProducts)
+    ? showProducts.length
+    : newCollectionArray.length;
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="grid-wrapper">

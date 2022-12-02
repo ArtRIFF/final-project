@@ -22,11 +22,7 @@ export const setOutlet = createAction("SET_OUTLET");
 
 export const fetchAllCollectionProduct = () => (dispatch) => {
   return getCards().then((data) => {
-    dispatch(
-      setAllCollectionProduct(
-        data
-      )
-    );
+    dispatch(setAllCollectionProduct(data));
   });
 };
 
@@ -34,7 +30,7 @@ export const fetchNewCollectionProduct = () => (dispatch) => {
   return getCards().then((data) => {
     dispatch(
       setNewCollectionProduct(
-        data.filter((element) => element.collectionName === "NEW")
+        data.filter((element) => element.statusProduct === "NEW")
       )
     );
   });
