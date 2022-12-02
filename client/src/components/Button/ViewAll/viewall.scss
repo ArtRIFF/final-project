@@ -4,6 +4,7 @@
 .btn-viewall {
     color: $accent-color;
     font-size: 20px;
+    cursor: pointer;
     &::after {
       content: ">";
       margin-left: 10px;

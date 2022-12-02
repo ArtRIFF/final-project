@@ -3,25 +3,37 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
-import { sendRequest, getOneCards } from "../../helpers/sendRequest";
+import { sendRequest, getOneCard } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductRewier from "./ProductRewier";
+import { setInCart,setInFavorite, removeFromFavorite } from "../../store/actions";
+import { selectInCart, selectInFavorite } from "../../store/selectors";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./ProductCard.scss";
 
+
 const ProductCard = () => {
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
   const { cardID } = useParams();
+  const dispatch = useDispatch();
+  const inCart = useSelector(selectInCart);
+  const inFavoriteStore = useSelector (selectInFavorite);
 
   useEffect(() => {
-    getOneCards(cardID).then((data) => {
+    getOneCard(cardID).then((data) => {
       setCard(data);
     });
   }, [cardID]);
+  useEffect(() => {
+    localStorage.setItem("inCart", JSON.stringify(inCart))},[inCart]);
+  useEffect(() => {    
+    localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
+  },[inFavoriteStore]);
 
   const {
     name,
@@ -48,6 +60,22 @@ const ProductCard = () => {
     const discountPrice = (currentPrice / 100) * discount;
     return currentPrice - discountPrice;
   };
+
+
+
+  const addToCart = (cardId) => {
+    dispatch(setInCart(cardId))
+    } 
+    const addRemoveFavorite = (cardId) => {
+      if (inFavoriteStore.includes(cardId)){ 
+          let newFavorite = inFavoriteStore.filter(id => id !== cardId);
+          dispatch(removeFromFavorite(newFavorite))
+      } else {
+          dispatch(setInFavorite(cardId))
+          }
+    }   
+  console.log('Cart', inCart);
+
 
   return (
     <>
@@ -120,6 +148,9 @@ const ProductCard = () => {
               name={name}
               oldPrice={oldPrice(currentPrice, discount)}
               price={currentPrice}
+              addToCart={addToCart}
+              addRemoveFavorite={addRemoveFavorite}
+              cardID={cardID}
             />
             <div className="product-card__main-description">
               <h5 className="product-card__main-description__subtitle">
@@ -181,6 +212,9 @@ const ProductCard = () => {
                 name={name}
                 oldPrice={oldPrice(currentPrice, discount)}
                 price={currentPrice}
+                addToCart={addToCart}
+                addRemoveFavorite={addRemoveFavorite}
+                cardID={cardID}
               />
             </div>
           </section>
