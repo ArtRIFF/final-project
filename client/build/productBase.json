@@ -1,0 +1,53 @@
+[
+    {
+      "name": "Necklace",
+      "url": "/img/category_earring/earring-1.png",
+      "alt": "Necklace",
+      "price": "$450",
+      "oldPrice": "$43,880",
+      "sale": "true",
+      "bestseller": "false",
+      "newProduct": "false"
+    },
+    {
+      "name": "Necklace",
+      "url": "/img/category_earring/earring-2.png",
+      "alt": "Necklace",
+      "price": "$220",
+      "oldPrice": "false",
+      "sale": "false",
+      "bestseller": "false",
+      "new": "false"
+    },
+    {
+      "name": "Necklace",
+      "url": "/img/category_earring/earring-3.png",
+      "alt": "Necklace",
+      "price": "$490",
+      "oldPrice": "false",
+      "sale": "true",
+      "bestseller": "false",
+      "new": "false"
+    },
+    {
+      "name": "Necklace",
+      "url": "/img/category_earring/earring-4.png",
+      "alt": "Necklace",
+      "price": "$660",
+      "oldPrice": "$7,650",
+      "sale": "false",
+      "bestseller": "false",
+      "new": "false"
+    },
+    {
+      "name": "Necklace",
+      "url": "/img/category_earring/earring-5.png",
+      "alt": "Necklace",
+      "price": "$560",
+      "oldPrice": "false",
+      "sale": "true",
+      "bestseller": "false",
+      "new": "false"
+    }
+  ]
+  

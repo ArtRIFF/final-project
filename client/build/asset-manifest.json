@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.51685eb5.css",
+    "main.js": "/static/js/main.b846a35c.js",
+    "static/media/Mulish-Regular.ttf": "/static/media/Mulish-Regular.e497fc540939821b16a0.ttf",
+    "static/media/LibreBodoni-Bold.ttf": "/static/media/LibreBodoni-Bold.55054bc44c71c22d3727.ttf",
+    "static/media/LibreBodoni-Regular.ttf": "/static/media/LibreBodoni-Regular.86ce44de88e18806d8c8.ttf",
+    "static/media/LibreBodoni-Italic.ttf": "/static/media/LibreBodoni-Italic.df0b3678319f419c037c.ttf",
+    "index.html": "/index.html",
+    "main.51685eb5.css.map": "/static/css/main.51685eb5.css.map",
+    "main.b846a35c.js.map": "/static/js/main.b846a35c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51685eb5.css",
+    "static/js/main.b846a35c.js"
+  ]
+}

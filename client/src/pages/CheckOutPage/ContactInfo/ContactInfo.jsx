@@ -26,9 +26,7 @@ const ContactInfoPage = () => {
 
   return (
     <div>
-      <h2 className="contact-info-section__way ">
-        Shop /<span> Buy now </span>
-      </h2>
+    
       <section className="contact-info-section">
         <div className="contact-info-section__wrap">
           <p className="contact-info-section__title">1. Contact Information</p>

@@ -1,0 +1,97 @@
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+.checkoutproducts-container {
+  width: 87%;
+  margin: 0 auto;
+  border: 1px solid #b5abaa;
+  margin-top: 30px;
+  padding: 0 30px;
+}
+.checkoutproducts-item {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #b5abaa;
+}
+.checkoutproducts-item__price {
+  padding-bottom: 15px;
+}
+.checkoutproducts-item__title {
+  padding-top: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.checkoutproducts-item__icon {
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+}
+.checkoutproducts-item__count {
+  padding-top: 20px;
+}
+.summary-count__wrap {
+  padding-top: 18px;
+}
+.checkoutproducts-item__price {
+  padding-top: 20px;
+}
+.checkoutproducts-item__count-spn {
+  padding-top: 20px;
+  padding: 10px;
+  text-decoration: none;
+}
+.checkoutproducts-item__summary-container {
+  display: flex;
+  margin: 20px auto;
+}
+.checkoutproducts-item__summary-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.checkoutproducts-item__summary-title {
+  padding-left: 68px;
+  width: 105px;
+}
+.checkoutproducts__summary-input {
+  width: 55px;
+  outline: none;
+}
+@media (max-width: $desktop-size) {
+  .checkoutproducts-item {
+    flex-direction: column;
+  }
+}
+.summary-shipping {
+  text-transform: uppercase;
+  color: green;
+  font-weight: bold;
+}
+@media (max-width: $desktop-size) {
+  .checkoutproducts__summary-wrap {
+    justify-content: space-around;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 50px;
+  }
+}
+@media (max-width: $desktop-size) {
+  .checkoutproducts-item__summary-title {
+    padding-left: 5px;
+    margin-right: 70px;
+  }
+}
+@media (max-width: $desktop-size) {
+  .checkoutproducts-item__summary-container {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (max-width: $desktop-size) {
+  .checkoutproducts__summary-count.summary-wrap-hide {
+    display: nones;
+  }
+}
