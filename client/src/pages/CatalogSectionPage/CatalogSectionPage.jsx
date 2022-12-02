@@ -14,7 +14,7 @@ import { fetchAllCollectionProduct } from "../../store/actions";
 const CatalogSectionPage = () => {
 
 
-
+   
    const [items, setitems] = useState([
      11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
      124, 15, 12, 53735, 12312,
@@ -42,22 +42,25 @@ const CatalogSectionPage = () => {
 
   const dispatch = useDispatch();
   
+  const allCollectionArray = useSelector(selectorAllCollectionProduct);
+  
   const [showAsideFilter, setModalRender] = useState(false);
   
-  const newCollectionArray = useSelector(selectorAllCollectionProduct);
-  
-  const [showProducts, setProducts] = useState('');
+  const [filtredArray, setFiltredArray] = useState();
   
   
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
 
+  const filterRequest = (array) => {
+    setFiltredArray(array)
+  }
 
   const callAsideFilter = () => {
     setModalRender(true);
-    const newArray = newCollectionArray.filter(item => item.alt === "Bracelet");
-    setProducts(newArray);
+    const newArray = allCollectionArray.filter(item => item.alt === "Bracelet");
+    setFiltredArray(newArray);
   }
 
   const hideAsideFilter = (event) => {
@@ -68,7 +71,7 @@ const CatalogSectionPage = () => {
     }
   }
   
-  const array = (Array.isArray(showProducts))?showProducts.length:newCollectionArray.length;
+  const array = (Array.isArray(filtredArray))?filtredArray.length:allCollectionArray.length;
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="grid-wrapper">
@@ -88,7 +91,7 @@ const CatalogSectionPage = () => {
               : "asideFilter-wrapper"
           }`}
         >
-          <AsideFilter />
+          <AsideFilter allCollectionArray={allCollectionArray} filterRequest={filterRequest}/>
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter onClickFunc={callAsideFilter} setResult={array} />
@@ -101,8 +104,8 @@ const CatalogSectionPage = () => {
           }}
           className="categoryCards-wrapper"
         >
-          {!Array.isArray(showProducts)
-            ? newCollectionArray.map((item, i) => {
+          {!Array.isArray(filtredArray)
+            ? allCollectionArray.map((item, i) => {
                 const { name, price, alt, bestseller, newProduct } = item;
                 return (
                   <p key={i}>
@@ -111,12 +114,12 @@ const CatalogSectionPage = () => {
                   </p>
                 );
               })
-            : showProducts.map((item, i) => {
-                const { name, price, alt, bestseller, newProduct } = item;
+            : filtredArray.map((item, i) => {
+                const { name, price, alt, bestseller, categories } = item;
                 return (
                   <p key={i}>
                     {i} Product:{name} price:{price} alt:{alt} bestseller:
-                    {bestseller} newProduct:{newProduct}
+                    {bestseller} categories:{categories}
                   </p>
                 );
               })}
