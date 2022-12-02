@@ -13,29 +13,30 @@ import { fetchAllCollectionProduct } from "../../store/actions";
 
 const CatalogSectionPage = (props) => {
   const { arrProduct } = props;
-  const [items, setitems] = useState([
-    11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
-    124, 15, 12, 53735, 12312,
-  ]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
-
-  const lastItemIndex = currentPage * itemsPerPage;
-  const firstItemIndex = lastItemIndex - itemsPerPage;
-  const currentItem = items.slice(firstItemIndex, lastItemIndex);
-
-  useEffect(() => {
-    const getItems = async () => {
-      setLoading(true);
-      // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
-      // setitems(res.data);
-      setLoading(false);
-    };
-    getItems();
-  }, []);
-
   const dispatch = useDispatch();
+
+   const [items, setitems] = useState([
+     11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
+     124, 15, 12, 53735, 12312,
+   ]);
+   const [loading, setLoading] = useState(false);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [itemsPerPage] = useState(5);
+
+   const lastItemIndex = currentPage * itemsPerPage;
+   const firstItemIndex = lastItemIndex - itemsPerPage;
+   const currentItem = items.slice(firstItemIndex, lastItemIndex);
+
+   useEffect(() => {
+     const getItems = async () => {
+       setLoading(true);
+       // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
+       // setitems(res.data);
+       setLoading(false);
+     };
+     getItems();
+   }, []);
+
 
   const [showAsideFilter, setModalRender] = useState(false);
 
@@ -43,9 +44,12 @@ const CatalogSectionPage = (props) => {
 
   const [showProducts, setProducts] = useState(arrProduct);
 
+
+
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
+
 
   const callAsideFilter = () => {
     setModalRender(true);
@@ -55,6 +59,12 @@ const CatalogSectionPage = (props) => {
     setProducts(newArray);
   };
 
+  const filterRequest = (array) => {
+    setFiltredArray(array)
+  }
+
+
+
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
       ".asideFilter-wrapper--show"
@@ -63,11 +73,17 @@ const CatalogSectionPage = (props) => {
     if (event && !isFilterElement && !isCallButton) {
       setModalRender(false);
     }
+
   };
 
   const array = Array.isArray(showProducts)
     ? showProducts.length
     : newCollectionArray.length;
+
+  }
+  
+
+
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="grid-wrapper">
@@ -87,7 +103,7 @@ const CatalogSectionPage = (props) => {
               : "asideFilter-wrapper"
           }`}
         >
-          <AsideFilter />
+          <AsideFilter allCollectionArray={allCollectionArray} filterRequest={filterRequest}/>
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter onClickFunc={callAsideFilter} setResult={array} />
@@ -100,8 +116,8 @@ const CatalogSectionPage = (props) => {
           }}
           className="categoryCards-wrapper"
         >
-          {!Array.isArray(showProducts)
-            ? newCollectionArray.map((item, i) => {
+          {!Array.isArray(filtredArray)
+            ? allCollectionArray.map((item, i) => {
                 const { name, price, alt, bestseller, newProduct } = item;
                 return (
                   <p key={i}>
@@ -110,12 +126,12 @@ const CatalogSectionPage = (props) => {
                   </p>
                 );
               })
-            : showProducts.map((item, i) => {
-                const { name, price, alt, bestseller, newProduct } = item;
+            : filtredArray.map((item, i) => {
+                const { name, price, alt, bestseller, categories } = item;
                 return (
                   <p key={i}>
                     {i} Product:{name} price:{price} alt:{alt} bestseller:
-                    {bestseller} newProduct:{newProduct}
+                    {bestseller} categories:{categories}
                   </p>
                 );
               })}
