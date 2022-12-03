@@ -1,20 +1,20 @@
-import './style.scss';
-import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
-import CategoryFilter from './components/CategoryFilter/CategoryFilter';
-import AsideFilter from './components/AsideFilter/AsideFilter';
+import "./style.scss";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
+import AsideFilter from "./components/AsideFilter/AsideFilter";
 import Items from "./components/Pagination/Items";
 import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
 
-const CatalogSectionPage = () => {
+const CatalogSectionPage = (props) => {
+  const { arrProduct } = props;
+  const dispatch = useDispatch();
 
-
-   
    const [items, setitems] = useState([
      11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
      124, 15, 12, 53735, 12312,
@@ -38,40 +38,52 @@ const CatalogSectionPage = () => {
    }, []);
 
 
-
-
-  const dispatch = useDispatch();
-  
-  const allCollectionArray = useSelector(selectorAllCollectionProduct);
-  
   const [showAsideFilter, setModalRender] = useState(false);
-  
-  const [filtredArray, setFiltredArray] = useState();
-  
-  
+
+  const newCollectionArray = useSelector(selectorAllCollectionProduct);
+
+  const [showProducts, setProducts] = useState(arrProduct);
+
+
+
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
+
+
+  const callAsideFilter = () => {
+    setModalRender(true);
+    const newArray = newCollectionArray.filter(
+      (item) => item.alt === "Bracelet"
+    );
+    setProducts(newArray);
+  };
 
   const filterRequest = (array) => {
     setFiltredArray(array)
   }
 
-  const callAsideFilter = () => {
-    setModalRender(true);
-    const newArray = allCollectionArray.filter(item => item.alt === "Bracelet");
-    setFiltredArray(newArray);
-  }
+
 
   const hideAsideFilter = (event) => {
-    const isFilterElement = !!event.target.closest('.asideFilter-wrapper--show');
-    const isCallButton = !!event.target.closest('.category-filter--btn');
+    const isFilterElement = !!event.target.closest(
+      ".asideFilter-wrapper--show"
+    );
+    const isCallButton = !!event.target.closest(".category-filter--btn");
     if (event && !isFilterElement && !isCallButton) {
       setModalRender(false);
     }
+
+  };
+
+  const array = Array.isArray(showProducts)
+    ? showProducts.length
+    : newCollectionArray.length;
+
   }
   
-  const array = (Array.isArray(filtredArray))?filtredArray.length:allCollectionArray.length;
+
+
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="grid-wrapper">

@@ -7,6 +7,8 @@ import { selectorNewCollectionProduct } from "../../store/selectors";
 import { fetchNewCollectionProduct } from "../../store/actions";
 import "./CollectionSection.scss";
 import ButtonViewAll from "../Button/ViewAll/ViewAll";
+import CatalogSectionPage from "../../pages/CatalogSectionPage/CatalogSectionPage";
+import Footer from "../Footer/Footer";
 
 const CollectionSection = (props) => {
   const dispatch = useDispatch();
@@ -24,11 +26,9 @@ const CollectionSection = (props) => {
       <div className="container">
         <div className="collection-section__header">
           <h2 className="collection-section__header_title">New Collection</h2>
-          <ButtonViewAll
-            onClick={() => {
-              setViewAll(true);
-            }}
-          />
+          <Link to={"/viewAllNewCollection"}>
+            <ButtonViewAll />
+          </Link>
         </div>
         <div className="collection-section__content">
           {newCollectionArray.slice(0, numberOfItems).map((card, index) => {
