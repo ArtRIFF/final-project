@@ -7,6 +7,8 @@ import CheckOutPage from "../pages/CheckOutPage/CheckOutPage";
 import Login from "../pages/LoginPage/Login/Login";
 import Registration from "../pages/LoginPage/RegistrationPage/Registration";
 
+import OurProductionPage from "../pages/OurProductionPage/OurProductionPage";
+
 import UnderConstractionPage from "../pages/UnderConstructionPage/UnderConstructionPage";
 import ErrorPage from "../pages/404ErrorPage/404ErrorPage";
 
@@ -25,7 +27,7 @@ const App = () => {
         <Route path="/cart" element={<CheckOutPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        {/* <Route path="" element={}/> */}
+        <Route path="/our_production" element={<OurProductionPage />}/>
         {/* <Route path="" element={}/> */}
         {/* <Route path="" element={}/> */}
         {/* <Route path="" element={}/> */}

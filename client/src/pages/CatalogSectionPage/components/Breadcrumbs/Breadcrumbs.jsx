@@ -27,11 +27,13 @@ const Breadcrumbs = () => {
   const breadcrumbs = useBreadcrumbs(routes);
   return (
     <>
+    <div className='breadcrumb container'>
       {breadcrumbs.map(({ match, breadcrumb }) => (
         <NavLink key={match.pathname} to={match.pathname}>
           {breadcrumb} {" / "}
         </NavLink>
       ))}
+      </div>
     </>
   );
 };
