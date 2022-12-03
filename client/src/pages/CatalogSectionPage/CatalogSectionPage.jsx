@@ -15,74 +15,60 @@ const CatalogSectionPage = (props) => {
   const { arrProduct } = props;
   const dispatch = useDispatch();
 
-   const [items, setitems] = useState([
-     11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
-     124, 15, 12, 53735, 12312,
-   ]);
-   const [loading, setLoading] = useState(false);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(5);
+  const [items, setitems] = useState([
+    11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
+    124, 15, 12, 53735, 12312,
+  ]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+  const [filtredArray, setFiltredArray] = useState();
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+  const currentItem = items.slice(firstItemIndex, lastItemIndex);
 
-   const lastItemIndex = currentPage * itemsPerPage;
-   const firstItemIndex = lastItemIndex - itemsPerPage;
-   const currentItem = items.slice(firstItemIndex, lastItemIndex);
-
-   useEffect(() => {
-     const getItems = async () => {
-       setLoading(true);
-       // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
-       // setitems(res.data);
-       setLoading(false);
-     };
-     getItems();
-   }, []);
-
-
+  useEffect(() => {
+    const getItems = async () => {
+      setLoading(true);
+      // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
+      // setitems(res.data);
+      setLoading(false);
+    };
+    getItems();
+  }, []);
   const [showAsideFilter, setModalRender] = useState(false);
-
-  const newCollectionArray = useSelector(selectorAllCollectionProduct);
+  const allCollectionArray = useSelector(selectorAllCollectionProduct);
 
   const [showProducts, setProducts] = useState(arrProduct);
 
-
-
-  useEffect(() => {
-    dispatch(fetchAllCollectionProduct());
-  }, []);
-
-
   const callAsideFilter = () => {
     setModalRender(true);
-    const newArray = newCollectionArray.filter(
+    const newArray = allCollectionArray.filter(
       (item) => item.alt === "Bracelet"
     );
     setProducts(newArray);
   };
+  useEffect(() => {
+    dispatch(fetchAllCollectionProduct());
+  }, []);
 
   const filterRequest = (array) => {
-    setFiltredArray(array)
-  }
-
-
+    setFiltredArray(array);
+  };
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
       ".asideFilter-wrapper--show"
     );
     const isCallButton = !!event.target.closest(".category-filter--btn");
+
     if (event && !isFilterElement && !isCallButton) {
       setModalRender(false);
     }
-
   };
-
   const array = Array.isArray(showProducts)
     ? showProducts.length
-    : newCollectionArray.length;
-
-  }
-  
-
+    : allCollectionArray.length;
 
   return (
     <div className="container" onClick={hideAsideFilter}>
@@ -103,7 +89,10 @@ const CatalogSectionPage = (props) => {
               : "asideFilter-wrapper"
           }`}
         >
-          <AsideFilter allCollectionArray={allCollectionArray} filterRequest={filterRequest}/>
+          <AsideFilter
+            allCollectionArray={allCollectionArray}
+            filterRequest={filterRequest}
+          />
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter onClickFunc={callAsideFilter} setResult={array} />

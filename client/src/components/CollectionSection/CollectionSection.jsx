@@ -19,7 +19,6 @@ const CollectionSection = (props) => {
     dispatch(fetchNewCollectionProduct());
   }, []);
 
-  console.log(viewAll);
   const numberOfItems = viewAll ? newCollectionArray.length : 4;
   return (
     <div className="collection-section">

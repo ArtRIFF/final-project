@@ -32,7 +32,6 @@ const CategorySectionCard = (props) => {
         {statusProduct === "NEW" && (
           <div className="category-card__new">new</div>
         )}
-
         <img className="category-card__image" src={imageUrls[0]} alt={name} />
 
         <div className="category-card__content">
