@@ -40,7 +40,11 @@ const NewsSection = () => {
             when significant problems subside. And we dream that thanks to this
             jewelry story you will feel the ease of life.
           </div>
-          <Button text='SeeMore' className='section__btn-header' id='section__btn'/>
+          <Button
+            text="SeeMore"
+            className="section__btn-header"
+            id="section__btn"
+          />
         </p>
       </div>
     </section>
