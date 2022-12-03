@@ -254,9 +254,9 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
               <input type="checkbox" />
               <span>Bracelet</span>
             </label>
-            <label onChange={onTypeChange} data-category-name={'neсklace'} className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'pendants'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Necklace</span>
+              <span>Pendants</span>
             </label>
             <label onChange={onTypeChange} data-category-name={'ring'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
