@@ -21,11 +21,10 @@ const Outlet = (props) => {
     <section className="outlet">
       <div className="outlet__header">
         <h2 className="outlet__title">Outlet</h2>
-        <ButtonViewAll
-          onClick={() => {
-            setViewAll(true);
-          }}
-        />
+
+        <Link to={"/viewAllOutlet"}>
+          <ButtonViewAll />
+        </Link>
       </div>
       <div className="outlet__cards-container">
         {outlet.slice(0, numberOfItems).map((card, index) => {

@@ -1,74 +1,75 @@
-import './style.scss';
-import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
-import CategoryFilter from './components/CategoryFilter/CategoryFilter';
-import AsideFilter from './components/AsideFilter/AsideFilter';
+import "./style.scss";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
+import AsideFilter from "./components/AsideFilter/AsideFilter";
 import Items from "./components/Pagination/Items";
 import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
 
-const CatalogSectionPage = () => {
-
-
-
-   const [items, setitems] = useState([
-     11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
-     124, 15, 12, 53735, 12312,
-   ]);
-   const [loading, setLoading] = useState(false);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(5);
-
-   const lastItemIndex = currentPage * itemsPerPage;
-   const firstItemIndex = lastItemIndex - itemsPerPage;
-   const currentItem = items.slice(firstItemIndex, lastItemIndex);
-
-   useEffect(() => {
-     const getItems = async () => {
-       setLoading(true);
-       // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
-       // setitems(res.data);
-       setLoading(false);
-     };
-     getItems();
-   }, []);
-
-
-
-
+const CatalogSectionPage = (props) => {
+  const { arrProduct } = props;
   const dispatch = useDispatch();
-  
+
+  const [items, setitems] = useState([
+    11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
+    124, 15, 12, 53735, 12312,
+  ]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+  const [filtredArray, setFiltredArray] = useState();
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+  const currentItem = items.slice(firstItemIndex, lastItemIndex);
+
+  useEffect(() => {
+    const getItems = async () => {
+      setLoading(true);
+      // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
+      // setitems(res.data);
+      setLoading(false);
+    };
+    getItems();
+  }, []);
   const [showAsideFilter, setModalRender] = useState(false);
-  
-  const newCollectionArray = useSelector(selectorAllCollectionProduct);
-  
-  const [showProducts, setProducts] = useState('');
-  
-  
+  const allCollectionArray = useSelector(selectorAllCollectionProduct);
+
+  const [showProducts, setProducts] = useState(arrProduct);
+
+  const callAsideFilter = () => {
+    setModalRender(true);
+    const newArray = allCollectionArray.filter(
+      (item) => item.alt === "Bracelet"
+    );
+    setProducts(newArray);
+  };
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
 
-
-  const callAsideFilter = () => {
-    setModalRender(true);
-    const newArray = newCollectionArray.filter(item => item.alt === "Bracelet");
-    setProducts(newArray);
-  }
+  const filterRequest = (array) => {
+    setFiltredArray(array);
+  };
 
   const hideAsideFilter = (event) => {
-    const isFilterElement = !!event.target.closest('.asideFilter-wrapper--show');
-    const isCallButton = !!event.target.closest('.category-filter--btn');
+    const isFilterElement = !!event.target.closest(
+      ".asideFilter-wrapper--show"
+    );
+    const isCallButton = !!event.target.closest(".category-filter--btn");
+
     if (event && !isFilterElement && !isCallButton) {
       setModalRender(false);
     }
-  }
-  
-  const array = (Array.isArray(showProducts))?showProducts.length:newCollectionArray.length;
+  };
+  const array = Array.isArray(showProducts)
+    ? showProducts.length
+    : allCollectionArray.length;
+
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="grid-wrapper">
@@ -88,7 +89,10 @@ const CatalogSectionPage = () => {
               : "asideFilter-wrapper"
           }`}
         >
-          <AsideFilter />
+          <AsideFilter
+            allCollectionArray={allCollectionArray}
+            filterRequest={filterRequest}
+          />
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter onClickFunc={callAsideFilter} setResult={array} />
@@ -101,8 +105,8 @@ const CatalogSectionPage = () => {
           }}
           className="categoryCards-wrapper"
         >
-          {!Array.isArray(showProducts)
-            ? newCollectionArray.map((item, i) => {
+          {!Array.isArray(filtredArray)
+            ? allCollectionArray.map((item, i) => {
                 const { name, price, alt, bestseller, newProduct } = item;
                 return (
                   <p key={i}>
@@ -111,12 +115,12 @@ const CatalogSectionPage = () => {
                   </p>
                 );
               })
-            : showProducts.map((item, i) => {
-                const { name, price, alt, bestseller, newProduct } = item;
+            : filtredArray.map((item, i) => {
+                const { name, price, alt, bestseller, categories } = item;
                 return (
                   <p key={i}>
                     {i} Product:{name} price:{price} alt:{alt} bestseller:
-                    {bestseller} newProduct:{newProduct}
+                    {bestseller} categories:{categories}
                   </p>
                 );
               })}

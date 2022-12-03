@@ -13,16 +13,16 @@ const CollectionSectionCard = (props) => {
 
   return (
     <div className="collection-section-card">
-      {imageUrls.map((el) => {
-        return (
-          <img className="collection-section-card__image" src={el} alt={name} />
-        );
-      })}
+      <img
+        className="collection-section-card__image"
+        src={imageUrls[0]}
+        alt={name}
+      />
       <div className="collection-section-card__content">
         <h5 className="collection-section-card__content-title">{name}</h5>
         <p className="collection-section-card__content-subtitle">{subtitle}</p>
         <h5 className="collection-section-card__content-price">
-          ${currentPrice}
+          &#8372; {currentPrice}
         </h5>
 
         <Link to={`products/${itemNo}`}>

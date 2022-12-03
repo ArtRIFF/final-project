@@ -33,16 +33,21 @@ useEffect(() => {
           <ProductRating />
         </div>
         <h3 className="product-card__price__header-title">
-          {/* {name.toUpperCase()} */}
-          {name}
+          {name !== undefined && name.toUpperCase()}
         </h3>
       </div>
       <div className="product-card__price__body">
         <div className="product-card__price__body__cost">
           <p className="product-card__price__body__cost-old-price">
-            {oldPrice}
+            &#8372; {oldPrice}
           </p>
+          <p className="product-card__price__body__cost-new-price">
+            &#8372; {price}
+          </p>
+
+
           <p className="product-card__price__body__cost-new-price">${price}</p>
+
         </div>
         <div className="product-card__price__body__selector">
           <select name="product-size" required="required">
