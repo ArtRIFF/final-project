@@ -12,6 +12,7 @@ import {API} from "../../config/API";
 const CheckOutPage = () => {
   const [contactInfo, setContactInfo] = useState(null);
   const [shipping, setShipping] = useState(null);
+  const [paymentCardInfo, setPaymentCardInfo] = useState(null);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -21,21 +22,35 @@ const CheckOutPage = () => {
         cartQuantity: 1
       }
     ]
+
+    const deliveryAddress = {
+      country: shipping.country,
+      city: shipping.city,
+      address: shipping.streetAddr,
+      postal: shipping.zipCode
+    }
+
+    const paymentInfo = paymentCardInfo.cardNumber;
+    const status = "not shipped";
+
     const email = contactInfo;
     const mobile = shipping.phoneNumber;
     const letterSubject = 'Subject';
     const letterHtml = '<h1> Success </h1>';
-    const totalSum = 500;
+    // const totalSum = 500;
     const canceled = false;
+
 
     sendRequest(`${API}orders`, 'POST', {
       body: JSON.stringify({
         products,
+        deliveryAddress,
+        paymentInfo,
+        status,
         email,
         mobile,
         letterSubject,
         letterHtml,
-        totalSum,
         canceled,
       }),
       headers: {'Content-Type': 'application/json'}
@@ -48,7 +63,7 @@ const CheckOutPage = () => {
       <form onSubmit={handleFormSubmit}>
         <ContactInfoPage onContactInfoReady={(e) => setContactInfo(e)}/>
         <ShipAddress onShippingReady={setShipping}/>
-        <PaymentMethod/>
+        <PaymentMethod onPaymentReady={setPaymentCardInfo}/>
       </form>
     </section>
   );
