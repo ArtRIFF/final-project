@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import { string } from "yup";
 import "./ShipAddress.scss";
 
-const ShipAddress = () => {
+const ShipAddress = (props) => {
+  const fullNameRef = useRef(null);
+  const countryRef = useRef(null);
+  const streetAddrRef = useRef(null);
+  const cityRef = useRef(null);
+  const stateRef = useRef(null);
+  const zipCodeRef = useRef(null);
+  const phoneNumberRef = useRef(null);
+
   const [fullNameShip, setFullNameShip] = useState("");
   const [fullNameShiplDirty, setFullNameShipDirty] = useState(false);
   const [fullNameShipError, setFullNameShipError] =
@@ -34,8 +42,30 @@ const ShipAddress = () => {
     }
     setPhoneShip(e.target.value);
   };
+
+  const handleBlur = () => {
+    const fullName = fullNameRef.current.value;
+    const country = countryRef.current.value;
+    const streetAddr = streetAddrRef.current.value;
+    const city = cityRef.current.value;
+    const state = stateRef.current.value;
+    const zipCode = zipCodeRef.current.value;
+    const phoneNumber = phoneNumberRef.current.value;
+    if (fullName && country && streetAddr && city && state && zipCode && phoneNumber) {
+      props.onShippingReady({
+        fullName,
+        country,
+        streetAddr,
+        city,
+        state,
+        zipCode,
+        phoneNumber,
+      })
+    }
+  };
+
   return (
-    <section className="ship-info-section">
+    <section className="ship-info-section" onBlur={handleBlur}>
       <div className="ship-info-section__wrap">
         <p className="ship-info-section__title">2. Shiping Address</p>
 
@@ -53,6 +83,7 @@ const ShipAddress = () => {
                 type="text"
                 className="ship-info-section__texts"
                 placeholder="Full Name"
+                ref={fullNameRef}
               />
               {fullNameShiplDirty && fullNameShipError && (
                 <div className="contact-info-section__error-message">
@@ -72,6 +103,7 @@ const ShipAddress = () => {
               type="text"
               className="ship-info-section__text"
               placeholder="Country"
+              ref={countryRef}
             />
           </form>
         </div>
@@ -85,6 +117,7 @@ const ShipAddress = () => {
               type="text"
               className="ship-info-section__text"
               placeholder="Street Addres"
+              ref={streetAddrRef}
             />
           </form>
         </div>
@@ -97,6 +130,7 @@ const ShipAddress = () => {
               type="text"
               className="ship-info-section__text"
               placeholder="City"
+              ref={cityRef}
             />
           </form>
         </div>
@@ -112,6 +146,7 @@ const ShipAddress = () => {
                 type="text"
                 className="ship-info-section__texts"
                 placeholder="State"
+                ref={stateRef}
               />
             </form>
             <form action="" className="ship-info-section__infos">
@@ -122,6 +157,7 @@ const ShipAddress = () => {
                 type="text"
                 className="ship-info-section__texts"
                 placeholder="Zip Code"
+                ref={zipCodeRef}
               />
             </form>
           </div>
@@ -140,6 +176,7 @@ const ShipAddress = () => {
               type="text"
               className="ship-info-section__text"
               placeholder="+38"
+              ref={phoneNumberRef}
             />
             {phoneShipDirty && phoneShipError && (
               <div className="contact-info-section__error-message">
