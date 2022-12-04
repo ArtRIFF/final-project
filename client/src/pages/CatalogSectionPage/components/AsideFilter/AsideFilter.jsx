@@ -1,6 +1,44 @@
 import './style.scss';
+import { useState, useEffect } from 'react';
 
-const AsideFilter = () => {
+const AsideFilter = ({allCollectionArray,filterRequest}) => {
+  const [filtredArray, setFiltredArray] = useState();
+  // const [paramObj , setParamObj] = useState({
+  //   checked: false
+  // });
+  const [ productsType , setProductsType] = useState([]);
+
+  const updateFilter = (categories) => {
+    const newArray = allCollectionArray.filter(n => (
+      (!categories.length || categories.includes(n.categories))
+    ));
+    filterRequest(newArray);
+    // setFiltredArray(newArray);
+  };
+
+  // categories"pendant"
+  const onTypeChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setProductsType((!productsType.includes(value) && checked)
+      ? [ ...productsType, value ]
+      : productsType.filter(n => n !== value)
+    );
+    const categories = (!productsType.includes(value) && checked)
+    ? [ ...productsType, value ]
+    : productsType.filter(n => n !== value);
+    
+    updateFilter(categories);
+  };
+  
+  // const chooseParam = (e) => {
+    
+  //   setParamObj({
+  //     checked: !paramObj.checked
+  //   });
+  //   const parentElement = e.target.closest('.filter-parameter').querySelector('.filter-parameter__title');
+  //   console.log(parentElement);//через дата атребут
+  // }
   const accordionAnimate = (e) => {
     const panels = [...e.target.closest('.aside-filter__wrapper').children];
     const indexTargetElem = panels.indexOf(e.target.closest('.filter-parameter'));
@@ -212,31 +250,31 @@ const AsideFilter = () => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'bracelet'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Bracelet</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'pendants'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Necklace</span>
+              <span>Pendants</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'ring'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Ring</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'earring'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Earring</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'cross'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Cross</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'pendant'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Pendant</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'pearl'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Pearl</span>
             </label>

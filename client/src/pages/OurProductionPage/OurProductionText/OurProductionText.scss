@@ -1,0 +1,15 @@
+@import "../../../global_scss/global_style.scss";
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/mixins.scss";
+
+.production__page-title {
+    font-family: $main-font;
+    @include font-value(500, 28px, 30px);
+    color: #311C1C;
+    padding: 25px 0;
+}
+
+.production__page-text {
+    @include font-value(400, 22px, 36px);
+    padding-bottom: 30px;
+}

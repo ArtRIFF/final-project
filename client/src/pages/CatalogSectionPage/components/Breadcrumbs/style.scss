@@ -1,29 +1,26 @@
 @import '../../../../global_scss/mixins.scss';
 @import '../../../../global_scss/vars.scss';
+@import '../../../../global_scss/global_style.scss';
 
 .breadcrumb {
   align-items: flex-start;
   max-height: 50px;
   background-color: white;
-
   a {
     @include font-value(400, 16px, 22.4px);
     font-family: $secondary-font, sans-serif;
-    margin-left: 5px;
-    margin-right: 5px;
+  }
+  span {
+    text-decoration: none;
   }
 }
 
 .breadcrumbs-wrapper {
   @include font-value(400, 18px, 140%);
   font-family: $secondary-font, sans-serif;
-  
-  padding-bottom: 30px;
-  span {
-    text-decoration: none;
-  }
 }
 
 .active span {
   color: $accent-color;
+  text-decoration: none;
 }
