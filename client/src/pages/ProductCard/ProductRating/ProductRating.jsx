@@ -1,13 +1,18 @@
 import React from "react";
+import Rating from '@mui/material/Rating';
+import { styled } from '@mui/material/styles';
 
-import {ReactComponent as RatingStarWhite} from './svg/rating-starW.svg'
-import {ReactComponent as RatingStarColor} from './svg/rating-starO.svg'
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#e36709',
+  },
+});
 
-const ProductRating = () => {
+const ProductRating = ({value}) => {
+  
   return (
-    <>
-      <RatingStarColor/> <RatingStarColor/> <RatingStarColor/> <RatingStarColor/> <RatingStarWhite/>
-    </>
+      <StyledRating
+        name="customized-color" value={value} precision={0.5} readOnly/>
   )
   
 };

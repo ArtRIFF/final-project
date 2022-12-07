@@ -14,7 +14,6 @@ const AdditionalProducts = (props) => {
   useEffect(() => {
     dispatch(fetchBestsellers());
   }, []);
-  // console.log("cards", bestsellers);
 
   return (
     <section className="bestsellers">

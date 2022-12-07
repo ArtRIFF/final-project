@@ -3,7 +3,7 @@
 
 .product-card__price {
   &__header {
-    padding-top: 10%;
+    padding-top: 20px;
     &-title {
       font-family: $main-font;
       @include font-value(700, 36px, 45px);

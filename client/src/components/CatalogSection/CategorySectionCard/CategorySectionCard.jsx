@@ -18,7 +18,6 @@ const CategorySectionCard = (props) => {
 
   const oldPrice = (currentPrice, discount) => {
     const discountPrice = (currentPrice / 100) * discount;
-    console.log(discountPrice);
     return currentPrice + discountPrice;
   };
 
