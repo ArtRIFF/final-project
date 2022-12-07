@@ -1,12 +1,12 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, createContext, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
-import { sendRequest, getOneCard } from "../../helpers/sendRequest";
+import { getOneCard, getComments } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
-import ProductRewier from "./ProductRewier";
+import ProductReview from "./ProductRewier";
 import { setInCart,setInFavorite, removeFromFavorite } from "../../store/actions";
 import { selectInCart, selectInFavorite } from "../../store/selectors";
 
@@ -15,10 +15,12 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./ProductCard.scss";
 
+export const CardContext = createContext();
 
 const ProductCard = () => {
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
+  const [comments, setComments] = useState([])
   const { cardID } = useParams();
   const dispatch = useDispatch();
   const inCart = useSelector(selectInCart);
@@ -29,8 +31,12 @@ const ProductCard = () => {
       setCard(data);
     });
   }, [cardID]);
+  useEffect(()=>{
+    getComments().then(data => setComments(data))
+  }, [])
   useEffect(() => {
-    localStorage.setItem("inCart", JSON.stringify(inCart))},[inCart]);
+    localStorage.setItem("inCart", JSON.stringify(inCart))
+  },[inCart]);
   useEffect(() => {    
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
   },[inFavoriteStore]);
@@ -53,20 +59,21 @@ const ProductCard = () => {
     condition,
     statusProduct,
     length,
+    content,
+    rating,
+    itemNo
   } = oneCard;
-  console.log(oneCard);
-
+  
   const oldPrice = (currentPrice, discount) => {
     const discountPrice = (currentPrice / 100) * discount;
     return currentPrice - discountPrice;
   };
 
-
-
-  const addToCart = (cardId) => {
-    dispatch(setInCart(cardId))
+  const addToCart = (oneCard) => {
+    dispatch(setInCart(oneCard))
     } 
-    const addRemoveFavorite = (cardId) => {
+  
+  const addRemoveFavorite = (cardId) => {
       if (inFavoriteStore.includes(cardId)){ 
           let newFavorite = inFavoriteStore.filter(id => id !== cardId);
           dispatch(removeFromFavorite(newFavorite))
@@ -74,11 +81,23 @@ const ProductCard = () => {
           dispatch(setInFavorite(cardId))
           }
     }   
-  console.log('Cart', inCart);
+  // console.log('Cart', inCart);
 
+  const productComments = comments.filter(comment => comment.product.itemNo === cardID);
+  
+  const productRating = () => {
+    if (productComments.length === 0) {return 0}
+    else if (productComments.length === 1) {return +productComments[0].rating}
+    {
+      let firstComment = productComments[0];
+      let firstRating = +firstComment.rating;
+      // інакше не може редьюс зробити, перший рейтинг не бачить
+      return (productComments.reduce((acc, cur) => acc + cur.rating*1, firstRating)-firstRating)/productComments.length
+    }
+  }
 
   return (
-    <>
+    <CardContext.Provider value={{oneCard, productComments}}>
       <div className="container">
         <div className="product-card">
           <div className="product-card__main">
@@ -150,7 +169,7 @@ const ProductCard = () => {
               price={currentPrice}
               addToCart={addToCart}
               addRemoveFavorite={addRemoveFavorite}
-              cardID={cardID}
+              rating={productRating()}
             />
             <div className="product-card__main-description">
               <h5 className="product-card__main-description__subtitle">
@@ -207,14 +226,14 @@ const ProductCard = () => {
           <section className="product-card__review">
             <h2 className="product-card__review-title">Review</h2>
             <div className="product-card__main-additionally">
-              <ProductRewier />
+              <ProductReview />
               <ProductPrice
                 name={name}
                 oldPrice={oldPrice(currentPrice, discount)}
                 price={currentPrice}
                 addToCart={addToCart}
                 addRemoveFavorite={addRemoveFavorite}
-                cardID={cardID}
+                rating={productRating()}
               />
             </div>
           </section>
@@ -225,7 +244,7 @@ const ProductCard = () => {
           />
         </div>
       </div>
-    </>
+    </CardContext.Provider>
   );
 };
 export default ProductCard;
