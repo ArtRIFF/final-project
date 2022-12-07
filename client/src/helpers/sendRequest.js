@@ -32,3 +32,10 @@ export const getOneCard = (id) =>
       Authorization: token,
     },
   });
+
+export const getComments = () =>   
+sendRequest(`${API}comments`, "GET", {
+  headers: {
+    Authorization: token,
+  }
+})
