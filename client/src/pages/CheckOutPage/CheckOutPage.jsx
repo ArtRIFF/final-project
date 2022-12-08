@@ -17,6 +17,7 @@ const CheckOutPage = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const products = [
+       //FIXME треба буде цей обєкт замінити на той, що ми будемо отримувати з cart
       {
         product: {"enabled":true,"imageUrls":["img/products/men/001.png","img/products/men/002.png","img/products/men/003.png","img/products/men/004.png"],"quantity":100,"_id":"6388df62015201004edfc45e","name":"new product for testing purposes","currentPrice":199.99,"previousPrice":250,"categories":"men","color":"red","productUrl":"/men","brand":"braaaand","myCustomParam":"some string or json for custom param","itemNo":"622685","date":"2022-12-01T17:07:46.516Z","__v":0},
         cartQuantity: 1
