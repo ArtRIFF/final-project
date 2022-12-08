@@ -9,6 +9,8 @@ import Login from "../pages/LoginPage/Login/Login";
 import Registration from "../pages/LoginPage/RegistrationPage/Registration";
 
 import CatalogSectionPage from "../pages/CatalogSectionPage/CatalogSectionPage";
+import OurProductionPage from "../pages/OurProductionPage/OurProductionPage";
+
 import UnderConstractionPage from "../pages/UnderConstructionPage/UnderConstructionPage";
 import ErrorPage from "../pages/404ErrorPage/404ErrorPage";
 
@@ -61,6 +63,7 @@ const App = () => {
           element={<CatalogSectionPage arrProduct={outlet} />}
         />
         {/* <Route path="" element={}/> */}
+        <Route path="/our_production" element={<OurProductionPage />}/>
         {/* <Route path="" element={}/> */}
         {/* <Route path="" element={}/> */}
         {/* <Route path="" element={}/> */}

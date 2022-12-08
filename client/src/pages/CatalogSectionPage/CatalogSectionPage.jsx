@@ -11,8 +11,7 @@ import { useState, useEffect } from "react";
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
 
-const CatalogSectionPage = (props) => {
-  const { arrProduct } = props;
+const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
 
   const [items, setitems] = useState([
@@ -22,7 +21,7 @@ const CatalogSectionPage = (props) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
-  const [filtredArray, setFiltredArray] = useState();
+  const [filtredArray, setFiltredArray] = useState(alreadyFilteredArray);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const currentItem = items.slice(firstItemIndex, lastItemIndex);
@@ -39,15 +38,10 @@ const CatalogSectionPage = (props) => {
   const [showAsideFilter, setModalRender] = useState(false);
   const allCollectionArray = useSelector(selectorAllCollectionProduct);
 
-  const [showProducts, setProducts] = useState(arrProduct);
-
   const callAsideFilter = () => {
     setModalRender(true);
-    const newArray = allCollectionArray.filter(
-      (item) => item.alt === "Bracelet"
-    );
-    setProducts(newArray);
   };
+
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
@@ -66,8 +60,8 @@ const CatalogSectionPage = (props) => {
       setModalRender(false);
     }
   };
-  const array = Array.isArray(showProducts)
-    ? showProducts.length
+  const array = Array.isArray(filtredArray)
+    ? filtredArray.length
     : allCollectionArray.length;
 
   return (
@@ -83,11 +77,10 @@ const CatalogSectionPage = (props) => {
           />
         </div>
         <aside
-          className={`${
-            showAsideFilter
+          className={`${showAsideFilter
               ? "asideFilter-wrapper--show"
               : "asideFilter-wrapper"
-          }`}
+            }`}
         >
           <AsideFilter
             allCollectionArray={allCollectionArray}
@@ -107,23 +100,23 @@ const CatalogSectionPage = (props) => {
         >
           {!Array.isArray(filtredArray)
             ? allCollectionArray.map((item, i) => {
-                const { name, price, alt, bestseller, newProduct } = item;
-                return (
-                  <p key={i}>
-                    {i} Product:{name} price:{price} alt:{alt} bestseller:
-                    {bestseller} newProduct:{newProduct}
-                  </p>
-                );
-              })
+              const { name, price, alt, bestseller, newProduct } = item;
+              return (
+                <p key={i}>
+                  {i} Product:{name} price:{price} alt:{alt} bestseller:
+                  {bestseller} newProduct:{newProduct}
+                </p>
+              );
+            })
             : filtredArray.map((item, i) => {
-                const { name, price, alt, bestseller, categories } = item;
-                return (
-                  <p key={i}>
-                    {i} Product:{name} price:{price} alt:{alt} bestseller:
-                    {bestseller} categories:{categories}
-                  </p>
-                );
-              })}
+              const { name, price, alt, bestseller, categories } = item;
+              return (
+                <p key={i}>
+                  {i} Product:{name} price:{price} alt:{alt} bestseller:
+                  {bestseller} categories:{categories}
+                </p>
+              );
+            })}
         </div>
         <div
           style={{ backgroundColor: "grey", width: "396px", height: "88px" }}
@@ -136,4 +129,9 @@ const CatalogSectionPage = (props) => {
     </div>
   );
 };
+
+CatalogSectionPage.defaultProps = {
+  alreadyFilteredArray: [],
+};
+
 export default CatalogSectionPage;

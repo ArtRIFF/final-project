@@ -23,7 +23,7 @@ useEffect(() => {
     if (inFavoriteStore.includes(cardID)) {
       setIsFavorite(true)
     } 
-    console.log('isFavorite',isFavorite)
+    // console.log('isFavorite',isFavorite)
 },[])
 
   
@@ -63,12 +63,12 @@ useEffect(() => {
         </div>
       </div>
       <div className="product-card__price__buttons">
-        <div onClick={()=>addToCart(cardID)}><ButtonAll className={"section__btn-header"} text={"Add to cart"} /></div>
+        <div onClick={()=>addToCart(oneCard)}><ButtonAll className={"section__btn-header"} text={"Add to cart"} /></div>
         <ButtonAll
           className={"section__btn-header white-button"}
           text={"Buy it now"}
         />
-        <div onClick={()=>{addRemoveFavorite(cardID);changeIsFavorite(cardID)}}><ButtonAll
+        <div onClick={()=>{addRemoveFavorite(oneCard.cardID);changeIsFavorite(oneCard.cardID)}}><ButtonAll
           className={isFavorite? "section__btn-header white-button white-button-favorite-select":"section__btn-header white-button white-button-favorite"}
           text={""}
         /></div>

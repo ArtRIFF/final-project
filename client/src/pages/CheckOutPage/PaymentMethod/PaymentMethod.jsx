@@ -1,11 +1,33 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import "./PaymentMethod.scss";
 import Button from "../../../components/Button/BattonAll/ButtonAll";
 // import StripeCheckout from "react-stripe-checkout";
 
-const PaymentMethod = () => {
+const PaymentMethod = (props) => {
+
+  const cardNumberRef = useRef(null);
+  const cardNameRef = useRef(null);
+  const cardDateRef = useRef(null);
+  const cardCvvRef = useRef(null);
+
+  const handleBlur = () => {
+    const cardNumber = cardNumberRef.current.value;
+    const cardName = cardNameRef.current.value;
+    const cardDate = cardDateRef.current.value;
+    const cardCvv = cardCvvRef.current.value;
+
+    if (cardNumber && cardName && cardDate && cardCvv) {
+      props.onPaymentReady({
+        cardNumber,
+        cardName,
+        cardDate,
+        cardCvv,
+      })
+    }
+  };
+
   return (
-    <section className="payment-method-section">
+    <section className="payment-method-section" onBlur={handleBlur}>
       <div className="payment-method-section__wrap">
         <p className="payment-method-section__title">3. Payment Method</p>
 
@@ -66,6 +88,7 @@ const PaymentMethod = () => {
               type="text"
               className="payment-method-section__text"
               placeholder="Card Number"
+              ref={cardNumberRef}
             />
           </form>
         </div>
@@ -79,6 +102,7 @@ const PaymentMethod = () => {
               type="text"
               className="payment-method-section__texts"
               placeholder="Full name"
+              ref={cardNameRef}
             />
           </form>
           <form action="" className="payment-method-section__infos infos-item2">
@@ -89,6 +113,7 @@ const PaymentMethod = () => {
               type="text"
               className="payment-method-section__texts"
               placeholder="MM/YY"
+              ref={cardDateRef}
             />
           </form>
           <form action="" className="payment-method-section__infos infos-item3">
@@ -99,6 +124,7 @@ const PaymentMethod = () => {
               type="text"
               className="payment-method-section__texts"
               placeholder="CVV"
+              ref={cardCvvRef}
             />
           </form>
         </div>
@@ -109,7 +135,7 @@ const PaymentMethod = () => {
         </div>
       </div>
       <div className="payment-method-section__btn">
-        <Button text="Continue" className="section__btn-checkout" />
+        <Button type="submit" text="Continue" className="section__btn-checkout" />
       </div>
     </section>
   );
