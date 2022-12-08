@@ -7,7 +7,7 @@ import { getOneCard, getComments } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
-import { setInCart,setInFavorite, removeFromFavorite } from "../../store/actions";
+import { setInCart, removeFromCart, setInFavorite, removeFromFavorite } from "../../store/actions";
 import { selectInCart, selectInFavorite } from "../../store/selectors";
 
 import "swiper/css";
@@ -69,9 +69,27 @@ const ProductCard = () => {
     return currentPrice - discountPrice;
   };
 
-  const addToCart = (oneCard) => {
-    dispatch(setInCart(oneCard))
+  const addToCart = (cardID,size=17) => {
+    if (inCart.length > 0) {
+      (inCart.forEach(item => {
+        if (item.cardID === cardID && item.size === size) {
+          let newCart = [...inCart];
+          console.log ('new cart before removing', newCart);
+          const index = inCart.indexOf(item);
+          console.log('index of the product in cart', index)
+            if (index > -1) { 
+                newCart.splice(index, 1);
+                console.log ('new cart', newCart)   
+              }
+              dispatch(removeFromCart(newCart));
+          dispatch(setInCart({cardID: cardID, quantity: item.quantity+1, size: size}))
+        } else {dispatch(setInCart({cardID: cardID, quantity: 1, size: size}))}
+      } 
+      ))
+    } else {
+      dispatch(setInCart({cardID: cardID, quantity: 1, size: size}))
     } 
+  } 
   
   const addRemoveFavorite = (cardId) => {
       if (inFavoriteStore.includes(cardId)){ 
@@ -168,6 +186,7 @@ const ProductCard = () => {
               oldPrice={oldPrice(currentPrice, discount)}
               price={currentPrice}
               addToCart={addToCart}
+              cardID={cardID}
               addRemoveFavorite={addRemoveFavorite}
               rating={productRating()}
             />
@@ -231,6 +250,7 @@ const ProductCard = () => {
                 name={name}
                 oldPrice={oldPrice(currentPrice, discount)}
                 price={currentPrice}
+                cardID={cardID}
                 addToCart={addToCart}
                 addRemoveFavorite={addRemoveFavorite}
                 rating={productRating()}
