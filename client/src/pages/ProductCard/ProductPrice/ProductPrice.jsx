@@ -8,7 +8,7 @@ import ButtonAll from "../../../components/Button/BattonAll/ButtonAll";
 import "./ProductPrice.scss";
 
 const ProductPrice = (props) => {
-  const { name, oldPrice, price, addToCart, addRemoveFavorite, oneCard, rating } = props;
+  const { name, oldPrice, price, addToCart, addRemoveFavorite, cardID, rating } = props;
   
   const dispatch = useDispatch();
   const inFavoriteStore = useSelector (selectInFavorite);
@@ -20,8 +20,7 @@ const ProductPrice = (props) => {
 
 const [isFavorite, setIsFavorite] = useState(false);
 useEffect(() => {
-    if (inFavoriteStore.includes(oneCard)) {
-      // if (inFavoriteStore.includes(oneCard.itemNo)) {  
+    if (inFavoriteStore.includes(cardID)) {
       setIsFavorite(true)
     } 
     // console.log('isFavorite',isFavorite)
