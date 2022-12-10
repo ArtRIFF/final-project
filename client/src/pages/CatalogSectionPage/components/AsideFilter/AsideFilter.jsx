@@ -1,44 +1,130 @@
 import './style.scss';
 import { useState, useEffect } from 'react';
 
-const AsideFilter = ({allCollectionArray,filterRequest}) => {
+const AsideFilter = ({ allCollectionArray, filterRequest }) => {
   const [filtredArray, setFiltredArray] = useState();
-  // const [paramObj , setParamObj] = useState({
-  //   checked: false
-  // });
-  const [ productsType , setProductsType] = useState([]);
+  const [productsType, setProductsType] = useState([]);
+  const [metalType, setMetalType] = useState([]);
+  const [collectionType, setCollectionType] = useState([]);
+  const [sampleType, setSampleType] = useState([]);
+  const [metalColorType, setMetalColorType] = useState([]);
+  const [insertType, setInsertType] = useState([]);
+  const [price, setPrice] = useState(['', '']);
+  const [insertNumber, setInsertNumber] = useState(0);
 
-  const updateFilter = (categories) => {
+  //need to mutual category to ring and earing child category, wrong collection (new, shine),steel no products, test cards, metal color with capitalized alphabet, sample have undefind value, CAPS VALUE and Empty value.Hasnt  metal color Black rhodium, size:small,middle,large.Insert: tourmaline and zirconia Pearl and gems Pearl and diamonds Pearl and zirconia 
+  useEffect(() => {
+    updateFilter();
+  }, [productsType]);
+
+  useEffect(() => {
+    updateFilter();
+  }, [metalType]);
+
+  useEffect(() => {
+    updateFilter();
+  }, [collectionType]);
+
+  useEffect(() => {
+    updateFilter();
+  }, [sampleType]);
+
+  useEffect(() => {
+    updateFilter();
+  }, [metalColorType]);
+
+  useEffect(() => {
+    updateFilter();
+  }, [insertType]);
+
+  useEffect(() => {
+    updateFilter();
+  }, [price]);
+
+  useEffect(() => {
+    updateFilter();
+  }, [insertNumber]);
+
+
+  const updateFilter = () => {
     const newArray = allCollectionArray.filter(n => (
-      (!categories.length || categories.includes(n.categories))
+      (
+        (!productsType.length || productsType.includes(n.categories))
+        && (!metalType.length || metalType.includes(n.metal))
+        && (!collectionType.length || collectionType.includes(n.collectionName))
+        && (!sampleType.length || sampleType.includes((typeof n.sample === 'undefined' ? n.sample : (n.sample).toString())))
+        && (!metalColorType.length || metalColorType.includes(n.metalColor))
+        && (!insertType.length || insertType.includes(n.insertType))
+        && (!price[0] || price[0] <= n.currentPrice)
+        && (!price[1] || price[1] >= n.currentPrice)
+        && (!insertNumber || insertNumber === n.insertNumber)
+      )
     ));
     filterRequest(newArray);
-    // setFiltredArray(newArray);
   };
 
-  // categories"pendant"
   const onTypeChange = (e) => {
     const checked = e.target.checked;
     const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
     setProductsType((!productsType.includes(value) && checked)
-      ? [ ...productsType, value ]
+      ? [...productsType, value]
       : productsType.filter(n => n !== value)
     );
-    const categories = (!productsType.includes(value) && checked)
-    ? [ ...productsType, value ]
-    : productsType.filter(n => n !== value);
-    
-    updateFilter(categories);
   };
-  
-  // const chooseParam = (e) => {
-    
-  //   setParamObj({
-  //     checked: !paramObj.checked
-  //   });
-  //   const parentElement = e.target.closest('.filter-parameter').querySelector('.filter-parameter__title');
-  //   console.log(parentElement);//через дата атребут
-  // }
+
+  const onMetalChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setMetalType((!metalType.includes(value) && checked)
+      ? [...metalType, value]
+      : metalType.filter(n => n !== value)
+    );
+  };
+
+  const onCollectionChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setCollectionType((!collectionType.includes(value) && checked)
+      ? [...collectionType, value]
+      : collectionType.filter(n => n !== value)
+    );
+  };
+
+  const onSampleChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setSampleType((!sampleType.includes(value) && checked)
+      ? [...sampleType, value]
+      : sampleType.filter(n => n !== value)
+    );
+  };
+
+  const onMetalColorChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setMetalColorType((!metalColorType.includes(value) && checked)
+      ? [...metalColorType, value]
+      : metalColorType.filter(n => n !== value)
+    );
+  };
+
+  const onInsertChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setInsertType((!insertType.includes(value) && checked)
+      ? [...insertType, value]
+      : insertType.filter(n => n !== value)
+    );
+  };
+
+  const onPriceChange = ({ target: { value, dataset: { index } } }) => {
+    setPrice(price.map((n, i) => i === +index ? value : n));
+  };
+
+  const onInsertNumberChange = ({ target: { value } }) => {
+    setInsertNumber(+value);
+  };
+
   const accordionAnimate = (e) => {
     const panels = [...e.target.closest('.aside-filter__wrapper').children];
     const indexTargetElem = panels.indexOf(e.target.closest('.filter-parameter'));
@@ -59,18 +145,30 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
     }
 
   }
-  const resetAllParam = () => {
-   const checkboxElements = document.querySelectorAll('.filter-parameter__checkbox input');
-   const inputElements = document.querySelectorAll('.price-container input');
-   checkboxElements.forEach(checkbox => {
-    checkbox.checked = false;
-   })
 
-   inputElements.forEach(input => {
-    input.value = '';
-    console.log(input);
-   })
+  const resetAllParam = () => {
+    const checkboxElements = document.querySelectorAll('.filter-parameter__checkbox input');
+    const inputElements = document.querySelectorAll('.price-container input');
+    checkboxElements.forEach(checkbox => {
+      checkbox.checked = false;
+    })
+
+    inputElements.forEach(input => {
+      input.value = '';
+    })
+
+    setCollectionType([]);
+    setProductsType([]);
+    setMetalType([]);
+    setSampleType([]);
+    setMetalColorType([]);
+    setInsertType([]);
+    setPrice(['', '']);
+    setInsertNumber(0);
+
+    updateFilter([]);
   }
+
   return (
     <div className="aside-filter">
       <div className='aside-filter__header'>
@@ -84,8 +182,9 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container price-container">
-            <input type="text" placeholder='51' /><span>-</span>
-            <input type="text" placeholder='214453' />
+            <input onChange={onPriceChange} data-index={0} value={price[0]} type="text" placeholder='51' />
+            <span>-</span>
+            <input onChange={onPriceChange} data-index={1} value={price[1]} type="text" placeholder='214453' />
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">
@@ -94,23 +193,23 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onCollectionChange} data-category-name={'vintage'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Vintage</span>
             </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox"/>
+            <label onClick={onCollectionChange} data-category-name={'seabed'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
               <span>Seabed</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onCollectionChange} data-category-name={'refinement'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Refinement</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onCollectionChange} data-category-name={'capsule'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Capsule</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onCollectionChange} data-category-name={'max spass'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Max Spass</span>
             </label>
@@ -122,29 +221,41 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onInsertChange} data-category-name={'Without inserting'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Without insertion</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onInsertChange} data-category-name={'pearl'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Pearl</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onInsertChange} data-category-name={'zirconia'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Zirconia</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onInsertChange} data-category-name={'diamond'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Diamond</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onInsertChange} data-category-name={'Pearl and diamonds'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>Pearls cultivated</span>
+              <span>Pearl and diamonds</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onInsertChange} data-category-name={'semi-precious'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Semi-precious</span>
+            </label>
+            <label onClick={onInsertChange} data-category-name={'nacre'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Nacre</span>
+            </label>
+            <label onClick={onInsertChange} data-category-name={'amethyst'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Amethyst</span>
+            </label>
+            <label onClick={onInsertChange} data-category-name={'onixl'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Onixl</span>
             </label>
           </div>
         </div>
@@ -153,27 +264,8 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <h5 className="filter-parameter__title">Insert number</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
-          <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>1</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>2</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>12</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>24</span>
-            </label>
-            <label className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>37</span>
-            </label>
+          <div className="filter-parameter__container price-container">
+            <input onChange={onInsertNumberChange} value={insertNumber} type="text" placeholder='1' />
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">
@@ -182,15 +274,15 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onMetalChange} data-category-name={'Steel'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Steel</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onMetalChange} data-category-name={'Gold'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Gold</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onMetalChange} data-category-name={'Silver'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Silver</span>
             </label>
@@ -202,19 +294,19 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onMetalColorChange} data-category-name={"White"} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>White</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onMetalColorChange} data-category-name={"Yellow"} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Yellow</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onMetalColorChange} data-category-name={"Red"} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Red</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onMetalColorChange} data-category-name={"Black rhodium"} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Black rhodium</span>
             </label>
@@ -226,21 +318,25 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onSampleChange} data-category-name={575} className='filter-parameter__checkbox'>
               <input type="checkbox" />
-              <span>375</span>
+              <span>575</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onSampleChange} data-category-name={585} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>585</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onSampleChange} data-category-name={750} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>750</span>
             </label>
-            <label className='filter-parameter__checkbox'>
+            <label onClick={onSampleChange} data-category-name={958} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>958</span>
+            </label>
+            <label onClick={onSampleChange} data-category-name={985} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>985</span>
             </label>
           </div>
         </div>
@@ -253,10 +349,6 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <label onChange={onTypeChange} data-category-name={'bracelet'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Bracelet</span>
-            </label>
-            <label onChange={onTypeChange} data-category-name={'pendants'} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>Pendants</span>
             </label>
             <label onChange={onTypeChange} data-category-name={'ring'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
@@ -280,7 +372,7 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             </label>
           </div>
         </div>
-        <div className="filter-parameter filter-parameter__hide">
+        {/* <div className="filter-parameter filter-parameter__hide">
           <div className="filter-parameter__header">
             <h5 className="filter-parameter__title">Size</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
@@ -289,7 +381,7 @@ const AsideFilter = ({allCollectionArray,filterRequest}) => {
             <input type="text" placeholder='15' /><span>-</span>
             <input type="text" placeholder='24' />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
