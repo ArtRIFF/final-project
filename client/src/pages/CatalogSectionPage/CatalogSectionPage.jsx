@@ -60,6 +60,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
       setModalRender(false);
     }
   };
+
   const array = Array.isArray(filtredArray)
     ? filtredArray.length
     : allCollectionArray.length;
@@ -78,8 +79,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
         </div>
         <aside
           className={`${showAsideFilter
-              ? "asideFilter-wrapper--show"
-              : "asideFilter-wrapper"
+            ? "asideFilter-wrapper--show"
+            : "asideFilter-wrapper"
             }`}
         >
           <AsideFilter
@@ -100,20 +101,19 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
         >
           {!Array.isArray(filtredArray)
             ? allCollectionArray.map((item, i) => {
-              const { name, price, alt, bestseller, newProduct } = item;
+              const { name, insertNumber, alt, bestseller, newProduct } = item;
               return (
                 <p key={i}>
-                  {i} Product:{name} price:{price} alt:{alt} bestseller:
+                  {i} Product:{name} insertNumber:{insertNumber} alt:{alt} bestseller:
                   {bestseller} newProduct:{newProduct}
                 </p>
               );
             })
             : filtredArray.map((item, i) => {
-              const { name, price, alt, bestseller, categories } = item;
+              const { name, statusProduct, insertNumber, collectionName, categories, metal } = item;
               return (
                 <p key={i}>
-                  {i} Product:{name} price:{price} alt:{alt} bestseller:
-                  {bestseller} categories:{categories}
+                  {i} name:{name} statusProduct:{statusProduct} categories:{categories}
                 </p>
               );
             })}
