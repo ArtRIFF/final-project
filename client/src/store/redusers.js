@@ -17,7 +17,6 @@ export const defaultState = {
   favoriteProd: [],
   newCollectionProduct: [],
   allCollectionProduct: [],
-
   bestsellers: [],
   outlet: [],
   inCart: localStItemsCart,
