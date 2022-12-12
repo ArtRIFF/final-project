@@ -2,51 +2,112 @@ import React, { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade } from "swiper";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import CategorySectionCard from "./CategorySectionCard";
-import { selectorCategoryEarrings } from "../../store/selectors";
-import { fetchCategoryEarrings } from "../../store/actions";
+import { selectorAllCollectionProduct } from "../../store/selectors";
+import { fetchAllCollectionProduct } from "../../store/actions";
 import "./CategorySection.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
+import { useState } from "react";
 
 const CategorySection = (props) => {
   const dispatch = useDispatch();
-  const earringsArray = useSelector(selectorCategoryEarrings);
+  const [activeTab, setActiveTab] = useState(false);
+
+  const classes = classNames("category__content-sidebar__link", {
+    active: activeTab,
+  });
+  const productArray = useSelector(selectorAllCollectionProduct);
+  const earringsArray = productArray.filter(
+    (element) =>
+      element.categories === "earring" ||
+      element.categories === "child-earrings"
+  );
+  const braceletsArray = productArray.filter(
+    (element) => element.categories === "bracelet"
+  );
+  const pendantArray = productArray.filter(
+    (element) => element.categories === "pendant"
+  );
+  const ringsArray = productArray.filter(
+    (element) =>
+      element.categories === "engagement-ring" ||
+      element.categories === "wedding-ring"
+  );
+  const pearlArray = productArray.filter(
+    (element) => element.categories === "pearl"
+  );
+  const crossArray = productArray.filter(
+    (element) => element.categories === "cross"
+  );
+  const [selectArr, setSelectArr] = useState(braceletsArray);
 
   useEffect(() => {
-    dispatch(fetchCategoryEarrings());
+    dispatch(fetchAllCollectionProduct());
+    setSelectArr(braceletsArray);
   }, []);
 
+  useEffect(() => {
+    setSelectArr(braceletsArray);
+  }, [productArray]);
+
+  console.log(selectArr);
+  console.log(activeTab);
   return (
     <div className="category">
       <h2 className="category__title">Shop by Category</h2>
       <div className="category__content">
-        {/* переробити а на лінки  */}
         <div className="category__content-sidebar">
-          <a href="#" className="category__content-sidebar__link">
+          <p
+            className={classes}
+            onClick={(e) => {
+              setSelectArr(braceletsArray);
+            }}
+          >
             Bracelets
-          </a>
-          <a href="#" className="category__content-sidebar__link ">
-            Necklace
-          </a>
-          <a href="#" className="category__content-sidebar__link">
+          </p>
+          <p
+            className={classes}
+            onClick={() => {
+              setSelectArr(pendantArray);
+            }}
+          >
+            Pendant
+          </p>
+          <p
+            className={classes}
+            onClick={() => {
+              setSelectArr(ringsArray);
+            }}
+          >
             Rings
-          </a>
-          <a href="#" className="category__content-sidebar__link active">
+          </p>
+          <p
+            className={classes}
+            onClick={() => {
+              setSelectArr(earringsArray);
+            }}
+          >
             Earrings
-          </a>
-          <a href="#" className="category__content-sidebar__link">
-            Chains
-          </a>
-          <a href="#" className="category__content-sidebar__link">
-            Brooches
-          </a>
-          <a href="#" className="category__content-sidebar__link">
-            Hairpins
-          </a>
+          </p>
+          <p
+            className={classes}
+            onClick={() => {
+              setSelectArr(pearlArray);
+            }}
+          >
+            Pearl
+          </p>
+          <p
+            className={classes}
+            onClick={() => {
+              setSelectArr(crossArray);
+            }}
+          >
+            Cross
+          </p>
         </div>
         <div>
           <Swiper
@@ -58,7 +119,7 @@ const CategorySection = (props) => {
             loop
             className="category__content-cards"
           >
-            {earringsArray.slice(0, 4).map((card, index) => {
+            {selectArr.slice(0, 4).map((card, index) => {
               return (
                 <SwiperSlide key={index}>
                   <CategorySectionCard product={card} />

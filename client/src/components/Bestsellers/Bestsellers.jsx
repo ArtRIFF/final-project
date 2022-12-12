@@ -17,7 +17,7 @@ const Bestsellers = (props) => {
     dispatch(fetchBestsellers());
   }, []);
   const numberOfItems = viewAll ? bestsellers.length : 4;
-  console.log(bestsellers);
+
   return (
     <section className="bestsellers">
       <div className="bestsellers__header">

@@ -1,4 +1,4 @@
-import Button from '../../../components/Button/BattonAll/ButtonAll';
+import Button from '../../../components/Button/ButtonAll/ButtonAll';
 import '../RegistrationPage/Registration.scss';
 import {Form, Formik} from "formik";
 import Input from "../RegistrationPage/Input/Input";
