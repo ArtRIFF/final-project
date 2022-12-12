@@ -4,7 +4,7 @@ import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";
 import { ReactComponent as Box } from "./img/box.svg";
 import { selectInFavorite } from "../../../store/selectors";
-import ButtonAll from "../../../components/Button/BattonAll/ButtonAll";
+import ButtonAll from "../../../components/Button/ButtonAll/ButtonAll";
 import "./ProductPrice.scss";
 
 const ProductPrice = (props) => {
@@ -30,10 +30,10 @@ const ProductPrice = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
     if (inFavoriteStore.includes(cardID)) {
-      setIsFavorite(true);
-    }
-    // console.log('isFavorite',isFavorite)
-  }, []);
+      setIsFavorite(true)
+    } 
+    console.log('isFavorite',isFavorite)
+},[])
 
   return (
     <div className="product-card__price">

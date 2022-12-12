@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import ButtonAll from '../Button/BattonAll/ButtonAll'
+import ButtonAll from '../Button/ButtonAll/ButtonAll'
 import './Footer.scss'
 
 const Footer = () => {

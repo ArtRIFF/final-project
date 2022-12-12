@@ -1,5 +1,5 @@
 import "./NewsSection.scss";
-import Button from "../Button/BattonAll/ButtonAll";
+import Button from "../Button/ButtonAll/ButtonAll";
 
 const NewsSection = () => {
   return (
