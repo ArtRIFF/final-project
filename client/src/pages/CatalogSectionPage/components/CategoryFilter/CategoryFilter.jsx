@@ -1,5 +1,5 @@
 import './style.scss';
-import ButtonAll from '../../../../components/Button/BattonAll/ButtonAll';
+import ButtonAll from '../../../../components/Button/ButtonAll/ButtonAll';
 import PropTypes from 'prop-types';
 
 const CategoryFilter = ({onClickFunc,setResult}) => {

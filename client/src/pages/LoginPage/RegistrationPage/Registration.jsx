@@ -2,7 +2,7 @@ import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import "yup-phone-lite";
 
-import Button from "../../../components/Button/BattonAll/ButtonAll";
+import Button from "../../../components/Button/ButtonAll/ButtonAll";
 import Input from "./Input/Input";
 import InputWithStrength from "./InputWithStrength/InputWithStrength";
 

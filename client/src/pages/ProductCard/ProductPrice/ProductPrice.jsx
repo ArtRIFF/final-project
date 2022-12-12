@@ -4,7 +4,7 @@ import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";
 import { ReactComponent as Box } from "./img/box.svg";
 import { selectInFavorite } from "../../../store/selectors";
-import ButtonAll from "../../../components/Button/BattonAll/ButtonAll";
+import ButtonAll from "../../../components/Button/ButtonAll/ButtonAll";
 import "./ProductPrice.scss";
 
 const ProductPrice = (props) => {
@@ -23,7 +23,7 @@ useEffect(() => {
     if (inFavoriteStore.includes(cardID)) {
       setIsFavorite(true)
     } 
-    // console.log('isFavorite',isFavorite)
+    console.log('isFavorite',isFavorite)
 },[])
 
   
@@ -63,12 +63,12 @@ useEffect(() => {
         </div>
       </div>
       <div className="product-card__price__buttons">
-        <div onClick={()=>addToCart(oneCard)}><ButtonAll className={"section__btn-header"} text={"Add to cart"} /></div>
+        <div onClick={()=>addToCart(cardID)}><ButtonAll className={"section__btn-header"} text={"Add to cart"} /></div>
         <ButtonAll
           className={"section__btn-header white-button"}
           text={"Buy it now"}
         />
-        <div onClick={()=>{addRemoveFavorite(oneCard.cardID);changeIsFavorite(oneCard.cardID)}}><ButtonAll
+        <div onClick={()=>{addRemoveFavorite(cardID);changeIsFavorite(cardID)}}><ButtonAll
           className={isFavorite? "section__btn-header white-button white-button-favorite-select":"section__btn-header white-button white-button-favorite"}
           text={""}
         /></div>
