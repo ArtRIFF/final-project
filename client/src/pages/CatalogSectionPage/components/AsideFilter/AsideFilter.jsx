@@ -2,7 +2,6 @@ import './style.scss';
 import { useState, useEffect } from 'react';
 
 const AsideFilter = ({ allCollectionArray, filterRequest }) => {
-  const [filtredArray, setFiltredArray] = useState();
   const [productsType, setProductsType] = useState([]);
   const [metalType, setMetalType] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
@@ -60,6 +59,7 @@ const AsideFilter = ({ allCollectionArray, filterRequest }) => {
         && (!insertNumber || insertNumber === n.insertNumber)
       )
     ));
+    document.querySelector('.category-filter select').value = "DEFAULT";
     filterRequest(newArray);
   };
 
