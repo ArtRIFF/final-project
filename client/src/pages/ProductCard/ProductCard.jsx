@@ -7,7 +7,12 @@ import { getOneCard, getComments } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
-import { setInCart, removeFromCart, setInFavorite, removeFromFavorite } from "../../store/actions";
+import {
+  setInCart,
+  removeFromCart,
+  setInFavorite,
+  removeFromFavorite,
+} from "../../store/actions";
 import { selectInCart, selectInFavorite } from "../../store/selectors";
 
 import "swiper/css";
@@ -20,26 +25,26 @@ export const CardContext = createContext();
 const ProductCard = () => {
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([]);
   const { cardID } = useParams();
   const dispatch = useDispatch();
   const inCart = useSelector(selectInCart);
-  const inFavoriteStore = useSelector (selectInFavorite);
+  const inFavoriteStore = useSelector(selectInFavorite);
 
   useEffect(() => {
     getOneCard(cardID).then((data) => {
       setCard(data);
     });
   }, [cardID]);
-  useEffect(()=>{
-    getComments().then(data => setComments(data))
-  }, [])
   useEffect(() => {
-    localStorage.setItem("inCart", JSON.stringify(inCart))
-  },[inCart]);
-  useEffect(() => {    
+    getComments().then((data) => setComments(data));
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("inCart", JSON.stringify(inCart));
+  }, [inCart]);
+  useEffect(() => {
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
-  },[inFavoriteStore]);
+  }, [inFavoriteStore]);
 
   const {
     name,
@@ -61,61 +66,81 @@ const ProductCard = () => {
     length,
     content,
     rating,
-    itemNo
+    itemNo,
+    size,
   } = oneCard;
-  
+
   const oldPrice = (currentPrice, discount) => {
     const discountPrice = (currentPrice / 100) * discount;
     return currentPrice - discountPrice;
   };
 
-  const addToCart = (cardID,size=17) => {
+  const addToCart = (cardID, size = 17) => {
     if (inCart.length > 0) {
-      (inCart.forEach(item => {
+      inCart.forEach((item) => {
         if (item.cardID === cardID && item.size === size) {
           let newCart = [...inCart];
-          console.log ('new cart before removing', newCart);
+          console.log("new cart before removing", newCart);
           const index = inCart.indexOf(item);
-          console.log('index of the product in cart', index)
-            if (index > -1) { 
-                newCart.splice(index, 1);
-                console.log ('new cart', newCart)   
-              }
-              dispatch(removeFromCart(newCart));
-          dispatch(setInCart({cardID: cardID, quantity: item.quantity+1, size: size}))
-        } else {dispatch(setInCart({cardID: cardID, quantity: 1, size: size}))}
-      } 
-      ))
-    } else {
-      dispatch(setInCart({cardID: cardID, quantity: 1, size: size}))
-    } 
-  } 
-  
-  const addRemoveFavorite = (cardId) => {
-      if (inFavoriteStore.includes(cardId)){ 
-          let newFavorite = inFavoriteStore.filter(id => id !== cardId);
-          dispatch(removeFromFavorite(newFavorite))
-      } else {
-          dispatch(setInFavorite(cardId))
+          console.log("index of the product in cart", index);
+          if (index > -1) {
+            newCart.splice(index, 1);
+            console.log("new cart", newCart);
           }
-    }   
+          dispatch(removeFromCart(newCart));
+          dispatch(
+            setInCart({
+              cardID: cardID,
+              quantity: item.quantity + 1,
+              size: size,
+            })
+          );
+        } else {
+          dispatch(setInCart({ cardID: cardID, quantity: 1, size: size }));
+        }
+      });
+    } else {
+      dispatch(setInCart({ cardID: cardID, quantity: 1, size: size }));
+    }
+  };
+
+  const addRemoveFavorite = (cardId) => {
+    if (inFavoriteStore.includes(cardId)) {
+      let newFavorite = inFavoriteStore.filter((id) => id !== cardId);
+      dispatch(removeFromFavorite(newFavorite));
+    } else {
+      dispatch(setInFavorite(cardId));
+    }
+  };
   // console.log('Cart', inCart);
 
-  const productComments = comments.filter(comment => comment.product.itemNo === cardID);
-  
+  const productComments = comments.filter(
+    (comment) => comment.product.itemNo === cardID
+  );
+
   const productRating = () => {
-    if (productComments.length === 0) {return 0}
-    else if (productComments.length === 1) {return +productComments[0].rating}
+    if (productComments.length === 0) {
+      return 0;
+    } else if (productComments.length === 1) {
+      return +productComments[0].rating;
+    }
     {
       let firstComment = productComments[0];
       let firstRating = +firstComment.rating;
       // інакше не може редьюс зробити, перший рейтинг не бачить
-      return (productComments.reduce((acc, cur) => acc + cur.rating*1, firstRating)-firstRating)/productComments.length
+      return (
+        (productComments.reduce(
+          (acc, cur) => acc + cur.rating * 1,
+          firstRating
+        ) -
+          firstRating) /
+        productComments.length
+      );
     }
-  }
+  };
 
   return (
-    <CardContext.Provider value={{oneCard, productComments}}>
+    <CardContext.Provider value={{ oneCard, productComments }}>
       <div className="container">
         <div className="product-card">
           <div className="product-card__main">
@@ -135,7 +160,7 @@ const ProductCard = () => {
                 {imageUrls !== undefined &&
                   imageUrls.map((photo) => {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={itemNo}>
                         <img src={`../${photo}`} alt={name}></img>
                         {discount > 0 && (
                           <div className="category-card__sale product-card-sale">
@@ -172,7 +197,7 @@ const ProductCard = () => {
                     imageUrls.map((photo) => {
                       console.log(photo);
                       return (
-                        <SwiperSlide>
+                        <SwiperSlide key={cardID}>
                           <img src={`../${photo}`} alt={name}></img>
                         </SwiperSlide>
                       );
@@ -183,6 +208,7 @@ const ProductCard = () => {
 
             <ProductPrice
               name={name}
+              size={size}
               oldPrice={oldPrice(currentPrice, discount)}
               price={currentPrice}
               addToCart={addToCart}
@@ -248,6 +274,7 @@ const ProductCard = () => {
               <ProductReview />
               <ProductPrice
                 name={name}
+                size={size}
                 oldPrice={oldPrice(currentPrice, discount)}
                 price={currentPrice}
                 cardID={cardID}
