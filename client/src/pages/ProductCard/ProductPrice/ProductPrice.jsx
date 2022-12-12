@@ -5,7 +5,7 @@ import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";
 import { ReactComponent as Box } from "./img/box.svg";
 import { selectInFavorite } from "../../../store/selectors";
-import ButtonAll from "../../../components/Button/BattonAll/ButtonAll";
+import ButtonAll from "../../../components/Button/ButtonAll/ButtonAll";
 import "./ProductPrice.scss";
 
 const ProductPrice = (props) => {
