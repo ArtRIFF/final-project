@@ -5,6 +5,16 @@
   padding-left: 20px;
   padding-top: 24px;
   cursor: pointer;
+  .filled-cart {
+    path {
+      fill: black;
+    }
+  }
+}
+
+#cart {
+  color: white;
+  // дописать стили: position: absolute; top: ; right: ;
 }
 @media screen and (max-width: $desktop-size) {
   .header-cart{
