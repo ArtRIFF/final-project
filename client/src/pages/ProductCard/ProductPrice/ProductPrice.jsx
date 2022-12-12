@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";
 import { ReactComponent as Box } from "./img/box.svg";
@@ -14,25 +15,23 @@ const ProductPrice = (props) => {
     price,
     addToCart,
     addRemoveFavorite,
+    handleChange,
     cardID,
     rating,
     size,
   } = props;
 
-  const dispatch = useDispatch();
   const inFavoriteStore = useSelector(selectInFavorite);
   const changeIsFavorite = () => {
     setIsFavorite(!isFavorite);
-    // console.log('isFavorite',isFavorite)
   };
-  // console.log('onecard',oneCard)
-
+  
   const [isFavorite, setIsFavorite] = useState(false);
+  
   useEffect(() => {
     if (inFavoriteStore.includes(cardID)) {
       setIsFavorite(true);
     }
-    // console.log('isFavorite',isFavorite)
   }, []);
 
   return (
@@ -55,7 +54,7 @@ const ProductPrice = (props) => {
           </p>
         </div>
         <div className="product-card__price__body__selector">
-          <select name="product-size" required="required">
+          <select name="product-size" required="required" onChange={handleChange}>
             <option value="not choose"></option>
             {size !== undefined &&
               size.split(",").map((el) => {
@@ -69,10 +68,12 @@ const ProductPrice = (props) => {
         <div onClick={() => addToCart(cardID)}>
           <ButtonAll className={"section__btn-header"} text={"Add to cart"} />
         </div>
-        <ButtonAll
-          className={"section__btn-header white-button"}
-          text={"Buy it now"}
-        />
+          <Link onClick={() => addToCart(cardID)} to="/cart">
+            <ButtonAll
+              className={"section__btn-header white-button"}
+              text={"Buy it now"}
+            />
+          </Link>
         <div
           onClick={() => {
             addRemoveFavorite(cardID);
