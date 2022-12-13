@@ -31,7 +31,6 @@ const CollectionSection = (props) => {
         </div>
         <div className="collection-section__content">
           {newCollectionArray.slice(0, numberOfItems).map((card, index) => {
-            console.log(card);
             return <CollectionSectionCard product={card} key={index} />;
           })}
         </div>

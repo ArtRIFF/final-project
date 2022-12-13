@@ -60,6 +60,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
       setModalRender(false);
     }
   };
+
   const array = Array.isArray(filtredArray)
     ? filtredArray.length
     : allCollectionArray.length;
@@ -78,8 +79,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
         </div>
         <aside
           className={`${showAsideFilter
-              ? "asideFilter-wrapper--show"
-              : "asideFilter-wrapper"
+            ? "asideFilter-wrapper--show"
+            : "asideFilter-wrapper"
             }`}
         >
           <AsideFilter
@@ -88,7 +89,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           />
         </aside>
         <div className="filter-wrapper">
-          <CategoryFilter onClickFunc={callAsideFilter} setResult={array} />
+          <CategoryFilter onClickFunc={callAsideFilter} setResult={array} allCollectionArray={filtredArray ? filtredArray : allCollectionArray}
+            filterRequest={filterRequest} />
         </div>
         <div
           style={{
@@ -100,20 +102,19 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
         >
           {!Array.isArray(filtredArray)
             ? allCollectionArray.map((item, i) => {
-              const { name, price, alt, bestseller, newProduct } = item;
+              const { statusProduct, currentPrice, insertNumber, alt, bestseller, newProduct } = item;
               return (
                 <p key={i}>
-                  {i} Product:{name} price:{price} alt:{alt} bestseller:
+                  {i} statusProduct{statusProduct}  insertNumber:{insertNumber} price:{currentPrice}alt:{alt} bestseller:
                   {bestseller} newProduct:{newProduct}
                 </p>
               );
             })
             : filtredArray.map((item, i) => {
-              const { name, price, alt, bestseller, categories } = item;
+              const { currentPrice, insertNumber, statusProduct, categories, metal } = item;
               return (
                 <p key={i}>
-                  {i} Product:{name} price:{price} alt:{alt} bestseller:
-                  {bestseller} categories:{categories}
+                  {i}statusProduct{statusProduct}  statusProduct:{statusProduct} categories:{categories} price:{currentPrice}
                 </p>
               );
             })}
