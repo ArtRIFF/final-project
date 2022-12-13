@@ -1,21 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./HeaderRegistration.scss";
 import { NavLink } from "react-router-dom";
+import {UserContext} from "../../../../context/UserContext";
+import {ReactComponent as LoginIcon} from "../img/Registrationicon.svg";
 
-class HeaderRedistration extends React.Component {
-  render() {
+
+const HeaderRegistration = () => {
+  const {userInfo} = useContext(UserContext);
+
     return (
-      <div className="header-redistration">
-        <NavLink to="/login" className="header-redistration__icon">
-          <img
-            className="header-redistration__icon"
-            src="img/header-icon/Registrationicon.svg"
-            alt="redistration login"
-          ></img>
+      <div className="header-registration">
+        <NavLink to="/login" className="header-registration__icon">
+          <LoginIcon className={userInfo ? "filled" : "header-registration__icon"}/>
+          {userInfo ? <span id="name">{userInfo.firstName}</span> : <span></span>}
         </NavLink>
       </div>
     );
-  }
+
 }
 
-export default HeaderRedistration;
+export default HeaderRegistration;
