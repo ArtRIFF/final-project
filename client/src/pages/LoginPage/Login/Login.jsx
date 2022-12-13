@@ -7,6 +7,7 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import {sendRequest} from "../../../helpers/sendRequest";
 import {API} from "../../../config/API";
 import * as Yup from "yup";
+import Breadcrumbs from '../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs';
 
 
 const Login = () => {
@@ -45,8 +46,10 @@ const Login = () => {
   return (
     <>
       <section className='login__section'>
+      <div className="breadcrumbs_login">
+          <Breadcrumbs />
+      </div>
         <div className='container'>
-          <h2 className='login__breadcrumbs'>Shop / <span>Login</span></h2>
           <Formik
             initialValues={{
               email: '',
