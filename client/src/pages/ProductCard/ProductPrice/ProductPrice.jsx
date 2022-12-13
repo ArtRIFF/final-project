@@ -30,16 +30,9 @@ const ProductPrice = (props) => {
   
   useEffect(() => {
     if (inFavoriteStore.includes(cardID)) {
-<<<<<<< HEAD
       setIsFavorite(true);
     }
   }, []);
-=======
-      setIsFavorite(true)
-    } 
-    console.log('isFavorite',isFavorite)
-},[])
->>>>>>> login_registration_page
 
   return (
     <div className="product-card__price">
