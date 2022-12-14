@@ -31,6 +31,9 @@ import {
 } from "../store/actions";
 import {UserContextProvider} from "../context/UserContext";
 
+import { useState } from "react";
+import ModalWindow from "./ModalWindow";
+
 const App = () => {
   const dispatch = useDispatch();
   const bestsellers = useSelector(selectBestsellers);
@@ -41,9 +44,11 @@ const App = () => {
     dispatch(fetchBestsellers());
     dispatch(fetchOutlet());
   }, []);
-
+  const [modalActive, setModalActive] = useState(false);
+  const [modalText, setModalText] = useState("Error");
   return (
     <>
+
       <UserContextProvider>
         <Header/>
         <Routes>
@@ -70,14 +75,25 @@ const App = () => {
           {/* <Route path="" element={}/> */}
           {/* <Route path="" element={}/> */}
           <Route path="/jewelry" element={<CatalogSectionPage/>}/>
-          <Route path="products/:cardID" element={<ProductCard/>}/>
+          <Route path="products/:cardID" element={<ProductCard
+              modalActive={modalActive}
+              setModalActive={setModalActive}
+              setModalText={setModalText}
+            />}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/about" element={<AboutUs/>}/>
           <Route path="/constract" element={<UnderConstractionPage/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
+        <ModalWindow
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+        modalText={modalText}
+        setModalText={setModalText}
+      />
         <Footer/>
       </UserContextProvider>
+
     </>
   );
 };
