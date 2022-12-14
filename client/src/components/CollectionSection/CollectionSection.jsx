@@ -25,7 +25,7 @@ const CollectionSection = (props) => {
       <div className="container">
         <div className="collection-section__header">
           <h2 className="collection-section__header_title">New Collection</h2>
-          <Link to={"/viewAllNewCollection"}>
+          <Link to={"/NewCollection"}>
             <ButtonViewAll />
           </Link>
         </div>

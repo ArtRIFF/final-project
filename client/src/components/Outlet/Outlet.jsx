@@ -22,7 +22,7 @@ const Outlet = (props) => {
       <div className="outlet__header">
         <h2 className="outlet__title">Outlet</h2>
 
-        <Link to={"/viewAllOutlet"}>
+        <Link to={"/Outlet"}>
           <ButtonViewAll />
         </Link>
       </div>
