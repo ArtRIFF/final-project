@@ -4,7 +4,7 @@ import ButtonViewAll from "../../../components/Button/ViewAll/ViewAll";
 import CategorySectionCard from "../../../components/CatalogSection/CategorySectionCard";
 import { selectBestsellers } from "../../../store/selectors";
 import { fetchBestsellers } from "../../../store/actions";
-
+import { Link, useParams } from "react-router-dom";
 import "./additionalProducts.scss";
 
 const AdditionalProducts = (props) => {

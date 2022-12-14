@@ -19,14 +19,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./ProductCard.scss";
+import ModalWindow from "../../components/ModalWindow";
 
 export const CardContext = createContext();
 
-const ProductCard = () => {
+const ProductCard = (props) => {
+  const { modalActive, setModalActive, setModalText } = props;
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
   const [comments, setComments] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(false);
+  let [selectedSize, setSelectedSize] = useState(false);
   const { cardID } = useParams();
   const dispatch = useDispatch();
   const inCart = useSelector(selectInCart);
@@ -66,6 +68,7 @@ const ProductCard = () => {
     statusProduct,
     length,
     itemNo,
+    article,
     size,
   } = oneCard;
 
@@ -75,33 +78,39 @@ const ProductCard = () => {
   };
 
   const handleChange = (e) => setSelectedSize(e.target.value);
-console.log('sel size', selectedSize)
+  console.log("sel size", selectedSize);
   const addToCart = (cardID) => {
-    // if (selectedSize = "not choose") {
-      // BIG question!!!
-    // } else 
-    if (inCart.length > 0) {
-      inCart.forEach((item) => {
-        if (item.cardID === cardID && item.size === selectedSize) {
-          let newCart = [...inCart];
-          const index = inCart.indexOf(item);
-          if (index > -1) {
-            newCart.splice(index, 1);
-          }
-          dispatch(removeFromCart(newCart));
-          dispatch(
-            setInCart({
-              cardID: cardID,
-              quantity: item.quantity + 1,
-              size: selectedSize,
-            })
-          );
-        } else {
-          dispatch(setInCart({ cardID: cardID, quantity: 1, size: selectedSize }));
-        }
-      });
+    if (selectedSize === false || selectedSize === "not choose") {
+      setModalActive(true);
+      setModalText("Choose size");
     } else {
-      dispatch(setInCart({ cardID: cardID, quantity: 1, size: selectedSize }));
+      if (inCart.length > 0) {
+        inCart.forEach((item) => {
+          if (item.cardID === cardID && item.size === selectedSize) {
+            let newCart = [...inCart];
+            const index = inCart.indexOf(item);
+            if (index > -1) {
+              newCart.splice(index, 1);
+            }
+            dispatch(removeFromCart(newCart));
+            dispatch(
+              setInCart({
+                cardID: cardID,
+                quantity: item.quantity + 1,
+                size: selectedSize,
+              })
+            );
+          } else {
+            dispatch(
+              setInCart({ cardID: cardID, quantity: 1, size: selectedSize })
+            );
+          }
+        });
+      } else {
+        dispatch(
+          setInCart({ cardID: cardID, quantity: 1, size: selectedSize })
+        );
+      }
     }
   };
 
@@ -122,10 +131,11 @@ console.log('sel size', selectedSize)
     if (productComments.length === 0) {
       return 0;
     } else {
-        return (
-          (productComments.reduce(
-            (acc, cur) => acc + cur.rating*1,0) / productComments.length)
-        )}
+      return (
+        productComments.reduce((acc, cur) => acc + cur.rating * 1, 0) /
+        productComments.length
+      );
+    }
   };
 
   return (
@@ -149,7 +159,7 @@ console.log('sel size', selectedSize)
                 {imageUrls !== undefined &&
                   imageUrls.map((photo) => {
                     return (
-                      <SwiperSlide key={itemNo}>
+                      <SwiperSlide key={article}>
                         <img src={`../${photo}`} alt={name}></img>
                         {discount > 0 && (
                           <div className="category-card__sale product-card-sale">
@@ -184,9 +194,8 @@ console.log('sel size', selectedSize)
                 <div className="product-card-photo-slider-thumbs-wrapper">
                   {imageUrls !== undefined &&
                     imageUrls.map((photo) => {
-                      console.log(photo);
                       return (
-                        <SwiperSlide key={cardID}>
+                        <SwiperSlide key={itemNo}>
                           <img src={`../${photo}`} alt={name}></img>
                         </SwiperSlide>
                       );
