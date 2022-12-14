@@ -48,7 +48,6 @@ const App = () => {
   const [modalText, setModalText] = useState("Error");
   return (
     <>
-
       <UserContextProvider>
         <Header/>
         <Routes>
@@ -93,9 +92,7 @@ const App = () => {
       />
         <Footer/>
       </UserContextProvider>
-
     </>
-    //new
   );
 };
 
