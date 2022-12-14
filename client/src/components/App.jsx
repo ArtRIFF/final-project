@@ -76,6 +76,7 @@ const App = () => {
       </Routes>
       <Footer />
     </>
+    //new
   );
 };
 
