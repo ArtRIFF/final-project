@@ -73,10 +73,11 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
 
   return (
     <div className="container" onClick={hideAsideFilter}>
-      <div className="grid-wrapper">
-        <div className="breadcrumbs-wrapper">
+      <div className="breadcrumbs-wrapper">
           <Breadcrumbs />
-        </div>
+      </div>
+      <div className="grid-wrapper">
+        
         <div className="catalogPageImg-wrapper">
           <img
             src="img/catalogSectionPage/CategorySectionMainImg.jpg"

@@ -12,6 +12,8 @@ import {NavLink} from "react-router-dom";
 import {sendRequest} from "../../../helpers/sendRequest";
 import {API} from "../../../config/API";
 
+import Breadcrumbs from "../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
+
 export const validationSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, "Too Short!")
@@ -58,10 +60,10 @@ const Registration = () => {
   return (
     <div>
       <section className="registration__section">
+        <div className="breadcrumbs_login">
+            <Breadcrumbs />
+        </div>
         <div className="container">
-          <h2 className="login__breadcrumbs">
-            Shop / Login / <span>Registration</span>
-          </h2>
           <Formik
             initialValues={{
               login: "",

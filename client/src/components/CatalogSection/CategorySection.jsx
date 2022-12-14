@@ -14,11 +14,9 @@ import { useState } from "react";
 
 const CategorySection = (props) => {
   const dispatch = useDispatch();
-  const [activeTab, setActiveTab] = useState(false);
+  const [activeTab, setActiveTab] = useState("braceletsArray");
 
-  const classes = classNames("category__content-sidebar__link", {
-    active: activeTab,
-  });
+  const classes = classNames("category__content-sidebar__link", {});
   const productArray = useSelector(selectorAllCollectionProduct);
   const earringsArray = productArray.filter(
     (element) =>
@@ -43,7 +41,14 @@ const CategorySection = (props) => {
     (element) => element.categories === "cross"
   );
   const [selectArr, setSelectArr] = useState(braceletsArray);
-
+  // const categoryArr = [
+  //   earringsArray,
+  //   braceletsArray,
+  //   pendantArray,
+  //   ringsArray,
+  //   pearlArray,
+  //   crossArray,
+  // ];
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
     setSelectArr(braceletsArray);
@@ -53,56 +58,86 @@ const CategorySection = (props) => {
     setSelectArr(braceletsArray);
   }, [productArray]);
 
-  console.log(selectArr);
-  console.log(activeTab);
+  // console.log(selectArr);
+  // console.log(activeTab);
   return (
     <div className="category">
       <h2 className="category__title">Shop by Category</h2>
       <div className="category__content">
         <div className="category__content-sidebar">
           <p
-            className={classes}
+            className={
+              activeTab === "braceletsArray"
+                ? "category__content-sidebar__link active"
+                : "category__content-sidebar__link"
+            }
             onClick={(e) => {
+              setActiveTab("braceletsArray");
               setSelectArr(braceletsArray);
             }}
           >
             Bracelets
           </p>
           <p
-            className={classes}
+            className={
+              activeTab === "pendantArray"
+                ? "category__content-sidebar__link active"
+                : "category__content-sidebar__link"
+            }
             onClick={() => {
+              setActiveTab("pendantArray");
               setSelectArr(pendantArray);
             }}
           >
             Pendant
           </p>
           <p
-            className={classes}
+            className={
+              activeTab === "ringsArray"
+                ? "category__content-sidebar__link active"
+                : "category__content-sidebar__link"
+            }
             onClick={() => {
+              setActiveTab("ringsArray");
               setSelectArr(ringsArray);
             }}
           >
             Rings
           </p>
           <p
-            className={classes}
+            className={
+              activeTab === "earringsArray"
+                ? "category__content-sidebar__link active"
+                : "category__content-sidebar__link"
+            }
             onClick={() => {
+              setActiveTab("earringsArray");
               setSelectArr(earringsArray);
             }}
           >
             Earrings
           </p>
           <p
-            className={classes}
+            className={
+              activeTab === "pearlArray"
+                ? "category__content-sidebar__link active"
+                : "category__content-sidebar__link"
+            }
             onClick={() => {
+              setActiveTab("pearlArray");
               setSelectArr(pearlArray);
             }}
           >
             Pearl
           </p>
           <p
-            className={classes}
+            className={
+              activeTab === "crossArray"
+                ? "category__content-sidebar__link active"
+                : "category__content-sidebar__link"
+            }
             onClick={() => {
+              setActiveTab("crossArray");
               setSelectArr(crossArray);
             }}
           >
