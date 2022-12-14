@@ -156,7 +156,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
         </div>
         <div
           // style={{ backgroundColor: "grey", width: "850px", height: "88px" }}
-          // className="paginnation-wrapper"
+          className="paginnation-wrapper"
         >
           {loading === true ? (
             <LoadingSpinner />
