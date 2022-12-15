@@ -41,7 +41,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     }
   };
 
-  const array = Array.isArray(filtredArray)
+  const array = (filtredArray.length !== 0)
     ? filtredArray.length
     : allCollectionArray.length;
 
@@ -101,7 +101,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             onClickFunc={callAsideFilter}
             setResult={array}
             allCollectionArray={
-              filtredArray ? filtredArray : allCollectionArray
+              (filtredArray.length !== 0) ? filtredArray : allCollectionArray
             }
             filterRequest={filterRequest}
           />
@@ -114,11 +114,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           }}
           className="categoryCards-wrapper"
         >
-          {allCollectionArrayIsFiltered === false ? (
-            <Items items={currentItems} loading={loading} />
-          ) : (
           <div>
-            {!Array.isArray(filtredArray)
+            {(filtredArray.length === 0)
               ? allCollectionArray.map((item, i) => {
                   const {
                     statusProduct,
@@ -136,7 +133,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
                     </p>
                   );
                 })
-              : filtredArray.map((item, i) => {
+              : 
+                filtredArray.map((item, i) => {
                   const {
                     currentPrice,
                     insertNumber,
@@ -151,8 +149,9 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
                       {currentPrice}
                     </p>
                   );
-                })}
-        </div>)}
+                })
+                }
+        </div>
         </div>
         <div
           // style={{ backgroundColor: "grey", width: "850px", height: "88px" }}
