@@ -4,11 +4,12 @@ import {Form, Formik} from "formik";
 import Input from "../RegistrationPage/Input/Input";
 import InputPassword from "../RegistrationPage/InputWithStrength/InputPassword";
 import {NavLink, useNavigate} from 'react-router-dom';
-import {sendRequest} from "../../../helpers/sendRequest";
+import {sendAuthorizedRequest, sendRequest} from "../../../helpers/sendRequest";
 import {API} from "../../../config/API";
 import * as Yup from "yup";
 import Breadcrumbs from '../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs';
-
+import {useContext} from "react";
+import {UserContext} from "../../../context/UserContext";
 
 const Login = () => {
 
@@ -19,6 +20,8 @@ const Login = () => {
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().min(8).required("Required"),
   });
+
+  const {setUserInfo, setToken} = useContext(UserContext)
 
   const handleSubmit = (values) => {
     const requestBody = {
@@ -33,8 +36,10 @@ const Login = () => {
       })
       .then(r => {
         if (r.success) {
+          setToken(r.token)
           sessionStorage.setItem('token', r.token);
-          navigate('/')
+          navigate('/');
+          sendAuthorizedRequest(`${API}customers/customer`, "GET",).then(user => setUserInfo(user))
         } else {
           console.log('invalid credentials')
         }
@@ -46,9 +51,9 @@ const Login = () => {
   return (
     <>
       <section className='login__section'>
-      <div className="breadcrumbs_login">
-          <Breadcrumbs />
-      </div>
+        <div className="breadcrumbs_login">
+          <Breadcrumbs/>
+        </div>
         <div className='container'>
           <Formik
             initialValues={{

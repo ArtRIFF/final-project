@@ -22,7 +22,7 @@ const Bestsellers = (props) => {
     <section className="bestsellers">
       <div className="bestsellers__header">
         <h2 className="bestsellers__title">Bestsellers</h2>
-        <Link to={"/viewAllBestsellers"}>
+        <Link to={"/Bestsellers"}>
           <ButtonViewAll />
         </Link>
       </div>

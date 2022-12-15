@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Routes, Route} from "react-router-dom";
 import MainPage from "../pages/MainPage/MainPage";
 import Header from "./Header/Header";
 
@@ -29,6 +29,10 @@ import {
   fetchBestsellers,
   fetchOutlet,
 } from "../store/actions";
+import {UserContextProvider} from "../context/UserContext";
+
+import { useState } from "react";
+import ModalWindow from "./ModalWindow";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,41 +44,56 @@ const App = () => {
     dispatch(fetchBestsellers());
     dispatch(fetchOutlet());
   }, []);
-
+  const [modalActive, setModalActive] = useState(false);
+  const [modalText, setModalText] = useState("Error");
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        {/* <Route path="" element={<Header />} /> */}
-        <Route path="/cart" element={<CheckOutPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route
-          path="/viewAllNewCollection"
-          element={<CatalogSectionPage arrProduct={newCollectionArray} />}
-        />
-        <Route
-          path="/viewAllBestsellers"
-          element={<CatalogSectionPage arrProduct={bestsellers} />}
-        />
-        <Route
-          path="/viewAllOutlet"
-          element={<CatalogSectionPage arrProduct={outlet} />}
-        />
-        {/* <Route path="" element={}/> */}
-        <Route path="/our_production" element={<OurProductionPage />}/>
-        {/* <Route path="" element={}/> */}
-        {/* <Route path="" element={}/> */}
-        {/* <Route path="" element={}/> */}
-        <Route path="/jewelry" element={<CatalogSectionPage />} />
-        <Route path="products/:cardID" element={<ProductCard />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/constract" element={<UnderConstractionPage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-      <Footer />
+
+      <UserContextProvider>
+        <Header/>
+        <Routes>
+          <Route path="/" element={<MainPage/>}/>
+          {/* <Route path="" element={<Header />} /> */}
+          <Route path="/cart" element={<CheckOutPage/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/registration" element={<Registration/>}/>
+          <Route
+            path="/viewAllNewCollection"
+            element={<CatalogSectionPage arrProduct={newCollectionArray}/>}
+          />
+          <Route
+            path="/viewAllBestsellers"
+            element={<CatalogSectionPage arrProduct={bestsellers}/>}
+          />
+          <Route
+            path="/viewAllOutlet"
+            element={<CatalogSectionPage arrProduct={outlet}/>}
+          />
+          {/* <Route path="" element={}/> */}
+          <Route path="/our_production" element={<OurProductionPage/>}/>
+          {/* <Route path="" element={}/> */}
+          {/* <Route path="" element={}/> */}
+          {/* <Route path="" element={}/> */}
+          <Route path="/jewelry" element={<CatalogSectionPage/>}/>
+          <Route path="products/:cardID" element={<ProductCard
+              modalActive={modalActive}
+              setModalActive={setModalActive}
+              setModalText={setModalText}
+            />}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/about" element={<AboutUs/>}/>
+          <Route path="/constract" element={<UnderConstractionPage/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
+        </Routes>
+        <ModalWindow
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+        modalText={modalText}
+        setModalText={setModalText}
+      />
+        <Footer/>
+      </UserContextProvider>
+
     </>
   );
 };
