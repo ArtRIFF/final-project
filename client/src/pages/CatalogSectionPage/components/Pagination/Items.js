@@ -1,8 +1,10 @@
 import React from "react";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+
 
 const Items = ({ items, loading }) => {
   if (loading) {
-    return <h2>loading...</h2>;
+    return <LoadingSpinner />;
   }
 
   return (
