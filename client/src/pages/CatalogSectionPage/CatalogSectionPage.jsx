@@ -10,33 +10,13 @@ import { useState, useEffect } from "react";
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
-
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
 
-  const [items, setitems] = useState([
-    11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
-    124, 15, 12, 53735, 12312,
-  ]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
   const [filtredArray, setFiltredArray] = useState(alreadyFilteredArray);
-  const lastItemIndex = currentPage * itemsPerPage;
-  const firstItemIndex = lastItemIndex - itemsPerPage;
-  const currentItem = items.slice(firstItemIndex, lastItemIndex);
-
-  useEffect(() => {
-    const getItems = async () => {
-      setLoading(true);
-      // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
-      // setitems(res.data);
-      setLoading(false);
-    };
-    getItems();
-  }, []);
-  const [showAsideFilter, setModalRender] = useState(false);
   const allCollectionArray = useSelector(selectorAllCollectionProduct);
+  const [showAsideFilter, setModalRender] = useState(false);
 
   const callAsideFilter = () => {
     setModalRender(true);
@@ -65,6 +45,32 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     ? filtredArray.length
     : allCollectionArray.length;
 
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(11);
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+  const currentItems = allCollectionArray.slice(firstItemIndex, lastItemIndex);
+  const [allCollectionArrayIsFiltered, setAllCollectionArrayIsFiltered] =
+    useState(false);
+
+  useEffect(() => {
+    //resetAllParam
+    if (filtredArray.length === 0) {
+      setAllCollectionArrayIsFiltered(false);
+    } else {
+      setAllCollectionArrayIsFiltered(true);
+    }
+  }, [filtredArray]);
+
+  useEffect(() => {
+    if (allCollectionArray.length === 0) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [allCollectionArray]); //покласти стан в редакс для доступності
+
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="breadcrumbs-wrapper">
@@ -79,10 +85,11 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           />
         </div>
         <aside
-          className={`${showAsideFilter
-            ? "asideFilter-wrapper--show"
-            : "asideFilter-wrapper"
-            }`}
+          className={`${
+            showAsideFilter
+              ? "asideFilter-wrapper--show"
+              : "asideFilter-wrapper"
+          }`}
         >
           <AsideFilter
             allCollectionArray={allCollectionArray}
@@ -90,8 +97,14 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           />
         </aside>
         <div className="filter-wrapper">
-          <CategoryFilter onClickFunc={callAsideFilter} setResult={array} allCollectionArray={filtredArray ? filtredArray : allCollectionArray}
-            filterRequest={filterRequest} />
+          <CategoryFilter
+            onClickFunc={callAsideFilter}
+            setResult={array}
+            allCollectionArray={
+              filtredArray ? filtredArray : allCollectionArray
+            }
+            filterRequest={filterRequest}
+          />
         </div>
         <div
           style={{
@@ -101,31 +114,59 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           }}
           className="categoryCards-wrapper"
         >
-          {!Array.isArray(filtredArray)
-            ? allCollectionArray.map((item, i) => {
-              const { statusProduct, currentPrice, insertNumber, alt, bestseller, newProduct } = item;
-              return (
-                <p key={i}>
-                  {i} statusProduct{statusProduct}  insertNumber:{insertNumber} price:{currentPrice}alt:{alt} bestseller:
-                  {bestseller} newProduct:{newProduct}
-                </p>
-              );
-            })
-            : filtredArray.map((item, i) => {
-              const { currentPrice, insertNumber, statusProduct, categories, metal } = item;
-              return (
-                <p key={i}>
-                  {i}statusProduct{statusProduct}  statusProduct:{statusProduct} categories:{categories} price:{currentPrice}
-                </p>
-              );
-            })}
+          {allCollectionArrayIsFiltered === false ? (
+            <Items items={currentItems} loading={loading} />
+          ) : (
+          <div>
+            {!Array.isArray(filtredArray)
+              ? allCollectionArray.map((item, i) => {
+                  const {
+                    statusProduct,
+                    currentPrice,
+                    insertNumber,
+                    alt,
+                    bestseller,
+                    newProduct,
+                  } = item;
+                  return (
+                    <p key={i}>
+                      {i} statusProduct{statusProduct} insertNumber:
+                      {insertNumber} price:{currentPrice}alt:{alt} bestseller:
+                      {bestseller} newProduct:{newProduct}
+                    </p>
+                  );
+                })
+              : filtredArray.map((item, i) => {
+                  const {
+                    currentPrice,
+                    insertNumber,
+                    statusProduct,
+                    categories,
+                    metal,
+                  } = item;
+                  return (
+                    <p key={i}>
+                      {i}statusProduct{statusProduct} statusProduct:
+                      {statusProduct} categories:{categories} price:
+                      {currentPrice}
+                    </p>
+                  );
+                })}
+        </div>)}
         </div>
         <div
-          style={{ backgroundColor: "grey", width: "396px", height: "88px" }}
+          // style={{ backgroundColor: "grey", width: "850px", height: "88px" }}
           className="paginnation-wrapper"
         >
-          <Items items={currentItem} loading={loading} />
-          <Pagination itemsPerPage={itemsPerPage} totalItems={items.length} />
+          {loading === true ? (
+            <LoadingSpinner />
+          ) : (
+          <Pagination 
+            loading={loading}
+            itemsPerPage={itemsPerPage}
+            totalItems={allCollectionArray.length}
+            setCurrentPage={setCurrentPage} />
+          )}
         </div>
       </div>
     </div>
