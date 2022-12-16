@@ -56,8 +56,8 @@
     }
     &__btn-see{
         position: absolute;
-        z-index: 13;
-        padding-top: 279px;
+        z-index: 1;
+        padding-top: 328px;
         padding-left: 1329px;
     }
 }
@@ -120,7 +120,7 @@
         }
         &__btn-see{
             position: absolute;
-            z-index: 13;
+            z-index: 1;
             padding-top: 202px;
             padding-left: 924px;
         }
@@ -149,6 +149,7 @@
        }
        &__items{
         padding-top: 251px;
+        z-index: 1;
        }
         &__item{ 
         width: 80px;
@@ -177,7 +178,7 @@
         }
         &__btn-see{
             position: absolute;
-            z-index: 13;
+            z-index: 1;
             padding-top: 533px;
             padding-left: 457px;
         }
@@ -210,7 +211,7 @@
        }
        &__btn-see{
         position: absolute;
-        z-index: 13;
+        z-index: 1;
         padding-top: 313px;
         padding-left: 1px;
     }

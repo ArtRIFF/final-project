@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./HeaderNav.scss";
 import { NavLink } from 'react-router-dom';
+import Button from '../../Button/ButtonAll/ButtonAll'
 
 const HeaderNav = () => {
   // to change burger classes
@@ -63,6 +64,13 @@ const HeaderNav = () => {
             <NavLink to="/our_production" className="header-nav-mobil__menu_item">
               Our production
             </NavLink>
+          </li>
+          <li className="header-nav-mobil search__container">
+            <input 
+              type="text" 
+              placeholder="Search" 
+              className="nav__search"/>
+            <Button text='Search' className='section__btn-seacrh' id='section__btn' />
           </li>
         </ul>
       </div>
