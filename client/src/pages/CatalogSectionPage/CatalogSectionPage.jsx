@@ -55,8 +55,6 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const [allCollectionArrayIsFiltered, setAllCollectionArrayIsFiltered] =
     useState(false);
 
-
-    console.log(allCollectionArray);
   useEffect(() => {
     if (filtredArray.length !== 0) {
       setAllCollectionArrayIsFiltered(true);
