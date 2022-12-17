@@ -107,11 +107,6 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
               ? "asideFilter-wrapper--show"
               : "asideFilter-wrapper"
           }`}
-          className={`${
-            showAsideFilter
-              ? "asideFilter-wrapper--show"
-              : "asideFilter-wrapper"
-          }`}
         >
           <AsideFilter
             allCollectionArray={allCollectionArray}
