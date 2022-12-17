@@ -16,7 +16,7 @@ const NewsSection = () => {
           className="news-section__hand"
         />
         <h2 className="news-section__title">New Collection</h2>
-        <p className="news-section__summary">
+        <div className="news-section__summary">
           <div className="news-section__summary_margin">
             <i className="news-section__summary_red">Breeze</i> - a collection
             of variability. That we adapt to circumstances just like water
@@ -45,7 +45,7 @@ const NewsSection = () => {
             className="section__btn-header"
             id="section__btn"
           />
-        </p>
+        </div>
       </div>
     </section>
   );

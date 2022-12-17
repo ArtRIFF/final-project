@@ -42,7 +42,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     }
   };
 
-  const array = Array.isArray(filtredArray)
+  const array = (filtredArray.length !== 0)
     ? filtredArray.length
     : allCollectionArray.length;
 
@@ -102,6 +102,11 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           />
         </div>
         <aside
+          className={`${
+            showAsideFilter
+              ? "asideFilter-wrapper--show"
+              : "asideFilter-wrapper"
+          }`}
           className={`${
             showAsideFilter
               ? "asideFilter-wrapper--show"
