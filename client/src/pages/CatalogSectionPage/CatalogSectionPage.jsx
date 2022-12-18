@@ -10,13 +10,14 @@ import { useState, useEffect } from "react";
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
-import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
 
   const [filtredArray, setFiltredArray] = useState(alreadyFilteredArray);
   const allCollectionArray = useSelector(selectorAllCollectionProduct);
   const [showAsideFilter, setModalRender] = useState(false);
+  const [totalItems, setTotalItems] = useState(allCollectionArray.length);
+
 
   const callAsideFilter = () => {
     setModalRender(true);
@@ -47,7 +48,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
 
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(11);
+  const [itemsPerPage] = useState(12);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const currentItems = allCollectionArray.slice(firstItemIndex, lastItemIndex);
@@ -55,11 +56,10 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     useState(false);
 
   useEffect(() => {
-    //resetAllParam
-    if (filtredArray.length === 0) {
-      setAllCollectionArrayIsFiltered(false);
-    } else {
+    if (filtredArray.length !== 0) {
       setAllCollectionArrayIsFiltered(true);
+    } else {
+      setAllCollectionArrayIsFiltered(false);
     }
   }, [filtredArray]);
 
@@ -71,13 +71,30 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     }
   }, [allCollectionArray]); //покласти стан в редакс для доступності
 
-  return (
+    useEffect(() => {
+      if (allCollectionArrayIsFiltered === true) {
+        setTotalItems(filtredArray.length);
+      } else {
+        setTotalItems(allCollectionArray.length);
+      }
+    }, [
+      allCollectionArrayIsFiltered,
+      filtredArray.length,
+      allCollectionArray.length,
+    ]);
+
+      useEffect(() => {
+        if (filtredArray.length === allCollectionArray.length) {
+          setAllCollectionArrayIsFiltered(false);
+        }
+      }, [filtredArray.length, allCollectionArray.length]);
+
+      return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="breadcrumbs-wrapper">
-          <Breadcrumbs />
+        <Breadcrumbs />
       </div>
       <div className="grid-wrapper">
-        
         <div className="catalogPageImg-wrapper">
           <img
             src="img/catalogSectionPage/CategorySectionMainImg.jpg"
@@ -101,7 +118,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             onClickFunc={callAsideFilter}
             setResult={array}
             allCollectionArray={
-              (filtredArray.length !== 0) ? filtredArray : allCollectionArray
+              filtredArray.length !== 0 ? filtredArray : allCollectionArray
             }
             filterRequest={filterRequest}
           />
@@ -114,57 +131,62 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           }}
           className="categoryCards-wrapper"
         >
-          <div>
-            {(filtredArray.length === 0)
-              ? allCollectionArray.map((item, i) => {
-                  const {
-                    statusProduct,
-                    currentPrice,
-                    insertNumber,
-                    alt,
-                    bestseller,
-                    newProduct,
-                  } = item;
-                  return (
-                    <p key={i}>
-                      {i} statusProduct{statusProduct} insertNumber:
-                      {insertNumber} price:{currentPrice}alt:{alt} bestseller:
-                      {bestseller} newProduct:{newProduct}
-                    </p>
-                  );
-                })
-              : 
-                filtredArray.map((item, i) => {
-                  const {
-                    currentPrice,
-                    insertNumber,
-                    statusProduct,
-                    categories,
-                    metal,
-                  } = item;
-                  return (
-                    <p key={i}>
-                      {i}statusProduct{statusProduct} statusProduct:
-                      {statusProduct} categories:{categories} price:
-                      {currentPrice}
-                    </p>
-                  );
-                })
-                }
-        </div>
-        </div>
-        <div
-          // style={{ backgroundColor: "grey", width: "850px", height: "88px" }}
-          className="paginnation-wrapper"
-        >
-          {loading === true ? (
-            <LoadingSpinner />
+          {allCollectionArrayIsFiltered === false ? (
+            <Items
+              items={currentItems}
+              loading={loading}
+              filterSearchingResults={array}
+              allCollectionArrayIsFiltered={allCollectionArrayIsFiltered}
+              allCollectionArray={allCollectionArray}
+            />
           ) : (
-          <Pagination 
-            loading={loading}
-            itemsPerPage={itemsPerPage}
-            totalItems={allCollectionArray.length}
-            setCurrentPage={setCurrentPage} />
+            <div>
+              {filtredArray.length === 0
+                ? allCollectionArray.map((item, i) => {
+                    const {
+                      statusProduct,
+                      currentPrice,
+                      insertNumber,
+                      alt,
+                      bestseller,
+                      newProduct,
+                    } = item;
+                    return (
+                      <p key={i}>
+                        {i} statusProduct{statusProduct} insertNumber:
+                        {insertNumber} price:{currentPrice}alt:{alt} bestseller:
+                        {bestseller} newProduct:{newProduct}
+                      </p>
+                    );
+                  })
+                : filtredArray.map((item, i) => {
+                    const {
+                      currentPrice,
+                      insertNumber,
+                      statusProduct,
+                      categories,
+                      metal,
+                    } = item;
+                    return (
+                      <p key={i}>
+                        {i}statusProduct{statusProduct} statusProduct:
+                        {statusProduct} categories:{categories} price:
+                        {currentPrice}
+                      </p>
+                    );
+                  })}
+            </div>
+          )}
+        </div>
+        <div className="paginnation-wrapper">
+          {loading === true ? (
+            <div></div>
+          ) : (
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={totalItems}
+              setCurrentPage={setCurrentPage}
+            />
           )}
         </div>
       </div>
