@@ -28,7 +28,11 @@
   background-color: $accent-background-color;
   @media screen and (max-width: $mobile-size) {
     max-width: 320px;
-  };  
+  };
+
+  div {
+    font-family: $main-font__regular;
+  }
 
   &__body {
     position: relative;

@@ -51,7 +51,7 @@ const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
 
     setArrayOfCurrentButtons(tempNumberOfPages);
     setCurrentPage(currentButton);
-  }, [currentButton]);
+  }, [currentButton, totalItems]);
 
   return (
     <div>
