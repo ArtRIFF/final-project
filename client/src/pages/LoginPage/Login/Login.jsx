@@ -11,7 +11,6 @@ import Breadcrumbs from '../../CatalogSectionPage/components/Breadcrumbs/Breadcr
 import {useContext} from "react";
 import {UserContext} from "../../../context/UserContext";
 
-
 const Login = () => {
 
   const navigate = useNavigate();
