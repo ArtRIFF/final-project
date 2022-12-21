@@ -3,6 +3,7 @@ export const selectorAllCollectionProduct = (state) =>
   state.allCollectionProduct;
 export const selectorNewCollectionProduct = (state) =>
   state.newCollectionProduct;
+export const selectorCategoryEarrings = (state) => state.category.earrings;
 export const selectBestsellers = (state) => state.bestsellers;
 export const selectInCart = (state) => state.inCart;
 export const selectInFavorite = (state) => state.inFavorite;

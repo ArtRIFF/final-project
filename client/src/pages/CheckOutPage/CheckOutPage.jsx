@@ -8,6 +8,7 @@ import "./style.scss";
 import Registration from "../LoginPage/RegistrationPage/Registration";
 import {sendRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const CheckOutPage = () => {
   const [contactInfo, setContactInfo] = useState(null);
@@ -62,6 +63,7 @@ const CheckOutPage = () => {
   return (
     <section className="">
       <form onSubmit={handleFormSubmit}>
+        <ShoppingCart/>
         <ContactInfoPage onContactInfoReady={(e) => setContactInfo(e)}/>
         <ShipAddress onShippingReady={setShipping}/>
         <PaymentMethod onPaymentReady={setPaymentCardInfo}/>

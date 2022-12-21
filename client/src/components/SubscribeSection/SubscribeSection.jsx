@@ -1,5 +1,5 @@
 import './style.scss'
-import ButtonAll from '../Button/ButtonAll/ButtonAll'
+import ButtonAll from '../Button/BattonAll/ButtonAll'
 import {useState} from "react";
 import {sendRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";

@@ -1,32 +1,14 @@
 import React from "react";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-const Items = ({
-  items,
-  loading,
-  filterSearchingResults,
-  allCollectionArrayIsFiltered,
-}) => {
+const Items = ({ items, loading }) => {
   if (loading) {
-    return <LoadingSpinner />;
-  }
-  
-  if (allCollectionArrayIsFiltered === true) {
-    if (filterSearchingResults === 0) {
-      return (
-        <div style={{ fontWeight: "bold", fontSize: "2.2em" }}>
-          sorry, no items matching your search criteria
-        </div>
-      );
-    }  
+    return <h2>loading...</h2>;
   }
 
   return (
     <ul>
       {items.map((item, index) => (
-        <>
-          <li>{item.name}</li>
-        </>
+        <li>{item.name}</li>
         //зображення товару та решта пропсів
       ))}
     </ul>

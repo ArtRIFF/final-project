@@ -2,23 +2,10 @@
 @import "../../../../global_scss/fonts.scss";
 
 .header-search {
-  padding-left: 20px;
-  padding-top: 29px;
+  padding-left: 30%;
+  padding-top: 30%;
   cursor: pointer;
 }
-
-@media screen and (max-width: 900px) {
-  .header-search {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .header-search {
-    display: none;
-  }
-}
-
 
 @media screen and (max-width: $desktop-size) {
   .header-search {

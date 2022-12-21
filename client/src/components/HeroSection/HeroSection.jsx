@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import BtnLinks from './BtnLinks/BtnLinks';
-import Button from '../Button/ButtonAll/ButtonAll';
+import Button from '../Button/BattonAll/ButtonAll';
 
 const HeroSection = () => {
     return (

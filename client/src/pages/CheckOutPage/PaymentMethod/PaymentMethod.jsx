@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import "./PaymentMethod.scss";
-import Button from "../../../components/Button/ButtonAll/ButtonAll";
+import Button from "../../../components/Button/BattonAll/ButtonAll";
 // import StripeCheckout from "react-stripe-checkout";
 
 const PaymentMethod = (props) => {

@@ -3,7 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
-import rootReducers from "./reducers";
+import rootReducers from "./redusers";
 
 const store = createStore(
   rootReducers,

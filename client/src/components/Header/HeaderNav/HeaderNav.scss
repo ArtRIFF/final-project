@@ -50,7 +50,6 @@ nav {
   display: flex;
   justify-content: flex-start;
   padding: 0.5em;
-  z-index: 10;
   @media (max-width: $desktop-size) {
     margin-top: 10px;
   }
@@ -154,23 +153,5 @@ nav {
   font-size: 23.5px;
   &:hover {
     color: $accent-color;
-  }
-}
-
-.nav__search {
-  padding: 15px 16px;
-  color: #311C1C;
-  cursor: pointer;
-  font-family: $main-font;
-  @media (max-width: 320px) {
-    margin-bottom: 10px;
-  }
-}
-
-.search__container {
-  display: flex;
-  justify-content: space-between;
-   @media (max-width: 320px) {
-    display: block;
   }
 }

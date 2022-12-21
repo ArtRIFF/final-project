@@ -1,27 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectInCart } from "../../../../store/selectors";
-import { ReactComponent as CartIcon} from "../img/CartIcon.svg"
-
 import "./HeaderCart.scss";
+import { NavLink } from "react-router-dom";
 
 
-const HeaderCart = () => {
-    const inCart = useSelector(selectInCart);
-    let itemsInCart;
-    if (inCart.length > 0) {
-        itemsInCart = inCart.reduce((acc, cur) => acc + cur.quantity, 0)
-    }
-    
+class HeaderCart extends React.Component {
+    render() {
         return(
             <div className="header-cart">
-                <NavLink to="/cart">
-                    <CartIcon className={itemsInCart ? "header-cart_icon filled-cart" : "header-cart_icon"}/>
-                    <div id="cart">{itemsInCart}</div>
+                <NavLink to="/cart" className="header-cart_icon">
+                    <img 
+                    className="header-cart_icon"
+                    src="img/header-icon/CartIcon.svg" 
+                    alt="cart"/>
                 </NavLink>
             </div>
-        )    
+        )
+    }
 }
 
 export default HeaderCart;

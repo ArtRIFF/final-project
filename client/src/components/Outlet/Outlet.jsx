@@ -22,15 +22,15 @@ const Outlet = (props) => {
       <div className="outlet__header">
         <h2 className="outlet__title">Outlet</h2>
 
-        <Link to={"/Outlet"}>
+        <Link to={"/viewAllOutlet"}>
           <ButtonViewAll />
         </Link>
       </div>
       <div className="outlet__cards-container">
         {outlet.slice(0, numberOfItems).map((card, index) => {
           return (
-            <Link key={index} to={`products/${card.itemNo}`}>
-              <CategorySectionCard product={card} />
+            <Link to={`products/${card.itemNo}`}>
+              <CategorySectionCard key={index} product={card} />
             </Link>
           );
         })}

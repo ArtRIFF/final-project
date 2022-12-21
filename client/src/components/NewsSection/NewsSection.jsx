@@ -1,5 +1,5 @@
 import "./NewsSection.scss";
-import Button from "../Button/ButtonAll/ButtonAll";
+import Button from "../Button/BattonAll/ButtonAll";
 
 const NewsSection = () => {
   return (
@@ -16,7 +16,7 @@ const NewsSection = () => {
           className="news-section__hand"
         />
         <h2 className="news-section__title">New Collection</h2>
-        <div className="news-section__summary">
+        <p className="news-section__summary">
           <div className="news-section__summary_margin">
             <i className="news-section__summary_red">Breeze</i> - a collection
             of variability. That we adapt to circumstances just like water
@@ -45,7 +45,7 @@ const NewsSection = () => {
             className="section__btn-header"
             id="section__btn"
           />
-        </div>
+        </p>
       </div>
     </section>
   );

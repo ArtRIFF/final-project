@@ -17,20 +17,20 @@ const Bestsellers = (props) => {
     dispatch(fetchBestsellers());
   }, []);
   const numberOfItems = viewAll ? bestsellers.length : 4;
-
+  console.log(bestsellers);
   return (
     <section className="bestsellers">
       <div className="bestsellers__header">
         <h2 className="bestsellers__title">Bestsellers</h2>
-        <Link to={"/Bestsellers"}>
+        <Link to={"/viewAllBestsellers"}>
           <ButtonViewAll />
         </Link>
       </div>
       <div className="bestsellers__cards-container">
         {bestsellers.slice(0, numberOfItems).map((card, index) => {
           return (
-            <Link key={index} to={`products/${card.itemNo}`}>
-              <CategorySectionCard  product={card} />
+            <Link to={`products/${card.itemNo}`}>
+              <CategorySectionCard key={index++} product={card} />
             </Link>
           );
         })}

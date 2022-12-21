@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./ContactInfo.scss";
 import { NavLink } from "react-router-dom";
 
-import Breadcrumbs from "../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
-
 const ContactInfoPage = (props) => {
   const [email, setEmail] = useState("");
   const [emailDirty, setEmailDirty] = useState(false);
@@ -31,9 +29,9 @@ const ContactInfoPage = (props) => {
 
   return (
     <div>
-      <div className="breadcrumbs_login">
-          <Breadcrumbs />
-      </div>
+      <h2 className="contact-info-section__way ">
+        Shop /<span> Buy now </span>
+      </h2>
       <section className="contact-info-section">
         <div className="contact-info-section__wrap">
           <p className="contact-info-section__title">1. Contact Information</p>

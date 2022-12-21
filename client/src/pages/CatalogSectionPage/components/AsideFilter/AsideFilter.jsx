@@ -1,7 +1,8 @@
 import './style.scss';
 import { useState, useEffect } from 'react';
 
-const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
+const AsideFilter = ({ allCollectionArray, filterRequest }) => {
+  const [filtredArray, setFiltredArray] = useState();
   const [productsType, setProductsType] = useState([]);
   const [metalType, setMetalType] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
@@ -11,6 +12,7 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
   const [price, setPrice] = useState(['', '']);
   const [insertNumber, setInsertNumber] = useState(0);
 
+  //need to mutual category to ring and earing child category, wrong collection (new, shine),steel no products, test cards, metal color with capitalized alphabet, sample have undefind value, CAPS VALUE and Empty value.Hasnt  metal color Black rhodium, size:small,middle,large.Insert: tourmaline and zirconia Pearl and gems Pearl and diamonds Pearl and zirconia 
   useEffect(() => {
     updateFilter();
   }, [productsType]);
@@ -58,28 +60,16 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
         && (!insertNumber || insertNumber === n.insertNumber)
       )
     ));
-    document.querySelector('.category-filter select').value = "DEFAULT";
     filterRequest(newArray);
   };
 
   const onTypeChange = (e) => {
     const checked = e.target.checked;
     const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
-    const arrayValue = value.split(' ');
-   if (arrayValue.length > 1) {
-    arrayValue.forEach(valueItem => {
-      console.log("TEW");
-      setProductsType((!productsType.includes(arrayValue[0]) && checked)
-      ? [...productsType, ...arrayValue]
-      : productsType.filter(n => !arrayValue.includes(n))
+    setProductsType((!productsType.includes(value) && checked)
+      ? [...productsType, value]
+      : productsType.filter(n => n !== value)
     );
-    })
-   } else {
-     setProductsType((!productsType.includes(value) && checked)
-       ? [...productsType, value]
-       : productsType.filter(n => n !== value)
-     );
-   }
   };
 
   const onMetalChange = (e) => {
@@ -284,6 +274,10 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container">
+            <label onClick={onMetalChange} data-category-name={'Steel'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Steel</span>
+            </label>
             <label onClick={onMetalChange} data-category-name={'Gold'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Gold</span>
@@ -311,6 +305,10 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
             <label onClick={onMetalColorChange} data-category-name={"Red"} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Red</span>
+            </label>
+            <label onClick={onMetalColorChange} data-category-name={"Black rhodium"} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Black rhodium</span>
             </label>
           </div>
         </div>
@@ -352,11 +350,11 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
               <input type="checkbox" />
               <span>Bracelet</span>
             </label>
-            <label onChange={onTypeChange} data-category-name={'ring wedding-ring engagement-ring'} className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'ring'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Ring</span>
             </label>
-            <label onChange={onTypeChange} data-category-name={'earring child-earrings'} className='filter-parameter__checkbox'>
+            <label onChange={onTypeChange} data-category-name={'earring'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Earring</span>
             </label>

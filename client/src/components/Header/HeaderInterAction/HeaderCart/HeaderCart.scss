@@ -2,19 +2,9 @@
 @import "../../../../global_scss/mixins.scss";
 
 .header-cart {
-  padding-left: 20px;
-  padding-top: 24px;
+  padding-left: 30%;
+  padding-top: 25%;
   cursor: pointer;
-  .filled-cart {
-    path {
-      fill: black;
-    }
-  }
-}
-
-#cart {
-  color: white;
-  // дописать стили: position: absolute; top: ; right: ;
 }
 @media screen and (max-width: $desktop-size) {
   .header-cart{

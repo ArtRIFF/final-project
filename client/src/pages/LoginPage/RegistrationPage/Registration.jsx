@@ -2,7 +2,7 @@ import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import "yup-phone-lite";
 
-import Button from "../../../components/Button/ButtonAll/ButtonAll";
+import Button from "../../../components/Button/BattonAll/ButtonAll";
 import Input from "./Input/Input";
 import InputWithStrength from "./InputWithStrength/InputWithStrength";
 
@@ -11,8 +11,6 @@ import "./Registration.scss";
 import {NavLink} from "react-router-dom";
 import {sendRequest} from "../../../helpers/sendRequest";
 import {API} from "../../../config/API";
-
-import Breadcrumbs from "../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 
 export const validationSchema = Yup.object().shape({
   username: Yup.string()
@@ -60,10 +58,10 @@ const Registration = () => {
   return (
     <div>
       <section className="registration__section">
-        <div className="breadcrumbs_login">
-            <Breadcrumbs />
-        </div>
         <div className="container">
+          <h2 className="login__breadcrumbs">
+            Shop / Login / <span>Registration</span>
+          </h2>
           <Formik
             initialValues={{
               login: "",

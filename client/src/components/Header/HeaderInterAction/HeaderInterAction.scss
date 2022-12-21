@@ -3,16 +3,14 @@
 
 .header-interaction__wrap {
   display: flex;
-  margin-left: 170px;
-  margin-right: -200px;
+  margin-left: 10px;
+  margin-right: -50px;
   padding-left: 150px;
   @media (max-width:1400px) {
     margin-right: 75px;
-    margin-left: 130px;
   }
   @media (max-width:1300px) {
     margin-right: 135px;
-    margin-left: -10px;
   }
   @media (max-width:$notebook-size) {
     margin-right: 225px;

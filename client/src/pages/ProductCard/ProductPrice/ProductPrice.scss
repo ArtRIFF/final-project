@@ -124,9 +124,9 @@
     }
   }
   &-favorite-select {
-    &::after {
-      content: url("./img/FavoriteSelected.svg");
-    }
+      &::after {
+        content: url("./img/FavoriteSelected.svg");
+      }
   }
 }
 
@@ -152,8 +152,6 @@
 }
 @media screen and (max-width: 768px) {
   .product-card__price {
-    padding: 15px;
-    box-sizing: border-box;
     &__body {
       flex-direction: column;
     }

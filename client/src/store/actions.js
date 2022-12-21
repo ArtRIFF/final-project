@@ -1,6 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 import { sendRequest, getCards } from "../helpers/sendRequest";
-
 export const setModalRender = createAction("SET_MODAL_RENDER");
 export const setAllCollectionProduct = createAction(
   "SET_ALL_COLLECTION_PRODUCT"
@@ -8,6 +7,7 @@ export const setAllCollectionProduct = createAction(
 export const setNewCollectionProduct = createAction(
   "SET_NEW_COLLECTION_PRODUCT"
 );
+export const setCategoryEarrings = createAction("SET_CATEGORY_EARRINGS");
 
 export const setBestsellers = createAction("SET_BESTSELLERS");
 
@@ -18,10 +18,11 @@ export const setOutlet = createAction("SET_OUTLET");
 // 			dispatch(setProductArray(data));
 // 		})
 // }
-export const setInCart = createAction("SET_IN_CART");
-export const removeFromCart = createAction("REMOVE_FROM_CART");
-export const setInFavorite = createAction("SET_IN_FAVORITE");
-export const removeFromFavorite = createAction("REMOVE_FROM_IN_FEVORITE");
+export const setInCart = createAction('SET_IN_CART');
+export const removeFromCart = createAction('REMOVE_FROM_CART')
+export const setInFavorite = createAction('SET_IN_FAVORITE')
+export const removeFromFavorite = createAction('REMOVE_FROM_IN_FEVORITE')
+
 
 export const fetchAllCollectionProduct = () => (dispatch) => {
   return getCards().then((data) => {
@@ -34,6 +35,20 @@ export const fetchNewCollectionProduct = () => (dispatch) => {
     dispatch(
       setNewCollectionProduct(
         data.filter((element) => element.statusProduct === "NEW")
+      )
+    );
+  });
+};
+
+export const fetchCategoryEarrings = () => (dispatch) => {
+  return getCards().then((data) => {
+    dispatch(
+      setCategoryEarrings(
+        data.filter(
+          (element) =>
+            element.categories === "earring" ||
+            element.categories === "child-earrings"
+        )
       )
     );
   });
@@ -56,3 +71,4 @@ export const fetchOutlet = () => (dispatch) => {
     );
   });
 };
+

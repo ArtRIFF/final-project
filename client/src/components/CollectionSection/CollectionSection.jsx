@@ -25,12 +25,13 @@ const CollectionSection = (props) => {
       <div className="container">
         <div className="collection-section__header">
           <h2 className="collection-section__header_title">New Collection</h2>
-          <Link to={"/NewCollection"}>
+          <Link to={"/viewAllNewCollection"}>
             <ButtonViewAll />
           </Link>
         </div>
         <div className="collection-section__content">
           {newCollectionArray.slice(0, numberOfItems).map((card, index) => {
+            console.log(card);
             return <CollectionSectionCard product={card} key={index} />;
           })}
         </div>
