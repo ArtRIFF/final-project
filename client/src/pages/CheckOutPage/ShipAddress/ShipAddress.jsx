@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import { string } from "yup";
+import {string} from "yup";
 import "./ShipAddress.scss";
 
 const ShipAddress = (props) => {
@@ -187,7 +187,7 @@ const ShipAddress = (props) => {
         </div>
 
         <div className="ship-info-section__checkBox">
-          <input type="checkbox" className="ship-info-section__box" /> Save this
+          <input type="checkbox" className="ship-info-section__box"/> Save this
           informations for a future fast checkout
         </div>
       </div>

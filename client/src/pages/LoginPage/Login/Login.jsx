@@ -38,7 +38,7 @@ const Login = () => {
         if (r.success) {
           setToken(r.token)
           sessionStorage.setItem('token', r.token);
-          navigate('/');
+          navigate('/userPage');
           sendAuthorizedRequest(`${API}customers/customer`, "GET",).then(user => setUserInfo(user))
         } else {
           console.log('invalid credentials')
