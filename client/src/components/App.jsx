@@ -82,6 +82,7 @@ const App = () => {
               setModalText={setModalText}
             />}/>
           <Route path="/cart" element={<ShoppingCart/>}/>
+          <Route path="/checkout" element={<CheckOutPage/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/about" element={<AboutUs/>}/>
           <Route path="/constract" element={<UnderConstractionPage/>}/>

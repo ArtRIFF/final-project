@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Button from "../../components/Button/ButtonAll/ButtonAll";
 import { selectInCart } from "../../store/selectors";
 import { getOneCard } from "../../helpers/sendRequest";
+import { Link } from "react-router-dom";
 import ItemInCart from "./ItemInCart";
 
 import "./ShoppingCart.scss";
@@ -47,7 +48,9 @@ const ShoppingCart = () => {
                         <p>Total</p>
                         <p className="cart-section__summary-total">&#8372; {totalPrice()}</p>    
                     </div>
-                    <Button className={"section__btn-header"} text={"Continue to checkout"}/>
+                    <Link to="/checkout"> 
+                        <Button className={"section__btn-header"} text={"Continue to checkout"}/>
+                    </Link>
                 </div>
            </div>
            </>}
