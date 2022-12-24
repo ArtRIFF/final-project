@@ -23,8 +23,8 @@ const SubscribeSection = () => {
         headers: {'Content-Type': 'application/json'}
       })
       .then(r => {
-        if (r.success) {
-          console.log('Successful subscribe')
+        if (r.subscriber.enabled) {
+          alert('Successful subscribe')
         } else {
           console.log('FAIL')
         }
