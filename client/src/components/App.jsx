@@ -13,7 +13,7 @@ import OurProductionPage from "../pages/OurProductionPage/OurProductionPage";
 
 import UnderConstractionPage from "../pages/UnderConstructionPage/UnderConstructionPage";
 import ErrorPage from "../pages/404ErrorPage/404ErrorPage";
-
+import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import Contact from "../pages/ContactPage/ContactPage";
 import AboutUs from "../pages/AboutUsPage/AboutUsPage";
 import ProductCard from "../pages/ProductCard/ProductCard";
@@ -54,7 +54,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage/>}/>
           {/* <Route path="" element={<Header />} /> */}
-          <Route path="/cart" element={<CheckOutPage/>}/>
+          {/* <Route path="/cart" element={<CheckOutPage/>}/> */}
           <Route path="/userPage" element={<UserPage/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/registration" element={<Registration/>}/>
@@ -81,6 +81,7 @@ const App = () => {
               setModalActive={setModalActive}
               setModalText={setModalText}
             />}/>
+          <Route path="/cart" element={<ShoppingCart/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/about" element={<AboutUs/>}/>
           <Route path="/constract" element={<UnderConstractionPage/>}/>
