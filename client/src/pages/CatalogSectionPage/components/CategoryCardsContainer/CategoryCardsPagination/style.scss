@@ -1,0 +1,36 @@
+@import '../../../../../global_scss/mixins.scss';
+@import '../../../../../global_scss/vars.scss';
+@import '../../../../../global_scss/global_style.scss';
+
+.categoryCardsPagination {
+  width: 300px;
+  height: 88px;
+  display: flex;
+  padding: 10px 0;
+  margin: 60px auto 0;
+
+  &__item {
+    width: 52px;
+    height: 52px;
+    background-color: $accent-background-color;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      background-color: $basic-text-color;
+    }
+
+    &:hover .categoryCardsPagination__index {
+      color: white;
+    }
+
+    .categoryCardsPagination__index {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+}

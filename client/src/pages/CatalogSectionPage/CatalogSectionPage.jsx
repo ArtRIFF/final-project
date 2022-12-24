@@ -2,8 +2,8 @@ import "./style.scss";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import AsideFilter from "./components/AsideFilter/AsideFilter";
-import Items from "./components/Pagination/Items";
 import Pagination from "./components/Pagination/Pagination";
+import CategoryCardsContainer from "./components/CategoryCardsContainer/CategoryCardsContainer";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -123,7 +123,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             filterRequest={filterRequest}
           />
         </div>
-        <div
+        {/* <div
           style={{
             backgroundColor: "rgba(100, 85, 45, 0.5)",
             width: "850px",
@@ -177,8 +177,11 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
                   })}
             </div>
           )}
-        </div>
-        <div className="paginnation-wrapper">
+        </div> */}
+       <div className="categoryCards-wrapper">
+        <CategoryCardsContainer filtredArray={filtredArray.length !== 0 ? filtredArray : allCollectionArray}/>
+       </div>
+        {/* <div className="paginnation-wrapper">
           {loading === true ? (
             <div></div>
           ) : (
@@ -188,7 +191,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
               setCurrentPage={setCurrentPage}
             />
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
