@@ -2,13 +2,22 @@
 @import "../../../../global_scss/mixins.scss";
 
 .header-cart {
-  padding-left: 20px;
-  padding-top: 24px;
+  margin-right: 15px;
+  padding-top: 18px;
   cursor: pointer;
   .filled-cart {
     path {
       fill: black;
     }
+  }
+  @media (max-width:1200px) {
+    margin-right: 5px;
+  }
+  @media (max-width:768px) {
+    margin-right: 15px;
+  }
+  @media (max-width:400px) {
+    margin-right: 5px;
   }
 }
 
@@ -16,9 +25,9 @@
   color: white;
   // дописать стили: position: absolute; top: ; right: ;
 }
-@media screen and (max-width: $desktop-size) {
-  .header-cart{
-    padding-left: 10%;
-    padding-top: 5px;
-  }
-}
+// @media screen and (max-width: $desktop-size) {
+//   .header-cart{
+//     padding-left: 10%;
+//     padding-top: 5px;
+//   }
+// }

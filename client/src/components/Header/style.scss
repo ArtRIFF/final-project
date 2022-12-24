@@ -10,19 +10,27 @@
 .header-wrap__display {
   display: flex;
   justify-content: space-between;
-  padding-top: 23.75px;
-  height: 140px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 120px;
 }
 .header-logo{
-  height: 90px;
-  margin-left: -180px;
+  height: 80px;
+  margin-left: -165px;
+@media (max-width:1800px) {
+  margin-left: -135px;
+}
+@media (max-width:1700px) {
+  margin-left: -95px;
+}
+@media (max-width:1600px) {
+  margin-left: -60px;
+}
 @media (max-width:1400px) {
   margin-left: -40px;
-  margin-right: 150px;
 }
 @media (max-width:1300px) {
-  margin-left: 25px;
-  margin-right: 125px;
+  margin-left: 15px;
 }
 @media (max-width:$notebook-size) {
   margin-left: 100px;
