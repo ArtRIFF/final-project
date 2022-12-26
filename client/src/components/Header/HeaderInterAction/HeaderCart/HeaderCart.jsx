@@ -15,7 +15,7 @@ const HeaderCart = () => {
     }
         return(
             <div className="header-cart">
-                <NavLink to="/cart" className="header-cart">
+                <NavLink to="/cart">
                     <CartIcon className={itemsInCart ? "header-cart_icon filled-cart" : "header-cart_icon"}/>
                     <div id="cart">{itemsInCart}</div>
                 </NavLink>

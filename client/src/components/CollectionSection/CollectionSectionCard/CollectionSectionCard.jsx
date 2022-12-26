@@ -24,8 +24,7 @@ const CollectionSectionCard = (props) => {
         <h5 className="collection-section-card__content-price">
           &#8372; {currentPrice}
         </h5>
-
-        <Link to={`products/${itemNo}`}>
+        <Link to={`/products/${itemNo}`} replace>
           <ButtonAll text="See More" className="section__btn-collection" />
         </Link>
       </div>
