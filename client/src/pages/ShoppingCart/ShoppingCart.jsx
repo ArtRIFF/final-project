@@ -1,8 +1,7 @@
-import React, { useState, useReducer } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from 'react-redux';
 import Button from "../../components/Button/ButtonAll/ButtonAll";
 import { selectInCart } from "../../store/selectors";
-import { getOneCard } from "../../helpers/sendRequest";
 import { Link } from "react-router-dom";
 import ItemInCart from "./ItemInCart";
 
@@ -12,15 +11,11 @@ const ShoppingCart = () => {
     
     const inCart = useSelector(selectInCart);
     
-    const findPrice = (cardID) => getOneCard(cardID).then((data) => {
-        let price = data.currentPrice
-        console.log('price', price)
-        return price});
-    
-    const totalPrice = () => {
-        let total = inCart.reduce((acc, cur) => acc + findPrice(cur.cardID)*cur.quantity, 0)
-        console.log(total)
-    }
+    useEffect(() => {
+        localStorage.setItem("inCart", JSON.stringify(inCart));
+      }, [inCart]);
+
+    const totalPrice = inCart.reduce((acc, cur) => acc + cur.price*cur.quantity, 0)
 
     return (
         <section className="cart-section container">
@@ -28,12 +23,11 @@ const ShoppingCart = () => {
             <h3 className="cart-section__title">Order Summary</h3>
                 <div className="cart-section__wrapper">
                     <div className="cart-section__products">                    
-                    {inCart.map((card, index) => {
+                    {inCart.map((card, cardID) => {
                         return( 
                             <ItemInCart
-                                key={index}
+                                key={cardID}
                                 card={card}/>
-                    
                     )
                     })}
                 </div>
@@ -46,7 +40,7 @@ const ShoppingCart = () => {
                         <p>Tax</p>
                         <p>-</p>
                         <p>Total</p>
-                        <p className="cart-section__summary-total">&#8372; {totalPrice()}</p>    
+                        <p className="cart-section__summary-total">&#8372; {totalPrice}</p>    
                     </div>
                     <Link to="/checkout"> 
                         <Button className={"section__btn-header"} text={"Continue to checkout"}/>
