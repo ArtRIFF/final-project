@@ -20,6 +20,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./ProductCard.scss";
 import ModalWindow from "../../components/ModalWindow";
+import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 
 export const CardContext = createContext();
 
@@ -133,6 +134,9 @@ const ProductCard = (props) => {
   return (
     <CardContext.Provider value={{ oneCard, productComments }}>
       <div className="container">
+        <div className="card-breadcrumbs">
+        <Breadcrumbs />
+        </div>
         <div className="product-card">
           <div className="product-card__main">
             <div className="product-card__main-images">

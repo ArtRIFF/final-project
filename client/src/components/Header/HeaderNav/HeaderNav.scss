@@ -5,8 +5,7 @@
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
-  margin-top: 10px;
-  margin-bottom: -10px;
+  margin-top: 5px;
   &__menu_item {
     padding-left: 40px;
     color: $basic-text-color;
@@ -14,15 +13,26 @@
     line-height: 25px;
     cursor: pointer;
     transition: ease-in-out 0.5s;
+    @media (max-width:1300px) {
+      padding-left: 30px;
+    }
+    @media (max-width:1200px) {
+      padding-left: 20px;
+    }
   }
+  
   &__menu_item:hover {
     color: $accent-color;
   }
   &__menu-wrap {
     display: flex;
     flex-basis: 40%;
+    margin-left: 75px;
     justify-content: space-between;
     align-items: center;
+    @media (max-width:1200px) {
+      margin-left: -30px;
+    }
     @media (min-width: 769px) {
       padding-top: 20px;
     }
@@ -45,12 +55,12 @@
 /*------------Navbar and burger menu -----------------------*/
 nav {
   width: 100%;
-  height: 4em;
-  background-color: $accent-background-color;
+  height: 64px;
+  // background-color: $accent-background-color;
   display: flex;
   justify-content: flex-start;
-  padding: 0.5em;
-  z-index: 10;
+  padding: 1em;
+  // z-index: 1;
   @media (max-width: $desktop-size) {
     margin-top: 10px;
   }
@@ -58,7 +68,7 @@ nav {
 .burger-menu {
   height: 100%;
   background-color: $accent-background-color;
-  width: 4em;
+  width: 64px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -67,18 +77,24 @@ nav {
 }
 .burger-bar {
   width: 60px;
-  height: 0.5em;
+  height: 8px;
   background-color: $basic-text-color;
-  border-radius: 0.5em;
+  border-radius: 8px;
   @media (min-width: 768px) and (max-width: 10000px) {
     display: none;
   }
   @media (max-width: $desktop-size) {
-    margin-left: 60px;
+    margin-left: 90px;
     display: block;
   }
+  @media (max-width: 500px) {
+    margin-left: 70px;
+  }
+  @media (max-width: 400px) {
+    margin-left: 10px;
+  }
   @media (max-width: $mobile-size) {
-    margin-left: -10px;
+    margin-left: -30px;
   }
 }
 .menu {
@@ -108,7 +124,7 @@ nav {
 /*------------animation-------------*/
 /*cliked*/
 .burger-bar.clicked:nth-child(1) {
-  transform: rotate(45deg) translate(0.75em, 1.25em);
+  transform: rotate(45deg) translate(0.35em, 0.75em);
   transition: ease-out 0.5s;
 }
 .burger-bar.clicked:nth-child(2) {
@@ -116,7 +132,7 @@ nav {
   transition: ease-out 0.5s;
 }
 .burger-bar.clicked:nth-child(3) {
-  transform: rotate(135deg) translate(-0.5em, 1em);
+  transform: rotate(135deg) translate(-0.25em, 0.75em);
   transition: ease-out 0.5s;
 }
 /*uncliked*/

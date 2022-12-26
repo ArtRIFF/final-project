@@ -99,4 +99,10 @@
         background-color: $accent-color;
         color: #311C1C;
     }
+    @media (max-width:1300px) {
+        padding: 15px 18.5px;
+    }
+    @media (max-width:1200px) {
+        padding: 15px 18.5px;
+    }
 }

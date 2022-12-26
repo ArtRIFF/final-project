@@ -17,6 +17,7 @@ import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import Contact from "../pages/ContactPage/ContactPage";
 import AboutUs from "../pages/AboutUsPage/AboutUsPage";
 import ProductCard from "../pages/ProductCard/ProductCard";
+import SearchPage from "./Header/HeaderInterAction/Search/SearchPage/SearchPage";
 import Footer from "./Footer/Footer";
 
 import {
@@ -73,7 +74,7 @@ const App = () => {
           {/* <Route path="" element={}/> */}
           <Route path="/our_production" element={<OurProductionPage/>}/>
           {/* <Route path="" element={}/> */}
-          {/* <Route path="" element={}/> */}
+          <Route path="/search" element={<SearchPage/>}/>
           {/* <Route path="" element={}/> */}
           <Route path="/jewelry" element={<CatalogSectionPage/>}/>
           <Route path="products/:cardID" element={<ProductCard
