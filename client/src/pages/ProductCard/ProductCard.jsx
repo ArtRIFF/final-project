@@ -9,7 +9,7 @@ import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
 import {
   setInCart,
-  removeFromCart,
+  changeCart,
   setInFavorite,
   removeFromFavorite,
 } from "../../store/actions";
@@ -78,7 +78,7 @@ const ProductCard = (props) => {
   };
 
   const handleChange = (e) => setSelectedSize(e.target.value);
-  console.log("sel size", selectedSize);
+
   const addToCart = (cardID) => {
     if (selectedSize === false || selectedSize === "not choose") {
       setModalActive(true);
@@ -87,28 +87,20 @@ const ProductCard = (props) => {
       if (inCart.length > 0) {
         inCart.forEach((item) => {
           if (item.cardID === cardID && item.size === selectedSize) {
-            let newCart = [...inCart];
-            const index = inCart.indexOf(item);
-            if (index > -1) {
-              newCart.splice(index, 1);
-            }
-            dispatch(removeFromCart(newCart));
-            dispatch(
-              setInCart({
-                cardID: cardID,
-                quantity: item.quantity + 1,
-                size: selectedSize,
-              })
-            );
+            let newCart =[]
+            inCart.forEach(i => {newCart.push({...i})});
+            const elem = newCart.find(elem => elem.cardID === item.cardID);
+            elem.quantity += 1;
+            dispatch(changeCart(newCart));
           } else {
             dispatch(
-              setInCart({ cardID: cardID, quantity: 1, size: selectedSize })
+              setInCart({ cardID: cardID, quantity: 1, size: selectedSize,price: currentPrice, })
             );
           }
         });
       } else {
         dispatch(
-          setInCart({ cardID: cardID, quantity: 1, size: selectedSize })
+          setInCart({ cardID: cardID, quantity: 1, size: selectedSize,price: currentPrice, })
         );
       }
     }
@@ -263,7 +255,7 @@ const ProductCard = (props) => {
           </div>
 
           <AdditionalProducts
-            cards={"similar cards"}
+            collection={statusProduct}
             title={"similar cards"}
             sectionTitle="Similar"
           />

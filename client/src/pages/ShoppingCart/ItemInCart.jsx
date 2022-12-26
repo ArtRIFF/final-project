@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getOneCard } from "../../helpers/sendRequest";
-import { setInCart, removeFromCart } from "../../store/actions";
+import { changeCart } from "../../store/actions";
 import { selectInCart } from "../../store/selectors";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,47 +18,25 @@ const ItemInCart = ({card}) => {
       }, [cardID]);
     
     const {name, article,currentPrice, imageUrls} = oneCard; 
-    
-    const increment = (cardID) => {
-        inCart.forEach((item) => {
-            if (item.cardID === cardID) {
-              let newCart = [...inCart];
-              const index = inCart.indexOf(item);
-              if (index > -1) {
-                newCart.splice(index, 1);
-              }
-              dispatch(removeFromCart(newCart));
-              dispatch(
-                setInCart({
-                  cardID: cardID,
-                  quantity: item.quantity + 1,
-                  size: item.size,
-                })
-              );
-            }
-    })
-    }
-    const decrement = (cardID) => {
-        inCart.forEach((item) => {
-            if (item.cardID === cardID) {
-              let newCart = [...inCart];
-              const index = inCart.indexOf(item);
-              if (index > -1) {
-                newCart.splice(index, 1);
-              }
-              dispatch(removeFromCart(newCart));
-              if (item.quantity === 1) {return}
-              else { 
-                dispatch(
-                    setInCart({
-                    cardID: cardID,
-                    quantity: item.quantity - 1,
-                    size: item.size,
-                    })
-                );}
-            }
-    })
+    let newCart =[]
+    inCart.forEach(i => {newCart.push({...i})});
+    const item = newCart.find(item => item.cardID === cardID);
+
+    const increment = () => {
+        item.quantity += 1;
+        dispatch(changeCart(newCart));
+        };
+    const removeCard = () => {
+        let reducedCart = newCart.filter(i => i !== item);
+        dispatch(changeCart(reducedCart))
+        }    
+    const decrement = () => {
+        item.quantity -= 1;
+        if (item.quantity === 0) {
+            removeCard()
+        } else {dispatch(changeCart(newCart))};
     } 
+    
     return(
         <div className="cart-section__products-item">
             {/* <div><img src={`../${imageUrls[0]}`} alt={name}></img></div> */}
@@ -72,7 +50,7 @@ const ItemInCart = ({card}) => {
             <div className="counter">
                 <span onClick={() => decrement(cardID)}>-</span>{quantity}<span onClick={() => increment(cardID)}>+</span>
             </div>
-            <div className="delete-item"></div>
+            <div className="delete-item" onClick={()=>removeCard()}></div>
         </div>
     )
 }
