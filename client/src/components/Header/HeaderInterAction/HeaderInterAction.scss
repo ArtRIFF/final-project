@@ -39,9 +39,6 @@
   @media (max-width:768px) {
     display: none;
   }
-  @media (max-width:768px) {
-    display: none;
-  }
 }
 
 .nav__search {
@@ -87,5 +84,15 @@
   @media (max-width:320px) {
     margin-left: -25px;
     margin-right: 5px;
+  }
+}
+
+
+// burger nav
+
+.header-burger {
+  display: flex;
+  @media (max-width:320px) {
+    display: block;
   }
 }
