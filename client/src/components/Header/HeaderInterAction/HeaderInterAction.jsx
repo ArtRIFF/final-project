@@ -1,21 +1,28 @@
 import React from "react";
-import HeaderSearch from "./HeaderSearch/HeaderSearch";
-import HeaderFavorites from "./HeaderFavorites/HeaderFavorites";
+import { NavLink } from "react-router-dom";
 import HeaderRegistration from "./HeaderRegistration/HeaderRegistration";
 import HeaderCart from "./HeaderCart/HeaderCart";
+import Search from "./Search/Search";
 
 import "./HeaderInterAction.scss";
 
-class HeaderInterAction extends React.Component {
-  render() {
+const HeaderInterAction = () => {
     return(
-    <div className="header-interaction__wrap">
-      <HeaderSearch />
-      <HeaderFavorites />
-      <HeaderCart />
-      <HeaderRegistration />
-    </div>); 
+      <div className="header-interaction__wrap">
+        <Search/>
+        <div className="header__icon">
+          <NavLink to="/favourite" className="header-favorites__icon">
+            <img
+              className="header-favorites__icon"
+              src="img/header-icon/Favouritesicon.svg"
+              alt="favorites jewelry">
+            </img>
+          </NavLink>
+          <HeaderCart/>
+          <HeaderRegistration/>
+        </div>
+      </div>
+    ); 
   }
-}
 
 export default HeaderInterAction;
