@@ -19,20 +19,28 @@ const ProductPrice = (props) => {
     cardID,
     rating,
     size,
+    selectedSize,
   } = props;
 
   const inFavoriteStore = useSelector(selectInFavorite);
   const changeIsFavorite = () => {
     setIsFavorite(!isFavorite);
   };
-  
+
   const [isFavorite, setIsFavorite] = useState(false);
-  
+
   useEffect(() => {
     if (inFavoriteStore.includes(cardID)) {
       setIsFavorite(true);
     }
   }, []);
+  const buyNow = () => {
+    if (selectedSize === false || selectedSize === "not choose") {
+      return "";
+    } else {
+      return "/cart";
+    }
+  };
 
   return (
     <div className="product-card__price">
@@ -54,7 +62,11 @@ const ProductPrice = (props) => {
           </p>
         </div>
         <div className="product-card__price__body__selector">
-          <select name="product-size" required="required" onChange={handleChange}>
+          <select
+            name="product-size"
+            required="required"
+            onChange={handleChange}
+          >
             <option value="not choose"></option>
             {size !== undefined &&
               size.split(",").map((el) => {
@@ -68,12 +80,12 @@ const ProductPrice = (props) => {
         <div onClick={() => addToCart(cardID)}>
           <ButtonAll className={"section__btn-header"} text={"Add to cart"} />
         </div>
-          <Link onClick={() => addToCart(cardID)} to="/cart">
-            <ButtonAll
-              className={"section__btn-header white-button"}
-              text={"Buy it now"}
-            />
-          </Link>
+        <Link onClick={() => addToCart(cardID)} to={buyNow()}>
+          <ButtonAll
+            className={"section__btn-header white-button"}
+            text={"Buy it now"}
+          />
+        </Link>
         <div
           onClick={() => {
             addRemoveFavorite(cardID);

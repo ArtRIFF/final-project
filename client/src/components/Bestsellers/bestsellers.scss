@@ -16,8 +16,8 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-auto-rows: 5;
+    grid-template-rows: 1fr;
+    // grid-auto-rows: 5;
     overflow-y: hidden;
     align-items: center;
     margin-right: -40px;
@@ -43,6 +43,11 @@
     }
   }
 }
+@media screen and (max-width: 530px) {
+  .bestsellers__cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 @media screen and (max-width: 360px) {
   .bestsellers {
@@ -55,9 +60,6 @@
       font-size: 25px;
       line-height: 30px;
       margin: 15px;
-    }
-    &__cards-container {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
