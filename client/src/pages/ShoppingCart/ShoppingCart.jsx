@@ -23,10 +23,10 @@ const ShoppingCart = () => {
             <h3 className="cart-section__title">Order Summary</h3>
                 <div className="cart-section__wrapper">
                     <div className="cart-section__products">                    
-                    {inCart.map((card, cardID) => {
+                    {inCart.map((card, index) => {
                         return( 
                             <ItemInCart
-                                key={cardID}
+                                key={index}
                                 card={card}/>
                     )
                     })}
