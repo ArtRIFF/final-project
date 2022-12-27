@@ -16,7 +16,6 @@ const CategorySection = (props) => {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("braceletsArray");
 
-  const classes = classNames("category__content-sidebar__link", {});
   const productArray = useSelector(selectorAllCollectionProduct);
   const earringsArray = productArray.filter(
     (element) =>
@@ -41,14 +40,7 @@ const CategorySection = (props) => {
     (element) => element.categories === "cross"
   );
   const [selectArr, setSelectArr] = useState(braceletsArray);
-  // const categoryArr = [
-  //   earringsArray,
-  //   braceletsArray,
-  //   pendantArray,
-  //   ringsArray,
-  //   pearlArray,
-  //   crossArray,
-  // ];
+
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
     setSelectArr(braceletsArray);
