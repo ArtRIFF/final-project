@@ -8,8 +8,9 @@ import {sendAuthorizedRequest, sendRequest} from "../../../helpers/sendRequest";
 import {API} from "../../../config/API";
 import * as Yup from "yup";
 import Breadcrumbs from '../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs';
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {UserContext} from "../../../context/UserContext";
+
 
 const Login = () => {
 
@@ -21,7 +22,10 @@ const Login = () => {
     password: Yup.string().min(8).required("Required"),
   });
 
-  const {setUserInfo, setToken} = useContext(UserContext)
+  const {setUserInfo, setToken} = useContext(UserContext);
+
+  const [err, setErr] = useState(false)
+
 
   const handleSubmit = (values) => {
     const requestBody = {
@@ -45,7 +49,7 @@ const Login = () => {
         }
       })
       .catch(e => {
-        console.error(e);
+        setErr(true)
       })
   }
   return (
@@ -80,6 +84,7 @@ const Login = () => {
                   handleChange={handleChange}
                   error={errors.password && touched.password}
                 />
+                {err ? <p className="login__registration-error">Entered password or email is incorrect</p> : <span></span>}
                 <div className='login__registration-section'>
                   <h4 className='login__registration-title'>Don't have an account yet?<NavLink to="/registration"
                                                                                                className='login__registration-link'> Register</NavLink>
