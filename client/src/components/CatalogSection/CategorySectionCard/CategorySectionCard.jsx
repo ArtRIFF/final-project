@@ -22,7 +22,7 @@ const CategorySectionCard = (props) => {
   };
 
   return (
-    <Link to={`products/${itemNo}`}>
+    <Link to={`/products/${itemNo}`} replace>
       <div className="category-card">
         {discount > 0 && <div className="category-card__sale">sale</div>}
         {statusProduct === "BESTSELLER" && (

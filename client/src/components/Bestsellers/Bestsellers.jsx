@@ -29,9 +29,9 @@ const Bestsellers = (props) => {
       <div className="bestsellers__cards-container">
         {bestsellers.slice(0, numberOfItems).map((card, index) => {
           return (
-            <Link key={index} to={`products/${card.itemNo}`}>
-              <CategorySectionCard  product={card} />
-            </Link>
+            <div key={index}>
+              <CategorySectionCard  product={card} key={index}/>
+            </div>
           );
         })}
       </div>

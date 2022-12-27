@@ -13,7 +13,6 @@ const HeaderCart = () => {
     if (inCart.length > 0) {
         itemsInCart = inCart.reduce((acc, cur) => acc + cur.quantity, 0)
     }
-    
         return(
             <div className="header-cart">
                 <NavLink to="/cart">

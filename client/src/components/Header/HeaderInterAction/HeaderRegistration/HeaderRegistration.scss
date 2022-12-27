@@ -4,15 +4,25 @@
 @import "../../../../global_scss/mixins.scss";
 
 .header-registration {
-  position: relative;
-  padding-left: 20px;
-  padding-top: 30px;
+  // position: relative;
+  // // padding-left: 20px;
+  // // padding-top: 30px;
+  margin-left: 15px;
   cursor: pointer;
 
   .filled {
     path {
       fill: black;
     }
+  }
+  @media (max-width:1200px) {
+    margin-left: 5px;
+  }
+  @media (max-width:768px) {
+    margin-left: 15px;
+  }
+  @media (max-width:400px) {
+    margin-left: 5px;
   }
 }
 .admin-icon {
@@ -21,9 +31,9 @@
   position: absolute;
   left: 30px;
 }
-@media screen and (max-width: $desktop-size) {
-  .header-registration {
-    padding-left: 10%;
-    padding-top: 45%;
-  }
-}
+// @media screen and (max-width: $desktop-size) {
+//   .header-registration {
+//     padding-left: 10%;
+//     padding-top: 45%;
+//   }
+// }

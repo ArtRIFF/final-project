@@ -99,7 +99,7 @@ const Footer = () => {
                      xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_b_128_16815)">
                     <rect width="32" height="32" rx="16" fill="#EDE8E7"/>
-                    <g clip-path="url(#clip0_128_16815)">
+                    <g clipPath="url(#clip0_128_16815)">
                       <path
                         d="M17.0813 23.9688H14.514C14.0852 23.9688 13.7364 23.6206 13.7364 23.1926V17.4133H12.2386C11.8098 17.4133 11.4609 17.0651 11.4609 16.6372V14.1608C11.4609 13.7328 11.8098 13.3846 12.2386 13.3846H13.7364V12.1445C13.7364 10.9149 14.1232 9.86877 14.855 9.11938C15.5901 8.36658 16.6174 7.96875 17.8258 7.96875L19.7837 7.97192C20.2118 7.97266 20.56 8.3208 20.56 8.74805V11.0474C20.56 11.4753 20.2113 11.8235 19.7826 11.8235L18.4644 11.824C18.0623 11.824 17.96 11.9044 17.9381 11.9291C17.902 11.97 17.8591 12.0856 17.8591 12.4048V13.3845H19.6835C19.8209 13.3845 19.954 13.4183 20.0683 13.4821C20.315 13.6196 20.4684 13.8798 20.4684 14.1609L20.4674 16.6373C20.4674 17.0651 20.1186 17.4132 19.6898 17.4132H17.8591V23.1926C17.8591 23.6206 17.5101 23.9688 17.0813 23.9688ZM14.6762 23.0308H16.9191V16.9934C16.9191 16.7076 17.1521 16.4752 17.4383 16.4752H19.5276L19.5285 14.3226H17.4382C17.152 14.3226 16.9191 14.0902 16.9191 13.8044V12.4048C16.9191 12.0383 16.9564 11.6216 17.2336 11.3084C17.5684 10.9297 18.0962 10.886 18.4641 10.886L19.6202 10.8855V8.90967L17.8251 8.90674C15.883 8.90674 14.6762 10.1475 14.6762 12.1445V13.8044C14.6762 14.0901 14.4433 14.3226 14.1571 14.3226H12.4008V16.4752H14.1571C14.4433 16.4752 14.6762 16.7076 14.6762 16.9934V23.0308ZM19.7819 8.90991H19.782H19.7819Z"
                         fill="#311C1C"/>
@@ -108,8 +108,8 @@ const Footer = () => {
                   </g>
                   <defs>
                     <filter id="filter0_b_128_16815" x="-50" y="-50" width="132" height="132"
-                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                       <feGaussianBlur in="BackgroundImageFix" stdDeviation="25"/>
                       <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_128_16815"/>
                       <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_128_16815" result="shape"/>
@@ -123,7 +123,7 @@ const Footer = () => {
                      xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_b_128_16818)">
                     <rect width="32" height="32" rx="16" fill="#EDE8E7"/>
-                    <g clip-path="url(#clip0_128_16818)">
+                    <g clipPath="url(#clip0_128_16818)">
                       <path
                         d="M19.6689 8H12.331C9.94287 8 8 9.94287 8 12.331V19.669C8 22.0571 9.94287 24 12.331 24H19.669C22.0571 24 24 22.0571 24 19.669V12.331C24 9.94287 22.0571 8 19.6689 8V8ZM23.062 19.669C23.062 21.5399 21.5399 23.062 19.6689 23.062H12.331C10.4601 23.062 8.93799 21.5399 8.93799 19.669V12.331C8.93799 10.4601 10.4601 8.93799 12.331 8.93799H19.669C21.5399 8.93799 23.062 10.4601 23.062 12.331V19.669Z"
                         fill="#311C1C"/>
@@ -138,8 +138,8 @@ const Footer = () => {
                   </g>
                   <defs>
                     <filter id="filter0_b_128_16818" x="-50" y="-50" width="132" height="132"
-                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                       <feGaussianBlur in="BackgroundImageFix" stdDeviation="25"/>
                       <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_128_16818"/>
                       <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_128_16818" result="shape"/>
@@ -153,7 +153,7 @@ const Footer = () => {
                      xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_b_128_16823)">
                     <rect width="32" height="32" rx="16" fill="#EDE8E7"/>
-                    <g clip-path="url(#clip0_128_16823)">
+                    <g clipPath="url(#clip0_128_16823)">
                       <path
                         d="M12.1362 12.7383H9.43896C9.1366 12.7383 8.89062 12.9843 8.89062 13.2866V23.4518C8.89062 23.754 9.1366 24 9.43896 24H12.1362C12.4385 24 12.6844 23.754 12.6844 23.4518V13.2866C12.6844 12.9843 12.4385 12.7383 12.1362 12.7383ZM11.7456 23.0611H9.82947V13.6771H11.7456V23.0611Z"
                         fill="#311C1C"/>
@@ -168,8 +168,8 @@ const Footer = () => {
                   </g>
                   <defs>
                     <filter id="filter0_b_128_16823" x="-50" y="-50" width="132" height="132"
-                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                       <feGaussianBlur in="BackgroundImageFix" stdDeviation="25"/>
                       <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_128_16823"/>
                       <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_128_16823" result="shape"/>

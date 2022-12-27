@@ -29,9 +29,9 @@ const Outlet = (props) => {
       <div className="outlet__cards-container">
         {outlet.slice(0, numberOfItems).map((card, index) => {
           return (
-            <Link key={index} to={`products/${card.itemNo}`}>
+            <div key={index}>
               <CategorySectionCard product={card} />
-            </Link>
+            </div>
           );
         })}
       </div>

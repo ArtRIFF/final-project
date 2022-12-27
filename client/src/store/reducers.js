@@ -43,7 +43,7 @@ export default createReducer(defaultState, {
   [actions.setInCart]: (state, { payload }) => {
     state.inCart = [...state.inCart, payload];
   },
-  [actions.removeFromCart]: (state, { payload }) => {
+  [actions.changeCart]: (state, { payload }) => {
     state.inCart = payload;
   },
   [actions.setInFavorite]: (state, { payload }) => {

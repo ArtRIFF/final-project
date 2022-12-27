@@ -4,8 +4,7 @@ import HeaderNav from "./HeaderNav/HeaderNav";
 import HeaderInterAction from "./HeaderInterAction/HeaderInterAction";
 import { NavLink } from 'react-router-dom';
 
-class Header extends React.Component {
-  render() {
+const Header = () => {
     return (
       <section className="header-wrap">
         <div className="container">
@@ -16,12 +15,12 @@ class Header extends React.Component {
                 alt="logo"
               />
               </NavLink>
-            <HeaderNav />
-            <HeaderInterAction />
+              <HeaderNav />
+              <HeaderInterAction />
           </div>
         </div>
       </section>
     );
   }
-}
+
 export default Header;

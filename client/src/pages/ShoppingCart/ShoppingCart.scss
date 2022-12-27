@@ -1,0 +1,120 @@
+@import "../../global_scss/vars";
+@import "../../global_scss/mixins";
+
+.cart-section {
+  font-family: $secondary-font;
+  &__title{
+    padding-top: 21px;
+    padding-bottom: 21px;
+    font-weight: 600;
+    font-size: 28px;
+  }
+  &__wrapper{
+    display: grid;
+    grid-template-columns: (3fr 1fr);
+    gap: 10px;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+  }
+  &__products{
+    &-item{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      padding: 40px 60px 40px 20px;
+      margin-bottom: 20px;
+      border: 1px solid #B7BAC0;
+      .item-image {
+        max-width: 100px;
+      }
+      .item-element{
+        display: flex;
+        flex-direction: column;
+      }
+      .item-name{
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 23px;
+        text-transform: uppercase;
+      }
+      .item-article, .item-size{
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 18px;
+        color: #6E7582
+      }
+      .item-price{
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+      }
+      .counter {
+        background-color: #F8F8F9;
+        padding: 10px;
+        font-size: 18px;
+        line-height: 150%;
+        & > span {
+          margin: 10px;
+          cursor: pointer;
+        } 
+      }
+      .delete-item {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        width: 24px;
+        height: 24px;
+        opacity: 0.2;
+        cursor: pointer;
+        transition: opacity ease 0.5s;      
+        &:hover {
+          opacity: 1;
+        }
+        &::after,&::before{
+          content: '';
+          position: absolute;
+          top: 10px;
+          display: block;
+          width: 24px;
+          height: 3px;
+          background: #000;
+        }
+        &::after{
+          transform: rotate(-45deg);
+        }
+        &::before{
+          transform: rotate(45deg);
+        }
+      }      
+    }
+  }
+  &__summary {
+    font-size: 18px;
+    text-transform: uppercase;
+    display: grid;
+    grid-template-columns: (1fr 1fr);
+    border: 1px solid #B7BAC0; 
+    padding: 30px 30px 6px 30px;
+    p {
+      padding-bottom: 24px;
+    }
+    p:nth-child(even) {
+      text-align: end;
+    }
+  }
+  &__summary-total{
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &__summary-shipping{
+    text-transform: uppercase;
+    color: #009B10;
+    font-weight: 700;
+  }
+}
+.summary-btn {
+  background-color: white;
+  color: $accent-color;
+  border: 1px solid $accent-color;
+}

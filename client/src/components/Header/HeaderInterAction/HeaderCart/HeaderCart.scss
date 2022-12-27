@@ -2,8 +2,8 @@
 @import "../../../../global_scss/mixins.scss";
 
 .header-cart {
-  padding-left: 20px;
-  padding-top: 24px;
+  margin-right: 15px;
+  position: relative;
   cursor: pointer;
   .filled-cart {
     path {
@@ -14,11 +14,9 @@
 
 #cart {
   color: white;
-  // дописать стили: position: absolute; top: ; right: ;
-}
-@media screen and (max-width: $desktop-size) {
-  .header-cart{
-    padding-left: 10%;
-    padding-top: 5px;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: 50%;
+  transform: translate(-50%, -50%);
 }
