@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "./CategorySectionCard.scss";
 
 const CategorySectionCard = (props) => {
-  const { product } = props;
+  const { product, additionalLink = "" } = props;
   const {
     name,
     currentPrice,
@@ -31,7 +31,12 @@ const CategorySectionCard = (props) => {
         {statusProduct === "NEW" && (
           <div className="category-card__new">new</div>
         )}
-        <img className="category-card__image" src={imageUrls[0]} alt={name} />
+
+        <img
+          className="category-card__image"
+          src={`${additionalLink}${imageUrls[0]}`}
+          alt={name}
+        />
 
         <div className="category-card__content">
           <h5 className="category-card__content-title">{name}</h5>
