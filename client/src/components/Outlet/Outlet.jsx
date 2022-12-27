@@ -16,7 +16,19 @@ const Outlet = (props) => {
     dispatch(fetchOutlet());
   }, []);
 
-  const numberOfItems = viewAll ? outlet.length : 8;
+  const numberOfItems = () => {
+    if (viewAll) {
+      return outlet.length;
+    } else {
+      if (window.screen.width >= 767) {
+        return 8;
+      } else if (window.screen.width < 767 && window.screen.width >= 481) {
+        return 3;
+      } else if (window.screen.width < 480) {
+        return 2;
+      }
+    }
+  };
   return (
     <section className="outlet">
       <div className="outlet__header">
@@ -27,7 +39,7 @@ const Outlet = (props) => {
         </Link>
       </div>
       <div className="outlet__cards-container">
-        {outlet.slice(0, numberOfItems).map((card, index) => {
+        {outlet.slice(0, numberOfItems()).map((card, index) => {
           return (
             <div key={index}>
               <CategorySectionCard product={card} />

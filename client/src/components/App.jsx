@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Routes, Route} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "../pages/MainPage/MainPage";
 import Header from "./Header/Header";
 
@@ -24,13 +24,16 @@ import {
   selectorNewCollectionProduct,
   selectBestsellers,
   selectOutlet,
+  selectorAllCollectionProduct,
 } from "../store/selectors";
 import {
   fetchNewCollectionProduct,
   fetchBestsellers,
   fetchOutlet,
+  fetchAllCollectionProduct,
 } from "../store/actions";
-import {UserContextProvider} from "../context/UserContext";
+
+import { UserContextProvider } from "../context/UserContext";
 
 import { useState } from "react";
 import ModalWindow from "./ModalWindow";
@@ -45,57 +48,118 @@ const App = () => {
     dispatch(fetchNewCollectionProduct());
     dispatch(fetchBestsellers());
     dispatch(fetchOutlet());
+    dispatch(fetchAllCollectionProduct());
   }, []);
+
+  const productArray = useSelector(selectorAllCollectionProduct);
+  const earringsArray = productArray.filter(
+    (element) =>
+      element.categories === "earring" ||
+      element.categories === "child-earrings"
+  );
+  const braceletsArray = productArray.filter(
+    (element) => element.categories === "bracelet"
+  );
+  const pendantArray = productArray.filter(
+    (element) => element.categories === "pendant"
+  );
+  const ringsArray = productArray.filter(
+    (element) =>
+      element.categories === "engagement-ring" ||
+      element.categories === "wedding-ring"
+  );
+  const pearlArray = productArray.filter(
+    (element) => element.categories === "pearl"
+  );
+  const crossArray = productArray.filter(
+    (element) => element.categories === "cross"
+  );
   const [modalActive, setModalActive] = useState(false);
   const [modalText, setModalText] = useState("Error");
   return (
     <>
       <UserContextProvider>
-        <Header/>
+        <Header />
         <Routes>
-          <Route path="/" element={<MainPage/>}/>
+          <Route path="/" element={<MainPage />} />
           {/* <Route path="" element={<Header />} /> */}
           {/* <Route path="/cart" element={<CheckOutPage/>}/> */}
-          <Route path="/userPage" element={<UserPage/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/registration" element={<Registration/>}/>
+          <Route path="/userPage" element={<UserPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
           <Route
-            path="/viewAllNewCollection"
-            element={<CatalogSectionPage arrProduct={newCollectionArray}/>}
+            path="/NewCollection"
+            element={<CatalogSectionPage arrProduct={newCollectionArray} />}
           />
           <Route
-            path="/viewAllBestsellers"
-            element={<CatalogSectionPage arrProduct={bestsellers}/>}
+            path="/Earrings"
+            element={<CatalogSectionPage arrProduct={earringsArray} />}
           />
           <Route
-            path="/viewAllOutlet"
-            element={<CatalogSectionPage arrProduct={outlet}/>}
+            path="/Bracelets"
+            element={<CatalogSectionPage arrProduct={braceletsArray} />}
+          />
+          <Route
+            path="/Pendant"
+            element={<CatalogSectionPage arrProduct={pendantArray} />}
+          />
+          <Route
+            path="/Rings"
+            element={<CatalogSectionPage arrProduct={ringsArray} />}
+          />
+          <Route
+            path="/Pearl"
+            element={<CatalogSectionPage arrProduct={pearlArray} />}
+          />
+          <Route
+            path="/Cross"
+            element={<CatalogSectionPage arrProduct={crossArray} />}
+          />
+          <Route
+            path="/Bestsellers"
+            element={<CatalogSectionPage arrProduct={bestsellers} />}
+          />
+          <Route
+            path="/Outlet"
+            element={<CatalogSectionPage arrProduct={outlet} />}
           />
           {/* <Route path="" element={}/> */}
-          <Route path="/our_production" element={<OurProductionPage/>}/>
+          <Route path="/our_production" element={<OurProductionPage />} />
           {/* <Route path="" element={}/> */}
-          <Route path="/search" element={<SearchPage/>}/>
+          <Route path="/search" element={<SearchPage />} />
           {/* <Route path="" element={}/> */}
-          <Route path="/jewelry" element={<CatalogSectionPage/>}/>
-          <Route path="products/:cardID" element={<ProductCard
-              modalActive={modalActive}
-              setModalActive={setModalActive}
-              setModalText={setModalText}
-            />}/>
-          <Route path="/cart" element={<ShoppingCart/>}/>
-          <Route path="/checkout" element={<CheckOutPage/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-          <Route path="/about" element={<AboutUs/>}/>
-          <Route path="/constract" element={<UnderConstractionPage/>}/>
-          <Route path="*" element={<ErrorPage/>}/>
+          <Route path="/jewelry" element={<CatalogSectionPage />} />
+          <Route
+            path="products/:cardID"
+            element={
+              <ProductCard
+                modalActive={modalActive}
+                setModalActive={setModalActive}
+                setModalText={setModalText}
+                earringsArray={earringsArray}
+                braceletsArray={braceletsArray}
+                pendantArray={pendantArray}
+                ringsArray={ringsArray}
+                pearlArray={pearlArray}
+                crossArray={crossArray}
+                bestsellers={bestsellers}
+              />
+            }
+          />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/checkout" element={<CheckOutPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/constract" element={<UnderConstractionPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <ModalWindow
-        modalActive={modalActive}
-        setModalActive={setModalActive}
-        modalText={modalText}
-        setModalText={setModalText}
-      />
-        <Footer/>
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+          modalText={modalText}
+          setModalText={setModalText}
+        />
+        <Footer />
       </UserContextProvider>
     </>
   );
