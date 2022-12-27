@@ -12,8 +12,14 @@ import {
   changeCart,
   setInFavorite,
   removeFromFavorite,
+  fetchAllCollectionProduct,
+  fetchBestsellers,
 } from "../../store/actions";
-import { selectInCart, selectInFavorite } from "../../store/selectors";
+import {
+  selectInCart,
+  selectInFavorite,
+  selectorAllCollectionProduct,
+} from "../../store/selectors";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -25,13 +31,26 @@ import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumb
 export const CardContext = createContext();
 
 const ProductCard = (props) => {
-  const { modalActive, setModalActive, setModalText } = props;
+  const {
+    modalActive,
+    setModalActive,
+    setModalText,
+    earringsArray,
+    braceletsArray,
+    pendantArray,
+    ringsArray,
+    pearlArray,
+    crossArray,
+    bestsellers,
+  } = props;
+  const dispatch = useDispatch();
+
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
   const [comments, setComments] = useState([]);
   let [selectedSize, setSelectedSize] = useState(false);
   const { cardID } = useParams();
-  const dispatch = useDispatch();
+  let linkViewAll = "/";
   const inCart = useSelector(selectInCart);
   const inFavoriteStore = useSelector(selectInFavorite);
 
@@ -49,7 +68,9 @@ const ProductCard = (props) => {
   useEffect(() => {
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
   }, [inFavoriteStore]);
-
+  useEffect(() => {
+    dispatch(fetchAllCollectionProduct());
+  }, []);
   const {
     name,
     currentPrice,
@@ -73,6 +94,32 @@ const ProductCard = (props) => {
     size,
   } = oneCard;
 
+  const findSimilarProduct = (categories) => {
+    if (categories === "earring" || categories === "child-earrings") {
+      linkViewAll = "/Earrings";
+      return earringsArray;
+    } else if (categories === "bracelet") {
+      linkViewAll = "/Bracelets";
+      return braceletsArray;
+    } else if (categories === "pendant") {
+      linkViewAll = "/Pendant";
+      return pendantArray;
+    } else if (
+      categories === "engagement-ring" ||
+      categories === "wedding-ring"
+    ) {
+      linkViewAll = "/Rings";
+      return ringsArray;
+    } else if (categories === "pearl") {
+      linkViewAll = "/Pearl";
+      return pearlArray;
+    } else if (categories === "cross") {
+      linkViewAll = "/Cross";
+      return crossArray;
+    }
+  };
+  // <img class="category-card__image" src="../img/galery/pendants/Pendant_014.jpg" alt="necklece pendant"></img>
+
   const oldPrice = (currentPrice, discount) => {
     const discountPrice = (currentPrice / 100) * discount;
     return currentPrice - discountPrice;
@@ -88,20 +135,32 @@ const ProductCard = (props) => {
       if (inCart.length > 0) {
         inCart.forEach((item) => {
           if (item.cardID === cardID && item.size === selectedSize) {
-            let newCart =[]
-            inCart.forEach(i => {newCart.push({...i})});
-            const elem = newCart.find(elem => elem.cardID === item.cardID);
+            let newCart = [];
+            inCart.forEach((i) => {
+              newCart.push({ ...i });
+            });
+            const elem = newCart.find((elem) => elem.cardID === item.cardID);
             elem.quantity += 1;
             dispatch(changeCart(newCart));
           } else {
             dispatch(
-              setInCart({ cardID: cardID, quantity: 1, size: selectedSize,price: currentPrice, })
+              setInCart({
+                cardID: cardID,
+                quantity: 1,
+                size: selectedSize,
+                price: currentPrice,
+              })
             );
           }
         });
       } else {
         dispatch(
-          setInCart({ cardID: cardID, quantity: 1, size: selectedSize,price: currentPrice, })
+          setInCart({
+            cardID: cardID,
+            quantity: 1,
+            size: selectedSize,
+            price: currentPrice,
+          })
         );
       }
     }
@@ -130,12 +189,11 @@ const ProductCard = (props) => {
       );
     }
   };
-
   return (
     <CardContext.Provider value={{ oneCard, productComments }}>
       <div className="container">
         <div className="card-breadcrumbs">
-        <Breadcrumbs />
+          <Breadcrumbs />
         </div>
         <div className="product-card">
           <div className="product-card__main">
@@ -210,6 +268,7 @@ const ProductCard = (props) => {
               addRemoveFavorite={addRemoveFavorite}
               rating={productRating()}
               handleChange={handleChange}
+              selectedSize={selectedSize}
             />
             <div className="product-card__main-description">
               <h5 className="product-card__main-description__subtitle">
@@ -259,9 +318,10 @@ const ProductCard = (props) => {
           </div>
 
           <AdditionalProducts
-            collection={statusProduct}
+            cardsArray={findSimilarProduct(categories)}
             title={"similar cards"}
             sectionTitle="Similar"
+            linkViewAll={`${linkViewAll}`}
           />
           <section className="product-card__review">
             <h2 className="product-card__review-title">Review</h2>
@@ -277,13 +337,15 @@ const ProductCard = (props) => {
                 addRemoveFavorite={addRemoveFavorite}
                 rating={productRating()}
                 handleChange={handleChange}
+                selectedSize={selectedSize}
               />
             </div>
           </section>
           <AdditionalProducts
-            cards={"popular cards"}
+            cardsArray={bestsellers}
             title={"popular cards"}
             sectionTitle="Popular"
+            linkViewAll={"/Bestsellers"}
           />
         </div>
       </div>
