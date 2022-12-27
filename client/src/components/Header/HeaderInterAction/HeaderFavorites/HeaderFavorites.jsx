@@ -6,7 +6,7 @@ class HeaderFavorites extends React.Component {
   render() {
     return (
       <div className="header-favorites">
-        <NavLink to="/favourite" className="header-favorites__icon">
+        <NavLink to="/wishlist" className="header-favorites__icon">
         <img
           className="header-favorites__icon"
           src="img/header-icon/Favouritesicon.svg"

@@ -19,7 +19,6 @@ import AboutUs from "../pages/AboutUsPage/AboutUsPage";
 import ProductCard from "../pages/ProductCard/ProductCard";
 import SearchPage from "./Header/HeaderInterAction/Search/SearchPage/SearchPage";
 import Footer from "./Footer/Footer";
-
 import {
   selectorNewCollectionProduct,
   selectBestsellers,
