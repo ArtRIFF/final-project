@@ -1,6 +1,8 @@
 import React, {useRef, useState} from "react";
 import {string} from "yup";
 import "./ShipAddress.scss";
+import {useContext} from "react";
+import {UserContext} from "../../../context/UserContext";
 
 const ShipAddress = (props) => {
   const fullNameRef = useRef(null);
@@ -11,7 +13,9 @@ const ShipAddress = (props) => {
   const zipCodeRef = useRef(null);
   const phoneNumberRef = useRef(null);
 
-  const [fullNameShip, setFullNameShip] = useState("");
+  const {userInfo} = useContext(UserContext);
+
+  const [fullNameShip, setFullNameShip] = useState(`${userInfo ? userInfo?.firstName + " " + userInfo?.lastName : ''}`);
   const [fullNameShiplDirty, setFullNameShipDirty] = useState(false);
   const [fullNameShipError, setFullNameShipError] =
     useState("Invalid full name");
@@ -28,19 +32,23 @@ const ShipAddress = (props) => {
   };
   const shipAddressHandler = (e) => {
     setFullNameShip(e.target.value);
-    if (!String.test(String(e.target.value).toLowerCase())) {
-      setFullNameShipError("Invalid full name");
+    const re = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setFullNameShipError("Enter your full name please");
     } else setFullNameShipError(" ");
   };
-  const [phoneShip, setPhoneShip] = useState("");
+  const [phoneShip, setPhoneShip] = useState(`${userInfo ? userInfo?.telephone : ''}`);
   const [phoneShipDirty, setPhoneShipDirty] = useState(false);
   const [phoneShipError, setPhoneShipError] = useState("Invalid phone number");
 
   const phoneShipHandler = (e) => {
-    if (!Number.isInteger(e.target.value)) {
-      setPhoneShipError("Invalid phone number");
-    }
     setPhoneShip(e.target.value);
+    const re = /^\+380\d{3}\d{2}\d{2}\d{2}$/
+    if (!re.test(String(e.target.value))) {
+      setPhoneShipError("Invalid phone number");
+    } else {
+      setPhoneShipError("")
+    }
   };
 
   const handleBlur = () => {
@@ -82,7 +90,7 @@ const ShipAddress = (props) => {
                 value={fullNameShip}
                 type="text"
                 className="ship-info-section__texts"
-                placeholder="Full Name"
+                placeholder="John Johnson"
                 ref={fullNameRef}
               />
               {fullNameShiplDirty && fullNameShipError && (
@@ -102,7 +110,7 @@ const ShipAddress = (props) => {
             <input
               type="text"
               className="ship-info-section__text"
-              placeholder="Country"
+              placeholder="Ukraine"
               ref={countryRef}
             />
           </form>
@@ -111,12 +119,12 @@ const ShipAddress = (props) => {
         <div className="ship-info-section__addres">
           <form action="" className="ship-info-section__info">
             <label htmlFor="#" className="ship-info-section__name">
-              Street Addres
+              Street Address
             </label>
             <input
               type="text"
               className="ship-info-section__text"
-              placeholder="Street Addres"
+              placeholder="Khreshchatyk, 23"
               ref={streetAddrRef}
             />
           </form>
@@ -129,7 +137,7 @@ const ShipAddress = (props) => {
             <input
               type="text"
               className="ship-info-section__text"
-              placeholder="City"
+              placeholder="Kyiv"
               ref={cityRef}
             />
           </form>
@@ -145,7 +153,7 @@ const ShipAddress = (props) => {
               <input
                 type="text"
                 className="ship-info-section__texts"
-                placeholder="State"
+                placeholder="State/Region"
                 ref={stateRef}
               />
             </form>
@@ -156,7 +164,7 @@ const ShipAddress = (props) => {
               <input
                 type="text"
                 className="ship-info-section__texts"
-                placeholder="Zip Code"
+                placeholder="01234"
                 ref={zipCodeRef}
               />
             </form>
@@ -175,7 +183,7 @@ const ShipAddress = (props) => {
               value={phoneShip}
               type="text"
               className="ship-info-section__text"
-              placeholder="+38"
+              placeholder="+3801234567"
               ref={phoneNumberRef}
             />
             {phoneShipDirty && phoneShipError && (
@@ -187,8 +195,10 @@ const ShipAddress = (props) => {
         </div>
 
         <div className="ship-info-section__checkBox">
-          <input type="checkbox" className="ship-info-section__box"/> Save this
-          informations for a future fast checkout
+          <input type="checkbox"/>
+          <span className="ship-info-section__box">
+            Save this information for a future fast checkout
+          </span>
         </div>
       </div>
     </section>
