@@ -38,6 +38,7 @@ import { UserContextProvider } from "../context/UserContext";
 import { useState } from "react";
 import ModalWindow from "./ModalWindow";
 import UserPage from "../pages/LoginPage/UserPage/UserPage";
+import ChangePass from "../pages/LoginPage/UserPage/ChangePass";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -85,6 +86,7 @@ const App = () => {
           {/* <Route path="" element={<Header />} /> */}
           {/* <Route path="/cart" element={<CheckOutPage/>}/> */}
           <Route path="/userPage" element={<UserPage />} />
+          <Route path="/changeUserPassword" element={<ChangePass/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route
