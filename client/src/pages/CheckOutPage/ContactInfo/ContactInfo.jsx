@@ -3,9 +3,12 @@ import "./ContactInfo.scss";
 import { NavLink } from "react-router-dom";
 
 import Breadcrumbs from "../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
+import {useContext} from "react";
+import {UserContext} from "../../../context/UserContext";
 
 const ContactInfoPage = (props) => {
-  const [email, setEmail] = useState("");
+  const {userInfo} = useContext(UserContext);
+  const [email, setEmail] = useState(`${userInfo ? userInfo?.email : ''}`);
   const [emailDirty, setEmailDirty] = useState(false);
   const [emailError, setEmailError] = useState("Invalid email");
 
