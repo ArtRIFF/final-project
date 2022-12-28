@@ -71,6 +71,11 @@
     font-size: 16px;
     line-height: 22px;
     font-weight: 400;
+    display: flex;
+    align-items: center;
+  }
+  &__box {
+    padding-left: 5px;
   }
 }
 @media (max-width: 650px) {
