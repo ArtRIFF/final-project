@@ -16,9 +16,9 @@ export const sendRequest = async (url, method = "GET", config) => {
       }
       return response;
     } else {
-      return new Error("error");
+      throw new Error("error");
     }
-  });
+  })
 };
 
 export const sendAuthorizedRequest = (url, method = "GET", config) => {

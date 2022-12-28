@@ -96,7 +96,11 @@
   cursor: pointer;
   border: none;
 }
-
+.login__registration-error {
+  text-align: center;
+  padding: 10px;
+  color:$accent-color ;
+}
 .login__registration-section {
     display: flex;
     justify-content: start;

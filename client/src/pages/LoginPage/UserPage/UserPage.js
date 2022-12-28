@@ -4,7 +4,6 @@ import "yup-phone-lite";
 
 import Button from "../../../components/Button/ButtonAll/ButtonAll";
 import Input from "../RegistrationPage/Input/Input";
-import InputWithStrength from "../RegistrationPage/InputWithStrength/InputWithStrength";
 
 import "./UserPage.scss";
 
@@ -12,9 +11,10 @@ import {sendAuthorizedRequest} from "../../../helpers/sendRequest"
 import {API} from "../../../config/API";
 
 import Breadcrumbs from "../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {UserContext} from "../../../context/UserContext";
 import {ReactComponent as ProfileIcon} from "../UserPage/img/profile-icon.svg";
+import {NavLink} from "react-router-dom";
 
 
 export const validationSchema = Yup.object().shape({
@@ -33,19 +33,11 @@ export const validationSchema = Yup.object().shape({
     .required("Phone number is required"),
 });
 
-export const changePassValidationSchema = Yup.object().shape({
-  // oldPasswordConfirm: Yup.mixed().notOneOf([oldPassword], 'old password is different'),
-  newPassword: Yup.string().min(8).required('required'),
-  newPasswordConfirm: Yup.string().oneOf(
-    [Yup.ref("newPassword")],
-    "Passwords don't match"
-  ),
-})
-
 
 const UserPage = () => {
 
   const {userInfo} = useContext(UserContext);
+  const [resultMessage, setResultMessage] = useState(false);
   const handleSubmit = (values, {resetForm}) => {
     const [firstName, lastName] = values.username.split(' ');
     const requestBody = {
@@ -62,23 +54,9 @@ const UserPage = () => {
       body: JSON.stringify(requestBody),
     })
       .then(r => {
-        console.log(r);
+        setResultMessage(true);
       })
   }
-  const handleSubmitPass = (values) => {
-    const requestBody = {
-      "password": values.password,
-      "newPassword": values.newPassword,
-    };
-
-    sendAuthorizedRequest(`${API}customers/password`, 'PUT', {
-      body: JSON.stringify(requestBody),
-    })
-      .then(r => {
-        alert(r.message);
-      })
-  }
-
 
   return (
     <div>
@@ -109,6 +87,8 @@ const UserPage = () => {
                   </h2>
                   <ProfileIcon className="profile-icon"/>
                 </div>
+                {resultMessage ? <p className="login__registration-error">Information successfully updated</p> :
+                  <span></span>}
                 <Input
                   className="registration__section-input"
                   name="username"
@@ -157,49 +137,12 @@ const UserPage = () => {
               </Form>
             )}
           </Formik>
-
-          <Formik
-            initialValues={{
-              password: '',
-              newPassword: '',
-            }}
-            onSubmit={handleSubmitPass}
-            validationSchema={changePassValidationSchema}
-          >
-            {({errors, touched, handleChange, handleSubmitPass}) => (
-              <Form className="registration__form" onSubmit={handleSubmitPass}>
-                <h2 className="registration__section-title">
-                  Password change
-                </h2>
-                <Input
-                  name="password"
-                  className="registration__section-input"
-                  type="password"
-                  placeholder="password"
-                  label="Enter your old password"
-                  error={errors.oldPasswordConfirm && touched.oldPasswordConfirm}
-                />
-                <InputWithStrength
-                  name="newPassword"
-                  placeholder="password"
-                  label="Enter your new password"
-                  handleChange={handleChange}
-                  error={errors.newPassword && touched.newPassword}
-                />
-                <Input
-                  name="newPasswordConfirm"
-                  className="registration__section-input"
-                  type="password"
-                  placeholder="password"
-                  label="Confirm your new password"
-                  error={errors.newPasswordConfirm && touched.newPasswordConfirm}
-                />
-                <div className="login__section-btn">
-                  <Button type='submit' text="Update password" className="section__btn-checkout"/>
-                </div>
-              </Form>
-            )}
-          </Formik>
+          <div className='login__registration-section'>
+            <h1 className='login__registration-title'>Want to change your password?<NavLink to="/changeUserPassword"
+                                                                                            className='login__registration-link'> Change
+              password</NavLink>
+            </h1>
+          </div>
 
         </div>
       </section>
