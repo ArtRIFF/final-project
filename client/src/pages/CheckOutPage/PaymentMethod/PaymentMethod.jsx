@@ -1,6 +1,8 @@
 import React, {useRef, useState} from "react";
 import "./PaymentMethod.scss";
+import "../ContactInfo/ContactInfo.scss"
 import Button from "../../../components/Button/ButtonAll/ButtonAll";
+
 // import StripeCheckout from "react-stripe-checkout";
 
 const PaymentMethod = (props) => {
@@ -26,6 +28,31 @@ const PaymentMethod = (props) => {
     }
   };
 
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardNumberDirty, setCardNumberDirty] = useState(false);
+  const [cardNumberError, setCardNumberError] = useState(
+    "Make sure you entered the digits correctly"
+  )
+
+  const blurCardNumberHandler = (e) => {
+    switch (e.target.name) {
+      case "cardNumber" :
+        setCardNumberDirty(true);
+        break;
+    }
+  }
+
+  const cardNumberHandler = (e) => {
+    setCardNumber(e.target.value);
+    const re = /^4[0-9]{12}(?:[0-9]{3})?$/
+    if (!re.test(String(e.target.value))) {
+      setCardNumberError("Make sure you entered the digits correctly")
+    } else {
+      setCardNumberError("")
+    }
+
+  }
+
   return (
     <section className="payment-method-section" onBlur={handleBlur}>
       <div className="payment-method-section__wrap">
@@ -50,13 +77,6 @@ const PaymentMethod = (props) => {
             </a>
             <a href="#">
               <img
-                src="img/payment-method/paypal_3.png"
-                alt="card"
-                className="payment-method-section__img"
-              />
-            </a>
-            <a href="#">
-              <img
                 src="img/payment-method/Icon-three.png"
                 alt="card"
                 className="payment-method-section__img"
@@ -71,10 +91,10 @@ const PaymentMethod = (props) => {
             </a>
             <a href="#">
               <img
-                src="img/payment-method/Icon-five.png"
-                alt="card"
-                className="payment-method-section__img"
-              />
+                  src="img/payment-method/Icon-five.png"
+                  alt="card"
+                  className="payment-method-section__img"
+                />
             </a>
           </div>
         </div>
@@ -85,11 +105,20 @@ const PaymentMethod = (props) => {
               Card Number
             </label>
             <input
+              onBlur={(e) => blurCardNumberHandler(e)}
+              onChange={(e) => cardNumberHandler(e)}
               type="text"
               className="payment-method-section__text"
               placeholder="Card Number"
+              value={cardNumber}
               ref={cardNumberRef}
+              name="cardNumber"
             />
+            {cardNumberDirty && cardNumberError && (
+              <div className="contact-info-section__error-message">
+                {cardNumberError}
+              </div>
+            )}
           </form>
         </div>
 
@@ -121,7 +150,7 @@ const PaymentMethod = (props) => {
               CVV
             </label>
             <input
-              type="text"
+              type="password"
               className="payment-method-section__texts"
               placeholder="CVV"
               ref={cardCvvRef}
@@ -130,14 +159,16 @@ const PaymentMethod = (props) => {
         </div>
 
         <div className="payment-method-section__checkBox">
-          <input type="checkbox" className="payment-method-section__box" />{" "}
-          Billing address is the same as shipping address
+          <input type="checkbox" />
+          <span className="payment-method-section__box">Billing address is the same as shipping address</span>
         </div>
       </div>
       <div className="payment-method-section__btn">
-        <Button type="submit" text="Continue" className="section__btn-checkout" />
+        <Button type="submit" text="Continue" className="section__btn-checkout"/>
       </div>
     </section>
   );
 };
 export default PaymentMethod;
+
+
