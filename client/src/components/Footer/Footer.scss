@@ -31,7 +31,7 @@
 
 .footer__conteiner {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;  
     @media (max-width:$desktop-size) {
         width: 100%;
@@ -133,7 +133,7 @@
 }
 
 .input {
-    width: 231px;
+    width: 150px;
     padding-left: 19px;
     @media (max-width:$notebook-size) {
         width: 165px;
@@ -263,6 +263,8 @@
     font-family: $secondary-font;
     @include font-value(400, 16px, 26px);
     color: #B5ABAA;
+    padding-bottom: 10px;
+    margin-bottom: -30px;
     @media (max-width: $desktop-size) {
         @include font-value(400, 16px, 24px);
     }
