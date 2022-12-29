@@ -18,24 +18,24 @@ const WishList = () => {
       }, []);
     inFavorite.forEach(cardID => {
         let el = allCollectionProduct.filter(card => card.itemNo === cardID);
-        favoriteCards.push(el);
-    })  
+        console.log('elem', el)
+        favoriteCards.push(...el);
+    });
+    console.log(favoriteCards)
 
     return (
-        <section className="cart-section container">
+        <section className="wishlist-section container">
            {!!inFavorite.length && <> 
             <h3 className="cart-section__title">Your Wishlist</h3>
-                <div className="cart-section__wrapper">
-                    <div className="cart-section__products">                    
-                    {/* {favoriteCards.map((card, index) => {
+                <div className="wishlist-section__wrapper">
+                    {favoriteCards.map((card, index) => {
                         return( 
                             <CategorySectionCard
                                 key={index}
-                                card={card}/>
+                                product={card}/>
                     )
-                    })} */}
+                    })}
                 </div>
-           </div>
            </>}
            {!inFavorite.length && <h3 className="cart-section__title">Your Wishlist is empty</h3>}
         </section>

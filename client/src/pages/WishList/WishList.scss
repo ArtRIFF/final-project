@@ -1,3 +1,17 @@
 @import "../../global_scss/vars";
 @import "../../global_scss/mixins";
 
+.wishlist-section {
+    max-width: $notebook-size;
+    padding: 20px 0px 30px;
+    margin: $margin-center;
+    box-sizing: border-box;
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+        margin-right: -40px;
+        gap: 10px;
+    }
+    
+}
