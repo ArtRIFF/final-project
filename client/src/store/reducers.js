@@ -10,6 +10,11 @@ const localStItemsCart = localStorage.getItem("inCart")
 
 export const defaultState = {
   modalRender: false,
+  modalDeleteRender: false,
+  chosenCard: null,
+  productArray: [],
+  cartArray: [],
+  favoriteProd: [],
   newCollectionProduct: [],
   allCollectionProduct: [],
   bestsellers: [],
