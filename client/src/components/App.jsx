@@ -17,9 +17,9 @@ import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import Contact from "../pages/ContactPage/ContactPage";
 import AboutUs from "../pages/AboutUsPage/AboutUsPage";
 import ProductCard from "../pages/ProductCard/ProductCard";
+import WishList from "../pages/WishList/WishList";
 import SearchPage from "./Header/HeaderInterAction/Search/SearchPage/SearchPage";
 import Footer from "./Footer/Footer";
-
 import {
   selectorNewCollectionProduct,
   selectBestsellers,
@@ -149,6 +149,7 @@ const App = () => {
             }
           />
           <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/wishlist" element={<WishList/>}/>
           <Route path="/checkout" element={<CheckOutPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<AboutUs />} />

@@ -31,7 +31,7 @@ const Bestsellers = (props) => {
   };
 
   return (
-    <section className="bestsellers">
+    <section className="bestsellers container">
       <div className="bestsellers__header">
         <h2 className="bestsellers__title">Bestsellers</h2>
         <Link to={"/Bestsellers"}>
