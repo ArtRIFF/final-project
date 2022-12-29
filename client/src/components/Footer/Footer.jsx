@@ -34,7 +34,7 @@ const Footer = () => {
   }
   return (
     <footer className='footer'>
-      <div className='conteiner'>
+      <div className='container'>
         <div className='footer__info'>
           <div className='footer__conteiner'>
             <img src="img/logo.png" alt="SoVa_logo" className='footer__img'/>
@@ -69,9 +69,6 @@ const Footer = () => {
               <ul>
                 <NavLink to="/jewelry">
                   <li className='footer__list'>Jewelry</li>
-                </NavLink>
-                <NavLink to="/collection">
-                  <li className='footer__list'>Collections</li>
                 </NavLink>
                 <NavLink to="/outlet">
                   <li className='footer__list'>%Outlet</li>
@@ -186,7 +183,7 @@ const Footer = () => {
 
         </div>
       </div>
-      <div className='conteiner'>
+      <div className='container'>
         <div className='line'></div>
         <p className='design'>© 2022 Watches. All rights reserved.</p>
       </div>
