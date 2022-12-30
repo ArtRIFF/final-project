@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Pagination.scss";
 
-const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
+const Pagination = ({
+  itemsPerPage,
+  totalItems,
+  setCurrentPage,
+  allCollectionArrayIsFiltered,
+}) => {
   const pageNumbers = [];
 
   const [currentButton, setCurrentButton] = useState(1);
@@ -48,17 +53,24 @@ const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
     } else if (currentButton === dotsLeft) {
       setCurrentButton(arrayOfCurrentButtons[3] - 2);
     }
-
     setArrayOfCurrentButtons(tempNumberOfPages);
     setCurrentPage(currentButton);
   }, [currentButton, totalItems]);
 
+
+  useEffect(() => {
+    if (allCollectionArrayIsFiltered === true) {
+      if (currentButton > arrayOfCurrentButtons.length / itemsPerPage) {
+        setCurrentButton(1);
+      }
+    }
+  }, [allCollectionArrayIsFiltered]);
+
   return (
-    <div>
+    <div style={{marginTop:"30px"}}>
       <ul className="pagination-container">
         <a
           href="javascript:void(0)"
-          // href="#"
           className={`${currentButton === 1 ? "disabled" : ""}`}
           onClick={() =>
             setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
