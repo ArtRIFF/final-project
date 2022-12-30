@@ -1,7 +1,6 @@
 import './style.scss';
 import ButtonAll from '../../../../components/Button/ButtonAll/ButtonAll';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
 
 const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionArray }) => {
 

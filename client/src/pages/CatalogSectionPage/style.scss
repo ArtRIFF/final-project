@@ -29,7 +29,7 @@
    grid-area: breadcrumbs;
    align-items: center;
    margin-top: 30px;
-   margin-left: -10px;
+   margin-right: 30px;
 }
 
 .asideFilter-wrapper {
@@ -79,12 +79,6 @@
    overflow: hidden;
 }
 
-.CategorySectionCardAdditional{
-  display: inline-block;
-  margin: 10px 0 0 10px;
-  flex-grow: 1;
-  height: 300px;
-}
 
 .paginnation-wrapper {
    grid-area: paginnation;

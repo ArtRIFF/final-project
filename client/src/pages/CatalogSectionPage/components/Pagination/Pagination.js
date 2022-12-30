@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Pagination.scss";
 
 const Pagination = ({
@@ -69,7 +70,7 @@ const Pagination = ({
   return (
     <div style={{marginTop:"30px"}}>
       <ul className="pagination-container">
-        <a
+        <Link
           href="javascript:void(0)"
           className={`${currentButton === 1 ? "disabled" : ""}`}
           onClick={() =>
@@ -77,10 +78,10 @@ const Pagination = ({
           }
         >
           Prev
-        </a>
+        </Link>
         {arrayOfCurrentButtons.map((page) => (
           <li key={page}>
-            <a
+            <Link
               key={page}
               href="javascript:void(0);"
               // href="#"
@@ -91,10 +92,10 @@ const Pagination = ({
             >
               {" "}
               {page}{" "}
-            </a>
+            </Link>
           </li>
         ))}
-        <a
+        <Link
           href="javascript:void(0)"
           // href="#"
           className={`${
@@ -107,7 +108,7 @@ const Pagination = ({
           }
         >
           Next
-        </a>
+        </Link>
       </ul>
     </div>
   );

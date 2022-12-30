@@ -1,7 +1,6 @@
 import React from "react";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import CategorySectionCard from "../../../../components/CatalogSection/CategorySectionCard";
-import "../../../../components/CatalogSection/CategorySectionCard/CategorySectionCard.scss";
 import "./CategoryCardsContainer.scss";
 
 const CategoryCardsContainer = ({
@@ -34,7 +33,6 @@ const CategoryCardsContainer = ({
   }
 
   return (
-    <div className="categoryCard">
       <div className="categoryCards__grid">
         {items.map((card) => (
           <div className="CategorySectionCard__wrapper" key={Math.random()}>
@@ -42,7 +40,6 @@ const CategoryCardsContainer = ({
           </div>
         ))}
       </div>
-    </div>
   );
 };
 
