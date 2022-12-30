@@ -11,6 +11,34 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
   const [price, setPrice] = useState(['', '']);
   const [insertNumber, setInsertNumber] = useState(0);
 
+  let hasAnyFilters;
+  useEffect(() => {
+    if (
+      productsType.length !== 0 ||
+      metalType.length !== 0 ||
+      collectionType.length !== 0 ||
+      sampleType.length !== 0 ||
+      metalColorType.length !== 0 ||
+      insertType.length !== 0 ||
+      price[0] !== "" ||
+      price[1] !== "" ||
+      insertNumber !== 0
+    ) {
+      hasAnyFilters = Boolean(true);
+    } else {
+      hasAnyFilters = Boolean(false);
+    }
+  }, [
+    productsType,
+    metalType,
+    collectionType,
+    sampleType,
+    metalColorType,
+    insertType,
+    price,
+    insertNumber,
+  ]);
+
   useEffect(() => {
     updateFilter();
   }, [productsType]);
@@ -59,7 +87,7 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
       )
     ));
     document.querySelector('.category-filter select').value = "DEFAULT";
-    filterRequest(newArray);
+    filterRequest(newArray, hasAnyFilters);
   };
 
   const onTypeChange = (e) => {
@@ -374,16 +402,6 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
             </label>
           </div>
         </div>
-        {/* <div className="filter-parameter filter-parameter__hide">
-          <div className="filter-parameter__header">
-            <h5 className="filter-parameter__title">Size</h5>
-            <button onClick={accordionAnimate} className="filter-parameter__button"></button>
-          </div>
-          <div className="filter-parameter__container price-container">
-            <input type="text" placeholder='15' /><span>-</span>
-            <input type="text" placeholder='24' />
-          </div>
-        </div> */}
       </div>
     </div>
   );

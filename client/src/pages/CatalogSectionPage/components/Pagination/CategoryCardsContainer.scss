@@ -1,0 +1,23 @@
+@import '../../../../global_scss/vars.scss';
+@import '../../../../global_scss/mixins.scss';
+
+.CategorySectionCard__wrapper{
+    text-align: center;
+}
+
+.categoryCards__grid {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    align-items: start;
+    gap: 10px;
+
+    @media (max-width:$notebook-size) {
+     grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width:$mobile-size) {
+     grid-template-columns: repeat(1, 1fr);
+    }
+}
+

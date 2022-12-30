@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Pagination.scss";
 
-const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
+const Pagination = ({
+  itemsPerPage,
+  totalItems,
+  setCurrentPage,
+  allCollectionArrayIsFiltered,
+}) => {
   const pageNumbers = [];
 
   const [currentButton, setCurrentButton] = useState(1);
@@ -48,27 +54,34 @@ const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
     } else if (currentButton === dotsLeft) {
       setCurrentButton(arrayOfCurrentButtons[3] - 2);
     }
-
     setArrayOfCurrentButtons(tempNumberOfPages);
     setCurrentPage(currentButton);
   }, [currentButton, totalItems]);
 
+
+  useEffect(() => {
+    if (allCollectionArrayIsFiltered === true) {
+      if (currentButton > arrayOfCurrentButtons.length / itemsPerPage) {
+        setCurrentButton(1);
+      }
+    }
+  }, [allCollectionArrayIsFiltered]);
+
   return (
-    <div>
+    <div style={{marginTop:"30px"}}>
       <ul className="pagination-container">
-        <a
+        <Link
           href="javascript:void(0)"
-          // href="#"
           className={`${currentButton === 1 ? "disabled" : ""}`}
           onClick={() =>
             setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
           }
         >
           Prev
-        </a>
+        </Link>
         {arrayOfCurrentButtons.map((page) => (
           <li key={page}>
-            <a
+            <Link
               key={page}
               href="javascript:void(0);"
               // href="#"
@@ -79,10 +92,10 @@ const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
             >
               {" "}
               {page}{" "}
-            </a>
+            </Link>
           </li>
         ))}
-        <a
+        <Link
           href="javascript:void(0)"
           // href="#"
           className={`${
@@ -95,7 +108,7 @@ const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
           }
         >
           Next
-        </a>
+        </Link>
       </ul>
     </div>
   );
