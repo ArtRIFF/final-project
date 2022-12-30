@@ -74,8 +74,16 @@
 }
 
 .categoryCards-wrapper {
+   min-height: 350px;
    grid-area: categoryCards;
    overflow: hidden;
+}
+
+.CategorySectionCardAdditional{
+  display: inline-block;
+  margin: 10px 0 0 10px;
+  flex-grow: 1;
+  height: 300px;
 }
 
 .paginnation-wrapper {
