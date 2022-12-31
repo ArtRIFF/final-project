@@ -94,20 +94,19 @@ const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
     const checked = e.target.checked;
     const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
     const arrayValue = value.split(' ');
-   if (arrayValue.length > 1) {
-    arrayValue.forEach(valueItem => {
-      console.log("TEW");
-      setProductsType((!productsType.includes(arrayValue[0]) && checked)
-      ? [...productsType, ...arrayValue]
-      : productsType.filter(n => !arrayValue.includes(n))
-    );
-    })
-   } else {
-     setProductsType((!productsType.includes(value) && checked)
-       ? [...productsType, value]
-       : productsType.filter(n => n !== value)
-     );
-   }
+    if (arrayValue.length > 1) {
+      arrayValue.forEach(valueItem => {
+        setProductsType((!productsType.includes(arrayValue[0]) && checked)
+          ? [...productsType, ...arrayValue]
+          : productsType.filter(n => !arrayValue.includes(n))
+        );
+      })
+    } else {
+      setProductsType((!productsType.includes(value) && checked)
+        ? [...productsType, value]
+        : productsType.filter(n => n !== value)
+      );
+    }
   };
 
   const onMetalChange = (e) => {
