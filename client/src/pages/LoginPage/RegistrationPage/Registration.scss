@@ -5,14 +5,47 @@
 .breadcrumbs_login {
   margin-top: 30px;
   margin-bottom: 30px;
+  margin-left: -5px;
+  @media (max-width: 1200px){
+    margin-left: 115px;
+  }
+  @media (max-width: 768px){
+    margin-left: 30px;
+  }
+}
+.registration__container {
+  
+  @media (max-width: 1200px){
+    margin-left: 115px;
+    margin-right: 100px;
+  }
+  @media (max-width: 768px){
+    margin-left: 30px;
+    margin-right: 50px;
+  }
+  @media (max-width: 320px){
+    margin-right: 35px;
+  }
 }
 
-.container {
-    max-width: 1200px;
+
+.login__container {
+  margin-left: -75px;
+  margin-right: -75px;
+  @media (max-width: 1200px){
+    margin-left: 40px;
+    margin-right: 100px;
+  }
+  @media (max-width: 768px){
+    margin-left: -45px;
+    margin-right: 50px;
+  }
+  @media (max-width: 320px){
+    margin-right: 35px;
+  }
 }
 
-.login__breadcrumbs {
-    padding-top: 30px;
+.login__container {
     padding-left: 75px;
     font-family: $main-font;
     @include font-value(400, 16px, 140%);

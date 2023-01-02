@@ -1,10 +1,14 @@
 import "./ContactPage.scss";
+import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 
 const Contact = () => {
     return (
         <>
                 <section className="contact__section">
                     <div className="container">
+                        <div className="breadcrumbs__contact">
+                            <Breadcrumbs/>
+                        </div>
                         <h2 className="contact__title">CONTACT</h2>
                         <p className="contact__section-title">
                             Do you want to know the details? Contact us by phone:

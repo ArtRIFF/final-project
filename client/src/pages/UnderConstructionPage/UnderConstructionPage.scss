@@ -19,3 +19,13 @@
         max-width: 250px;
     }
 }
+
+.breadcrumbs__constract {
+    margin-top: 30px;
+    @media (max-width: $notebook-size) {
+        margin-left: 110px;
+    }
+    @media (max-width: $desktop-size) {
+        margin-left: 30px;
+    }
+}

@@ -1,10 +1,14 @@
 import "./AboutUsPage.scss";
+import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs"
 
 const AboutUs = () => {
     return (
         <>
             <section className="about__section">
                 <div className="container">
+                    <div className="breadcrumbs__aboutus">
+                        <Breadcrumbs/>
+                    </div>
                     <h2 className="section__title">ABOUT US</h2>
                     <p className="about__section-text">
                         WE ARE A TEAM OF YOUNG PROFESSIONALS.

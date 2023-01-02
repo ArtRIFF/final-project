@@ -1,2 +1,17 @@
 @import "../../global_scss/vars.scss";
 @import "../../global_scss/mixins.scss";
+
+
+.breadcrumbs_login {
+    margin-top: 30px;
+    margin-left: 65px;
+    @media (max-width: 1200px) {
+        margin-left: 75px
+    }
+    @media (max-width: 768px) {
+        margin-left: 50px
+    }
+    @media (max-width: 320px) {
+        margin-left: 20px
+    }
+}

@@ -11,6 +11,13 @@
   align-items: center;
   justify-content: center;
   margin-right: 40px;
+  // @media (max-width:1200px) {
+  //   // margin-right: 60px;
+  // }
+  @media (max-width:320px) {
+    margin-right: 60px;
+  }
+
 
   &__image {
     width: 100%;

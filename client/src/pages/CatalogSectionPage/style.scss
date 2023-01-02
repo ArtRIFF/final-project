@@ -2,7 +2,7 @@
 @import '../../global_scss/vars.scss';
 
 .grid-wrapper {
-   padding: 40px 0 95px;
+   padding: 30px 0 95px;
    display: grid;
    grid-gap: 10px;
    grid-template-areas:
@@ -11,6 +11,18 @@
       "asideFilter filter"
       "asideFilter categoryCards"
       "asideFilter paginnation";
+   @media (max-width:1200px) {
+      margin-left: 110px;
+      margin-right: 110px;
+   }
+   @media (max-width:768px) {
+      margin-left: 25px;
+      margin-right: 45px;
+   }
+   @media (max-width:320px) {
+      margin-left: -10px;
+
+   }
 }
 
 .catalogPageImg-wrapper {
@@ -25,11 +37,14 @@
    }
 }
 
-.breadcrumbs-wrapper {
-   grid-area: breadcrumbs;
-   align-items: center;
+.breadcrumbs__catalog {
    margin-top: 30px;
-   margin-right: 30px;
+   @media (max-width: 1200px) {
+      margin-left: 110px;
+   }
+   @media (max-width: 768px) {
+      margin-left: 35px;
+   }
 }
 
 .asideFilter-wrapper {
@@ -37,6 +52,8 @@
       width: 0;
       overflow: hidden;
    }
+   
+
 
    grid-area: asideFilter;
    width: 300px;

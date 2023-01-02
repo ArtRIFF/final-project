@@ -53,12 +53,12 @@ const Login = () => {
       })
   }
   return (
-    <>
       <section className='login__section'>
         <div className="breadcrumbs_login">
           <Breadcrumbs/>
         </div>
-        <div className='container'>
+        <div className="container">
+        <div className='login__container'>
           <Formik
             initialValues={{
               email: '',
@@ -97,8 +97,8 @@ const Login = () => {
             )}
           </Formik>
         </div>
+        </div>
       </section>
-    </>
   )
 }
 

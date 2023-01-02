@@ -192,7 +192,7 @@ const ProductCard = (props) => {
   return (
     <CardContext.Provider value={{ oneCard, productComments }}>
       <div className="container">
-        <div className="card-breadcrumbs">
+        <div className="card__breadcrumbs">
           <Breadcrumbs />
         </div>
         <div className="product-card">
