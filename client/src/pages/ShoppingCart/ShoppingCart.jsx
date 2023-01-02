@@ -4,6 +4,7 @@ import Button from "../../components/Button/ButtonAll/ButtonAll";
 import { selectInCart } from "../../store/selectors";
 import { Link } from "react-router-dom";
 import ItemInCart from "./ItemInCart";
+import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 
 import "./ShoppingCart.scss";
 
@@ -19,7 +20,11 @@ const ShoppingCart = () => {
 
     return (
         <section className="cart-section container">
-           {!!inCart.length && <> 
+            <div className="container">
+            <div className="breadcrumbs__cart">
+                <Breadcrumbs />
+            </div>
+            {!!inCart.length && <> 
             <h3 className="cart-section__title">Order Summary</h3>
                 <div className="cart-section__wrapper">
                     <div className="cart-section__products">                    
@@ -49,6 +54,7 @@ const ShoppingCart = () => {
            </div>
            </>}
            {!inCart.length && <h3 className="cart-section__title">Your cart is empty</h3>}
+        </div>
         </section>
      );
  };

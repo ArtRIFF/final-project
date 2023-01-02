@@ -59,7 +59,7 @@ const ChangePassPage = () => {
           <Breadcrumbs/>
         </div>
         <div className="container">
-
+        <div className="change__pass-container">
           <Formik
             initialValues={{
               password: '',
@@ -106,7 +106,7 @@ const ChangePassPage = () => {
               </Form>
             )}
           </Formik>
-
+          </div>
         </div>
       </section>
     </div>

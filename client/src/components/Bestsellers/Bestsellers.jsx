@@ -31,21 +31,23 @@ const Bestsellers = (props) => {
   };
 
   return (
-    <section className="bestsellers container">
-      <div className="bestsellers__header">
-        <h2 className="bestsellers__title">Bestsellers</h2>
-        <Link to={"/Bestsellers"}>
-          <ButtonViewAll />
-        </Link>
-      </div>
-      <div className="bestsellers__cards-container">
-        {bestsellers.slice(0, numberOfItems()).map((card, index) => {
-          return (
-            <div key={index}>
-              <CategorySectionCard product={card} key={index} />
-            </div>
-          );
-        })}
+    <section className="bestsellers">
+      <div className="container">
+        <div className="bestsellers__header">
+          <h2 className="bestsellers__title">Bestsellers</h2>
+          <Link to={"/Bestsellers"}  className="btn__bestsellers">
+            <ButtonViewAll />
+          </Link>
+        </div>
+        <div className="bestsellers__cards-container">
+          {bestsellers.slice(0, numberOfItems()).map((card, index) => {
+            return (
+              <div key={index}>
+                <CategorySectionCard product={card} key={index} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

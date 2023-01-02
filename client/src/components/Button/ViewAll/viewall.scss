@@ -9,4 +9,7 @@
       content: ">";
       margin-left: 10px;
     }
+    @media (max-width: 320px) {
+      font-size: 10px;
+    }
 }

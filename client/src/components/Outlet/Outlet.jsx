@@ -31,21 +31,23 @@ const Outlet = (props) => {
   };
   return (
     <section className="outlet">
-      <div className="outlet__header">
-        <h2 className="outlet__title">Outlet</h2>
+      <div className="container">
+        <div className="outlet__header">
+          <h2 className="outlet__title">Outlet</h2>
 
-        <Link to={"/Outlet"}>
-          <ButtonViewAll />
-        </Link>
-      </div>
-      <div className="outlet__cards-container">
-        {outlet.slice(0, numberOfItems()).map((card, index) => {
-          return (
-            <div key={index}>
-              <CategorySectionCard product={card} />
-            </div>
-          );
-        })}
+          <Link to={"/Outlet"} className="btn__outlet">
+            <ButtonViewAll />
+          </Link>
+        </div>
+        <div className="outlet__cards-container">
+          {outlet.slice(0, numberOfItems()).map((card, index) => {
+            return (
+              <div key={index}>
+                <CategorySectionCard product={card} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
