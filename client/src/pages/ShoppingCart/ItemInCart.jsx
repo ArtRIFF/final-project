@@ -18,6 +18,8 @@ const ItemInCart = ({card}) => {
       }, [cardID]);
     
     const {name, article,currentPrice, imageUrls} = oneCard; 
+    const findPhoto = () => imageUrls[0];
+    
     let newCart =[]
     inCart.forEach(i => {newCart.push({...i})});
     const item = newCart.find(item => item.cardID === cardID);
@@ -39,8 +41,7 @@ const ItemInCart = ({card}) => {
     
     return(
         <div className="cart-section__products-item">
-            {/* <div><img src={`../${imageUrls[0]}`} alt={name}></img></div> */}
-            <div className="item-image"><img src='#' alt={name}></img></div>
+            {imageUrls !== undefined && <img className="item-image" src={`../${findPhoto()}`} alt={name}></img>}
             <div className="item-element">
                 <p className="item-name">{name}</p>
                 <p className="item-article">{article}</p>

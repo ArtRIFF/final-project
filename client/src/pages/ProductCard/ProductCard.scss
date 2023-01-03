@@ -13,7 +13,8 @@
     text-align: start;
   }
   &-additionally {
-    display: flex;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
     padding-top: 36px;
   }
   &-description {
@@ -115,7 +116,7 @@
     max-width: 350px;
   }
   .product-card__main-additionally {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
   .product-card__review-title {
     font-size: 35px;
