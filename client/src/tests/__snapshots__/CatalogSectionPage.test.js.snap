@@ -6,7 +6,7 @@ exports[`renders with snapshot 1`] = `
   onClick={[Function]}
 >
   <div
-    className="breadcrumbs-wrapper"
+    className="breadcrumbs__catalog"
   >
     <div
       className="breadcrumb container"
