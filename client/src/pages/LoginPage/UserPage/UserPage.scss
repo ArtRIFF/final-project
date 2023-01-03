@@ -25,8 +25,19 @@
   margin-bottom: 30px;
 }
 
-.container {
-  max-width: 1200px;
+.userpage__container,
+.change__pass-container {
+  @media (max-width: 1200px){
+    margin-left: 115px;
+    margin-right: 100px;
+  }
+  @media (max-width: 768px){
+    margin-left: 30px;
+    margin-right: 50px;
+  }
+  @media (max-width: 320px){
+    margin-right: 35px;
+  }
 }
 
 .login__breadcrumbs {
@@ -158,6 +169,7 @@
 .login__section-btn {
   display: flex;
   justify-content: end;
+  padding-top: 30px;
   @media screen and (max-width: $mobile-size) {
     justify-content: center;
   }

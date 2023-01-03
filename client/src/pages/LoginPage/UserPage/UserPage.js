@@ -65,6 +65,7 @@ const UserPage = () => {
           <Breadcrumbs/>
         </div>
         <div className="container">
+        <div className="userpage__container">
           <Formik
             initialValues={{
               login: userInfo?.login || "",
@@ -143,7 +144,7 @@ const UserPage = () => {
               password</NavLink>
             </h1>
           </div>
-
+          </div>
         </div>
       </section>
     </div>

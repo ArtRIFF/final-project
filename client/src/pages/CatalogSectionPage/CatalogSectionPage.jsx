@@ -2,7 +2,7 @@ import "./style.scss";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import AsideFilter from "./components/AsideFilter/AsideFilter";
-import Items from "./components/Pagination/Items";
+import CategoryCardsContainer from "./components/Pagination/CategoryCardsContainer";
 import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +18,6 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const [showAsideFilter, setModalRender] = useState(false);
   const [totalItems, setTotalItems] = useState(allCollectionArray.length);
 
-
   const callAsideFilter = () => {
     setModalRender(true);
   };
@@ -26,11 +25,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
-
-  const filterRequest = (array) => {
-    setFiltredArray(array);
-  };
-
+  
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
       ".asideFilter-wrapper--show"
@@ -40,7 +35,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     if (event && !isFilterElement && !isCallButton) {
       setModalRender(false);
     }
-  };
+  }; 
 
   const array = (filtredArray.length !== 0)
     ? filtredArray.length
@@ -51,147 +46,129 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const [itemsPerPage] = useState(12);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
-  const currentItems = allCollectionArray.slice(firstItemIndex, lastItemIndex);
+
   const [allCollectionArrayIsFiltered, setAllCollectionArrayIsFiltered] =
     useState(false);
+  const [hasAnyFilters, setHasAnyFilters] = useState();
+  const [showPagination, setShowPagination] = useState(true);
+  const currentItems = allCollectionArrayIsFiltered
+    ? filtredArray.slice(firstItemIndex, lastItemIndex)
+    : allCollectionArray.slice(firstItemIndex, lastItemIndex);
 
-  useEffect(() => {
-    if (filtredArray.length !== 0) {
-      setAllCollectionArrayIsFiltered(true);
-    } else {
-      setAllCollectionArrayIsFiltered(false);
-    }
-  }, [filtredArray]);
+useEffect(() => {
+  if (loading === true) {
+    setShowPagination(false);
+  } else if (hasAnyFilters === true && allCollectionArray.length === array) {
+    setShowPagination(false);
+  } else {
+    setShowPagination(true);
+  }
+}, [loading, hasAnyFilters, allCollectionArray.length, array]);
 
-  useEffect(() => {
-    if (allCollectionArray.length === 0) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [allCollectionArray]); //покласти стан в редакс для доступності
+const filterRequest = (array, hasAnyFilters) => {
+  setFiltredArray(array);
+  if (hasAnyFilters === true) {
+    setAllCollectionArrayIsFiltered(true);
+    setHasAnyFilters(true);
+  } else {
+    setAllCollectionArrayIsFiltered(false);
+    setHasAnyFilters(false);
+  }
+};
 
-    useEffect(() => {
-      if (allCollectionArrayIsFiltered === true) {
-        setTotalItems(filtredArray.length);
-      } else {
-        setTotalItems(allCollectionArray.length);
-      }
-    }, [
-      allCollectionArrayIsFiltered,
-      filtredArray.length,
-      allCollectionArray.length,
-    ]);
+useEffect(() => {
+  if (filtredArray.length !== 0) {
+    setAllCollectionArrayIsFiltered(true);
+  } else {
+    setAllCollectionArrayIsFiltered(false);
+  }
+}, [filtredArray]);
 
-      useEffect(() => {
-        if (filtredArray.length === allCollectionArray.length) {
-          setAllCollectionArrayIsFiltered(false);
-        }
-      }, [filtredArray.length, allCollectionArray.length]);
+useEffect(() => {
+  if (allCollectionArray.length === 0) {
+    setLoading(true);
+  } else {
+    setLoading(false);
+  }
+}, [allCollectionArray]); 
+
+useEffect(() => {
+  if (allCollectionArrayIsFiltered === true) {
+    setTotalItems(filtredArray.length);
+  } else {
+    setTotalItems(allCollectionArray.length);
+  }
+}, [
+  allCollectionArrayIsFiltered,
+  filtredArray.length,
+  allCollectionArray.length,
+]);
+
+useEffect(() => {
+  if (filtredArray.length === allCollectionArray.length) {
+    setAllCollectionArrayIsFiltered(false);
+  }
+}, [filtredArray.length, allCollectionArray.length]);
 
       return (
-    <div className="container" onClick={hideAsideFilter}>
-      <div className="breadcrumbs-wrapper">
-        <Breadcrumbs />
-      </div>
-      <div className="grid-wrapper">
-        <div className="catalogPageImg-wrapper">
-          <img
-            src="img/catalogSectionPage/CategorySectionMainImg.jpg"
-            alt="Category Section Main Imgage"
-          />
-        </div>
-        <aside
-          className={`${
-            showAsideFilter
-              ? "asideFilter-wrapper--show"
-              : "asideFilter-wrapper"
-          }`}
-        >
-          <AsideFilter
-            allCollectionArray={allCollectionArray}
-            filterRequest={filterRequest}
-          />
-        </aside>
-        <div className="filter-wrapper">
-          <CategoryFilter
-            onClickFunc={callAsideFilter}
-            setResult={array}
-            allCollectionArray={
-              filtredArray.length !== 0 ? filtredArray : allCollectionArray
-            }
-            filterRequest={filterRequest}
-          />
-        </div>
-        <div
-          style={{
-            backgroundColor: "rgba(100, 85, 45, 0.5)",
-            width: "850px",
-            height: "510px",
-          }}
-          className="categoryCards-wrapper"
-        >
-          {allCollectionArrayIsFiltered === false ? (
-            <Items
-              items={currentItems}
-              loading={loading}
-              filterSearchingResults={array}
-              allCollectionArrayIsFiltered={allCollectionArrayIsFiltered}
-              allCollectionArray={allCollectionArray}
-            />
-          ) : (
-            <div>
-              {filtredArray.length === 0
-                ? allCollectionArray.map((item, i) => {
-                    const {
-                      statusProduct,
-                      currentPrice,
-                      insertNumber,
-                      alt,
-                      bestseller,
-                      newProduct,
-                    } = item;
-                    return (
-                      <p key={i}>
-                        {i} statusProduct{statusProduct} insertNumber:
-                        {insertNumber} price:{currentPrice}alt:{alt} bestseller:
-                        {bestseller} newProduct:{newProduct}
-                      </p>
-                    );
-                  })
-                : filtredArray.map((item, i) => {
-                    const {
-                      currentPrice,
-                      insertNumber,
-                      statusProduct,
-                      categories,
-                      metal,
-                    } = item;
-                    return (
-                      <p key={i}>
-                        {i}statusProduct{statusProduct} statusProduct:
-                        {statusProduct} categories:{categories} price:
-                        {currentPrice}
-                      </p>
-                    );
-                  })}
+        <div className="container" onClick={hideAsideFilter}>
+          <div className="breadcrumbs__catalog">
+            <Breadcrumbs />
+          </div>
+          <div className="grid-wrapper">
+            <div className="catalogPageImg-wrapper">
+              <img
+                src="img/catalogSectionPage/CategorySectionMainImg.jpg"
+                alt="Category Section Main Imgage"
+              />
             </div>
-          )}
+            <aside
+              className={`${
+                showAsideFilter
+                  ? "asideFilter-wrapper--show"
+                  : "asideFilter-wrapper"
+              }`}
+            >
+              <AsideFilter
+                allCollectionArray={allCollectionArray}
+                filterRequest={filterRequest}
+              />
+            </aside>
+            <div className="filter-wrapper">
+              <CategoryFilter
+                onClickFunc={callAsideFilter}
+                setResult={array}
+                allCollectionArray={
+                  filtredArray.length !== 0 ? filtredArray : allCollectionArray
+                }
+                filterRequest={filterRequest}
+              />
+            </div>
+            <div className="categoryCards-wrapper">
+              <CategoryCardsContainer
+                items={currentItems}
+                loading={loading}
+                hasAnyFilters={hasAnyFilters}
+                filterSearchingResults={array}
+                allCollectionArray={allCollectionArray}
+              />
+            </div>
+            <div className="paginnation-wrapper">
+              {showPagination === false ? (
+                <div></div>
+              ) : (
+                <Pagination
+                  hasAnyFilters={hasAnyFilters}
+                  itemsPerPage={itemsPerPage}
+                  totalItems={totalItems}
+                  setCurrentPage={setCurrentPage}
+                  allCollectionArrayIsFiltered={allCollectionArrayIsFiltered}
+                />
+              )}
+            </div>
+          </div>
         </div>
-        <div className="paginnation-wrapper">
-          {loading === true ? (
-            <div></div>
-          ) : (
-            <Pagination
-              itemsPerPage={itemsPerPage}
-              totalItems={totalItems}
-              setCurrentPage={setCurrentPage}
-            />
-          )}
-        </div>
-      </div>
-    </div>
-  );
+      );
 };
 
 CatalogSectionPage.defaultProps = {

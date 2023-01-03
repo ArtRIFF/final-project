@@ -1,13 +1,21 @@
 @import "../../global_scss/vars";
 @import "../../global_scss/mixins";
+@import "../../global_scss/global_style.scss";
 
 .cart-section {
   font-family: $secondary-font;
+  
   &__title{
     padding-top: 21px;
     padding-bottom: 21px;
     font-weight: 600;
     font-size: 28px;
+    @media (max-width: 1200px) {
+      padding-left: 30px;
+    }
+    @media (max-width: 768px) {
+      padding-left: 0px;
+    }
   }
   &__wrapper{
     display: grid;
@@ -15,6 +23,10 @@
     gap: 10px;
     padding-bottom: 100px;
     box-sizing: border-box;
+    @media (max-width: 320px) {
+      display: block;
+      width: 260px;
+    }
   }
   &__products{
     &-item{
@@ -25,29 +37,43 @@
       padding: 40px 60px 40px 20px;
       margin-bottom: 20px;
       border: 1px solid #B7BAC0;
+      @media (max-width:320px) {
+        display: block;
+        padding-bottom: 20px;
+      }
       .item-image {
         max-width: 100px;
+        padding-bottom: 10px;
+        text-align: center;
       }
       .item-element{
         display: flex;
         flex-direction: column;
+        padding-bottom: 10px;
+        text-align: center;
       }
       .item-name{
         font-weight: 600;
         font-size: 18px;
         line-height: 23px;
         text-transform: uppercase;
+        padding-bottom: 10px;
+        text-align: center;
       }
       .item-article, .item-size{
         font-weight: 300;
         font-size: 14px;
         line-height: 18px;
-        color: #6E7582
+        color: #6E7582;
+        padding-bottom: 10px;
+        text-align: center;
       }
       .item-price{
         font-weight: 700;
         font-size: 24px;
         line-height: 30px;
+        padding-bottom: 10px;
+        text-align: center;
       }
       .counter {
         background-color: #F8F8F9;
@@ -58,6 +84,10 @@
           margin: 10px;
           cursor: pointer;
         } 
+        @media (max-width: 320px) {
+          padding: 10px 60px;
+          text-align: center;
+        }
       }
       .delete-item {
         position: absolute;
@@ -117,4 +147,39 @@
   background-color: white;
   color: $accent-color;
   border: 1px solid $accent-color;
+}
+
+.cart-section__wrapper {
+  @media (max-width: 1200px) {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  @media (max-width: 768px) {
+    margin-left: 40px;
+    margin-right: 75px;
+  }
+  @media (max-width: 320px) {
+    margin-left: 20px;
+    margin-right: 375px;//треба додати стилі на 320
+  }
+}
+
+.breadcrumbs__cart {
+    margin-top: 30px;
+    margin-left: -10px;
+    @media (max-width: 1200px) {
+        margin-left: 100px
+    }
+    @media (max-width: 768px) {
+        margin-left: 40px
+    }
+    @media (max-width: 320px) {
+        margin-left: 20px
+    }
+}
+
+.cart-section__title {
+  @media (max-width: 1200px) {
+    text-align: center;
+  }
 }

@@ -22,6 +22,18 @@
     align-items: center;
     margin-right: -40px;
     gap: 10px;
+    @media (max-width: 1200px) {
+      margin-right: 60px;
+      margin-left: 110px;
+    }
+    @media (max-width: 768px) {
+      margin-right: 20px;
+      margin-left: 40px;
+    }
+    @media (max-width: 320px) {
+      margin-right: 0px;
+      margin-left: 18px;
+    }
   }
 }
 
@@ -61,5 +73,29 @@
       line-height: 30px;
       margin: 15px;
     }
+  }
+}
+
+.btn__bestsellers {
+  @media (max-width: 1200px) {
+    margin-right: 105px;
+    }
+  @media (max-width: 768px) {
+    margin-right: 50px;
+  } 
+  @media (max-width: 320px) {
+    margin-right: 25px;
+  }
+}
+
+.bestsellers__header {
+  @media (max-width: 1200px) {
+    padding-left: 110px;
+  }
+  @media (max-width: 768px) {
+    padding-left: 10px;
+  }
+  @media (max-width: 320px) {
+    padding-left: 0px;
   }
 }

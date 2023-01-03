@@ -4,6 +4,7 @@
 .aside-filter {
   position: absolute;
   width: inherit;
+  z-index: 3;
 
   &__header {
     @include flex-kit(space-between);

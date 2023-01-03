@@ -1,17 +1,56 @@
 @import "../../global_scss/vars";
 @import "../../global_scss/mixins";
+@import "../../global_scss/global_style.scss";
 
 .wishlist-section {
     max-width: $notebook-size;
-    padding: 20px 0px 30px;
     margin: $margin-center;
     box-sizing: border-box;
+    margin-top: 30px;
+    @media (max-width: 1200px) {
+        margin-left: 75px;
+        margin-bottom: 30px;
+    }
+    @media (max-width: 768px) {
+        margin-left: 35px;
+    }
+    @media (max-width: 320px) {
+        margin-left: 30px;
+    }
     &__wrapper {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         align-items: center;
-        margin-right: -40px;
         gap: 10px;
+        @media (max-width: 1200px) {
+            margin-left: 35px;
+        }
+        @media (max-width: 768px) {
+            margin-left: 0px;
+            grid-template-columns: repeat(3, 1fr)
+        }
+        @media (max-width: 320px) {
+            margin-left: 0px;
+            grid-template-columns: repeat(1, 1fr)
+        }
     }
+}
 
+.cart-section__title {
+    text-align: center;
+    @media (max-width: 1200px) {
+        text-align: center;
+    }
+    @media (max-width: 320px) {
+        margin-right: 20px;
+    }
+}
+
+.breadcrumbs__wishlist {
+    @media (max-width: 1200px) {
+        margin-left: 35px
+    }
+    @media (max-width: 768px) {
+        margin-left: 0px
+    }
 }

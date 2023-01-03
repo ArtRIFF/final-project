@@ -271,4 +271,7 @@
     @media (max-width: $mobile-size) {
         @include font-value(400, 12px, 22px);
     }
+    @media (max-width: 320px) {
+        margin-bottom: -100px;
+    }
 }

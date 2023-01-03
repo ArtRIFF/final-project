@@ -14,6 +14,7 @@ import {useSelector} from "react-redux";
 import {selectInCart} from "../../store/selectors";
 import Button from "../../components/Button/ButtonAll/ButtonAll";
 import {NavLink} from "react-router-dom";
+import Breadcrumbs from "../../pages/CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 
 const CheckOutPage = () => {
   const [contactInfo, setContactInfo] = useState(null);
@@ -94,7 +95,10 @@ const CheckOutPage = () => {
   };
 
   return (
-    <section className="">
+    <div className="container login">
+      <div className="breadcrumbs_login">
+          <Breadcrumbs />
+      </div>
       <form onSubmit={handleFormSubmit}>
         <ContactInfoPage onContactInfoReady={(e) => setContactInfo(e)}/>
         <ShipAddress onShippingReady={setShipping}/>
@@ -129,7 +133,7 @@ const CheckOutPage = () => {
         </p>
         : <span></span>}
 
-    </section>
+    </div>
   );
 };
 export default CheckOutPage;
