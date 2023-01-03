@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders with a text result 1`] = `
+exports[`renders with snapshot 1`] = `
 <div
   className="category-filter"
 >
@@ -25,6 +25,7 @@ exports[`renders with a text result 1`] = `
     </span>
   </div>
   <select
+    data-testid="select-sortBy"
     defaultValue="DEFAULT"
     name="select-sortBy"
     onChange={[Function]}

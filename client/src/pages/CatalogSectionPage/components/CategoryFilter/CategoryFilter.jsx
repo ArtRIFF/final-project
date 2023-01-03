@@ -53,7 +53,7 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
         <ButtonAll text='Filter' className='section__btn-subscribe' />
       </div>
       <div className='category-filter__result'>Results: <span>{!setResult && hasAnyFilters?setResult:allCollectionArray.length}</span></div>
-      <select onChange={onSelectorChange} name="select-sortBy" defaultValue={'DEFAULT'} >
+      <select data-testid='select-sortBy' onChange={onSelectorChange} name="select-sortBy" defaultValue={'DEFAULT'} >
         <option value="DEFAULT" disabled>Sort by</option>
         <option value="price">Price</option>
         <option value="newest">Newest</option>

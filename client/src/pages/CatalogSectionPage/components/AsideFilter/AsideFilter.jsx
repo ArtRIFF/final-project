@@ -1,7 +1,7 @@
 import './style.scss';
 import { useState, useEffect } from 'react';
 
-const AsideFilter = ({ allCollectionArray, filterRequest, checkResult }) => {
+const AsideFilter = ({ allCollectionArray, filterRequest }) => {
   const [productsType, setProductsType] = useState([]);
   const [metalType, setMetalType] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
