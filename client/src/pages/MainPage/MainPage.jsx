@@ -11,13 +11,13 @@ const MainPage = () => {
   return (
     <>
       <HeroSection />
-      {/* <Bestsellers />
+      <Bestsellers />
       <Outlet />
       <NewsSection />
       <CollectionSection />
-      <CategorySection /> */}
-      {/* <OurAdvantageSeciton />
-      <SubscribeSection /> */}
+      <CategorySection />
+      <OurAdvantageSeciton />
+      <SubscribeSection />
     </>
   );
 };
