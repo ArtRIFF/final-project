@@ -1,7 +1,7 @@
 import React, { useEffect, createContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
 import { getOneCard, getComments } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";

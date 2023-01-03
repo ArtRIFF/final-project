@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { sendRequest, getCards } from "../helpers/sendRequest";
+import { getCards } from "../helpers/sendRequest";
 
 export const setModalRender = createAction("SET_MODAL_RENDER");
 export const setAllCollectionProduct = createAction(
