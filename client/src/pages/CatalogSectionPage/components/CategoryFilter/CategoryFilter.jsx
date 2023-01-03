@@ -34,7 +34,6 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
   const onSelectorChange = (e) => {
     const dontHaveResult = !setResult && hasAnyFilters;
     if (!dontHaveResult) {
-    console.log("DFDF");
     switch (e.target.value) {
       case "price":
         sortByPrice();
@@ -69,7 +68,8 @@ CategoryFilter.propTypes = {
 };
 
 CategoryFilter.defaultProps = {
-  onClickFunc: null
+  onClickFunc: null,
+  hasAnyFilters: true
 };
 
 export default CategoryFilter;

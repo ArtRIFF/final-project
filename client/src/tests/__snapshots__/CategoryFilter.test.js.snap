@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with a text result 1`] = `
+<div
+  className="category-filter"
+>
+  <div
+    className="category-filter--btn"
+    onClick={[MockFunction]}
+  >
+    <div>
+      <button
+        className="section__btn-subscribe"
+      >
+        Filter
+      </button>
+    </div>
+  </div>
+  <div
+    className="category-filter__result"
+  >
+    Results: 
+    <span>
+      0
+    </span>
+  </div>
+  <select
+    defaultValue="DEFAULT"
+    name="select-sortBy"
+    onChange={[Function]}
+  >
+    <option
+      disabled={true}
+      value="DEFAULT"
+    >
+      Sort by
+    </option>
+    <option
+      value="price"
+    >
+      Price
+    </option>
+    <option
+      value="newest"
+    >
+      Newest
+    </option>
+    <option
+      value="bestseller"
+    >
+      Bestseller
+    </option>
+  </select>
+</div>
+`;
