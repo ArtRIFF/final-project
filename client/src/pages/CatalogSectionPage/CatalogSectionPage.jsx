@@ -112,7 +112,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
 
   return (
     <div className="container" onClick={hideAsideFilter}>
-      <div className="breadcrumbs-wrapper">
+      <div className="breadcrumbs__catalog">
         <Breadcrumbs />
       </div>
       <div className="grid-wrapper">

@@ -145,6 +145,12 @@
   }
 }
 
-.card-breadcrumbs {
+.card__breadcrumbs {
   padding-top: 30px;
+  @media (max-width: 1200px) {
+    padding-left: 110px;
+  }
+  @media (max-width: 1200px) {
+    padding-left: 30px;
+  }
 }

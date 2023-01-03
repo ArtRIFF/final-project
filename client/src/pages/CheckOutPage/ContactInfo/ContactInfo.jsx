@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ContactInfo.scss";
 import { NavLink } from "react-router-dom";
 
-import Breadcrumbs from "../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
+
 import {useContext} from "react";
 import {UserContext} from "../../../context/UserContext";
 
@@ -34,9 +34,6 @@ const ContactInfoPage = (props) => {
 
   return (
     <div>
-      <div className="breadcrumbs_login">
-          <Breadcrumbs />
-      </div>
       <section className="contact-info-section">
         <div className="contact-info-section__wrap">
           <p className="contact-info-section__title">1. Contact Information</p>
