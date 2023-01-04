@@ -2,7 +2,7 @@ import './style.scss';
 import ButtonAll from '../../../../components/Button/ButtonAll/ButtonAll';
 import PropTypes from 'prop-types';
 
-const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionArray }) => {
+const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionArray,hasAnyFilters }) => {
 
   const sortByNewest = () => {
     const sortedArray = allCollectionArray.slice().sort((a, b) => {
@@ -32,6 +32,8 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
   }
 
   const onSelectorChange = (e) => {
+    const dontHaveResult = !setResult && hasAnyFilters;
+    if (!dontHaveResult) {
     switch (e.target.value) {
       case "price":
         sortByPrice();
@@ -43,14 +45,15 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
         sortByBestseller();
         break;
     }
+  }
   };
   return (
     <div className="category-filter">
       <div onClick={onClickFunc} className='category-filter--btn'>
         <ButtonAll text='Filter' className='section__btn-subscribe' />
       </div>
-      <div className='category-filter__result'>Results: <span>{setResult}</span></div>
-      <select onChange={onSelectorChange} name="select-sortBy" defaultValue={'DEFAULT'} >
+      <div className='category-filter__result'>Results: <span>{!setResult && hasAnyFilters?setResult:allCollectionArray.length}</span></div>
+      <select data-testid='select-sortBy' onChange={onSelectorChange} name="select-sortBy" defaultValue={'DEFAULT'} >
         <option value="DEFAULT" disabled>Sort by</option>
         <option value="price">Price</option>
         <option value="newest">Newest</option>
@@ -65,7 +68,8 @@ CategoryFilter.propTypes = {
 };
 
 CategoryFilter.defaultProps = {
-  onClickFunc: null
+  onClickFunc: null,
+  hasAnyFilters: true
 };
 
 export default CategoryFilter;
