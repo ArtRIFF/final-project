@@ -7,9 +7,11 @@ import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
+
 const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
 
@@ -169,6 +171,10 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
       </div>
     </div>
   );
+};
+
+CatalogSectionPage.propTypes = {
+  alreadyFilteredArray: PropTypes.array
 };
 
 CatalogSectionPage.defaultProps = {

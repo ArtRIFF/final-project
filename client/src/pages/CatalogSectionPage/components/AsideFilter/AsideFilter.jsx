@@ -1,5 +1,6 @@
 import './style.scss';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const AsideFilter = ({ allCollectionArray, filterRequest }) => {
   const [productsType, setProductsType] = useState([]);
@@ -405,4 +406,10 @@ const AsideFilter = ({ allCollectionArray, filterRequest }) => {
     </div>
   );
 };
+
+AsideFilter.propTypes = {
+  alreadyFilteredArray: PropTypes.array,
+  filterRequest: PropTypes.func
+};
+
 export default AsideFilter;

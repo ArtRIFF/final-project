@@ -64,7 +64,11 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
 };
 
 CategoryFilter.propTypes = {
-  onClickFunc: PropTypes.func
+  onClickFunc: PropTypes.func,
+  setResult: PropTypes.number,
+  filterRequest: PropTypes.func,
+  allCollectionArray: PropTypes.array,
+  hasAnyFilters: PropTypes.bool
 };
 
 CategoryFilter.defaultProps = {
