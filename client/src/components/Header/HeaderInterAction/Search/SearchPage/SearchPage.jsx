@@ -20,7 +20,7 @@ const SearchPage = () => {
         </div>
             {AllCollectionProduct.slice(0, numberOfItems).map((card, index) => {
           return (
-            <div className="result__search">
+            <div key={index} className="result__search">
             {/* // <Link key={index} to={`products/${card.itemNo}`}> */}
               <CollectionSectionCard product={card} className="result__card"/>
             {/* // </Link> */}

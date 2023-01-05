@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";

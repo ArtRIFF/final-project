@@ -1,9 +1,8 @@
-import React, { useEffect, useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import ButtonViewAll from "../../../components/Button/ViewAll/ViewAll";
 import CategorySectionCard from "../../../components/CatalogSection/CategorySectionCard";
 
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AdditionalProducts = (props) => {
   const sectionTitle = props.sectionTitle;
