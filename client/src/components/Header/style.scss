@@ -63,6 +63,15 @@
   @media (max-width: 768px) {
     margin-right: 15px;
   }
+  @media (max-width: 620px) {
+    margin-left: 5px;
+  }
+  @media (max-width: 520px) {
+    margin-left: 5px;
+  }
+  @media (max-width: 420px) {
+    margin-left: 5px;
+  }
   @media (max-width: 320px) {
     margin-left: 5px;
   }
@@ -131,14 +140,22 @@
   @media (max-width:768px) {
     margin-left: 100px;
   }  
-  @media (max-width:500px) {
+  @media (max-width:620px) {
     margin-top: 5px;
     margin-left: 20px;
+    display: block;
+    margin-right: 15px;
   }  
-  @media (max-width:400px) {
+  @media (max-width:520px) {
+    margin-top: 5px;
+    margin-left: 20px;
+    display: block;
+    margin-right: 15px;
+  }  
+  @media (max-width:420px) {
     margin-top: 5px;
     margin-left: -60px;
-    margin-right: 50px;
+    margin-right: 15px;
     display: block;
   }  
   @media (max-width:320px) {
@@ -160,6 +177,15 @@ nav {
   display: none;
   @media (max-width: $desktop-size) {
     display: block;
+  }
+  @media (max-width: 620px) {
+    margin-right: 120px;
+  }
+  @media (max-width: 520px) {
+    margin-right: 100px;
+  }
+  @media (max-width: 420px) {
+    margin-right: 150px;
   }
   @media (max-width: $mobile-size) {
     margin-left: -30px;
@@ -230,6 +256,18 @@ nav {
   margin-right: 25%;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 620px) {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  @media (max-width: 520px) {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  @media (max-width: 420px) {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
   @media (max-width: 320px) {
     margin-left: 12.5%;
     margin-right: 12.5%;
