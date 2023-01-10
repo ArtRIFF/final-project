@@ -92,7 +92,8 @@ const Footer = () => {
                 <ButtonAll text='Subscribe' className='section__btn-footer' onClick={handleSubmit}/>
               </div>
               <div className='footer__media'>
-                <svg className='social' width="32" height="32" viewBox="0 0 32 32" fill="none"
+                <a href="https://www.facebook.com/daniteducation/">
+                  <svg className='social' width="32" height="32" viewBox="0 0 32 32" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_b_128_16815)">
                     <rect width="32" height="32" rx="16" fill="#EDE8E7"/>
@@ -116,6 +117,8 @@ const Footer = () => {
                     </clipPath>
                   </defs>
                 </svg>
+                </a>
+                <a href="https://www.instagram.com/daniteducation/">
                 <svg className='social' width="32" height="32" viewBox="0 0 32 32" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_b_128_16818)">
@@ -146,6 +149,8 @@ const Footer = () => {
                     </clipPath>
                   </defs>
                 </svg>
+                </a>
+                <a href="https://www.linkedin.com/company/dan-it-education/">
                 <svg className='social' width="32" height="32" viewBox="0 0 32 32" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_b_128_16823)">
@@ -176,6 +181,7 @@ const Footer = () => {
                     </clipPath>
                   </defs>
                 </svg>
+                </a>
               </div>
             </div>
 

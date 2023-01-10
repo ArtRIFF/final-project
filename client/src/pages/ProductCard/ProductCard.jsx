@@ -210,9 +210,9 @@ const ProductCard = (props) => {
                 thumbs={{ swiper: aciveThumb }}
               >
                 {imageUrls !== undefined &&
-                  imageUrls.map((photo) => {
+                  imageUrls.map((photo,index) => {
                     return (
-                      <SwiperSlide key={article}>
+                      <SwiperSlide key={index}>
                         <img src={`../${photo}`} alt={name}></img>
                         {discount > 0 && (
                           <div className="category-card__sale product-card-sale">
@@ -246,9 +246,9 @@ const ProductCard = (props) => {
               >
                 <div className="product-card-photo-slider-thumbs-wrapper">
                   {imageUrls !== undefined &&
-                    imageUrls.map((photo) => {
+                    imageUrls.map((photo,index) => {
                       return (
-                        <SwiperSlide key={itemNo}>
+                        <SwiperSlide key={index}>
                           <img src={`../${photo}`} alt={name}></img>
                         </SwiperSlide>
                       );
