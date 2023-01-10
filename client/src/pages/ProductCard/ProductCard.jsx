@@ -120,10 +120,7 @@ const ProductCard = (props) => {
   };
   // <img class="category-card__image" src="../img/galery/pendants/Pendant_014.jpg" alt="necklece pendant"></img>
 
-  const oldPrice = (currentPrice, discount) => {
-    const discountPrice = (currentPrice / 100) * discount;
-    return currentPrice - discountPrice;
-  };
+  const oldPrice = (currentPrice, discount) => Math.round((currentPrice * 100) / (100 - discount));
 
   const handleChange = (e) => setSelectedSize(e.target.value);
 
@@ -149,6 +146,7 @@ const ProductCard = (props) => {
                 quantity: 1,
                 size: selectedSize,
                 price: currentPrice,
+                discount:discount,
               })
             );
           }
@@ -160,6 +158,7 @@ const ProductCard = (props) => {
             quantity: 1,
             size: selectedSize,
             price: currentPrice,
+            discount:discount,
           })
         );
       }

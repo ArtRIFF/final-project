@@ -16,10 +16,7 @@ const CategorySectionCard = (props) => {
     itemNo,
   } = product;
 
-  const oldPrice = (currentPrice, discount) => {
-    const discountPrice = (currentPrice / 100) * discount;
-    return currentPrice + discountPrice;
-  };
+  const oldPrice = (currentPrice, discount) => Math.round((currentPrice * 100) / (100 - discount));
 
   return (
     <Link to={`/products/${itemNo}`} replace>
