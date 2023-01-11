@@ -181,4 +181,5 @@ CatalogSectionPage.defaultProps = {
   alreadyFilteredArray: [],
 };
 
+export function setCurrentPage() {};
 export default CatalogSectionPage;
