@@ -82,93 +82,91 @@ const App = () => {
     <>
       <UserContextProvider>
         <Header />
-        <CatalogSectionPage/>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          {/* <Route path="" element={<Header />} /> */}
+          {/* <Route path="/cart" element={<CheckOutPage/>}/> */}
+          <Route path="/userPage" element={<UserPage />} />
+          <Route path="/changeUserPassword" element={<ChangePass />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route
+            path="/NewCollection"
+            element={<CatalogSectionPage arrProduct={newCollectionArray} />}
+          />
+          <Route
+            path="/Earrings"
+            element={<CatalogSectionPage arrProduct={earringsArray} />}
+          />
+          <Route
+            path="/Bracelets"
+            element={<CatalogSectionPage arrProduct={braceletsArray} />}
+          />
+          <Route
+            path="/Pendant"
+            element={<CatalogSectionPage arrProduct={pendantArray} />}
+          />
+          <Route
+            path="/Rings"
+            element={<CatalogSectionPage arrProduct={ringsArray} />}
+          />
+          <Route
+            path="/Pearl"
+            element={<CatalogSectionPage arrProduct={pearlArray} />}
+          />
+          <Route
+            path="/Cross"
+            element={<CatalogSectionPage arrProduct={crossArray} />}
+          />
+          <Route
+            path="/Bestsellers"
+            element={<CatalogSectionPage arrProduct={bestsellers} />}
+          />
+          <Route
+            path="/Outlet"
+            element={<CatalogSectionPage arrProduct={outlet} />}
+          />
+          {/* <Route path="" element={}/> */}
+          <Route path="/our_production" element={<OurProductionPage />} />
+          {/* <Route path="" element={}/> */}
+          <Route path="/search" element={<SearchPage />} />
+          {/* <Route path="" element={}/> */}
+          <Route path="/jewelry" element={<CatalogSectionPage />} />
+          <Route
+            path="products/:cardID"
+            element={
+              <ProductCard
+                modalActive={modalActive}
+                setModalActive={setModalActive}
+                setModalText={setModalText}
+                earringsArray={earringsArray}
+                braceletsArray={braceletsArray}
+                pendantArray={pendantArray}
+                ringsArray={ringsArray}
+                pearlArray={pearlArray}
+                crossArray={crossArray}
+                bestsellers={bestsellers}
+              />
+            }
+          />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/checkout" element={<CheckOutPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/constract" element={<UnderConstractionPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <ModalWindow
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+          modalText={modalText}
+          setModalText={setModalText}
+        />
+        <Footer />
       </UserContextProvider>
     </>
   );
 };
 
 export default App;
-
-// {/* <Routes>
-// <Route path="/" element={<MainPage />} />
-// {/* <Route path="" element={<Header />} /> */}
-// {/* <Route path="/cart" element={<CheckOutPage/>}/> */}
-// <Route path="/userPage" element={<UserPage />} />
-// <Route path="/changeUserPassword" element={<ChangePass/>}/>
-// <Route path="/login" element={<Login />} />
-// <Route path="/registration" element={<Registration />} />
-// <Route
-//   path="/NewCollection"
-//   element={<CatalogSectionPage arrProduct={newCollectionArray} />}
-// />
-// <Route
-//   path="/Earrings"
-//   element={<CatalogSectionPage arrProduct={earringsArray} />}
-// />
-// <Route
-//   path="/Bracelets"
-//   element={<CatalogSectionPage arrProduct={braceletsArray} />}
-// />
-// <Route
-//   path="/Pendant"
-//   element={<CatalogSectionPage arrProduct={pendantArray} />}
-// />
-// <Route
-//   path="/Rings"
-//   element={<CatalogSectionPage arrProduct={ringsArray} />}
-// />
-// <Route
-//   path="/Pearl"
-//   element={<CatalogSectionPage arrProduct={pearlArray} />}
-// />
-// <Route
-//   path="/Cross"
-//   element={<CatalogSectionPage arrProduct={crossArray} />}
-// />
-// <Route
-//   path="/Bestsellers"
-//   element={<CatalogSectionPage arrProduct={bestsellers} />}
-// />
-// <Route
-//   path="/Outlet"
-//   element={<CatalogSectionPage arrProduct={outlet} />}
-// />
-// {/* <Route path="" element={}/> */}
-// <Route path="/our_production" element={<OurProductionPage />} />
-// {/* <Route path="" element={}/> */}
-// <Route path="/search" element={<SearchPage />} />
-// {/* <Route path="" element={}/> */}
-// <Route path="/jewelry" element={<CatalogSectionPage />} />
-// <Route
-//   path="products/:cardID"
-//   element={
-//     <ProductCard
-//       modalActive={modalActive}
-//       setModalActive={setModalActive}
-//       setModalText={setModalText}
-//       earringsArray={earringsArray}
-//       braceletsArray={braceletsArray}
-//       pendantArray={pendantArray}
-//       ringsArray={ringsArray}
-//       pearlArray={pearlArray}
-//       crossArray={crossArray}
-//       bestsellers={bestsellers}
-//     />
-//   }
-// />
-// <Route path="/wishlist" element={<WishList/>}/>
-// <Route path="/cart" element={<ShoppingCart />} />
-// <Route path="/checkout" element={<CheckOutPage />} />
-// <Route path="/contact" element={<Contact />} />
-// <Route path="/about" element={<AboutUs />} />
-// <Route path="/constract" element={<UnderConstractionPage />} />
-// <Route path="*" element={<ErrorPage />} />
-// </Routes>
-// <ModalWindow
-// modalActive={modalActive}
-// setModalActive={setModalActive}
-// modalText={modalText}
-// setModalText={setModalText}
-// />
-// <Footer /> */}
