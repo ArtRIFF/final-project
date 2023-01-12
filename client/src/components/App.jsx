@@ -82,6 +82,7 @@ const App = () => {
     <>
       <UserContextProvider>
         <Header />
+        <CatalogSectionPage/>
       </UserContextProvider>
     </>
   );
