@@ -12,31 +12,24 @@
   box-sizing: border-box;
   margin: $margin-center;
   box-sizing: border-box;
+
   &__title {
     text-align: center;
     margin: 30px;
   }
+
   &__content {
     position: relative;
     display: grid;
     grid-template-columns: 20% 80%;
     align-items: center;
     gap: 10px;
+
     &-sidebar {
       display: flex;
       flex-direction: column;
-      margin-right: 70px;
-      @media (max-width: 1200px) {
-        margin-right: -25px;
-      }
-      @media (max-width: 768px) {
-        margin-right: 10px;
-      }
-      @media (max-width: 768px) {
-        margin-right: 20px;
-        margin-left: 5px;
-      }
-
+      width: 100%;
+      align-items: flex-start;
 
       &__link {
         color: #b5abaa;
@@ -53,7 +46,7 @@
   .swiper-button-next {
     background-image: url("./img/icon.png");
     position: absolute;
-    right: -6px;
+    right: 0;
     width: 56px;
   }
 
@@ -63,15 +56,18 @@
     background-size: contain;
     background-position: center;
   }
+
   .swiper-button-prev::after,
   .swiper-button-next::after {
     display: none;
   }
 }
+
 .active {
   color: $accent-color;
   font-weight: bold;
 }
+
 @media screen and (max-width: $desktop-size) {
   .category {
     &__title {
@@ -79,6 +75,7 @@
     }
   }
 }
+
 @media screen and (max-width: 591px) {
   .category {
     &__content {
@@ -91,6 +88,7 @@
     }
   }
 }
+
 @media screen and (max-width: 481px) {
   .collection-section {
     &__header {
@@ -101,30 +99,49 @@
   }
 }
 
-.category__content-cards {
-  @media (max-width: 1200px) {
-    margin-right: 50px;
-  }
-  @media (max-width: 768px) {
-    // margin-right: 15px;
-  }
-  @media (max-width: 320px) {
-    margin-right: 5px;
-  }
+.swiper-slide a {
+  display: inline-block;
 }
 
-.category__container {
-  @media (max-width: 1200px) {
-    margin-left: 20px;
-    margin-right: 20px;
+@media (max-width: 840px) {
+  .category-card {
+    margin-right: 0px;
   }
-  @media (max-width: 768px) {
-    margin-left: 10px;
-    margin-right: 10px;
+
+  .swiper-slide {
+    visibility: hidden;
   }
-  @media (max-width: 768px) {
-    margin-left: 0px;
-    // margin-right: 10px;
+
+  .swiper-slide-active {
+    visibility: visible;
+    margin-right: 40px;
   }
+
+  .swiper-slide-next {
+    visibility: visible;
+  }
+
+  @media (max-width: 480px) {
+    .category-card {
+      width: 200px;
+    }
+    .swiper-slide {
+      visibility: hidden;
+    }
+
+    .swiper-slide-active {
+      max-width: 250px;
+      visibility: visible;
+    }
+
+    .swiper-slide-next {
+      visibility: hidden;
+    }
+
+    .swiper {
+      margin-left: 20px;
+    }
+  }
+
 
 }

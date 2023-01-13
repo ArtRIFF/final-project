@@ -55,6 +55,7 @@
     }
   }
   &__input-email {
+    width: 100%;
     padding: 12px 170px 12px 12px;
     @include font-value(400, 16px, 140%);
     font-family: $secondary-font;
