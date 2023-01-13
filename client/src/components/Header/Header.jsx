@@ -80,7 +80,6 @@ const Header = ({active, setActive}) => {
     return (
       <header className="header">
         <div className="container">
-          <div className="header__info">
             <div className="header__container">
                     <NavLink to="/">
                       <img
@@ -204,7 +203,7 @@ const Header = ({active, setActive}) => {
                 </div>
               </div>
             </div>
-          </div>
+
         </div>
       </header>
     );
