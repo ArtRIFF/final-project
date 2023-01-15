@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectInFavorite, selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
-// import { Link } from "react-router-dom";
 import CategorySectionCard from "../../components/CatalogSection/CategorySectionCard";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 import "./WishList.scss"

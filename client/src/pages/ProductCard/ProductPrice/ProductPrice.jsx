@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";
@@ -69,8 +69,8 @@ const ProductPrice = (props) => {
           >
             <option value="not choose"></option>
             {size !== undefined &&
-              size.split(",").map((el) => {
-                return <option value={el}>{el}</option>;
+              size.split(",").map((el, index) => {
+                return <option key={index} value={el}>{el}</option>;
               })}
           </select>
           <div className="select-arrow"></div>

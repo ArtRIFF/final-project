@@ -11,18 +11,6 @@
       "asideFilter filter"
       "asideFilter categoryCards"
       "asideFilter paginnation";
-   @media (max-width:1200px) {
-      margin-left: 110px;
-      margin-right: 110px;
-   }
-   @media (max-width:768px) {
-      margin-left: 25px;
-      margin-right: 45px;
-   }
-   @media (max-width:320px) {
-      margin-left: -10px;
-
-   }
 }
 
 .catalogPageImg-wrapper {
@@ -39,9 +27,11 @@
 
 .breadcrumbs__catalog {
    margin-top: 30px;
+
    @media (max-width: 1200px) {
       margin-left: 110px;
    }
+
    @media (max-width: 768px) {
       margin-left: 35px;
    }
@@ -52,7 +42,7 @@
       width: 0;
       overflow: hidden;
    }
-   
+
 
 
    grid-area: asideFilter;
@@ -92,6 +82,15 @@
 
 .categoryCards-wrapper {
    min-height: 350px;
+
+   @media (max-width: 1196px) {
+      min-height: 580px;
+   }
+
+   @media (max-width: $desktop-size) {
+      min-height: 580px;
+   }
+
    grid-area: categoryCards;
    overflow: hidden;
 }

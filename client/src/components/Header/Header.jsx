@@ -1,29 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.scss";
 import { NavLink } from 'react-router-dom';
-// search
+
 import "./HeaderInterAction/Search/SearchPage/SearchPage.scss";
 import "./HeaderInterAction/SearchBurger/SearchPageBurger/SearchPageBurger.scss";
-//SEARCH BURGER and search
+
 import {sendRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
 import Button from "../Button/ButtonAll/ButtonAll";
-//cart
+
 import { ReactComponent as CartIcon} from "../Header/HeaderInterAction/img/CartIcon.svg";
 import { selectInCart } from "../../store/selectors";
 import { useSelector } from "react-redux";
-//login-registration
+
 import {Menu, MenuItem} from "@mui/material";
 import {ReactComponent as LoginIcon} from "../Header/HeaderInterAction/img/Registrationicon.svg";
 import {UserContext} from "../../context/UserContext";
 
 const Header = ({active, setActive}) => {
-  // burger menu start 
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState("menu hidden");
   const [isMenuCliked, setIsMenuClicked] = useState(false);
 
-  // toggle burger menu change
   const updateMenu = () => {
     if (!isMenuCliked) {
       setBurgerClass("burger-bar clicked");
@@ -34,8 +32,7 @@ const Header = ({active, setActive}) => {
     }
     setIsMenuClicked(!isMenuCliked);
   };
-  // burger menu finish
-  // SEARCH BURGER START
+
   const [searchPhrase, setSearchPhrase] = useState("");
     const handleSubmit = () => {
       const newSearchPhrases = {
@@ -57,15 +54,13 @@ const Header = ({active, setActive}) => {
         .catch(e => {
           console.error(e);
         })}
-  // SEARCH BURGER FINISH
-  // cart section start
+
   const inCart = useSelector(selectInCart);
     let itemsInCart;
     if (inCart.length > 0) {
         itemsInCart = inCart.reduce((acc, cur) => acc + cur.quantity, 0)
     }
-  // cart section finish
-  // login start
+
   const {userInfo, setUserInfo, clearToken} = useContext(UserContext);
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -82,11 +77,9 @@ const Header = ({active, setActive}) => {
     setUserInfo(null);
     clearToken()
   }
-  // login finish
     return (
       <header className="header">
         <div className="container">
-          <div className="header__info">
             <div className="header__container">
                     <NavLink to="/">
                       <img
@@ -201,7 +194,7 @@ const Header = ({active, setActive}) => {
                   >
                     <NavLink to={userInfo ? "/userPage" : "/login"}>
                       <MenuItem  onClick={handleClose} style={{color: "black"}}
-                      > {userInfo ? "My account" : "Log in"}</MenuItem>
+                      > {userInfo ? "My account" : "Log In"}</MenuItem>
                     </NavLink>
                     <NavLink to={userInfo ? "/" : "/registration"}>
                       <MenuItem style={{color: "black"}} onClick={userInfo ? handleLogOut : handleClose}>{userInfo ? "Logout" : "Registration"}</MenuItem>
@@ -210,25 +203,9 @@ const Header = ({active, setActive}) => {
                 </div>
               </div>
             </div>
-          </div>
+
         </div>
       </header>
-
-      // <section className="header-wrap">
-      //   <div className="container">
-      //     <div className="header-wrap__display ">
-      //         <NavLink to="/">
-      //           <img
-      //           src="img/header-icon/logoHeader.svg"
-      //           className="header-logo"
-      //           alt="logo"
-      //           />
-      //         </NavLink>
-      //         <HeaderNav />
-      //         <HeaderInterAction />
-      //     </div>
-      //   </div>
-      // </section>
     );
   }
 

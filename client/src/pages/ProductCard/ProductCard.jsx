@@ -1,7 +1,7 @@
 import React, { useEffect, createContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
 import { getOneCard, getComments } from "../../helpers/sendRequest";
 import ProductPrice from "./ProductPrice";
@@ -120,10 +120,7 @@ const ProductCard = (props) => {
   };
   // <img class="category-card__image" src="../img/galery/pendants/Pendant_014.jpg" alt="necklece pendant"></img>
 
-  const oldPrice = (currentPrice, discount) => {
-    const discountPrice = (currentPrice / 100) * discount;
-    return currentPrice - discountPrice;
-  };
+  const oldPrice = (currentPrice, discount) => Math.round((currentPrice * 100) / (100 - discount));
 
   const handleChange = (e) => setSelectedSize(e.target.value);
 
@@ -149,6 +146,7 @@ const ProductCard = (props) => {
                 quantity: 1,
                 size: selectedSize,
                 price: currentPrice,
+                discount:discount,
               })
             );
           }
@@ -160,6 +158,7 @@ const ProductCard = (props) => {
             quantity: 1,
             size: selectedSize,
             price: currentPrice,
+            discount:discount,
           })
         );
       }
@@ -211,9 +210,9 @@ const ProductCard = (props) => {
                 thumbs={{ swiper: aciveThumb }}
               >
                 {imageUrls !== undefined &&
-                  imageUrls.map((photo) => {
+                  imageUrls.map((photo,index) => {
                     return (
-                      <SwiperSlide key={article}>
+                      <SwiperSlide key={index}>
                         <img src={`../${photo}`} alt={name}></img>
                         {discount > 0 && (
                           <div className="category-card__sale product-card-sale">
@@ -247,9 +246,9 @@ const ProductCard = (props) => {
               >
                 <div className="product-card-photo-slider-thumbs-wrapper">
                   {imageUrls !== undefined &&
-                    imageUrls.map((photo) => {
+                    imageUrls.map((photo,index) => {
                       return (
-                        <SwiperSlide key={itemNo}>
+                        <SwiperSlide key={index}>
                           <img src={`../${photo}`} alt={name}></img>
                         </SwiperSlide>
                       );

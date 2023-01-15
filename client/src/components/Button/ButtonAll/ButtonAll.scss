@@ -106,3 +106,25 @@
         padding: 15px 18.5px;
     }
 }
+.section__btn-continue {
+    font-family: $main-font;
+    @include font-value(500, 16px, 20px);
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 16px 64px;
+    margin-top: 60px;
+    background-color: $accent-color;
+    transition: ease-in-out 0.5s;
+    &:hover {
+        background-color: #311c1c;
+    }
+    @media (max-width: $desktop-size) {
+        padding: 14px 50px;
+        margin-top: 30px;
+        
+    }
+    @media (max-width: $mobile-size){
+        padding: 10px 30px;
+    }
+}
