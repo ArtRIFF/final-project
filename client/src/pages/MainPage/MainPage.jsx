@@ -10,13 +10,13 @@ import SubscribeSection from "../../components/SubscribeSection/SubscribeSection
 const MainPage = () => {
   return (
     <>
-      {/* <HeroSection /> */}
-      {/* <Bestsellers /> */}
+      {/* <HeroSection />
+      <Bestsellers />
       <Outlet />
-      {/* <NewsSection />
-      <CollectionSection />
+      <NewsSection />
+      <CollectionSection /> */}
       <CategorySection />
-      <OurAdvantageSeciton />
+      {/* <OurAdvantageSeciton />
       <SubscribeSection /> */}
     </>
   );

@@ -19,11 +19,12 @@
   }
 
   &__content {
+    width: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 12% 88%;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 
     &-sidebar {
       display: flex;
@@ -40,6 +41,11 @@
         text-align: center;
         padding: 10px;
       }
+    }
+
+    @media (max-width: 776px) {
+      grid-template-columns: 10% 90%;
+      gap: 30px;
     }
   }
 

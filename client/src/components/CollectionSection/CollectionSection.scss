@@ -6,19 +6,8 @@
   border-color: $basic-background-color;
   margin: $margin-center;
   box-sizing: border-box;
-  @media (max-width: 1200px) {
-    margin-bottom: 30px;
-    margin-left: 110px;
-    margin-right: 100px;
-  }
-  @media (max-width: 768px) {
-    margin-left: 30px;
-    margin-right: 50px;
-  }
-  @media (max-width: 320px) {
-    margin-left: 30px;
-    margin-right: 30px;
-  }
+  padding: 50px 0;
+
   &__header {
     @include flex-kit(space-between);
     align-items: center;
@@ -33,9 +22,18 @@
   }
   &__content {
     display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+
+    @media(max-width: 850px) {
+      .collection-section-card {
+        .collection-section-card__content-title{
+          font-size: 18px;
+          width: 100%;
+        }
+
+      }
+    }
   }
 }
 @media screen and (max-width: 991px) {
