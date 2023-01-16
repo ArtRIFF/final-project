@@ -27,9 +27,9 @@
     flex-direction: column;
     flex-wrap: wrap;
     position: absolute;
-    right: 10%;
-    top: 10%;
-    transform: translate(-10%, -10%);
+    right: 9%;
+    top: 5%;
+    transform: translate(-9%, -5%);
     z-index: 2;
     width: 60%;
 
@@ -37,18 +37,45 @@
         display: inline-block;
         @include font-value(700, 96px, 120px);
         font-family: $Bodoni-Italic;
-        color: $basic-text-color;
+    }
+
+    h2:first-child {
+        color: #B5ABAA;
+    }
+    
+    @media (max-width: 730px) {
+        width: 40%;
+        right: 40%;
+        top: 80%;
+        transform: translate(40%, -80%);
+        h2 {
+            color: white;
+            color: $accent-color;
+            @include font-value(700, 45px, 40px);
+        }
+
+        h2:first-child {
+            color: white;
+        }
     }
 
     @media (max-width: 630px) {
-        right: 50%;
-        top: 50%;
-        transform: translate(50%, -50%);
+        width: 50%;
+        right: 40%;
+        top: 80%;
+        transform: translate(50%, -80%);
 
         h2 {
             @include font-value(700, 40px, 35px);
             color: white;
         }
+    }
+
+    @media (max-width: 610px) {
+        width: 50%;
+        right: 50%;
+        top: 80%;
+        transform: translate(50%, -80%);
     }
 
     .title__jewelry {
