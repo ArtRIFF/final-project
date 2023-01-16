@@ -51,10 +51,6 @@ const CheckOutPage = () => {
         cartQuantity: product.quantity
       }
     })
-    // {
-    //   product: {"enabled":true,"imageUrls":["img/products/men/001.png","img/products/men/002.png","img/products/men/003.png","img/products/men/004.png"],"quantity":100,"_id":"6388df62015201004edfc45e","name":"new product for testing purposes","currentPrice":199.99,"previousPrice":250,"categories":"men","color":"red","productUrl":"/men","brand":"braaaand","myCustomParam":"some string or json for custom param","itemNo":"622685","date":"2022-12-01T17:07:46.516Z","__v":0},
-    //   cartQuantity: 1
-    // }
 
     console.log(products)
     const deliveryAddress = {
@@ -70,7 +66,7 @@ const CheckOutPage = () => {
     const email = contactInfo;
     const mobile = shipping.phoneNumber;
     const letterSubject = 'Subject';
-    const letterHtml = '<h1> Success </h1>';
+    const letterHtml = '<h1> Your order #01010101 is placed. Our managers will contact you as soon as possible </h1>';
     const canceled = false;
 
 
@@ -87,7 +83,7 @@ const CheckOutPage = () => {
         canceled,
       }),
       headers: {'Content-Type': 'application/json'}
-    }).then(r => setOrderResult(`${r.message}. Our managers will contact you shortly!`))
+    }).then(r => setOrderResult(`Your order number is ${(Math.random() * 10000).toFixed(0)}. Our managers will contact you shortly!`))
       .then(handleOpen)
       .catch(e => {
         setErrResult(e.message)
@@ -97,7 +93,7 @@ const CheckOutPage = () => {
   return (
     <div className="container login">
       <div className="breadcrumbs_login">
-          <Breadcrumbs />
+        <Breadcrumbs/>
       </div>
       <form onSubmit={handleFormSubmit}>
         <ContactInfoPage onContactInfoReady={(e) => setContactInfo(e)}/>
@@ -115,10 +111,10 @@ const CheckOutPage = () => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Order information
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Typography id="modal-modal-description" sx={{mt: 2}}>
               {orderResult}
             </Typography>
-            <div style={{display:"flex", justifyContent:"center", padding:"10px"}}>
+            <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
               <NavLink to="/jewelry">
                 <Button type="submit" text="Continue shopping" className="section__btn-checkout"/>
               </NavLink>
