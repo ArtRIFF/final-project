@@ -66,7 +66,7 @@ const CheckOutPage = () => {
     const email = contactInfo;
     const mobile = shipping.phoneNumber;
     const letterSubject = 'Subject';
-    const letterHtml = '<h1> Your order #01010101 is placed. Our managers will contact you as soon as possible </h1>';
+    const letterHtml = '<h1> Your order is placed. Our managers will contact you as soon as possible </h1>';
     const canceled = false;
 
 
