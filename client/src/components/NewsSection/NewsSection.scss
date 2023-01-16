@@ -2,58 +2,29 @@
 @import "../../global_scss/global_style.scss";
 @import "../../global_scss//mixins.scss";
 
-.news-section {  
+.news-section {
   background-color: $accent-background-color;
   padding-top: 90px;
   padding-bottom: 90px;
-  // margin-right: -20px;
-  // @media (max-width: 320px) {
-  //   margin-right: -60px;
-  // }
-};
-  
+}
+
+;
+
 .news-section-container {
   display: flex;
-  justify-content: space-around;
-  @media (max-width: $notebook-size) {
-    justify-content: center;
-    margin-right: 30px;
-    margin-left: 100px;
-  }
-  @media (max-width: $desktop-size) {
-      display: block;
-      margin-right: 50px;
-      margin-left: 50px;
-  }
-  @media (max-width: $mobile-size) {
-    margin-right: 10px;
-    margin-left: 10px;
-  }
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .news-section__icon {
   display: flex;
+  margin: 0 auto;
 }
 
 .news-section__body {
-  @media (max-width: 768px) {
-    width: 660px;
-  }
-  @media (max-width: 720px) {
-    width: 620px;
-  }
-  @media (max-width: 620px) {
-    width: 520px;
-  }
-  @media (max-width: 520px) {
-    width: 420px;
-  }
-  @media (max-width: 420px) {
-    width: 320px;
-  }
-  @media (max-width: 320px) {
-    width: 280px;
-  }
+  width: 100%;
+  display: inline-block;
 }
 
 .news-section__hand {
@@ -61,24 +32,24 @@
   height: 260px;
   margin-top: 191px;
   margin-left: -110px;
+
   @media (max-width: $desktop-size) {
     display: none;
   }
+
   @media (max-width: $mobile-size) {
     display: none;
   }
 }
 
 .news-section__info {
-  margin-left: 130px;
-  @media (max-width: $notebook-size) {
-    margin-left: 20px;
-  }
-  @media (max-width: $desktop-size) {
-    margin-left: 0px;
-  }
-  @media (max-width: $mobile-size) {
-    margin-right: 30px;
+  max-width: 350px;
+  margin-left: 10px;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  @media (max-width: 990px) {
+    max-width: 640px;
   }
 }
 
@@ -86,6 +57,11 @@
   font-family: $main-font;
   @include font-value(700, 48px, 60px);
   margin-top: 93px;
+
+  @media (max-width: 990px) {
+    margin-top: 40px;
+  }
+
   @media (max-width: $mobile-size) {
     @include font-value(700, 32px, 40px);
   }
@@ -99,26 +75,9 @@
   font-family: $main-font;
   @include font-value(300, 18px, 22px);
   padding-bottom: 10px;
-  @media (max-width: $notebook-size) {
-    margin-right: 50px;
-  }
-  @media (max-width: $desktop-size) {
-    margin-left: 0px;
-  }
-  @media (max-width: $mobile-size) {
-    @include font-value(300, 14px, 18px);
-  }
 }
 
 .news-section__summary_red {
   font-family: $main-font;
   color: #E36709;
-  @include font-value(400, 18px, 22px);
-  @media (max-width: $mobile-size) {
-    @include font-value(400, 14px, 18px);
-  }
 }
-
-
-
-
