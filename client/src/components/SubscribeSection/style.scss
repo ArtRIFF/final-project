@@ -48,6 +48,7 @@
 
   &__input {
     display: flex;
+    margin: 0 5px;
     justify-content: center;
     max-width: 400px;
     @media (max-width:$mobile-size) {
@@ -55,7 +56,8 @@
     }
   }
   &__input-email {
-    padding: 12px 170px 12px 12px;
+    width: 100%;
+    padding: 12px 12px 12px 12px;
     @include font-value(400, 16px, 140%);
     font-family: $secondary-font;
     border-radius: 0;
