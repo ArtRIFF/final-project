@@ -11,6 +11,10 @@
       "asideFilter filter"
       "asideFilter categoryCards"
       "asideFilter paginnation";
+
+      @media (max-width:$desktop-size) {
+         grid-gap: 0px;
+      }
 }
 
 .catalogPageImg-wrapper {
@@ -27,14 +31,7 @@
 
 .breadcrumbs__catalog {
    margin-top: 30px;
-
-   @media (max-width: 1200px) {
-      margin-left: 110px;
-   }
-
-   @media (max-width: 768px) {
-      margin-left: 35px;
-   }
+   margin-left: 10px;
 }
 
 .asideFilter-wrapper {
@@ -78,6 +75,7 @@
    grid-area: filter;
    width: 100%;
    min-height: 43px;
+   padding: 15px 5px;
 }
 
 .categoryCards-wrapper {
