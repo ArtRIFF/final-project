@@ -74,6 +74,37 @@ const AsideFilter = ({ allCollectionArray, filterRequest }) => {
 
 
   const updateFilter = () => {
+    //new logic
+    
+    let filterParamArray = [];
+
+    const pushToFilterParamArray = (param) =>{
+     if (param) {
+      filterParamArray.push(param);
+     }
+    }
+
+    const productsTypeParam = productsType.length?`categories=${productsType.join(',')}`: "";
+    pushToFilterParamArray(productsTypeParam);
+    const metalTypeParam = metalType.length?`metal=${metalType.join(',')}`: "";
+    pushToFilterParamArray(metalTypeParam);
+    const collectionTypeParam = collectionType.length?`collectionName=${collectionType.join(',')}`: "";
+    pushToFilterParamArray(collectionTypeParam);
+    const sampleTypeParam = sampleType.length?`sample=${sampleType.join(',')}`: "";
+    pushToFilterParamArray(sampleTypeParam);
+    const metalColorTypeParam = metalColorType.length?`metalColor=${metalColorType.join(',')}`: "";
+    pushToFilterParamArray(metalColorTypeParam);
+    const insertTypeParam = insertType.length?`insertType=${insertType.join(',')}`: "";
+    pushToFilterParamArray(insertTypeParam);
+    const insertNumberParam = insertNumber!== 0?`insertNumber=${insertNumber}`: "";
+    pushToFilterParamArray(insertNumberParam);
+    const priceRangeParam = (price[0] !== "" || price[1] !== "")?`price=${price[1] !== ""?`${price[0]}-${price[1]}`:`${price[0]}`}`: "";
+    pushToFilterParamArray(priceRangeParam);
+
+    const filterParam = filterParamArray.length?`/${filterParamArray.join(';')}`:"";
+
+    // console.log(insertNumberParam);
+
     const newArray = allCollectionArray.filter(n => (
       (
         (!productsType.length || productsType.includes(n.categories))
@@ -88,7 +119,7 @@ const AsideFilter = ({ allCollectionArray, filterRequest }) => {
       )
     ));
     document.querySelector('.category-filter select').value = "DEFAULT";
-    filterRequest(newArray, hasAnyFilters);
+    filterRequest(newArray, hasAnyFilters, filterParam);
   };
 
   const onTypeChange = (e) => {

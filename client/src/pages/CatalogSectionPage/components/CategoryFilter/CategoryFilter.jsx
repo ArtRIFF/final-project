@@ -12,7 +12,7 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
         return 1;
       }
     });
-    filterRequest(sortedArray);
+    filterRequest(sortedArray,false, "sort=NEW;");
   }
 
   const sortByBestseller = () => {
@@ -23,12 +23,12 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
         return 1;
       }
     });
-    filterRequest(sortedArray);
+    filterRequest(sortedArray,false, "sort=BESTSELLER;");
   }
 
   const sortByPrice = () => {
     const sortedArray = allCollectionArray.slice().sort((a, b) => (+a.currentPrice) - (+b.currentPrice));
-    filterRequest(sortedArray);
+    filterRequest(sortedArray,false, "sort=byPrice;");
   }
 
   const onSelectorChange = (e) => {

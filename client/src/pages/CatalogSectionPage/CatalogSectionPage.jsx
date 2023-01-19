@@ -20,6 +20,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const [showAsideFilter, setModalRender] = useState(false);
   const [totalItems, setTotalItems] = useState(allCollectionArray.length);
 
+  const [currentURL, setCurrentURL] = useState(window.location.href);
+
   const callAsideFilter = () => {
     setModalRender(true);
   };
@@ -27,6 +29,10 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   },[]);
+
+  useEffect(() => {
+   console.log(currentURL);
+  },[currentURL]);
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
@@ -67,8 +73,9 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     }
   }, [loading, hasAnyFilters, allCollectionArray.length, array]);
 
-  const filterRequest = (array, hasAnyFilters) => {
+  const filterRequest = (array, hasAnyFilters, url) => {
     setFiltredArray(array);
+    setCurrentURL(window.location.href + url);
     if (hasAnyFilters === true) {
       setAllCollectionArrayIsFiltered(true);
       setHasAnyFilters(true);
@@ -77,6 +84,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
       setHasAnyFilters(false);
     }
   };
+
 
   useEffect(() => {
     if (filtredArray.length !== 0) {
