@@ -26,6 +26,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
 
   const [filterURL, setFilterURL] = useState('');
   const [sortURL, setSortURL] = useState('');
+  const [paginationURL, setPaginationURL] = useState('');
 
   const callAsideFilter = () => {
     setModalRender(true);
@@ -36,9 +37,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   },[]);
 
   useEffect(() => {
-   console.log(filterURL);
-   addToURL(location.pathname, filterURL + (sortURL?"&"+ sortURL: ""));
-  },[filterURL,sortURL]);
+   addToURL(location.pathname, filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: ""));
+  },[filterURL,sortURL,paginationURL]);
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
@@ -83,6 +83,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     setFiltredArray(array);
     setFilterURL(url);
     setSortURL("");
+    setPaginationURL("")
     if (hasAnyFilters === true) {
       setAllCollectionArrayIsFiltered(true);
       setHasAnyFilters(true);
@@ -102,6 +103,10 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
       setAllCollectionArrayIsFiltered(false);
       setHasAnyFilters(false);
     }
+  };
+
+  const paginationRequest = (url) => {
+    setPaginationURL(url);
   };
 
 
@@ -187,6 +192,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             <div></div>
           ) : (
             <Pagination
+              paginationRequest={paginationRequest}
               hasAnyFilters={hasAnyFilters}
               itemsPerPage={itemsPerPage}
               totalItems={totalItems}
