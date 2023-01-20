@@ -101,7 +101,7 @@ const AsideFilter = ({ allCollectionArray, filterRequest }) => {
     const priceRangeParam = (price[0] !== "" || price[1] !== "")?`price=${price[1] !== ""?`${price[0]}-${price[1]}`:`${price[0]}`}`: "";
     pushToFilterParamArray(priceRangeParam);
 
-    const filterParam = filterParamArray.length?`/${filterParamArray.join(';')}`:"";
+    const filterParam = filterParamArray.length?`${filterParamArray.join('&')}`:"";
 
     // console.log(insertNumberParam);
 

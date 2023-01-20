@@ -6,21 +6,26 @@ import CategoryCardsContainer from "./components/Pagination/CategoryCardsContain
 import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
+import {useLocation} from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
 
+const addToURL= (url, addConfig) => window.history.pushState(null,null, `${url}${addConfig?"/filter?"+addConfig:""}`);
+
 const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
+  let location = useLocation();
 
   const [filtredArray, setFiltredArray] = useState(alreadyFilteredArray);
   const allCollectionArray = useSelector(selectorAllCollectionProduct);
   const [showAsideFilter, setModalRender] = useState(false);
   const [totalItems, setTotalItems] = useState(allCollectionArray.length);
 
-  const [currentURL, setCurrentURL] = useState(window.location.href);
+  const [filterURL, setFilterURL] = useState('');
+  const [sortURL, setSortURL] = useState('');
 
   const callAsideFilter = () => {
     setModalRender(true);
@@ -31,8 +36,9 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   },[]);
 
   useEffect(() => {
-   console.log(currentURL);
-  },[currentURL]);
+   console.log(filterURL);
+   addToURL(location.pathname, filterURL + (sortURL?"&"+ sortURL: ""));
+  },[filterURL,sortURL]);
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
@@ -75,7 +81,20 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
 
   const filterRequest = (array, hasAnyFilters, url) => {
     setFiltredArray(array);
-    setCurrentURL(window.location.href + url);
+    setFilterURL(url);
+    setSortURL("");
+    if (hasAnyFilters === true) {
+      setAllCollectionArrayIsFiltered(true);
+      setHasAnyFilters(true);
+    } else {
+      setAllCollectionArrayIsFiltered(false);
+      setHasAnyFilters(false);
+    }
+  };
+
+  const filterSortRequest = (array, hasAnyFilters, url) => {
+    setFiltredArray(array);
+    setSortURL(url);
     if (hasAnyFilters === true) {
       setAllCollectionArrayIsFiltered(true);
       setHasAnyFilters(true);
@@ -150,7 +169,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             allCollectionArray={
               filtredArray.length !== 0 ? filtredArray : allCollectionArray
             }
-            filterRequest={filterRequest}
+            filterRequest={filterSortRequest}
             hasAnyFilters= {hasAnyFilters}
           />
         </div>
