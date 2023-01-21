@@ -13,8 +13,32 @@ import PropTypes from 'prop-types';
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/actions";
 
-const addToURL= (url, addConfig) => window.history.pushState(null,null, `${url}${addConfig?"/filter?"+addConfig:""}`);
+const addToURLWithoutReloading = (url, addConfig) => window.history.pushState(null,null, `${url}${addConfig?"/filter?"+addConfig:""}`);
 
+const catchURLconfigAndChange = () => {
+const url = window.location.href;
+const storageConfigURL = localStorage.getItem('configURL');
+if (url.indexOf("filter") !== -1) {
+  const configURL = url.indexOf("filter") !== -1?url.slice(url.indexOf("filter")+7): "";
+  localStorage.setItem('configURL', configURL);
+  const basicURL = url.slice(0,url.indexOf("filter")-1);
+  window.location.href = basicURL;
+}
+
+if (storageConfigURL) {
+  addToURLWithoutReloading(url, storageConfigURL);
+  localStorage.removeItem('configURL'); 
+}
+}
+
+const getURLFilter = () => {
+  const storageConfigURL = localStorage.getItem('configURL');
+  if (storageConfigURL) {
+    return storageConfigURL;
+  } else {
+    return "";
+  };
+}
 const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
   let location = useLocation();
@@ -31,13 +55,19 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const callAsideFilter = () => {
     setModalRender(true);
   };
-
+  // http://localhost:3000/jewelry/filter?collectionName=max%20spass&sort=NEW&perPage=12&startPage=2
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
+    catchURLconfigAndChange();
   },[]);
 
   useEffect(() => {
-   addToURL(location.pathname, filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: ""));
+    const storageConfigURL = localStorage.getItem('configURL');
+    if (!storageConfigURL) {
+      addToURLWithoutReloading(location.pathname, filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: ""));
+    } else {
+      localStorage.removeItem('configURL');
+    }
   },[filterURL,sortURL,paginationURL]);
 
   const hideAsideFilter = (event) => {
@@ -80,10 +110,10 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   }, [loading, hasAnyFilters, allCollectionArray.length, array]);
 
   const filterRequest = (array, hasAnyFilters, url) => {
-    setFiltredArray(array);
-    setFilterURL(url);
-    setSortURL("");
-    setPaginationURL("")
+      setFiltredArray(array);
+      setFilterURL(url);
+      setSortURL("");
+      setPaginationURL("");
     if (hasAnyFilters === true) {
       setAllCollectionArrayIsFiltered(true);
       setHasAnyFilters(true);
