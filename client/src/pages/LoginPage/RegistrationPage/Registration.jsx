@@ -13,6 +13,11 @@ import {sendRequest} from "../../../helpers/sendRequest";
 import {API} from "../../../config/API";
 
 import Breadcrumbs from "../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
+import {useState} from "react";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import React from "react";
 
 export const validationSchema = Yup.object().shape({
   username: Yup.string()
@@ -34,7 +39,27 @@ export const validationSchema = Yup.object().shape({
     .required("Phone number is required"),
 });
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 460,
+  bgcolor: 'background.paper',
+  border: '2px solid #e36709',
+  boxShadow: 24,
+  p: 4,
+  textAlign: "center",
+};
+
 const Registration = () => {
+
+  const [registrationResult, setRegistrationResult] = useState('');
+  const [errRegistration, setErrRegistration] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleSubmit = (values, {resetForm}) => {
     const [firstName, lastName] = values.username.split(' ');
@@ -52,9 +77,10 @@ const Registration = () => {
       body: JSON.stringify(requestBody),
       headers: {'Content-Type': 'application/json'}
     })
-      .then(r => {
-        console.log(r);
-        resetForm();
+      .then(r => setRegistrationResult(`Your account with login ${values.login} has been created`))
+      .then(handleOpen)
+      .catch(e => {
+        setErrRegistration(`Something went wrong. Make sure you filled the form correctly`)
       })
   }
   return (
@@ -139,6 +165,29 @@ const Registration = () => {
               </Form>
             )}
           </Formik>
+          {registrationResult &&
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Registration information
+                </Typography>
+                <Typography id="modal-modal-description" sx={{mt: 2}}>
+                  {registrationResult}
+                </Typography>
+                <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
+                  <NavLink to="/login">
+                    <Button type="submit" text="Login" className="section__btn-checkout"/>
+                  </NavLink>
+                </div>
+              </Box>
+            </Modal>
+          }
+          {errRegistration && <p className="login__registration-error">{errRegistration}</p>}
         </div>
         </div>
       </section>

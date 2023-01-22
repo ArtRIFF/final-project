@@ -65,85 +65,85 @@ const UserPage = () => {
           <Breadcrumbs/>
         </div>
         <div className="container">
-        <div className="userpage__container">
-          <Formik
-            initialValues={{
-              login: userInfo?.login || "",
-              username: `${userInfo?.firstName} ${userInfo?.lastName}` || '',
-              email: userInfo?.email || "",
-              phoneNumber: userInfo?.telephone || "",
-              country: userInfo?.country || "",
-              homeAddress: userInfo?.homeAddress || "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-            enableReinitialize={true}
-          >
-            {({errors, touched, handleChange, handleSubmit}) => (
-              <Form className="registration__form" onSubmit={handleSubmit}>
-                <h1 className="registration__section-title">Welcome, {userInfo?.firstName}!</h1>
-                <div className="section-subtitle">
-                  <h2 className="registration__section-subtitle">
-                    User profile information
-                  </h2>
-                  <ProfileIcon className="profile-icon"/>
-                </div>
-                {resultMessage ? <p className="login__registration-error">Information successfully updated</p> :
-                  <span></span>}
-                <Input
-                  className="registration__section-input"
-                  name="username"
-                  placeholder="First and last name"
-                  label="Your full name"
-                  error={errors.username && touched.username}
-                />
-                <Input
-                  className="registration__section-input"
-                  name="login"
-                  placeholder="Login"
-                  label="Your login"
-                  error={errors.login && touched.login}
-                />
-                <Input
-                  className="registration__section-input"
-                  name="email"
-                  placeholder="example@gmail.com"
-                  label="Your Email"
-                  error={errors.email && touched.email}
-                />
+          <div className="userpage__container">
+            <Formik
+              initialValues={{
+                login: userInfo?.login || "",
+                username: `${userInfo?.firstName} ${userInfo?.lastName}` || '',
+                email: userInfo?.email || "",
+                phoneNumber: userInfo?.telephone || "",
+                country: userInfo?.country || "",
+                homeAddress: userInfo?.homeAddress || "",
+              }}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+              enableReinitialize={true}
+            >
+              {({errors, touched, handleChange, handleSubmit}) => (
+                <Form className="registration__form" onSubmit={handleSubmit}>
+                  <h1 className="registration__section-title">Welcome, {userInfo?.firstName}!</h1>
+                  <div className="section-subtitle">
+                    <h2 className="registration__section-subtitle">
+                      User profile information
+                    </h2>
+                    <ProfileIcon className="profile-icon"/>
+                  </div>
+                  {resultMessage ? <p className="login__registration-error">Information successfully updated</p> :
+                    <span></span>}
+                  <Input
+                    className="registration__section-input"
+                    name="username"
+                    placeholder="First and last name"
+                    label="Your full name"
+                    error={errors.username && touched.username}
+                  />
+                  <Input
+                    className="registration__section-input"
+                    name="login"
+                    placeholder="Login"
+                    label="Your login"
+                    error={errors.login && touched.login}
+                  />
+                  <Input
+                    className="registration__section-input"
+                    name="email"
+                    placeholder="example@gmail.com"
+                    label="Your Email"
+                    error={errors.email && touched.email}
+                  />
 
-                <Input
-                  className="registration__section-input"
-                  name="phoneNumber"
-                  placeholder="+380"
-                  label="Your phone number"
-                  error={errors.phone && touched.phone}
-                />
-                <Input
-                  className="registration__section-input"
-                  name="country"
-                  placeholder="Ukraine"
-                  label="Your country"
-                />
-                <Input
-                  className="registration__section-input"
-                  name="homeAddress"
-                  placeholder="Kyiv, Bandery street, 1"
-                  label="Your home address"
-                />
+                  <Input
+                    className="registration__section-input"
+                    name="phoneNumber"
+                    placeholder="+380"
+                    label="Your phone number"
+                    error={errors.phone && touched.phone}
+                  />
+                  <Input
+                    className="registration__section-input"
+                    name="country"
+                    placeholder="Ukraine"
+                    label="Your country"
+                  />
+                  <Input
+                    className="registration__section-input"
+                    name="homeAddress"
+                    placeholder="Kyiv, Bandery street, 1"
+                    label="Your home address"
+                  />
 
-                <div className="login__section-btn">
-                  <Button type='submit' text="Update information" className="section__btn-checkout"/>
-                </div>
-              </Form>
-            )}
-          </Formik>
-          <div className='login__registration-section'>
-            <h1 className='login__registration-title'>Want to change your password?<NavLink to="/changeUserPassword"
-                                                                                            className='login__registration-link'> Change
-              password</NavLink>
-            </h1>
-          </div>
+                  <div className="login__section-btn">
+                    <Button type='submit' text="Update information" className="section__btn-checkout"/>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+            <div className='login__registration-section'>
+              <h1 className='login__registration-title'>Want to change your password?<NavLink to="/changeUserPassword"
+                                                                                              className='login__registration-link'> Change
+                password</NavLink>
+              </h1>
+            </div>
           </div>
         </div>
       </section>
