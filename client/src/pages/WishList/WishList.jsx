@@ -17,7 +17,6 @@ const WishList = () => {
       }, []);
     inFavorite.forEach(cardID => {
         let el = allCollectionProduct.filter(card => card.itemNo === cardID);
-        console.log('elem', el)
         favoriteCards.push(...el);
     });
     console.log(favoriteCards)

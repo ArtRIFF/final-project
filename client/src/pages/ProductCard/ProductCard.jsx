@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Thumbs } from "swiper";
-import { getOneCard, getComments } from "../../helpers/sendRequest";
+import { getOneCard, } from "../../API/cardsAPI";
+import { getComments } from "../../API/commentsAPI";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
@@ -54,6 +55,9 @@ const ProductCard = (props) => {
   const inCart = useSelector(selectInCart);
   const inFavoriteStore = useSelector(selectInFavorite);
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   useEffect(() => {
     getOneCard(cardID).then((data) => {
       setCard(data);

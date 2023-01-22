@@ -97,7 +97,7 @@ const Header = ({ active, setActive }) => {
             </NavLink>
             <NavLink to="/outlet">
               <li className='nav__list'>
-                %Outlet
+                Outlet
               </li>
             </NavLink>
             <NavLink to="/our_production">
