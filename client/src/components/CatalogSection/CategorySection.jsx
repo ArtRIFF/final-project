@@ -56,108 +56,108 @@ const CategorySection = (props) => {
     <div className="category">
       <div className="container">
         <div className="category__container">
-        <h2 className="category__title">Shop by Category</h2>
-        <div className="category__content">
-          <div className="category__content-sidebar">
-            <p
-              className={
-                activeTab === "braceletsArray"
-                  ? "category__content-sidebar__link active"
-                  : "category__content-sidebar__link"
-              }
-              onClick={(e) => {
-                setActiveTab("braceletsArray");
-                setSelectArr(braceletsArray);
-              }}
-            >
-              Bracelets
-            </p>
-            <p
-              className={
-                activeTab === "pendantArray"
-                  ? "category__content-sidebar__link active"
-                  : "category__content-sidebar__link"
-              }
-              onClick={() => {
-                setActiveTab("pendantArray");
-                setSelectArr(pendantArray);
-              }}
-            >
-              Pendant
-            </p>
-            <p
-              className={
-                activeTab === "ringsArray"
-                  ? "category__content-sidebar__link active"
-                  : "category__content-sidebar__link"
-              }
-              onClick={() => {
-                setActiveTab("ringsArray");
-                setSelectArr(ringsArray);
-              }}
-            >
-              Rings
-            </p>
-            <p
-              className={
-                activeTab === "earringsArray"
-                  ? "category__content-sidebar__link active"
-                  : "category__content-sidebar__link"
-              }
-              onClick={() => {
-                setActiveTab("earringsArray");
-                setSelectArr(earringsArray);
-              }}
-            >
-              Earrings
-            </p>
-            <p
-              className={
-                activeTab === "pearlArray"
-                  ? "category__content-sidebar__link active"
-                  : "category__content-sidebar__link"
-              }
-              onClick={() => {
-                setActiveTab("pearlArray");
-                setSelectArr(pearlArray);
-              }}
-            >
-              Pearl
-            </p>
-            <p
-              className={
-                activeTab === "crossArray"
-                  ? "category__content-sidebar__link active"
-                  : "category__content-sidebar__link"
-              }
-              onClick={() => {
-                setActiveTab("crossArray");
-                setSelectArr(crossArray);
-              }}
-            >
-              Cross
-            </p>
+          <h2 className="category__title">Shop by Category</h2>
+          <div className="category__content">
+            <div className="category__content-sidebar">
+              <p
+                className={
+                  activeTab === "braceletsArray"
+                    ? "category__content-sidebar__link active"
+                    : "category__content-sidebar__link"
+                }
+                onClick={(e) => {
+                  setActiveTab("braceletsArray");
+                  setSelectArr(braceletsArray);
+                }}
+              >
+                Bracelets
+              </p>
+              <p
+                className={
+                  activeTab === "pendantArray"
+                    ? "category__content-sidebar__link active"
+                    : "category__content-sidebar__link"
+                }
+                onClick={() => {
+                  setActiveTab("pendantArray");
+                  setSelectArr(pendantArray);
+                }}
+              >
+                Pendant
+              </p>
+              <p
+                className={
+                  activeTab === "ringsArray"
+                    ? "category__content-sidebar__link active"
+                    : "category__content-sidebar__link"
+                }
+                onClick={() => {
+                  setActiveTab("ringsArray");
+                  setSelectArr(ringsArray);
+                }}
+              >
+                Rings
+              </p>
+              <p
+                className={
+                  activeTab === "earringsArray"
+                    ? "category__content-sidebar__link active"
+                    : "category__content-sidebar__link"
+                }
+                onClick={() => {
+                  setActiveTab("earringsArray");
+                  setSelectArr(earringsArray);
+                }}
+              >
+                Earrings
+              </p>
+              <p
+                className={
+                  activeTab === "pearlArray"
+                    ? "category__content-sidebar__link active"
+                    : "category__content-sidebar__link"
+                }
+                onClick={() => {
+                  setActiveTab("pearlArray");
+                  setSelectArr(pearlArray);
+                }}
+              >
+                Pearl
+              </p>
+              <p
+                className={
+                  activeTab === "crossArray"
+                    ? "category__content-sidebar__link active"
+                    : "category__content-sidebar__link"
+                }
+                onClick={() => {
+                  setActiveTab("crossArray");
+                  setSelectArr(crossArray);
+                }}
+              >
+                Cross
+              </p>
+            </div>
+            <div>
+              <Swiper
+                modules={[Navigation, EffectFade]}
+                navigation
+                effect
+                speed={900}
+                slidesPerView={window.innerWidth <= 552 ? 1 : 3}
+                loop
+                className="category__content-cards"
+              >
+                {selectArr.slice(0, 4).map((card, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <CategorySectionCard product={card} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
           </div>
-          <div>
-            <Swiper
-              modules={[Navigation, EffectFade]}
-              navigation
-              effect
-              speed={900}
-              slidesPerView={window.innerWidth <= 552 ? 1 : 3}
-              loop
-              className="category__content-cards"
-            >
-              {selectArr.slice(0, 4).map((card, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    <CategorySectionCard product={card} />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-        </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,15 @@
 @import "../../global_scss/mixins.scss";
 @import "../../global_scss/global_style.scss";
 
+.swiper-wrapper {
+  padding: 0 10px;
+  position: relative;
+  display: flex;
+
+  gap: 10px;
+  width: 100%;
+  align-items: stretch;
+}
 .category {
   margin-right: -20px;
   max-width: 1200px;
@@ -23,7 +32,6 @@
     position: relative;
     display: grid;
     grid-template-columns: 12% 88%;
-    align-items: center;
     gap: 0px;
 
     &-sidebar {
@@ -42,7 +50,7 @@
         padding: 10px;
       }
     }
-    
+
     @media (max-width: 776px) {
       grid-template-columns: 10% 90%;
       gap: 0px;
@@ -68,9 +76,9 @@
     display: none;
   }
 }
- .category__content-cards {
+.category__content-cards {
   margin-left: 40px;
- }
+}
 .active {
   color: $accent-color;
   font-weight: bold;
@@ -108,57 +116,56 @@
 }
 
 .swiper-slide a {
-  display: inline-block;
+  display: flex;
+}
+.swiper-slide {
+  flex-shrink: 0;
+  height: auto !important;
+  position: relative;
+  transition-property: transform;
+  display: flex;
+  //visibility: hidden;
 }
 
 @media (max-width: 840px) {
   .category-card {
-   width: 200px;
+    //width: 200px;
   }
 
-  .swiper-slide {
-    visibility: hidden;
-  }
+  //   .swiper-slide-active {
+  //     visibility: visible;
+  //     margin-left: 40px;
+  //     margin-right: 40px;
+  //   }
 
-  .swiper-slide-active {
-    visibility: visible;
-    margin-left: 40px;
-    margin-right: 40px;
-  }
+  //   .swiper-slide-next {
+  //     visibility: visible;
+  //   }
 
-  .swiper-slide-next {
-    visibility: visible;
-  }
+  //   @media (max-width: 600px) {
+  //     .category-card {
+  //       margin-left: 30px;
+  //     }
+  //     .swiper-slide {
+  //       visibility: hidden;
+  //     }
 
-  @media (max-width: 600px) {
-    .category-card {
-      margin-left: 30px;
-    }
-    .swiper-slide {
-      visibility: hidden;
-    }
+  //     .swiper-slide-active {
+  //       visibility: visible;
+  //     }
 
-    .swiper-slide-active {
-      
-      visibility: visible;
-    }
+  //     .swiper-slide-next {
+  //       visibility: hidden;
+  //     }
+  //   }
 
-    .swiper-slide-next {
-      visibility: hidden;
-    }
+  //   @media (max-width: 360px) {
+  //     .category-card {
+  //       margin-left: 0px;
+  //     }
 
-
-  }
-
-  @media (max-width: 360px) {
-    .category-card {
-      margin-left: 0px;
-    }
-
-    .swiper-slide-active {
-      margin-left: 8px;
-    }
-  
-  }
- 
+  //     .swiper-slide-active {
+  //       margin-left: 8px;
+  //     }
+  //   }
 }
