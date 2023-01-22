@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -15,75 +15,120 @@ import {selectInCart} from "../../store/selectors";
 import Button from "../../components/Button/ButtonAll/ButtonAll";
 import {NavLink} from "react-router-dom";
 import Breadcrumbs from "../../pages/CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
+import {Form, Formik} from "formik";
+import * as Yup from "yup";
+import {UserContext} from "../../context/UserContext";
+import valid from 'card-validator';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 460,
+  bgcolor: 'background.paper',
+  border: '2px solid #e36709',
+  boxShadow: 24,
+  p: 4,
+  textAlign: "center",
+};
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+
+export const validationSchema = Yup.object().shape({
+  fullNameShip: Yup.string()
+    .min(4, "Too Short!")
+    .max(50, "Wow! That is a super long name!")
+    .required("Required"),
+  countryShip: Yup.string()
+    .min(4, "That's a short country name")
+    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  streetShip: Yup.string()
+    .min(4, "That's a short street name")
+    .required("Required"),
+  cityShip: Yup.string()
+    .min(3, "That's a short city name")
+    .required("Required"),
+  stateShip: Yup.string()
+    .min(4, "That's a short state name")
+    .required("Required"),
+  codeShip: Yup.string()
+    .min(5, "That's a short code number")
+    .required("Required"),
+  phoneShip: Yup.string()
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .required("Phone number is required"),
+  cardNumber: Yup.string().test(
+    "test-number",
+    "Credit Card number is invalid",
+    value => valid.number(value).isValid)
+    .required("Required"),
+  cardOwnerName: Yup.string()
+    .min(4, "Too Short!")
+    .max(50, "Wow! That is a super long name!")
+    .required("Required"),
+  cardDate: Yup.string().test(
+    "test-date",
+    "Your card expired",
+    value => valid.expirationDate(value).isValid)
+    .required("Required"),
+  cvv: Yup.string().test(
+    "test-cvv",
+    "CVV is invalid",
+    value => valid.cvv(value).isValid)
+    .required("Required"),
+
+});
+
+const orderNumber = (Math.random() * 10000).toFixed(0);
 
 const CheckOutPage = () => {
-  const [contactInfo, setContactInfo] = useState(null);
-  const [shipping, setShipping] = useState(null);
-  const [paymentCardInfo, setPaymentCardInfo] = useState(null);
-  const inCart = useSelector(selectInCart);
 
+  const inCart = useSelector(selectInCart);
   const [orderResult, setOrderResult] = useState('');
   const [errResult, setErrResult] = useState('')
-
   const [open, setOpen] = useState(false);
+  const {userInfo} = useContext(UserContext);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 460,
-    bgcolor: 'background.paper',
-    border: '2px solid #e36709',
-    boxShadow: 24,
-    p: 4,
-    textAlign: "center",
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (values) => {
     const products = inCart.map((product) => {
-
       return {
         product: product,
         cartQuantity: product.quantity
       }
     })
 
-    console.log(products)
     const deliveryAddress = {
-      country: shipping.country,
-      city: shipping.city,
-      address: shipping.streetAddr,
-      postal: shipping.zipCode
+      country: values.countryShip,
+      city: values.cityShip,
+      address: values.streetShip,
+      postal: values.codeShip
     }
-
-    const paymentInfo = paymentCardInfo.cardNumber;
-    const status = "not shipped";
-
-    const email = contactInfo;
-    const mobile = shipping.phoneNumber;
+    const mobile = values.phoneNumber;
     const letterSubject = 'Subject';
-    const letterHtml = '<h1> Your order is placed. Our managers will contact you as soon as possible </h1>';
+    const letterHtml = `<h1> Your order # ${orderNumber} is placed. Our managers will contact you as soon as possible </h1>`;
     const canceled = false;
 
-
+    const requestPayload = {
+      products,
+      deliveryAddress,
+      paymentInfo: values.cardNumber,
+      status: "not shipped",
+      email: values.email,
+      mobile,
+      letterSubject,
+      letterHtml,
+      canceled,
+    }
     sendRequest(`${API}orders`, 'POST', {
-      body: JSON.stringify({
-        products,
-        deliveryAddress,
-        paymentInfo,
-        status,
-        email,
-        mobile,
-        letterSubject,
-        letterHtml,
-        canceled,
-      }),
+      body: JSON.stringify(requestPayload),
       headers: {'Content-Type': 'application/json'}
-    }).then(r => setOrderResult(`Your order number is ${(Math.random() * 10000).toFixed(0)}. Our managers will contact you shortly!`))
+    }).then(r => setOrderResult(`Your order number is ${orderNumber}. Our managers will contact you shortly!`))
       .then(handleOpen)
       .catch(e => {
         setErrResult(e.message)
@@ -95,12 +140,25 @@ const CheckOutPage = () => {
       <div className="breadcrumbs_login">
         <Breadcrumbs/>
       </div>
-      <form onSubmit={handleFormSubmit}>
-        <ContactInfoPage onContactInfoReady={(e) => setContactInfo(e)}/>
-        <ShipAddress onShippingReady={setShipping}/>
-        <PaymentMethod onPaymentReady={setPaymentCardInfo}/>
-      </form>
-      {orderResult ?
+      <Formik
+        initialValues={{
+          email: userInfo?.email || "",
+          fullNameShip: userInfo?.firstName || '',
+          countryShip: userInfo?.country || "",
+          streetShip: userInfo?.homeAddress || "",
+        }}
+        onSubmit={handleSubmit} validationSchema={validationSchema}>
+        {({errors, touched, handleChange, handleSubmit}) => (
+          <>
+            <Form onSubmit={handleSubmit}>
+              <ContactInfoPage errors={errors}/>
+              <ShipAddress errors={errors}/>
+              <PaymentMethod errors={errors}/>
+            </Form>
+          </>
+        )}
+      </Formik>
+      {orderResult &&
         <Modal
           open={open}
           onClose={handleClose}
@@ -122,13 +180,8 @@ const CheckOutPage = () => {
 
           </Box>
         </Modal>
-        : <span></span>}
-      {errResult ?
-        <p className="login__registration-error">
-          {errResult}
-        </p>
-        : <span></span>}
-
+      }
+      {errResult && <p className="login__registration-error">{errResult}</p>}
     </div>
   );
 };
