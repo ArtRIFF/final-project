@@ -7,6 +7,7 @@ const Pagination = ({
   totalItems,
   setCurrentPage,
   allCollectionArrayIsFiltered,
+  paginationRequest
 }) => {
   const pageNumbers = [];
 
@@ -17,6 +18,13 @@ const Pagination = ({
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
+
+  useEffect(() => {
+    if (currentButton !== 1) {
+      paginationRequest(currentButton);   
+    }
+  }, [currentButton]);
+
 
   useEffect(() => {
     let tempNumberOfPages = [...arrayOfCurrentButtons];
