@@ -12,6 +12,7 @@ export const defaultState = {
   modalRender: false,
   newCollectionProduct: [],
   allCollectionProduct: [],
+  filteredProducts: [],
   bestsellers: [],
   outlet: [],
   inCart: localStItemsCart,
@@ -24,6 +25,9 @@ export default createReducer(defaultState, {
   },
   [actions.setAllCollectionProduct]: (state, { payload }) => {
     state.allCollectionProduct = payload;
+  },
+  [actions.setFilteredProducts]: (state, { payload }) => {
+    state.filteredProducts = payload;
   },
   [actions.setNewCollectionProduct]: (state, { payload }) => {
     state.newCollectionProduct = payload;
@@ -46,6 +50,5 @@ export default createReducer(defaultState, {
   },
   [actions.removeFromFavorite]: (state, { payload }) => {
     state.inFavorite = payload;
-  },
-  // [actions.toDefault]: () => defaultState,
+  }
 });

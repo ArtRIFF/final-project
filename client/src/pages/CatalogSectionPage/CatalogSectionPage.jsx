@@ -10,8 +10,8 @@ import {useLocation} from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-import { selectorAllCollectionProduct } from "../../store/selectors";
-import { fetchAllCollectionProduct } from "../../store/actions";
+import { selectorAllCollectionProduct, selectorFilteredProducts } from "../../store/selectors";
+import { fetchAllCollectionProduct, fetchFilteredProducts } from "../../store/actions";
 
 const addToURLWithoutReloading = (url, addConfig) => window.history.pushState(null,null, `${url}${addConfig?"/filter?"+addConfig:""}`);
 
@@ -51,6 +51,8 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const [filterURL, setFilterURL] = useState('');
   const [sortURL, setSortURL] = useState('');
   const [paginationURL, setPaginationURL] = useState('');
+// new logic
+  const fArray = useSelector(selectorFilteredProducts);
 
   const callAsideFilter = () => {
     setModalRender(true);
@@ -58,10 +60,12 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   // http://localhost:3000/jewelry/filter?collectionName=max%20spass&sort=NEW&perPage=12&startPage=2
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
+    dispatch(fetchFilteredProducts("insertType=pearl"));
     catchURLconfigAndChange();
   },[]);
 
   useEffect(() => {
+    console.log(fArray);
     const storageConfigURL = localStorage.getItem('configURL');
     if (!storageConfigURL) {
       addToURLWithoutReloading(location.pathname, filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: ""));
