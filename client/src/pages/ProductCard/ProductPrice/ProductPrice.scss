@@ -73,8 +73,10 @@
         top: 14px;
         &::after {
           content: url("./img/Vector.png");
+          transform: rotate(-45deg);
           position: absolute;
-          top: 0;
+          right: 10px;
+          top: -5px;
         }
         &::before {
           content: "Size:";
