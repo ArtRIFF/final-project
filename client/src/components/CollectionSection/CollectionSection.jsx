@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import CollectionSectionCard from "./CollectionSectionCard";
-// import { selectorNewCollectionProduct } from "../../store/selectors";
+import { selectorNewCollectionProduct } from "../../store/selectors";
 import { fetchNewCollectionProduct } from "../../store/products/productsSlice";
 import "./CollectionSection.scss";
 import ButtonViewAll from "../Button/ViewAll/ViewAll";
@@ -13,7 +13,7 @@ import CatalogSectionPage from "../../pages/CatalogSectionPage/CatalogSectionPag
 const CollectionSection = (props) => {
   const dispatch = useDispatch();
   const [viewAll, setViewAll] = useState(false);
-  const newCollectionArray = useSelector(state => state.products.newCollectionProduct);
+  const newCollectionArray = useSelector(selectorNewCollectionProduct);
   
   useEffect(() => {
     dispatch(fetchNewCollectionProduct());

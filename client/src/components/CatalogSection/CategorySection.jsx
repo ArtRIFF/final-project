@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, EffectFade } from "swiper";
 import classNames from "classnames";
 import CategorySectionCard from "./CategorySectionCard";
-// import { selectorAllCollectionProduct } from "../../store/selectors";
+import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import "./CategorySection.scss";
 import "swiper/css";
@@ -16,7 +16,7 @@ const CategorySection = (props) => {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("braceletsArray");
 
-  const productArray = useSelector(state => state.products.allCollectionProduct);
+  const productArray = useSelector(selectorAllCollectionProduct);
   const earringsArray = productArray.filter(
     (element) =>
       element.categories === "earring" ||
