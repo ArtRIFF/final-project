@@ -102,14 +102,21 @@
     padding: 15px 748px 15px 10px;
     font-family: $secondary-font;
     display: flex;
+    position: relative;
 }
 
 .registration__show-hide{
     display: flex;
-    position: relative;
     align-items: center;
   label {
     width: 100%;
+  }
+  &__icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 60px;
+    right: 30px;
   }
 }
 

@@ -8,16 +8,15 @@
   flex-direction: column;
   padding: 40px 20px;
   box-sizing: border-box;
-  align-items: center;
+  flex-grow: 1;
   justify-content: center;
-  margin-right: 40px;
-  // @media (max-width:1200px) {
-  //   // margin-right: 60px;
-  // }
-  @media (max-width:320px) {
-    margin-right: 60px;
-  }
 
+  @media (max-width: 1200px) {
+    // margin-right: 60px;
+  }
+  @media (max-width: 320px) {
+    //margin-right: 60px;
+  }
 
   &__image {
     width: 100%;
@@ -50,6 +49,7 @@
   }
   &__content {
     &-title {
+      text-align: center;
       font-style: normal;
       font-weight: 600;
       font-size: 20px;
@@ -79,7 +79,7 @@
 }
 @media screen and (max-width: 991px) {
   .category-card {
-    margin-right: 20px;
+    //margin-right: 20px;
   }
 }
 @media screen and (max-width: $desktop-size) {

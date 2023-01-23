@@ -1,26 +1,26 @@
-import React, {useState, useRef} from "react";
-import {Field, ErrorMessage} from 'formik';
+import React, {useRef, useState} from "react";
+import {ErrorMessage, Field} from 'formik';
 import '../Input/Input.scss'
 import '../Registration.scss';
+import {ReactComponent as ShowPassIcon} from "./img/show-pass.svg";
+import {ReactComponent as HidePassIcon} from "./img/hide-pass.svg";
 
 
+const InputWithStrength = ({label, className, placeholder, name, handleChange, error, ...props}) => {
 
-const InputWithStrength = ({ label, className, placeholder, name, handleChange, error, ...props}) => {
-
-
-  const [precentBar, setPrecentBar] = useState('');
+  const [passShown, setPassShown] = useState(false);
+  const [percentBar, setPercentBar] = useState('');
   const passwordRef = useRef(null);
-  const [toggleIcon, setToggleIcon] = useState('✅');
-  const [toggleIconClasses, setToggleIconClasses] = useState('toggle-icon-passive');
-  const [ripple, setRipple] = useState('');
   const [passLable, setPassLable] = useState('Strength');
-  const [type, setType] = useState('password');
 
   const addClass = (className) => {
-    setPrecentBar('')
+    setPercentBar('')
     if (className) {
-      setPrecentBar(className)
+      setPercentBar(className)
     }
+  }
+  const togglePassword = () => {
+    setPassShown(!passShown)
   }
 
   const handlePassInput = (e) => {
@@ -40,37 +40,25 @@ const InputWithStrength = ({ label, className, placeholder, name, handleChange, 
     }
   }
 
-  const togglePassInput = (e) => {
-    if (type === 'password') {
-      setType('text')
-      setToggleIcon('✅')
-      setRipple('ripple-active')
-    } else {
-      setType('password')
-      setToggleIcon('❌')
-      setRipple('ripple-passive')
-      setToggleIconClasses('toggle-icon-passive')
-    }
-  }
+
   return (
     <>
-
       <div className='registration__show-hide'>
         <label>
           <h3 className="registration__section-field">{label}</h3>
-          <Field innerRef={passwordRef} type={type} name={name} {...props} className='registration__section-input'
-                  onBlur={handlePassInput}
+          <Field innerRef={passwordRef} type={passShown ? 'text' : 'password'} name={name} {...props}
+                 className='registration__section-input'
+                 onBlur={handlePassInput}
                  placeholder={placeholder}/>
           <ErrorMessage className="error" name={name} component={'p'}/>
-
+          {passShown ? <HidePassIcon className='registration__show-hide__icon' onClick={togglePassword}/> :
+            <ShowPassIcon className='registration__show-hide__icon' onClick={togglePassword}/>}
         </label>
-        <span onClick={togglePassInput} className={`toggle ${toggleIconClasses}`}
-              id={document.querySelector('.error') ? 'hide_show-mistake' : 'hide_show'}>{toggleIcon}</span>
-        <span className={`ripple ${ripple}`}></span>
+
       </div>
       <div className="pass-strength">
         <div className="strength-percent">
-          <span className={precentBar}></span>
+          <span className={percentBar}></span>
         </div>
         <span className='strength-lable'>{passLable}</span>
       </div>
