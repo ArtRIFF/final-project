@@ -1,9 +1,4 @@
 import {API, token} from "../config/API";
-// export const sendRequest = async (url) => {
-// 	const response = await fetch(url);
-// 	const result = await response.json();
-// 	return result;
-// }
 
 export const sendRequest = async (url, method = "GET", config) => {
   return await fetch(url, {

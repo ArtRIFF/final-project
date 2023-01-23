@@ -2,7 +2,7 @@ import './style.scss';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const AsideFilter = ({ allCollectionArray, filterRequest }) => {
+const AsideFilter = ({ filterRequest }) => {
   const [productsType, setProductsType] = useState([]);
   const [metalType, setMetalType] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
@@ -12,114 +12,40 @@ const AsideFilter = ({ allCollectionArray, filterRequest }) => {
   const [price, setPrice] = useState(['', '']);
   const [insertNumber, setInsertNumber] = useState(0);
 
-  let hasAnyFilters;
-  useEffect(() => {
-    if (
-      productsType.length !== 0 ||
-      metalType.length !== 0 ||
-      collectionType.length !== 0 ||
-      sampleType.length !== 0 ||
-      metalColorType.length !== 0 ||
-      insertType.length !== 0 ||
-      price[0] !== "" ||
-      price[1] !== "" ||
-      insertNumber !== 0
-    ) {
-      hasAnyFilters = Boolean(true);
-    } else {
-      hasAnyFilters = Boolean(false);
-    }
-  }, [
-    productsType,
-    metalType,
-    collectionType,
-    sampleType,
-    metalColorType,
-    insertType,
-    price,
-    insertNumber,
-  ]);
-
   useEffect(() => {
     updateFilter();
-  }, [productsType]);
-
-  useEffect(() => {
-    updateFilter();
-  }, [metalType]);
-
-  useEffect(() => {
-    updateFilter();
-  }, [collectionType]);
-
-  useEffect(() => {
-    updateFilter();
-  }, [sampleType]);
-
-  useEffect(() => {
-    updateFilter();
-  }, [metalColorType]);
-
-  useEffect(() => {
-    updateFilter();
-  }, [insertType]);
-
-  useEffect(() => {
-    updateFilter();
-  }, [price]);
-
-  useEffect(() => {
-    updateFilter();
-  }, [insertNumber]);
-
+  }, [productsType, metalType, collectionType, sampleType, metalColorType, insertType, price, insertNumber]);
 
   const updateFilter = () => {
-    //new logic
-    
     let filterParamArray = [];
 
-    const pushToFilterParamArray = (param) =>{
-     if (param) {
-      filterParamArray.push(param);
-     }
+    const pushToFilterParamArray = (param) => {
+      if (param) {
+        filterParamArray.push(param);
+      }
     }
 
-    const productsTypeParam = productsType.length?`categories=${productsType.join(',')}`: "";
+    const productsTypeParam = productsType.length ? `categories=${productsType.join(',')}` : "";
     pushToFilterParamArray(productsTypeParam);
-    const metalTypeParam = metalType.length?`metal=${metalType.join(',')}`: "";
+    const metalTypeParam = metalType.length ? `metal=${metalType.join(',')}` : "";
     pushToFilterParamArray(metalTypeParam);
-    const collectionTypeParam = collectionType.length?`collectionName=${collectionType.join(',')}`: "";
+    const collectionTypeParam = collectionType.length ? `collectionName=${collectionType.join(',')}` : "";
     pushToFilterParamArray(collectionTypeParam);
-    const sampleTypeParam = sampleType.length?`sample=${sampleType.join(',')}`: "";
+    const sampleTypeParam = sampleType.length ? `sample=${sampleType.join(',')}` : "";
     pushToFilterParamArray(sampleTypeParam);
-    const metalColorTypeParam = metalColorType.length?`metalColor=${metalColorType.join(',')}`: "";
+    const metalColorTypeParam = metalColorType.length ? `metalColor=${metalColorType.join(',')}` : "";
     pushToFilterParamArray(metalColorTypeParam);
-    const insertTypeParam = insertType.length?`insertType=${insertType.join(',')}`: "";
+    const insertTypeParam = insertType.length ? `insertType=${insertType.join(',')}` : "";
     pushToFilterParamArray(insertTypeParam);
-    const insertNumberParam = insertNumber!== 0?`insertNumber=${insertNumber}`: "";
+    const insertNumberParam = insertNumber !== 0 ? `insertNumber=${insertNumber}` : "";
     pushToFilterParamArray(insertNumberParam);
-    const priceRangeParam = (price[0] !== "" || price[1] !== "")?`price=${price[1] !== ""?`${price[0]}-${price[1]}`:`${price[0]}`}`: "";
+    const priceRangeParam = (price[0] !== "" || price[1] !== "") ? `price=${price[1] !== "" ? `${price[0]}-${price[1]}` : `${price[0]}`}` : "";
     pushToFilterParamArray(priceRangeParam);
 
-    const filterParam = filterParamArray.length?`${filterParamArray.join('&')}`:"";
+    const filterParam = filterParamArray.length ? `${filterParamArray.join('&')}` : "";
 
-    // console.log(insertNumberParam);
-
-    const newArray = allCollectionArray.filter(n => (
-      (
-        (!productsType.length || productsType.includes(n.categories))
-        && (!metalType.length || metalType.includes(n.metal))
-        && (!collectionType.length || collectionType.includes(n.collectionName))
-        && (!sampleType.length || sampleType.includes((typeof n.sample === 'undefined' ? n.sample : (n.sample).toString())))
-        && (!metalColorType.length || metalColorType.includes(n.metalColor))
-        && (!insertType.length || insertType.includes(n.insertType))
-        && (!price[0] || price[0] <= n.currentPrice)
-        && (!price[1] || price[1] >= n.currentPrice)
-        && (!insertNumber || insertNumber === n.insertNumber)
-      )
-    ));
     document.querySelector('.category-filter select').value = "DEFAULT";
-    filterRequest(newArray, hasAnyFilters, filterParam);
+    filterRequest(filterParam);
   };
 
   const onTypeChange = (e) => {
@@ -127,7 +53,7 @@ const AsideFilter = ({ allCollectionArray, filterRequest }) => {
     const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
     const arrayValue = value.split(' ');
     if (arrayValue.length > 1) {
-      arrayValue.forEach(valueItem => {
+      arrayValue.forEach(() => {
         setProductsType((!productsType.includes(arrayValue[0]) && checked)
           ? [...productsType, ...arrayValue]
           : productsType.filter(n => !arrayValue.includes(n))
