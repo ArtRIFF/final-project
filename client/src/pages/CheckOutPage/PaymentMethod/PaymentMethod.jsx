@@ -2,59 +2,14 @@ import React, {useRef, useState} from "react";
 import "./PaymentMethod.scss";
 import "../ContactInfo/ContactInfo.scss"
 import Button from "../../../components/Button/ButtonAll/ButtonAll";
+import Input from "../../LoginPage/RegistrationPage/Input/Input";
 
-// import StripeCheckout from "react-stripe-checkout";
 
 const PaymentMethod = (props) => {
 
-  const cardNumberRef = useRef(null);
-  const cardNameRef = useRef(null);
-  const cardDateRef = useRef(null);
-  const cardCvvRef = useRef(null);
-
-  const handleBlur = () => {
-    const cardNumber = cardNumberRef.current.value;
-    const cardName = cardNameRef.current.value;
-    const cardDate = cardDateRef.current.value;
-    const cardCvv = cardCvvRef.current.value;
-
-    if (cardNumber && cardName && cardDate && cardCvv) {
-      props.onPaymentReady({
-        cardNumber,
-        cardName,
-        cardDate,
-        cardCvv,
-      })
-    }
-  };
-
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardNumberDirty, setCardNumberDirty] = useState(false);
-  const [cardNumberError, setCardNumberError] = useState(
-    "Make sure you entered the digits correctly"
-  )
-
-  const blurCardNumberHandler = (e) => {
-    switch (e.target.name) {
-      case "cardNumber" :
-        setCardNumberDirty(true);
-        break;
-    }
-  }
-
-  const cardNumberHandler = (e) => {
-    setCardNumber(e.target.value);
-    const re = /^4[0-9]{12}(?:[0-9]{3})?$/
-    if (!re.test(String(e.target.value))) {
-      setCardNumberError("Make sure you entered the digits correctly")
-    } else {
-      setCardNumberError("")
-    }
-
-  }
 
   return (
-    <section className="payment-method-section" onBlur={handleBlur}>
+    <section className="payment-method-section">
       <div className="payment-method-section__wrap">
         <p className="payment-method-section__title">3. Payment Method</p>
 
@@ -93,69 +48,60 @@ const PaymentMethod = (props) => {
               <img
                   src="img/payment-method/Icon-five.png"
                   alt="card"
-                  className="payment-method-section__img"
+                  className="payment-method-section__img visa"
                 />
             </a>
           </div>
         </div>
 
         <div className="payment-method-section__cardInfo">
-          <form action="" className="payment-method-section__info">
+          <div className="payment-method-section__info">
             <label htmlFor="#" className="payment-method-section__name">
               Card Number
             </label>
-            <input
-              onBlur={(e) => blurCardNumberHandler(e)}
-              onChange={(e) => cardNumberHandler(e)}
+            <Input
               type="text"
               className="payment-method-section__text"
               placeholder="Card Number"
-              value={cardNumber}
-              ref={cardNumberRef}
               name="cardNumber"
             />
-            {cardNumberDirty && cardNumberError && (
-              <div className="contact-info-section__error-message">
-                {cardNumberError}
-              </div>
-            )}
-          </form>
+          </div>
         </div>
 
         <div className="payment-method-section__firstName">
-          <form action="" className="payment-method-section__infos infos-item1">
+          <div className="payment-method-section__infos infos-item1">
             <label htmlFor="#" className="payment-method-section__names">
               Name on card
             </label>
-            <input
+            <Input
               type="text"
               className="payment-method-section__texts"
               placeholder="Full name"
-              ref={cardNameRef}
+              name="cardOwnerName"
             />
-          </form>
-          <form action="" className="payment-method-section__infos infos-item2">
+          </div>
+          <div className="payment-method-section__infos infos-item2">
             <label htmlFor="#" className="payment-method-section__names">
               MM/YY
             </label>
-            <input
+            <Input
               type="text"
               className="payment-method-section__texts"
               placeholder="MM/YY"
-              ref={cardDateRef}
+              name="cardDate"
             />
-          </form>
-          <form action="" className="payment-method-section__infos infos-item3">
+          </div>
+          <div className="payment-method-section__infos infos-item3">
             <label htmlFor="#" className="payment-method-section__names">
               CVV
             </label>
-            <input
+            <Input
               type="password"
               className="payment-method-section__texts"
               placeholder="CVV"
-              ref={cardCvvRef}
+              name="cvv"
             />
-          </form>
+          </div>
         </div>
 
         <div className="payment-method-section__checkBox">

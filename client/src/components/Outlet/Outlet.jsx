@@ -20,9 +20,9 @@ const Outlet = (props) => {
     if (viewAll) {
       return outlet.length;
     } else {
-      if (window.screen.width >= 767) {
-        return 8;
-      } else if (window.screen.width < 767 && window.screen.width >= 481) {
+      if (window.screen.width > 768) {
+        return 4;
+      } else if (window.screen.width <= 768 && window.screen.width >= 481) {
         return 3;
       } else if (window.screen.width < 480) {
         return 2;
@@ -34,18 +34,13 @@ const Outlet = (props) => {
       <div className="container">
         <div className="outlet__header">
           <h2 className="outlet__title">Outlet</h2>
-
           <Link to={"/Outlet"} className="btn__outlet">
             <ButtonViewAll />
           </Link>
         </div>
         <div className="outlet__cards-container">
           {outlet.slice(0, numberOfItems()).map((card, index) => {
-            return (
-              <div key={index}>
-                <CategorySectionCard product={card} />
-              </div>
-            );
+            return <CategorySectionCard product={card} key={index} />;
           })}
         </div>
       </div>

@@ -18,19 +18,17 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
-    overflow-y: hidden;
-    align-items: center;
     margin-right: -40px;
     gap: 10px;
     width: 100%;
 
     .category-card {
-     max-width: 280px;
-     margin-right: 0;
+      max-width: 280px;
+      margin-right: 0;
     }
 
     & div:last-child .category-card {
-     margin-right: 0;
+      margin-right: 0;
     }
   }
 }
@@ -65,9 +63,7 @@
 
     .category-card {
       display: none;
-     
     }
-
 
     & div:first-child .category-card {
       display: block;
@@ -75,12 +71,11 @@
       width: 100%;
     }
 
-    & div:first-child+div .category-card {
+    & div:first-child + div .category-card {
       display: block;
       margin: 0 auto;
       width: 100%;
     }
-    
   }
 }
 

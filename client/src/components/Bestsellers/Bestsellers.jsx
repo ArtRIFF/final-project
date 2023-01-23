@@ -19,9 +19,9 @@ const Bestsellers = (props) => {
     if (viewAll) {
       return bestsellers.length;
     } else {
-      if (window.screen.width >= 767) {
+      if (window.screen.width > 768) {
         return 4;
-      } else if (window.screen.width < 767 && window.screen.width >= 481) {
+      } else if (window.screen.width <= 768 && window.screen.width >= 481) {
         return 3;
       } else if (window.screen.width < 480) {
         return 2;
@@ -34,17 +34,13 @@ const Bestsellers = (props) => {
       <div className="container">
         <div className="bestsellers__header">
           <h2 className="bestsellers__title">Bestsellers</h2>
-          <Link to={"/Bestsellers"}  className="btn__bestsellers">
+          <Link to={"/Bestsellers"} className="btn__bestsellers">
             <ButtonViewAll />
           </Link>
         </div>
         <div className="bestsellers__cards-container">
           {bestsellers.slice(0, numberOfItems()).map((card, index) => {
-            return (
-              <div key={index}>
-                <CategorySectionCard product={card} key={index} />
-              </div>
-            );
+            return <CategorySectionCard product={card} key={index} />;
           })}
         </div>
       </div>

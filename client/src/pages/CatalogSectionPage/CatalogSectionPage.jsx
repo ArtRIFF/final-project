@@ -6,27 +6,69 @@ import CategoryCardsContainer from "./components/Pagination/CategoryCardsContain
 import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
+import {useLocation} from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 
+const addToURLWithoutReloading = (url, addConfig) => window.history.pushState(null,null, `${url}${addConfig?"/filter?"+addConfig:""}`);
+
+const catchURLconfigAndChange = () => {
+const url = window.location.href;
+const storageConfigURL = localStorage.getItem('configURL');
+if (url.indexOf("filter") !== -1) {
+  const configURL = url.indexOf("filter") !== -1?url.slice(url.indexOf("filter")+7): "";
+  localStorage.setItem('configURL', configURL);
+  const basicURL = url.slice(0,url.indexOf("filter")-1);
+  window.location.href = basicURL;
+}
+
+if (storageConfigURL) {
+  addToURLWithoutReloading(url, storageConfigURL);
+  localStorage.removeItem('configURL'); 
+}
+}
+
+const getURLFilter = () => {
+  const storageConfigURL = localStorage.getItem('configURL');
+  if (storageConfigURL) {
+    return storageConfigURL;
+  } else {
+    return "";
+  };
+}
 const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
+  let location = useLocation();
 
   const [filtredArray, setFiltredArray] = useState(alreadyFilteredArray);
   const allCollectionArray = useSelector(selectorAllCollectionProduct);
   const [showAsideFilter, setModalRender] = useState(false);
   const [totalItems, setTotalItems] = useState(allCollectionArray.length);
 
+  const [filterURL, setFilterURL] = useState('');
+  const [sortURL, setSortURL] = useState('');
+  const [paginationURL, setPaginationURL] = useState('');
+
   const callAsideFilter = () => {
     setModalRender(true);
   };
-
+  // http://localhost:3000/jewelry/filter?collectionName=max%20spass&sort=NEW&perPage=12&startPage=2
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
+    catchURLconfigAndChange();
   },[]);
+
+  useEffect(() => {
+    const storageConfigURL = localStorage.getItem('configURL');
+    if (!storageConfigURL) {
+      addToURLWithoutReloading(location.pathname, filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: ""));
+    } else {
+      localStorage.removeItem('configURL');
+    }
+  },[filterURL,sortURL,paginationURL]);
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
@@ -67,8 +109,11 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     }
   }, [loading, hasAnyFilters, allCollectionArray.length, array]);
 
-  const filterRequest = (array, hasAnyFilters) => {
-    setFiltredArray(array);
+  const filterRequest = (array, hasAnyFilters, url) => {
+      setFiltredArray(array);
+      setFilterURL(url);
+      setSortURL("");
+      setPaginationURL("");
     if (hasAnyFilters === true) {
       setAllCollectionArrayIsFiltered(true);
       setHasAnyFilters(true);
@@ -77,6 +122,23 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
       setHasAnyFilters(false);
     }
   };
+
+  const filterSortRequest = (array, hasAnyFilters, url) => {
+    setFiltredArray(array);
+    setSortURL(url);
+    if (hasAnyFilters === true) {
+      setAllCollectionArrayIsFiltered(true);
+      setHasAnyFilters(true);
+    } else {
+      setAllCollectionArrayIsFiltered(false);
+      setHasAnyFilters(false);
+    }
+  };
+
+  const paginationRequest = (url) => {
+    setPaginationURL(url);
+  };
+
 
   useEffect(() => {
     if (filtredArray.length !== 0) {
@@ -142,7 +204,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             allCollectionArray={
               filtredArray.length !== 0 ? filtredArray : allCollectionArray
             }
-            filterRequest={filterRequest}
+            filterRequest={filterSortRequest}
             hasAnyFilters= {hasAnyFilters}
           />
         </div>
@@ -160,6 +222,7 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             <div></div>
           ) : (
             <Pagination
+              paginationRequest={paginationRequest}
               hasAnyFilters={hasAnyFilters}
               itemsPerPage={itemsPerPage}
               totalItems={totalItems}

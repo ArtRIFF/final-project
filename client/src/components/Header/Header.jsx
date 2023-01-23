@@ -9,13 +9,13 @@ import { sendRequest } from "../../helpers/sendRequest";
 import { API } from "../../config/API";
 import Button from "../Button/ButtonAll/ButtonAll";
 
-import { ReactComponent as CartIcon } from "../Header/HeaderInterAction/img/CartIcon.svg";
 import { selectInCart } from "../../store/selectors";
 import { useSelector } from "react-redux";
 
 import { Menu, MenuItem } from "@mui/material";
 import { ReactComponent as LoginIcon } from "../Header/HeaderInterAction/img/Registrationicon.svg";
 import { UserContext } from "../../context/UserContext";
+import IconCart from "./HeaderInterAction/IconCart/IconCart";
 
 const Header = ({ active, setActive }) => {
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
@@ -169,12 +169,7 @@ const Header = ({ active, setActive }) => {
                 ></img>
               </NavLink>
             </div>
-            <div className="header-cart">
-              <NavLink to="/cart">
-                <CartIcon className={itemsInCart ? "header-cart_icon filled-cart" : "header-cart_icon"} />
-                <div id="cart">{itemsInCart}</div>
-              </NavLink>
-            </div>
+            <IconCart/>
             <div className="header-registration">
               <LoginIcon className={userInfo ? "filled" : "header-registration__icon"} onClick={handleClick} />
               <Menu

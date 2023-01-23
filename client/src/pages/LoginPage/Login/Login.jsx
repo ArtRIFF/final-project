@@ -53,11 +53,11 @@ const Login = () => {
       })
   }
   return (
-      <section className='login__section'>
-        <div className="breadcrumbs_login">
-          <Breadcrumbs/>
-        </div>
-        <div className="container">
+    <section className='login__section'>
+      <div className="breadcrumbs_login">
+        <Breadcrumbs/>
+      </div>
+      <div className="container">
         <div className='login__container'>
           <Formik
             initialValues={{
@@ -84,7 +84,7 @@ const Login = () => {
                   handleChange={handleChange}
                   error={errors.password && touched.password}
                 />
-                {err ? <p className="login__registration-error">Entered password or email is incorrect</p> : <span></span>}
+                {err && <p className="login__registration-error">Entered password or email is incorrect</p>}
                 <div className='login__registration-section'>
                   <h4 className='login__registration-title'>Don't have an account yet?<NavLink to="/registration"
                                                                                                className='login__registration-link'> Register</NavLink>
@@ -97,8 +97,8 @@ const Login = () => {
             )}
           </Formik>
         </div>
-        </div>
-      </section>
+      </div>
+    </section>
   )
 }
 
