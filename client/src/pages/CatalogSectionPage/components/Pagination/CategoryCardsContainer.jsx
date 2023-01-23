@@ -4,36 +4,34 @@ import CategorySectionCard from "../../../../components/CatalogSection/CategoryS
 import "./CategoryCardsContainer.scss";
 
 const CategoryCardsContainer = ({
-  items,
   loading,
   allCollectionArray,
   filterSearchingResults,
 }) => {
-  if (loading) {
+  if (!allCollectionArray) {
     return <LoadingSpinner />;
   }
 
 
-    if (allCollectionArray.length === filterSearchingResults) {
-      return (
-        <div
-          style={{
-            fontFamily: "Libre Bodoni Bold",
-            fontWeight: "200",
-            fontSize: "32px",
-            textAlign: "center",
-            paddingTop: "180px",
-          }}
-        >
-          Sorry, no items matching your search criteria
-        </div>
-      );
-    }
-
+    // if (allCollectionArray) {
+    //   return (
+    //     <div
+    //       style={{
+    //         fontFamily: "Libre Bodoni Bold",
+    //         fontWeight: "200",
+    //         fontSize: "32px",
+    //         textAlign: "center",
+    //         paddingTop: "180px",
+    //       }}
+    //     >
+    //       Sorry, no items matching your search criteria
+    //     </div>
+    //   );
+    // }
 
   return (
       <div className="categoryCards__grid">
-        {items.map((card) => (
+        {allCollectionArray&&allCollectionArray.map((card) => (
           <div className="CategorySectionCard__wrapper" key={Math.random()}>
             <CategorySectionCard product={card} />
           </div>

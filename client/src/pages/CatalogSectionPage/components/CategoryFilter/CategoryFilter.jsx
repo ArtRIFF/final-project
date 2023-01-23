@@ -13,11 +13,10 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
   }
 
   const sortByPrice = () => {
-    filterRequest("sort=byPrice");
+    filterRequest("sort=currentPrice");
   }
 
   const onSelectorChange = (e) => {
-    if (!setResult) {
     switch (e.target.value) {
       case "price":
         sortByPrice();
@@ -29,7 +28,6 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
         sortByBestseller();
         break;
     }
-  }
   };
   return (
     <div className="category-filter">

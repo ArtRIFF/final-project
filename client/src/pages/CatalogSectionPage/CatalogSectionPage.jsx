@@ -43,15 +43,14 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   
-  const filteredArrayFromStore = useSelector(selectorFilteredProducts);
-  const [filteredArray, setfilteredArray] = useState(filteredArrayFromStore);
-  // const allCollectionArray = useSelector(selectorAllCollectionProduct);
+  const {products,productsQuantity} = useSelector(selectorFilteredProducts);
+
   const [showAsideFilter, setModalRender] = useState(false);
   const [totalItems, setTotalItems] = useState(5);
 
   const [filterURL, setFilterURL] = useState('');
   const [sortURL, setSortURL] = useState('');
-  const [paginationURL, setPaginationURL] = useState('');
+  const [paginationURL, setPaginationURL] = useState('1');
 
   const callAsideFilter = () => {
     setModalRender(true);
@@ -59,17 +58,20 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
 
   useEffect(() => {
     // dispatch(fetchAllCollectionProduct());
+    // dispatch(fetchFilteredProducts(stringFilterParam));
     dispatch(fetchFilteredProducts(stringFilterParam));
     catchURLconfigAndChange();
   },[]);
 
   useEffect(() => {
     const storageConfigURL = localStorage.getItem('configURL');
+    const summaryFilterParam = filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: "")
     if (!storageConfigURL) {
-      addToURLWithoutReloading(location.pathname, filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: ""));
+      addToURLWithoutReloading(location.pathname, summaryFilterParam);
     } else {
       localStorage.removeItem('configURL');
     }
+    dispatch(fetchFilteredProducts(summaryFilterParam));
   },[filterURL,sortURL,paginationURL]);
 
   const hideAsideFilter = (event) => {
@@ -88,16 +90,16 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   //   : allCollectionArray.length;
 
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(12);
-  const lastItemIndex = currentPage * itemsPerPage;
-  const firstItemIndex = lastItemIndex - itemsPerPage;
+  // const lastItemIndex = currentPage * itemsPerPage;
+  // const firstItemIndex = lastItemIndex - itemsPerPage;
 
   const [allCollectionArrayIsFiltered, setAllCollectionArrayIsFiltered] =
     useState(false);
   const [hasAnyFilters, setHasAnyFilters] = useState();
   const [showPagination, setShowPagination] = useState(true);
-  const currentItems =  filteredArray.slice(firstItemIndex, lastItemIndex);
+  // const currentItems =  filteredArray.slice(firstItemIndex, lastItemIndex);
  
 
   // useEffect(() => {
@@ -125,13 +127,6 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
 
   const filterSortRequest = (url) => {
     setSortURL(url);
-    // if (hasAnyFilters === true) {
-    //   setAllCollectionArrayIsFiltered(true);
-    //   setHasAnyFilters(true);
-    // } else {
-    //   setAllCollectionArrayIsFiltered(false);
-    //   setHasAnyFilters(false);
-    // }
   };
 
   const paginationRequest = (url) => {
@@ -198,16 +193,15 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
         <div className="filter-wrapper">
           <CategoryFilter
             onClickFunc={callAsideFilter}
-            setResult={filteredArray.length}
+            setResult={productsQuantity}
             filterRequest={filterSortRequest}
           />
         </div>
         <div className="categoryCards-wrapper">
           <CategoryCardsContainer
-            items={currentItems}
             loading={loading}
-            filterSearchingResults={filteredArray.length}
-            allCollectionArray={filteredArray}
+            filterSearchingResults={productsQuantity}
+            allCollectionArray={products}
           />
         </div>
         <div className="paginnation-wrapper">
