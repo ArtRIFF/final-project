@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getOneCard } from "../../API/cardsAPI";
-import { changeCart } from "../../store/actions";
-import { selectInCart } from "../../store/selectors";
+import { changeCart } from "../../store/cart/cartSlice";
+// import { selectInCart } from "../../store/selectors";
 import { useDispatch, useSelector } from "react-redux";
 
 
 const ItemInCart = ({card}) => {
     const {cardID, quantity, size} = card;
     const [oneCard, setCard] = useState({});
-    const inCart = useSelector(selectInCart);
+    const inCart = useSelector(state => state.cart.inCart);
     const dispatch = useDispatch();
     
     useEffect(() => {

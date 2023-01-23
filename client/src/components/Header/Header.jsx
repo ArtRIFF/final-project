@@ -10,7 +10,7 @@ import { API } from "../../config/API";
 import Button from "../Button/ButtonAll/ButtonAll";
 
 import { ReactComponent as CartIcon } from "../Header/HeaderInterAction/img/CartIcon.svg";
-import { selectInCart } from "../../store/selectors";
+// import { selectInCart } from "../../store/selectors";
 import { useSelector } from "react-redux";
 
 import { Menu, MenuItem } from "@mui/material";
@@ -56,7 +56,7 @@ const Header = ({ active, setActive }) => {
       })
   }
 
-  const inCart = useSelector(selectInCart);
+  const inCart = useSelector(state => state.cart.inCart);
   let itemsInCart;
   if (inCart.length > 0) {
     itemsInCart = inCart.reduce((acc, cur) => acc + cur.quantity, 0)
@@ -115,7 +115,7 @@ const Header = ({ active, setActive }) => {
               </li>
               <li className="header-nav-mobil">
                 <NavLink to="/outlet" className="header-nav-mobil__menu_item">
-                  %Outlet
+                  Outlet
                 </NavLink>
               </li>
               <li className="header-nav-mobil">

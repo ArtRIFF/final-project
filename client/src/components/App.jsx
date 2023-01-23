@@ -21,18 +21,18 @@ import WishList from "../pages/WishList/WishList";
 import SearchPage from "./Header/HeaderInterAction/Search/SearchPage/SearchPage";
 import Footer from "./Footer/Footer";
 
-import {
-  selectorNewCollectionProduct,
-  selectBestsellers,
-  selectOutlet,
-  selectorAllCollectionProduct,
-} from "../store/selectors";
+// import {
+//   selectorNewCollectionProduct,
+//   selectBestsellers,
+//   selectOutlet,
+//   selectorAllCollectionProduct,
+// } from "../store/selectors";
 import {
   fetchNewCollectionProduct,
   fetchBestsellers,
   fetchOutlet,
   fetchAllCollectionProduct,
-} from "../store/actions";
+} from "../store/products/productsSlice";
 
 import { UserContextProvider } from "../context/UserContext";
 
@@ -43,9 +43,9 @@ import ChangePass from "../pages/LoginPage/UserPage/ChangePass";
 
 const App = () => {
   const dispatch = useDispatch();
-  const bestsellers = useSelector(selectBestsellers);
-  const newCollectionArray = useSelector(selectorNewCollectionProduct);
-  const outlet = useSelector(selectOutlet);
+  const bestsellers = useSelector(state =>state.products.bestsellers);
+  const newCollectionArray = useSelector(state =>state.products.newCollectionProduct);
+  const outlet = useSelector(state =>state.products.outlet);
   useEffect(() => {
     dispatch(fetchNewCollectionProduct());
     dispatch(fetchBestsellers());
@@ -53,7 +53,7 @@ const App = () => {
     dispatch(fetchAllCollectionProduct());
   }, []);
 
-  const productArray = useSelector(selectorAllCollectionProduct);
+  const productArray = useSelector(state => state.products.allCollectionProduct);
   const earringsArray = productArray.filter(
     (element) =>
       element.categories === "earring" ||

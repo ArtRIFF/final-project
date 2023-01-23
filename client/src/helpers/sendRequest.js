@@ -30,11 +30,4 @@ export const sendAuthorizedRequest = (url, method = "GET", config) => {
 };
 
 
-export const getCards = () =>
-  sendAuthorizedRequest(`${API}products`, "GET");
 
-export const getOneCard = (id) =>
-  sendAuthorizedRequest(`${API}products/${id}`, "GET");
-
-export const getComments = () =>
-  sendAuthorizedRequest(`${API}comments`, "GET")

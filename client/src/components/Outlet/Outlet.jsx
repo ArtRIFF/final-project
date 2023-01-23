@@ -3,14 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import ButtonViewAll from "../Button/ViewAll/ViewAll";
 import CategorySectionCard from "../CatalogSection/CategorySectionCard";
-import { selectOutlet } from "../../store/selectors";
-import { fetchOutlet } from "../../store/actions";
+// import { selectOutlet } from "../../store/selectors";
+// import { fetchOutlet } from "../../store/actions";
+import { fetchOutlet } from "../../store/products/productsSlice";
 
 import "./outlet.scss";
 
 const Outlet = (props) => {
   const dispatch = useDispatch();
-  const outlet = useSelector(selectOutlet);
+  const outlet = useSelector(state => state.products.outlet);
   const [viewAll, setViewAll] = useState(false);
   useEffect(() => {
     dispatch(fetchOutlet());
