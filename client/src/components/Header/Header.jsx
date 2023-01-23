@@ -10,7 +10,7 @@ import { API } from "../../config/API";
 import Button from "../Button/ButtonAll/ButtonAll";
 
 import { ReactComponent as CartIcon } from "../Header/HeaderInterAction/img/CartIcon.svg";
-// import { selectInCart } from "../../store/selectors";
+import { selectInCart } from "../../store/selectors";
 import { useSelector } from "react-redux";
 
 import { Menu, MenuItem } from "@mui/material";
@@ -56,7 +56,7 @@ const Header = ({ active, setActive }) => {
       })
   }
 
-  const inCart = useSelector(state => state.cart.inCart);
+  const inCart = useSelector(selectInCart);
   let itemsInCart;
   if (inCart.length > 0) {
     itemsInCart = inCart.reduce((acc, cur) => acc + cur.quantity, 0)

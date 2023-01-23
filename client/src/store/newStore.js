@@ -12,8 +12,9 @@ const store = configureStore ({
         products: productsSlice.reducer,
         cart: cartSlice.reducer,
         favorite: favoriteSlice.reducer,
+        // composeWithDevTools(applyMiddleware(thunk, logger))
     },
-    // composeWithDevTools(applyMiddleware(thunk, logger))
+    // middleware: 
 })
 
 export default store

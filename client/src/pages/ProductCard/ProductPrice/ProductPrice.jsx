@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProductRating from "../ProductRating";
 import { ReactComponent as Diamond } from "./img/diamond.svg";
 import { ReactComponent as Box } from "./img/box.svg";
-// import { selectInFavorite } from "../../../store/selectors";
+import { selectInFavorite } from "../../../store/selectors";
 import ButtonAll from "../../../components/Button/ButtonAll/ButtonAll";
 import "./ProductPrice.scss";
 
@@ -22,7 +22,7 @@ const ProductPrice = (props) => {
     selectedSize,
   } = props;
 
-  const inFavoriteStore = useSelector(state => state.favorite.inFavorite);
+  const inFavoriteStore = useSelector(selectInFavorite);
   const changeIsFavorite = () => {
     setIsFavorite(!isFavorite);
   };

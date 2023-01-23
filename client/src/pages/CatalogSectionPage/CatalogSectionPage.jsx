@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-// import { selectorAllCollectionProduct } from "../../store/selectors";
+import { selectorAllCollectionProduct } from "../../store/selectors";
 import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 
 const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   const dispatch = useDispatch();
 
   const [filtredArray, setFiltredArray] = useState(alreadyFilteredArray);
-  const allCollectionArray = useSelector(state => state.products.allCollectionProduct);
+  const allCollectionArray = useSelector(selectorAllCollectionProduct);
   const [showAsideFilter, setModalRender] = useState(false);
   const [totalItems, setTotalItems] = useState(allCollectionArray.length);
 

@@ -10,20 +10,12 @@ import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
 import { setInCart, changeCart } from "../../store/cart/cartSlice";
 import { setInFavorite, removeFromFavorite } from "../../store/favorite/favoriteSlice";
-import { fetchAllCollectionProduct, fetchBestsellers } from "../../store/products/productsSlice";
-// import {
-//   setInCart,
-//   changeCart,
-//   setInFavorite,
-//   removeFromFavorite,
-//   fetchAllCollectionProduct,
-//   fetchBestsellers,
-// } from "../../store/actions";
-// import {
-//   selectInCart,
-//   selectInFavorite,
-//   selectorAllCollectionProduct,
-// } from "../../store/selectors";
+import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
+import {
+  selectInCart,
+  selectInFavorite,
+  selectorAllCollectionProduct,
+} from "../../store/selectors";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -55,10 +47,8 @@ const ProductCard = (props) => {
   let [selectedSize, setSelectedSize] = useState(false);
   const { cardID } = useParams();
   let linkViewAll = "/";
-  const inCart = useSelector(state => state.cart.inCart);
-  const inFavoriteStore = useSelector(state => state.favorite.inFavorite);
-console.log('in fav', inFavoriteStore);
-console.log('in cart', inCart);
+  const inCart = useSelector(selectInCart);
+  const inFavoriteStore = useSelector(selectInFavorite);
 
   useEffect(() => {
     window.scrollTo(0, 0)

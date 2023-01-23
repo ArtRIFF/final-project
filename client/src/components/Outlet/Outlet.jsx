@@ -1,17 +1,16 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ButtonViewAll from "../Button/ViewAll/ViewAll";
 import CategorySectionCard from "../CatalogSection/CategorySectionCard";
-// import { selectOutlet } from "../../store/selectors";
-// import { fetchOutlet } from "../../store/actions";
+import { selectOutlet } from "../../store/selectors";
 import { fetchOutlet } from "../../store/products/productsSlice";
 
 import "./outlet.scss";
 
 const Outlet = (props) => {
   const dispatch = useDispatch();
-  const outlet = useSelector(state => state.products.outlet);
+  const outlet = useSelector(selectOutlet);
   const [viewAll, setViewAll] = useState(false);
   useEffect(() => {
     dispatch(fetchOutlet());

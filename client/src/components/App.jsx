@@ -21,12 +21,12 @@ import WishList from "../pages/WishList/WishList";
 import SearchPage from "./Header/HeaderInterAction/Search/SearchPage/SearchPage";
 import Footer from "./Footer/Footer";
 
-// import {
-//   selectorNewCollectionProduct,
-//   selectBestsellers,
-//   selectOutlet,
-//   selectorAllCollectionProduct,
-// } from "../store/selectors";
+import {
+  selectorNewCollectionProduct,
+  selectBestsellers,
+  selectOutlet,
+  selectorAllCollectionProduct,
+} from "../store/selectors";
 import {
   fetchNewCollectionProduct,
   fetchBestsellers,
@@ -43,9 +43,9 @@ import ChangePass from "../pages/LoginPage/UserPage/ChangePass";
 
 const App = () => {
   const dispatch = useDispatch();
-  const bestsellers = useSelector(state =>state.products.bestsellers);
-  const newCollectionArray = useSelector(state =>state.products.newCollectionProduct);
-  const outlet = useSelector(state =>state.products.outlet);
+  const bestsellers = useSelector(selectBestsellers);
+  const newCollectionArray = useSelector(selectorNewCollectionProduct);
+  const outlet = useSelector(selectOutlet);
   useEffect(() => {
     dispatch(fetchNewCollectionProduct());
     dispatch(fetchBestsellers());
@@ -53,7 +53,7 @@ const App = () => {
     dispatch(fetchAllCollectionProduct());
   }, []);
 
-  const productArray = useSelector(state => state.products.allCollectionProduct);
+  const productArray = useSelector(selectorAllCollectionProduct);
   const earringsArray = productArray.filter(
     (element) =>
       element.categories === "earring" ||

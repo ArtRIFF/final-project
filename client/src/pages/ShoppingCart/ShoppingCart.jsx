@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from 'react-redux';
 import Button from "../../components/Button/ButtonAll/ButtonAll";
-// import { selectInCart } from "../../store/selectors";
+import { selectInCart } from "../../store/selectors";
 import { Link } from "react-router-dom";
 import ItemInCart from "./ItemInCart";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
@@ -10,7 +10,7 @@ import "./ShoppingCart.scss";
 
 const ShoppingCart = () => {
     
-    const inCart = useSelector(state => state.cart.inCart);
+    const inCart = useSelector(selectInCart);
     
     useEffect(() => {
         localStorage.setItem("inCart", JSON.stringify(inCart));

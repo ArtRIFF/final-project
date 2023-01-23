@@ -1,16 +1,16 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ButtonViewAll from "../Button/ViewAll/ViewAll";
 import CategorySectionCard from "../CatalogSection/CategorySectionCard";
-// import { selectBestsellers } from "../../store/selectors";
+import { selectBestsellers } from "../../store/selectors";
 import { fetchBestsellers } from "../../store/products/productsSlice";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./bestsellers.scss";
 
 const Bestsellers = (props) => {
   const dispatch = useDispatch();
-  const bestsellers = useSelector(state => state.products.bestsellers);
+  const bestsellers = useSelector(selectBestsellers);
   const [viewAll, setViewAll] = useState(false);
   useEffect(() => {
     dispatch(fetchBestsellers());
