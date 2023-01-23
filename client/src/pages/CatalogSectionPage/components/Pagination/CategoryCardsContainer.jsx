@@ -6,7 +6,6 @@ import "./CategoryCardsContainer.scss";
 const CategoryCardsContainer = ({
   items,
   loading,
-  hasAnyFilters,
   allCollectionArray,
   filterSearchingResults,
 }) => {
@@ -14,7 +13,7 @@ const CategoryCardsContainer = ({
     return <LoadingSpinner />;
   }
 
-  if (hasAnyFilters === true) {
+
     if (allCollectionArray.length === filterSearchingResults) {
       return (
         <div
@@ -30,7 +29,7 @@ const CategoryCardsContainer = ({
         </div>
       );
     }
-  }
+
 
   return (
       <div className="categoryCards__grid">

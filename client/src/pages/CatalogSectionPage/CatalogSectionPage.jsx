@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import { selectorAllCollectionProduct, selectorFilteredProducts } from "../../store/selectors";
 import { fetchAllCollectionProduct, fetchFilteredProducts } from "../../store/actions";
 
-const addToURLWithoutReloading = (url, addConfig) => window.history.pushState(null,null, `${url}${addConfig?"/filter?"+addConfig:""}`);
+const addToURLWithoutReloading = (url, addConfigSting) => window.history.pushState(null,null, `${url}${addConfigSting?"/filter?"+addConfigSting:""}`);
 
 const catchURLconfigAndChange = () => {
 const url = window.location.href;
@@ -39,33 +39,31 @@ const getURLFilter = () => {
     return "";
   };
 }
-const CatalogSectionPage = ({ alreadyFilteredArray }) => {
+const CatalogSectionPage = ({ stringFilterParam }) => {
   const dispatch = useDispatch();
-  let location = useLocation();
-
-  const [filtredArray, setFiltredArray] = useState(alreadyFilteredArray);
-  const allCollectionArray = useSelector(selectorAllCollectionProduct);
+  const location = useLocation();
+  
+  const filteredArrayFromStore = useSelector(selectorFilteredProducts);
+  const [filteredArray, setfilteredArray] = useState(filteredArrayFromStore);
+  // const allCollectionArray = useSelector(selectorAllCollectionProduct);
   const [showAsideFilter, setModalRender] = useState(false);
-  const [totalItems, setTotalItems] = useState(allCollectionArray.length);
+  const [totalItems, setTotalItems] = useState(5);
 
   const [filterURL, setFilterURL] = useState('');
   const [sortURL, setSortURL] = useState('');
   const [paginationURL, setPaginationURL] = useState('');
-// new logic
-  const fArray = useSelector(selectorFilteredProducts);
 
   const callAsideFilter = () => {
     setModalRender(true);
   };
-  // http://localhost:3000/jewelry/filter?collectionName=max%20spass&sort=NEW&perPage=12&startPage=2
+
   useEffect(() => {
-    dispatch(fetchAllCollectionProduct());
-    dispatch(fetchFilteredProducts("insertType=pearl"));
+    // dispatch(fetchAllCollectionProduct());
+    dispatch(fetchFilteredProducts(stringFilterParam));
     catchURLconfigAndChange();
   },[]);
 
   useEffect(() => {
-    console.log(fArray);
     const storageConfigURL = localStorage.getItem('configURL');
     if (!storageConfigURL) {
       addToURLWithoutReloading(location.pathname, filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: ""));
@@ -85,9 +83,9 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     }
   };
 
-  const array = (filtredArray.length !== 0)
-    ? filtredArray.length
-    : allCollectionArray.length;
+  // const array = (filteredArray.length !== 0)
+  //   ? filteredArray.length
+  //   : allCollectionArray.length;
 
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -99,44 +97,41 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
     useState(false);
   const [hasAnyFilters, setHasAnyFilters] = useState();
   const [showPagination, setShowPagination] = useState(true);
-  const currentItems = allCollectionArrayIsFiltered
-    ? filtredArray.slice(firstItemIndex, lastItemIndex)
-    : allCollectionArray.slice(firstItemIndex, lastItemIndex);
+  const currentItems =  filteredArray.slice(firstItemIndex, lastItemIndex);
+ 
 
-  useEffect(() => {
-    if (loading === true) {
-      setShowPagination(false);
-    } else if (hasAnyFilters === true && allCollectionArray.length === array) {
-      setShowPagination(false);
-    } else {
-      setShowPagination(true);
-    }
-  }, [loading, hasAnyFilters, allCollectionArray.length, array]);
+  // useEffect(() => {
+  //   if (loading === true) {
+  //     setShowPagination(false);
+  //   } else if (hasAnyFilters === true && allCollectionArray.length === array) {
+  //     setShowPagination(false);
+  //   } else {
+  //     setShowPagination(true);
+  //   }
+  // }, [loading, hasAnyFilters, allCollectionArray.length, array]);
 
-  const filterRequest = (array, hasAnyFilters, url) => {
-      setFiltredArray(array);
+  const filterRequest = (url) => {
       setFilterURL(url);
       setSortURL("");
       setPaginationURL("");
-    if (hasAnyFilters === true) {
-      setAllCollectionArrayIsFiltered(true);
-      setHasAnyFilters(true);
-    } else {
-      setAllCollectionArrayIsFiltered(false);
-      setHasAnyFilters(false);
-    }
+    // if (hasAnyFilters === true) {
+    //   setAllCollectionArrayIsFiltered(true);
+    //   setHasAnyFilters(true);
+    // } else {
+    //   setAllCollectionArrayIsFiltered(false);
+    //   setHasAnyFilters(false);
+    // }
   };
 
-  const filterSortRequest = (array, hasAnyFilters, url) => {
-    setFiltredArray(array);
+  const filterSortRequest = (url) => {
     setSortURL(url);
-    if (hasAnyFilters === true) {
-      setAllCollectionArrayIsFiltered(true);
-      setHasAnyFilters(true);
-    } else {
-      setAllCollectionArrayIsFiltered(false);
-      setHasAnyFilters(false);
-    }
+    // if (hasAnyFilters === true) {
+    //   setAllCollectionArrayIsFiltered(true);
+    //   setHasAnyFilters(true);
+    // } else {
+    //   setAllCollectionArrayIsFiltered(false);
+    //   setHasAnyFilters(false);
+    // }
   };
 
   const paginationRequest = (url) => {
@@ -144,39 +139,39 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
   };
 
 
-  useEffect(() => {
-    if (filtredArray.length !== 0) {
-      setAllCollectionArrayIsFiltered(true);
-    } else {
-      setAllCollectionArrayIsFiltered(false);
-    }
-  }, [filtredArray]);
+  // useEffect(() => {
+  //   if (filteredArray.length !== 0) {
+  //     setAllCollectionArrayIsFiltered(true);
+  //   } else {
+  //     setAllCollectionArrayIsFiltered(false);
+  //   }
+  // }, [filteredArray]);
 
-  useEffect(() => {
-    if (allCollectionArray.length === 0) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [allCollectionArray]);
+  // useEffect(() => {
+  //   if (allCollectionArray.length === 0) {
+  //     setLoading(true);
+  //   } else {
+  //     setLoading(false);
+  //   }
+  // }, [allCollectionArray]);
 
-  useEffect(() => {
-    if (allCollectionArrayIsFiltered === true) {
-      setTotalItems(filtredArray.length);
-    } else {
-      setTotalItems(allCollectionArray.length);
-    }
-  }, [
-    allCollectionArrayIsFiltered,
-    filtredArray.length,
-    allCollectionArray.length,
-  ]);
+  // useEffect(() => {
+  //   if (allCollectionArrayIsFiltered === true) {
+  //     setTotalItems(filteredArray.length);
+  //   } else {
+  //     setTotalItems(allCollectionArray.length);
+  //   }
+  // }, [
+  //   allCollectionArrayIsFiltered,
+  //   filteredArray.length,
+  //   allCollectionArray.length,
+  // ]);
 
-  useEffect(() => {
-    if (filtredArray.length === allCollectionArray.length) {
-      setAllCollectionArrayIsFiltered(false);
-    }
-  }, [filtredArray.length, allCollectionArray.length]);
+  // useEffect(() => {
+  //   if (filteredArray.length === allCollectionArray.length) {
+  //     setAllCollectionArrayIsFiltered(false);
+  //   }
+  // }, [filteredArray.length, allCollectionArray.length]);
 
   return (
     <div className="container" onClick={hideAsideFilter}>
@@ -197,28 +192,22 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
             }`}
         >
           <AsideFilter
-            allCollectionArray={allCollectionArray}
             filterRequest={filterRequest}
           />
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter
             onClickFunc={callAsideFilter}
-            setResult={filtredArray.length}
-            allCollectionArray={
-              filtredArray.length !== 0 ? filtredArray : allCollectionArray
-            }
+            setResult={filteredArray.length}
             filterRequest={filterSortRequest}
-            hasAnyFilters= {hasAnyFilters}
           />
         </div>
         <div className="categoryCards-wrapper">
           <CategoryCardsContainer
             items={currentItems}
             loading={loading}
-            hasAnyFilters={hasAnyFilters}
-            filterSearchingResults={array}
-            allCollectionArray={allCollectionArray}
+            filterSearchingResults={filteredArray.length}
+            allCollectionArray={filteredArray}
           />
         </div>
         <div className="paginnation-wrapper">
@@ -227,7 +216,6 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
           ) : (
             <Pagination
               paginationRequest={paginationRequest}
-              hasAnyFilters={hasAnyFilters}
               itemsPerPage={itemsPerPage}
               totalItems={totalItems}
               setCurrentPage={setCurrentPage}
@@ -241,11 +229,11 @@ const CatalogSectionPage = ({ alreadyFilteredArray }) => {
 };
 
 CatalogSectionPage.propTypes = {
-  alreadyFilteredArray: PropTypes.array
+  stringFilterParam: PropTypes.string
 };
 
 CatalogSectionPage.defaultProps = {
-  alreadyFilteredArray: [],
+  stringFilterParam: "",
 };
 
 export function setCurrentPage() {};
