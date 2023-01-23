@@ -3,11 +3,15 @@ import ButtonAll from '../Button/ButtonAll/ButtonAll'
 import {useState} from "react";
 import {sendRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
+import React from "react";
 
 
 const SubscribeSection = () => {
 
   const [subscriberEmail, setSubscriberEmail] = useState("");
+  const [subscribeResult, setSubscribeResult] = useState('');
+  const [errSubscribe, setErrSubscribe] = useState('')
+
 
   const handleSubmit = () => {
     /*Fixme лист на пошту поки що не приходить, в перспективі можна зверстати тематичну newsletter, що буде надходити підписнику */
@@ -24,13 +28,11 @@ const SubscribeSection = () => {
       })
       .then(r => {
         if (r.subscriber.enabled) {
-          alert('Successful subscribe')
-        } else {
-          console.log('FAIL')
+         setSubscribeResult("You are successfully subscribed to our newsletter")
         }
       })
       .catch(e => {
-        console.error(e);
+        setErrSubscribe("You are already subscribed")
       })
   }
 
@@ -47,6 +49,8 @@ const SubscribeSection = () => {
             <ButtonAll type='submit' text='Subscribe' className='section__btn-subscribe' onClick={handleSubmit}/>
           </div>
         </div>
+        {subscribeResult && <p className="login__registration-error">{subscribeResult}</p>}
+        {errSubscribe && <p className="login__registration-error">{errSubscribe}</p>}
       </div>
     </section>
   );

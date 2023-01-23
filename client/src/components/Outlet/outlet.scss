@@ -16,18 +16,16 @@
   }
 
   &__cards-container {
+    padding: 0 10px;
     position: relative;
     display: grid;
-    width: 100%;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr 1fr;
-    overflow-y: hidden;
-    align-items: center;
+    grid-template-rows: 1fr;
     margin-right: -40px;
     gap: 10px;
+    width: 100%;
 
     @media (max-width: 420px) {
-      
       .category-card {
         display: none;
       }
@@ -36,7 +34,7 @@
         display: inline-block;
       }
 
-      & div:first-child+div .category-card {
+      & div:first-child + div .category-card {
         display: inline-block;
       }
     }
@@ -61,7 +59,6 @@
       font-size: 35px;
       line-height: 40px;
       margin: 30px;
-
     }
 
     &__cards-container {
@@ -87,7 +84,6 @@
       padding: 0;
     }
   }
-
 }
 
 @media screen and (max-width: 360px) {
