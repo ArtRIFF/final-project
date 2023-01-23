@@ -1,5 +1,3 @@
-import {API, token} from "../config/API";
-
 export const sendRequest = async (url, method = "GET", config) => {
   return await fetch(url, {
     method,

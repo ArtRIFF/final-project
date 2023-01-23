@@ -19,7 +19,6 @@ const WishList = () => {
         let el = allCollectionProduct.filter(card => card.itemNo === cardID);
         favoriteCards.push(...el);
     });
-    console.log(favoriteCards)
 
     return (
         <section className="wishlist-section">
