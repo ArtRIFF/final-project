@@ -26,9 +26,8 @@ const IconCart = () => {
         <div className={"cart-section__products cart-section__products__" + (showCart ? 'shown' : 'hidden')} >
           {inCart.map((card, cardID) => {
             return (
-              <NavLink to="/cart">
+              <NavLink to="/cart" key={card}>
               <ItemInCart
-                key={cardID}
                 card={card}/>
               </NavLink>
             )
