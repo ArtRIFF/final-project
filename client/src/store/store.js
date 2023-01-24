@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+import { batchedSubscribe } from 'redux-batched-subscribe';
+import debounce from 'lodash.debounce';
 import logger from "redux-logger";
 import productsSlice from "./products/productsSlice";
 import favoriteSlice from "./favorite/favoriteSlice";
 import cartSlice from "./cart/cartSlice";
 import filteredProductsSlice from "./filteredProducts/filteredProductsSlice"
+
+const debounceNotify = debounce(notify => notify());
 
 const store = configureStore ({
     reducer: {
@@ -14,9 +15,10 @@ const store = configureStore ({
         cart: cartSlice.reducer,
         favorite: favoriteSlice.reducer,
         filteredProducts: filteredProductsSlice.reducer,
-        // composeWithDevTools(applyMiddleware(thunk, logger))
     },
-    // middleware: 
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    devTools: process.env.NODE_ENV !== 'production',
+    enhancers: [batchedSubscribe(debounceNotify)],
 })
 
 export default store
