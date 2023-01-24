@@ -22,12 +22,14 @@
   border: 1px solid #b5abaa;
   margin-top: 30px;
   padding: 0 30px;
+
+  .registration__section-field {
+    padding: 0;
+  }
   &__infoEmail {
     box-sizing: content-box;
   }
-  &__wrap {
-    padding-left: 0 30px 0 30px;
-  }
+
   &__title {
     font-family: $main-font;
     font-size: 20px;
@@ -71,10 +73,7 @@
 @import "../../../global_scss/vars.scss";
 @import "../../../global_scss/mixins.scss";
 
-span {
-  color: rgb(87, 49, 13);
-  text-decoration: underline;
-}
+
 .contact-info-section__way {
   font-size: large;
   width: 87%;
@@ -94,9 +93,7 @@ span {
   &__infoEmail {
     box-sizing: content-box;
   }
-  &__wrap {
-    padding-left: 0 30px 0 30px;
-  }
+
   &__title {
     font-family: $main-font;
     font-size: 20px;

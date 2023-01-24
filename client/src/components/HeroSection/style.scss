@@ -1,251 +1,227 @@
 @import "../../global_scss/vars.scss";
 @import "../../global_scss/mixins.scss";
+@import "../../global_scss/global_style.scss";
 
-.header-hero-section{
+.header__hero {
     background-color: $accent-background-color;
-    &__conteiner{
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-    }
 }
-.header-hero{ 
+
+.header__hero-container {
     position: relative;
     display: flex;
-    justify-content: center;
-    &__line{
-    position: absolute;
-    z-index: 1;
-    padding-right: 1429px;
-}
-    &__picture{
-        padding: 0 537px 202px 267px;
-       }
-    &__items{
-    padding-top: 231px;
-    z-index: 10;
+    width: 100%;
+    min-height: 830px;
+    justify-content: space-between;
+
+    @media (max-width: $desktop-size) {
+        min-height: 500px;
     }
-    &__item{ 
-    width: 100px;
-    height: 100px;
+
+    @media (max-width: 600px) {
+        min-height: 100%;
+    }
+}
+
+.header__hero__title {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    }
-    &__item:last-child{
-        padding-bottom: 0px;
-        }
-    &__title{
-        position: absolute;
-        font-size: 96px;
-        text-align: center;
-    }
-    &__titleOne{
-        font-family:$Bodoni-Italic;
-        font-style: italic;
-        font-weight: 700;
-        line-height: 120px;
-        padding:  80px 0px 0px 839px;
-    }
-    &__titleTwo{
-        font-family:$Bodoni-Italic;
-        font-style: italic;
-        font-weight: 700;
-        line-height: 120px;
-        padding-left: 992px;
-    }
-    &__btn-see{
-        position: absolute;
-        z-index: 13;
-        padding-top: 279px;
-        padding-left: 1329px;
-    }
-}
-.header-hero-picture{
-    &__pict{
-        display: none;
-    }
-    &__girlTwo{
-        display: none;
-    }
-   &__jewelry{
+    flex-wrap: wrap;
     position: absolute;
-    padding-top: 391px;
-    padding-left: 18px;
-   }
-   &__jewel{
-    display: none;
-   }
+    right: 9%;
+    top: 5%;
+    transform: translate(-9%, -5%);
+    z-index: 2;
+    width: 60%;
+
+    h2 {
+        display: inline-block;
+        @include font-value(700, 96px, 120px);
+        font-family: $Bodoni-Italic;
+    }
+
+    h2:first-child {
+        color: #B5ABAA;
+    }
+    
+    @media (max-width: 730px) {
+        width: 40%;
+        right: 40%;
+        top: 80%;
+        transform: translate(40%, -80%);
+        h2 {
+            color: white;
+            color: $accent-color;
+            @include font-value(700, 45px, 40px);
+        }
+
+        h2:first-child {
+            color: white;
+        }
+    }
+
+    @media (max-width: 630px) {
+        width: 50%;
+        right: 40%;
+        top: 80%;
+        transform: translate(50%, -80%);
+
+        h2 {
+            @include font-value(700, 40px, 35px);
+            color: white;
+        }
+    }
+
+    @media (max-width: 610px) {
+        width: 50%;
+        right: 50%;
+        top: 80%;
+        transform: translate(50%, -80%);
+    }
+
+    .title__jewelry {
+        align-self: flex-end;
+    }
 }
 
-@media screen and (max-width: 1201px){
-    .header-hero{ 
+.left-side {
+    max-width: 100px;
+    width: 100%;
+    min-height: inherit;
+    position: relative;
+
+    @media (max-width: 600px) {
+        display: none;
+    }
+}
+
+.hero__image {
+    position: relative;
+    top: 25%;
+}
+
+.line-left {
+    position: absolute;
+    right: 50%;
+    top: 0;
+    height: 100%;
+    border-right: 1px solid #B5ABAA;
+
+    &__container {
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
+.image__item {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+.image__item+.image__item {
+    top: 120px;
+}
+
+.image__item+.image__item+.image__item {
+    top: 240px;
+}
+
+.image__section {
+    width: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: $desktop-size) {
+        justify-content: center;
+    }
+
+}
+
+.image__content {
+    width: 100%;
+    // max-width: 500px;
+    height: 500px;
+    display: inline-block;
+
+    @media (max-width: $desktop-size) {
+        width: 500px;
+    }
+
+    @media (max-width: 500px) {
+        width: 320px;
+        height: 320px;
+    }
+}
+
+.image__jewelry {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    bottom: 10%;
+    right: 10%;
+    z-index: 2;
+}
+
+.image__section-right-side {
+    width: 100%;
+
+    @media (max-width: $desktop-size) {
+        display: none;
+    }
+}
+
+
+.hero__media-list {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+
+    @media (max-width: $desktop-size) {
+        display: none;
+    }
+}
+
+.social__media {
+    position: absolute;
+    right: 0;
+    bottom: 0%;
+    width: 48px;
+
+    &__wrapper {
         position: relative;
-        display: flex;
-        justify-content: center;
-        &__line{
+        z-index: 2;
+    }
+
+    a {
+        display: inline-block;
+        width: 100%;
+        padding-bottom: 20px;
+        z-index: 2;
+    }
+
+    a:last-child {
+        padding-bottom: 150px;
+    }
+
+    &__line {
+        border-right: 1px solid #B5ABAA;
         position: absolute;
-        z-index: 1;
-        padding-right: 1024px;
-    }  
-    &__picture{
-        padding: 0 302px 206px 14px;
-       }
-        &__item{ 
-        width: 80px;
-        height: 80px;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-        margin-left: -85px;
-        }
-        &__item:last-child{
-            padding-bottom: 0px;
-            }
-        &__title{
-            position: absolute;
-            font-size: 80px;
-            text-align: center;
-        }
-        &__titleOne{
-            font-family:$Bodoni-Italic;
-        font-style: italic;
-            font-weight: 700;
-            padding:  10px 0px 0px 604px;
-        }
-        &__titleTwo{
-            font-family:$Bodoni-Italic;
-        font-style: italic;
-            padding-left: 702px;
-        }
-        &__btn-see{
-            position: absolute;
-            z-index: 13;
-            padding-top: 202px;
-            padding-left: 924px;
-        }
+        right: 50%;
+        top: 0;
+        height: 100%;
+        z-index: 0;
     }
-    .header-hero-picture{
-        &__jewelry{
-         padding-top: 347px;
-         padding-left: 1px;
-        }
-     }
 
-}
+    @media (max-width: 768px) {
+        display: none;
+    }
 
-@media screen and (max-width: 769px){
-    .header-hero{ 
-        display: flex;
-        justify-content: center;
-        &__picture{
-        padding: 0 400px 206px 69px;
-        height: 50%;
-        width:50%;
-       }
-       &__line{
-        padding-top: 53px;
-        padding-right: 579px;
-       }
-       &__items{
-        padding-top: 251px;
-       }
-        &__item{ 
-        width: 80px;
-        height: 80px;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-        }
-        &__item:last-child{
-            padding-bottom: 0px;
-            }
-        &__title{
-            font-size: 80px;
-        }
-        &__titleOne{
-            font-family:$Bodoni-Italic;
-        font-style: italic;
-            font-weight: 700;
-            padding-left: 55px;
-            padding-top: 719px;
-        }
-        &__titleTwo{
-            font-family:$Bodoni-Italic;
-        font-style: italic;
-            padding-left: 158px;
-        }
-        &__btn-see{
-            position: absolute;
-            z-index: 13;
-            padding-top: 533px;
-            padding-left: 457px;
-        }
-    }
-    .header-hero-picture{
-        &__jewelry{
-         display: none;
-        }
-        &__pictures{
-            display: none;
-           }
-        &__pict{
-        display: flex;
-        padding-left: 35px;
-        }
-        &__jewel{
-            display: flex;
-        }
-     }
-}
-
-@media screen and (max-width: 321px){
-    .header-hero{ 
-        display: flex;
-        justify-content: center;
-        &__picture{
-        padding: 0 271px 206px 1px;
-        height: 50%;
-        width:50%;
-       }
-       &__btn-see{
-        position: absolute;
-        z-index: 13;
-        padding-top: 313px;
-        padding-left: 1px;
-    }
-       &__line{
+    @media (max-width: 320px) {
         display: none;
-       }
-       &__items{
-        display: none;
-       }
-        &__item{ 
-            display: none;
-        }
-        
-        &__titleOne{
-            display: none;
-        }
-        &__titleTwo{
-            display: none;
-        }
     }
-    .header-hero-picture{
-        &__jewelry{
-         display: none;
-        }
-        &__pictures{
-            display: none;
-           }
-        &__pict{
-        display: none;
-        }
-        &__jewel{
-            display: none;
-        }
-        &__girlTwo{
-            display: flex;
-        }
-     }
 }

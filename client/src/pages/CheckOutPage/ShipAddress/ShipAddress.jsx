@@ -1,39 +1,10 @@
-import React, { useState } from "react";
-import { string } from "yup";
+import React from "react";
 import "./ShipAddress.scss";
+import Input from "../../LoginPage/RegistrationPage/Input/Input";
 
-const ShipAddress = () => {
-  const [fullNameShip, setFullNameShip] = useState("");
-  const [fullNameShiplDirty, setFullNameShipDirty] = useState(false);
-  const [fullNameShipError, setFullNameShipError] =
-    useState("Invalid full name");
 
-  const blurFullNameHandler = (e) => {
-    switch (e.target.name) {
-      case "fullNameShip":
-        setFullNameShipDirty(true);
-        break;
-      case "phoneShip":
-        setPhoneShipDirty(true);
-        break;
-    }
-  };
-  const shipAddressHandler = (e) => {
-    setFullNameShip(e.target.value);
-    if (!String.test(String(e.target.value).toLowerCase())) {
-      setFullNameShipError("Invalid full name");
-    } else setFullNameShipError(" ");
-  };
-  const [phoneShip, setPhoneShip] = useState("");
-  const [phoneShipDirty, setPhoneShipDirty] = useState(false);
-  const [phoneShipError, setPhoneShipError] = useState("Invalid phone number");
+const ShipAddress = (props) => {
 
-  const phoneShipHandler = (e) => {
-    if (!Number.isInteger(e.target.value)) {
-      setPhoneShipError("Invalid phone number");
-    }
-    setPhoneShip(e.target.value);
-  };
   return (
     <section className="ship-info-section">
       <div className="ship-info-section__wrap">
@@ -41,117 +12,105 @@ const ShipAddress = () => {
 
         <div className="ship-info-section__nameInfo">
           <div className="ship-info-section__firstName">
-            <form action="" className="ship-info-section__infos">
+            <div className="ship-info-section__infos">
               <label htmlFor="#" className="ship-info-section__name">
                 Full Name
               </label>
-              <input
-                onBlur={(e) => blurFullNameHandler(e)}
-                onChange={(e) => shipAddressHandler(e)}
+              <Input
                 name="fullNameShip"
-                value={fullNameShip}
                 type="text"
                 className="ship-info-section__texts"
-                placeholder="Full Name"
+                placeholder="John Johnson"
               />
-              {fullNameShiplDirty && fullNameShipError && (
-                <div className="contact-info-section__error-message">
-                  {fullNameShipError}
-                </div>
-              )}
-            </form>
+            </div>
           </div>
         </div>
 
         <div className="ship-info-section__country  ">
-          <form action="" className="ship-info-section__info ">
+          <div className="ship-info-section__info ">
             <label htmlFor="#" className="ship-info-section__name">
               Country
             </label>
-            <input
+            <Input
+              name="countryShip"
               type="text"
               className="ship-info-section__text"
-              placeholder="Country"
+              placeholder="Ukraine"
             />
-          </form>
+          </div>
         </div>
 
         <div className="ship-info-section__addres">
-          <form action="" className="ship-info-section__info">
+          <div className="ship-info-section__info">
             <label htmlFor="#" className="ship-info-section__name">
-              Street Addres
+              Street Address
             </label>
-            <input
+            <Input
+              name="streetShip"
               type="text"
               className="ship-info-section__text"
-              placeholder="Street Addres"
+              placeholder="Khreshchatyk, 23"
             />
-          </form>
+          </div>
         </div>
         <div className="ship-info-section__addres">
-          <form action="" className="ship-info-section__info">
+          <div className="ship-info-section__info">
             <label htmlFor="" className="ship-info-section__name">
               City
             </label>
-            <input
+            <Input
+              name="cityShip"
               type="text"
               className="ship-info-section__text"
-              placeholder="City"
+              placeholder="Kyiv"
             />
-          </form>
+          </div>
         </div>
-
         <div className="ship-info-section__stateInfo">
           <div className="ship-info-section__stateInfo">
-            <form action="" className="ship-info-section__infos">
+            <div className="ship-info-section__infos">
               <label htmlFor="#" className="ship-info-section__name">
                 State
               </label>
-
-              <input
+              <Input
+                name="stateShip"
                 type="text"
                 className="ship-info-section__texts"
-                placeholder="State"
+                placeholder="State/Region"
               />
-            </form>
-            <form action="" className="ship-info-section__infos">
+            </div>
+            <div className="ship-info-section__infos">
               <label htmlFor="#" className="ship-info-section__name">
                 Zip Code
               </label>
-              <input
+              <Input
+                name="codeShip"
                 type="text"
                 className="ship-info-section__texts"
-                placeholder="Zip Code"
+                placeholder="01234"
               />
-            </form>
+            </div>
           </div>
         </div>
 
         <div className="ship-info-section__phone">
-          <form action="" className="ship-info-section__info">
+          <div className="ship-info-section__info">
             <label htmlFor="#" className="ship-info-section__name">
               Phone Number
             </label>
-            <input
-              onBlur={(e) => blurFullNameHandler(e)}
-              onChange={(e) => phoneShipHandler(e)}
+            <Input
               name="phoneShip"
-              value={phoneShip}
               type="text"
               className="ship-info-section__text"
-              placeholder="+38"
+              placeholder="3801234567"
             />
-            {phoneShipDirty && phoneShipError && (
-              <div className="contact-info-section__error-message">
-                {phoneShipError}
-              </div>
-            )}
-          </form>
+          </div>
         </div>
-
         <div className="ship-info-section__checkBox">
-          <input type="checkbox" className="ship-info-section__box" /> Save this
-          informations for a future fast checkout
+          <input type="checkbox"/>
+          <span className="ship-info-section__box">
+            Save this information for a future fast checkout
+          </span>
         </div>
       </div>
     </section>

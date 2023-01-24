@@ -1,0 +1,198 @@
+@import "../../global_scss/vars";
+@import "../../global_scss/mixins";
+@import "../../global_scss/global_style.scss";
+
+.cart-section {
+  font-family: $secondary-font;
+  
+  &__title{
+    padding-top: 21px;
+    padding-bottom: 21px;
+    font-weight: 600;
+    font-size: 28px;
+    @media (max-width: 1200px) {
+      padding-left: 30px;
+    }
+    @media (max-width: 768px) {
+      padding-left: 0px;
+    }
+  }
+  &__wrapper{
+    display: grid;
+    grid-template-columns: (3fr 1fr);
+    gap: 10px;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+    @media (max-width: 768px) {
+      display: block;
+    }
+    @media (max-width: 320px) {      
+      width: 260px;
+    }
+  }
+  &__products{
+    &-item{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      padding: 40px 60px 40px 20px;
+      margin-bottom: 20px;
+      border: 1px solid #B7BAC0;
+      @media (max-width:320px) {
+        display: block;
+        padding-bottom: 20px;
+      }
+      .item-image {
+        max-width: 100px;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+      .item-element{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+      .item-name{
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 23px;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        text-align: center;
+        @media (max-width:320px) {
+          font-size: 14px;
+        }
+      }
+      .item-article, .item-size{
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 18px;
+        color: #6E7582;
+        padding-bottom: 10px;
+        text-align: center;
+        @media (max-width:320px) {
+          font-size: 10px;
+        }
+      }
+      .item-price{
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+        padding-bottom: 10px;
+        text-align: center;
+        @media (max-width:320px) {
+          font-size: 18px;
+        }
+      }
+      .counter {
+        background-color: #F8F8F9;
+        padding: 10px;
+        font-size: 18px;
+        line-height: 150%;
+        & > span {
+          margin: 10px;
+          cursor: pointer;
+        } 
+        @media (max-width: 320px) {
+          font-size: 14px;
+          padding: 10px 60px;
+          text-align: center;
+        }
+      }
+      .delete-item {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 24px;
+        height: 24px;
+        opacity: 0.2;
+        cursor: pointer;
+        transition: opacity ease 0.5s;      
+        &:hover {
+          opacity: 1;
+        }
+        &::after,&::before{
+          content: '';
+          position: absolute;
+          top: 10px;
+          display: block;
+          width: 24px;
+          height: 3px;
+          background: #000;
+        }
+        &::after{
+          transform: rotate(-45deg);
+        }
+        &::before{
+          transform: rotate(45deg);
+        }
+      }      
+    }
+  }
+  &__summary-wrapper {
+    text-align: center;
+  }
+  &__summary {
+    font-size: 18px;
+    text-transform: uppercase;
+    display: grid;
+    grid-template-columns: (1fr 1fr);
+    border: 1px solid #B7BAC0; 
+    padding: 30px 30px 6px 30px;
+    p {
+      padding-bottom: 24px;
+    }
+    p:nth-child(odd) {
+      text-align: start;
+    }
+    p:nth-child(even) {
+      text-align: end;
+    }
+  }
+  &__summary-total{
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &__summary-shipping{
+    text-transform: uppercase;
+    color: #009B10;
+    font-weight: 700;
+  }
+}
+
+.cart-section__wrapper {
+  @media (max-width: 1200px) {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  @media (max-width: 768px) {
+    margin-left: 40px;
+    margin-right: 75px;
+  }
+  @media (max-width: 320px) {
+    margin-left: 20px;
+    margin-right: 375px;//треба додати стилі на 320
+  }
+}
+
+.breadcrumbs__cart {
+    margin-top: 30px;
+    margin-left: -10px;
+    @media (max-width: 1200px) {
+        margin-left: 100px
+    }
+    @media (max-width: 768px) {
+        margin-left: 40px
+    }
+    @media (max-width: 320px) {
+        margin-left: 20px
+    }
+}
+
+.cart-section__title {
+  @media (max-width: 1200px) {
+    text-align: center;
+  }
+}

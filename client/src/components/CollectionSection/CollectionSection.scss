@@ -3,14 +3,15 @@
 @import "../../global_scss/global_style.scss";
 
 .collection-section {
-  max-width: 1200px;
   border-color: $basic-background-color;
   margin: $margin-center;
   box-sizing: border-box;
+  padding: 50px 0;
+
   &__header {
     @include flex-kit(space-between);
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     &_all {
       color: $accent-color;
       &::after {
@@ -21,15 +22,24 @@
   }
   &__content {
     display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+
+    @media(max-width: 890px) {
+      .collection-section-card {
+        .collection-section-card__content-title{
+          font-size: 15px;
+          width: 100%;
+        }
+
+      }
+    }
   }
 }
 @media screen and (max-width: 991px) {
   .collection-section {
     &__content {
-      grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     }
   }
 }
@@ -37,12 +47,36 @@
 @media screen and (max-width: 481px) {
   .collection-section {
     &__content {
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
-    &__header {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
+  }
+}
+
+.collection-section__header_title {
+  @media (max-width:1200px) {
+    margin-top: 30px;
+  }
+  @media(max-width: 320px) {
+    @include font-value(600, 25px, 30px);
+  }
+}
+
+.btn {
+  @media (max-width:1200px) {
+    margin-top: 40px;
+    margin-left: 0px;
+  }
+  @media(max-width: 768px) {
+    margin-right: -50px;
+  }
+  @media(max-width: 320px) {
+    margin-top: -18px;
+    margin-left: 190px;
+  }
+}
+
+.collection-section__header {
+  @media(max-width: 768px) {
+    margin-right: 50px;
   }
 }

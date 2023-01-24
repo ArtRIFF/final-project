@@ -2,7 +2,7 @@
 @import '../../global_scss/vars.scss';
 
 .grid-wrapper {
-   padding: 40px 0 95px;
+   padding: 30px 0 95px;
    display: grid;
    grid-gap: 10px;
    grid-template-areas:
@@ -11,13 +11,17 @@
       "asideFilter filter"
       "asideFilter categoryCards"
       "asideFilter paginnation";
+
+      @media (max-width:$desktop-size) {
+         grid-gap: 0px;
+      }
 }
 
 .catalogPageImg-wrapper {
    grid-area: catalogPageImg;
    width: 100%;
    min-height: 100%;
-
+   
    img {
       display: inline-block;
       width: inherit;
@@ -25,9 +29,9 @@
    }
 }
 
-.breadcrumbs-wrapper {
-   grid-area: breadcrumbs;
-   align-items: center;
+.breadcrumbs__catalog {
+   margin-top: 30px;
+   margin-left: 10px;
 }
 
 .asideFilter-wrapper {
@@ -35,6 +39,8 @@
       width: 0;
       overflow: hidden;
    }
+
+
 
    grid-area: asideFilter;
    width: 300px;
@@ -69,12 +75,24 @@
    grid-area: filter;
    width: 100%;
    min-height: 43px;
+   padding: 15px 5px;
 }
 
 .categoryCards-wrapper {
+   min-height: 350px;
+
+   @media (max-width: 1196px) {
+      min-height: 580px;
+   }
+
+   @media (max-width: $desktop-size) {
+      min-height: 580px;
+   }
+
    grid-area: categoryCards;
    overflow: hidden;
 }
+
 
 .paginnation-wrapper {
    grid-area: paginnation;

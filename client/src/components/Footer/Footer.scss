@@ -4,35 +4,14 @@
 
 .footer {
     padding-top: 54.05px;
-    padding-left: 195px;
-    padding-right: 195px;
     background-color: $accent-background-color;
-    @media (max-width:1400px) {
-        padding-left: 45px;
-        padding-right: 45px;
-    }
-    @media (max-width:1300px) {
-        padding-left: 65px;
-        padding-right: 65px;
-    }
-    @media (max-width:$notebook-size) {
-        padding-left: 105px;
-        padding-right: 105px;
-    }
-    @media (max-width:1100px) {
-        padding-left: 55px;
-        padding-right: 55px;
-    }
-    @media (max-width:1000px) {
-        padding-left: 35px;
-        padding-right: 35px;
-    }
 }
 
 .footer__conteiner {
     display: flex;
-    justify-content: space-around;
-    width: 100%;  
+    justify-content: space-evenly;
+    width: 100%;
+
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
@@ -40,6 +19,7 @@
         text-align: center;
         justify-content: center;
     }
+
     @media (max-width:$mobile-size) {
         width: 100%;
         padding: 0;
@@ -51,15 +31,19 @@
     width: 120px;
     height: 171.89px;
     margin-left: -50px;
+
     @media (max-width:1400px) {
         margin-left: 0;
     }
+
     @media (max-width:1300px) {
         margin-left: 0;
     }
+
     @media (max-width:$notebook-size) {
         margin-left: 0;
     }
+
     @media (max-width:$desktop-size) {
         padding-right: auto;
         width: 120px;
@@ -69,15 +53,18 @@
 
 .table_buyer {
     padding-left: 140px;
+
     @media (max-width:$notebook-size) {
         padding-left: 9px;
     }
+
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
         padding-left: 0;
         display: none;
     }
+
     @media (max-width:$mobile-size) {
         width: 100%;
         padding: 0;
@@ -87,12 +74,14 @@
 
 .table_about {
     padding-left: 12px;
+
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
         padding-left: 0;
         display: none;
     }
+
     @media (max-width:$mobile-size) {
         display: none;
     }
@@ -100,22 +89,26 @@
 
 .table_catalog {
     padding-left: 12px;
+
     @media (max-width:$desktop-size) {
         display: none;
     }
+
     @media (max-width:$mobile-size) {
 
         display: none;
     }
 }
 
-.table_work-time{
+.table_work-time {
     padding-left: 0;
-    @media (max-width:$notebook-size) {
-    }
+
+    @media (max-width:$notebook-size) {}
+
     @media (max-width:$desktop-size) {
         display: none;
     }
+
     @media (max-width:$mobile-size) {
         display: none;
     }
@@ -124,17 +117,20 @@
 .table__input {
     display: flex;
     margin-top: 24px;
+
     @media (max-width:$desktop-size) {
         display: none;
     }
+
     @media (max-width:$mobile-size) {
         display: none;
     }
 }
 
 .input {
-    width: 231px;
+    width: 150px;
     padding-left: 19px;
+
     @media (max-width:$notebook-size) {
         width: 165px;
     }
@@ -142,12 +138,15 @@
 
 .table__subscribe {
     margin-right: -50px;
+
     @media (max-width:1400px) {
         margin-right: 0;
     }
+
     @media (max-width:1300px) {
         margin-right: 0;
     }
+
     @media (max-width:$notebook-size) {
         margin-right: 0;
     }
@@ -159,12 +158,15 @@
     @include font-value(600, 20px, 25px);
     color: #311C1C;
     margin-top: 20px;
+
     @media (max-width:$notebook-size) {
         @include font-value(600, 16px, 20px);
     }
+
     @media (max-width:$desktop-size) {
         display: none;
     }
+
     @media (max-width:$mobile-size) {
         display: none;
     }
@@ -177,12 +179,15 @@
     @include font-value(400, 15px, 140%);
     color: #311C1C;
     transition: ease-in-out 0.5s;
+
     &:hover {
         color: $accent-color;
     }
+
     @media (max-width:$notebook-size) {
         @include font-value(400, 15px, 80%);
     }
+
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
@@ -206,10 +211,12 @@
     font-family: $secondary-font;
     @include font-value(400, 15px, 140%);
     color: #311C1C;
+
     @media (max-width:$notebook-size) {
         @include font-value(400, 15px, 80%);
 
     }
+
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
@@ -222,6 +229,7 @@
 
 .footer__media {
     padding-top: 24px;
+
     @media (max-width:$desktop-size) {
         padding: 0;
         display: grid;
@@ -230,6 +238,7 @@
         margin-top: 20px;
         grid-template-columns: 1fr 1fr 1fr;
     }
+
     @media (max-width:$mobile-size) {
         display: block;
         margin-top: 20px;
@@ -239,6 +248,7 @@
 .social {
     margin-right: 27.5px;
     cursor: pointer;
+
     @media (max-width:$desktop-size) {
         width: 100%;
         padding: 0;
@@ -247,6 +257,7 @@
         align-items: center;
         margin-top: 20px;
     }
+
     @media (max-width:$mobile-size) {
         display: block;
         margin-top: 20px;
@@ -256,17 +267,25 @@
 
 .line {
     border-bottom: 1px solid #B5ABAA;
-    padding-top: 60px;
+    margin-top: 60px;
 }
 
 .design {
     font-family: $secondary-font;
     @include font-value(400, 16px, 26px);
     color: #B5ABAA;
+    padding-bottom: 10px;
+    margin-bottom: -30px;
+
     @media (max-width: $desktop-size) {
         @include font-value(400, 16px, 24px);
     }
+
     @media (max-width: $mobile-size) {
         @include font-value(400, 12px, 22px);
+    }
+
+    @media (max-width: 320px) {
+        margin-bottom: -100px;
     }
 }

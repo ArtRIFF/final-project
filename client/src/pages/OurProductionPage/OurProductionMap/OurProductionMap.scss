@@ -1,0 +1,13 @@
+@import "../../../global_scss/mixins.scss";
+@import "../../../global_scss/vars.scss";
+@import "../../../global_scss/global_style.scss";
+
+.production__map-section {
+    text-align: center;
+}
+
+iframe {
+    width:  100%;
+    height: 500px;
+    border: 1px solid #311C1C;
+}

@@ -1,12 +1,15 @@
-import Button from '../../../components/Button/BattonAll/ButtonAll';
+import Button from '../../../components/Button/ButtonAll/ButtonAll';
 import '../RegistrationPage/Registration.scss';
 import {Form, Formik} from "formik";
 import Input from "../RegistrationPage/Input/Input";
 import InputPassword from "../RegistrationPage/InputWithStrength/InputPassword";
 import {NavLink, useNavigate} from 'react-router-dom';
-import {sendRequest} from "../../../helpers/sendRequest";
+import {sendAuthorizedRequest, sendRequest} from "../../../helpers/sendRequest";
 import {API} from "../../../config/API";
 import * as Yup from "yup";
+import Breadcrumbs from '../../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs';
+import {useContext, useState} from "react";
+import {UserContext} from "../../../context/UserContext";
 
 
 const Login = () => {
@@ -18,6 +21,11 @@ const Login = () => {
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().min(8).required("Required"),
   });
+
+  const {setUserInfo, setToken} = useContext(UserContext);
+
+  const [err, setErr] = useState(false)
+
 
   const handleSubmit = (values) => {
     const requestBody = {
@@ -32,21 +40,25 @@ const Login = () => {
       })
       .then(r => {
         if (r.success) {
+          setToken(r.token)
           sessionStorage.setItem('token', r.token);
-          navigate('/')
+          navigate('/userPage');
+          sendAuthorizedRequest(`${API}customers/customer`, "GET",).then(user => setUserInfo(user))
         } else {
           console.log('invalid credentials')
         }
       })
       .catch(e => {
-        console.error(e);
+        setErr(true)
       })
   }
   return (
-    <>
-      <section className='login__section'>
-        <div className='container'>
-          <h2 className='login__breadcrumbs'>Shop / <span>Login</span></h2>
+    <section className='login__section'>
+      <div className="breadcrumbs_login">
+        <Breadcrumbs/>
+      </div>
+      <div className="container">
+        <div className='login__container'>
           <Formik
             initialValues={{
               email: '',
@@ -72,6 +84,7 @@ const Login = () => {
                   handleChange={handleChange}
                   error={errors.password && touched.password}
                 />
+                {err && <p className="login__registration-error">Entered password or email is incorrect</p>}
                 <div className='login__registration-section'>
                   <h4 className='login__registration-title'>Don't have an account yet?<NavLink to="/registration"
                                                                                                className='login__registration-link'> Register</NavLink>
@@ -84,8 +97,8 @@ const Login = () => {
             )}
           </Formik>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
 

@@ -1,80 +1,179 @@
-import './style.scss';
-import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
-import CategoryFilter from './components/CategoryFilter/CategoryFilter';
-import AsideFilter from './components/AsideFilter/AsideFilter';
-import Items from "./components/Pagination/Items";
+import "./style.scss";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
+import AsideFilter from "./components/AsideFilter/AsideFilter";
+import CategoryCardsContainer from "./components/Pagination/CategoryCardsContainer";
 import Pagination from "./components/Pagination/Pagination";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from 'react';
+import {useLocation} from "react-router-dom";
+import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
-import { selectorAllCollectionProduct } from "../../store/selectors";
-import { fetchAllCollectionProduct } from "../../store/actions";
+import { selectorFilteredProducts } from "../../store/selectors";
+import { fetchFilteredProducts } from "../../store/filteredProducts/filteredProductsSlice";
 
-const CatalogSectionPage = () => {
+const addToURLWithoutReloading = (url, addConfigSting) => window.history.pushState(null,null, `${url}${addConfigSting?"/filter?"+addConfigSting:""}`);
 
+const catchURLconfigAndChange = () => {
+const url = window.location.href;
+const storageConfigURL = localStorage.getItem('configURL');
+if (url.indexOf("filter") !== -1) {
+  const configURL = url.indexOf("filter") !== -1?url.slice(url.indexOf("filter")+7): "";
+  localStorage.setItem('configURL', configURL);
+  const basicURL = url.slice(0,url.indexOf("filter")-1);
+  window.location.href = basicURL;
+}
 
+if (storageConfigURL) {
+  addToURLWithoutReloading(url, storageConfigURL);
+  localStorage.removeItem('configURL'); 
+}
+}
 
-   const [items, setitems] = useState([
-     11, 124, 1244, 1241, 12, 12, 1, 12, 12, 12, 3, 4, 5, 6, 7, 3, 12, 12, 12,
-     124, 15, 12, 53735, 12312,
-   ]);
-   const [loading, setLoading] = useState(false);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(5);
-
-   const lastItemIndex = currentPage * itemsPerPage;
-   const firstItemIndex = lastItemIndex - itemsPerPage;
-   const currentItem = items.slice(firstItemIndex, lastItemIndex);
-
-   useEffect(() => {
-     const getItems = async () => {
-       setLoading(true);
-       // const res = await axios.get("https://final-backend-new.onrender.com"); //адреса сторінки на бекенді для отримання елементів сторінки
-       // setitems(res.data);
-       setLoading(false);
-     };
-     getItems();
-   }, []);
-
-
-
-
+const getURLFilter = () => {
+  const storageConfigURL = localStorage.getItem('configURL');
+  if (storageConfigURL) {
+    return storageConfigURL;
+  } else {
+    return "";
+  };
+}
+const CatalogSectionPage = ({ stringFilterParam }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
   
-  const [showAsideFilter, setModalRender] = useState(false);
-  
-  const newCollectionArray = useSelector(selectorAllCollectionProduct);
-  
-  const [showProducts, setProducts] = useState('');
-  
-  
-  useEffect(() => {
-    dispatch(fetchAllCollectionProduct());
-  }, []);
+  const {products,productsQuantity} = useSelector(selectorFilteredProducts);
 
+  const [showAsideFilter, setModalRender] = useState(false);
+  const [totalItems, setTotalItems] = useState(5);
+
+  const [filterURL, setFilterURL] = useState('');
+  const [sortURL, setSortURL] = useState('');
+  const [paginationURL, setPaginationURL] = useState('1');
 
   const callAsideFilter = () => {
     setModalRender(true);
-    const newArray = newCollectionArray.filter(item => item.alt === "Bracelet");
-    setProducts(newArray);
-  }
+  };
+
+  useEffect(() => {
+    // dispatch(fetchAllCollectionProduct());
+    // dispatch(fetchFilteredProducts(stringFilterParam));
+    dispatch(fetchFilteredProducts(stringFilterParam));
+    catchURLconfigAndChange();
+  },[]);
+
+  useEffect(() => {
+    const storageConfigURL = localStorage.getItem('configURL');
+    const summaryFilterParam = filterURL + (sortURL?"&"+ sortURL: "") + (paginationURL?"&perPage=12&startPage="+ paginationURL: "")
+    if (!storageConfigURL) {
+      addToURLWithoutReloading(location.pathname, summaryFilterParam);
+    } else {
+      localStorage.removeItem('configURL');
+    }
+    dispatch(fetchFilteredProducts(summaryFilterParam));
+  },[filterURL,sortURL,paginationURL]);
 
   const hideAsideFilter = (event) => {
-    const isFilterElement = !!event.target.closest('.asideFilter-wrapper--show');
-    const isCallButton = !!event.target.closest('.category-filter--btn');
+    const isFilterElement = !!event.target.closest(
+      ".asideFilter-wrapper--show"
+    );
+    const isCallButton = !!event.target.closest(".category-filter--btn");
+
     if (event && !isFilterElement && !isCallButton) {
       setModalRender(false);
     }
-  }
-  
-  const array = (Array.isArray(showProducts))?showProducts.length:newCollectionArray.length;
+  };
+
+  // const array = (filteredArray.length !== 0)
+  //   ? filteredArray.length
+  //   : allCollectionArray.length;
+
+  const [loading, setLoading] = useState(false);
+  // const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(12);
+  // const lastItemIndex = currentPage * itemsPerPage;
+  // const firstItemIndex = lastItemIndex - itemsPerPage;
+
+  const [allCollectionArrayIsFiltered, setAllCollectionArrayIsFiltered] =
+    useState(false);
+  const [hasAnyFilters, setHasAnyFilters] = useState();
+  const [showPagination, setShowPagination] = useState(true);
+  // const currentItems =  filteredArray.slice(firstItemIndex, lastItemIndex);
+ 
+
+  // useEffect(() => {
+  //   if (loading === true) {
+  //     setShowPagination(false);
+  //   } else if (hasAnyFilters === true && allCollectionArray.length === array) {
+  //     setShowPagination(false);
+  //   } else {
+  //     setShowPagination(true);
+  //   }
+  // }, [loading, hasAnyFilters, allCollectionArray.length, array]);
+
+  const filterRequest = (url) => {
+      setFilterURL(url);
+      setSortURL("");
+      setPaginationURL("");
+    // if (hasAnyFilters === true) {
+    //   setAllCollectionArrayIsFiltered(true);
+    //   setHasAnyFilters(true);
+    // } else {
+    //   setAllCollectionArrayIsFiltered(false);
+    //   setHasAnyFilters(false);
+    // }
+  };
+
+  const filterSortRequest = (url) => {
+    setSortURL(url);
+  };
+
+  const paginationRequest = (url) => {
+    setPaginationURL(url);
+  };
+
+
+  // useEffect(() => {
+  //   if (filteredArray.length !== 0) {
+  //     setAllCollectionArrayIsFiltered(true);
+  //   } else {
+  //     setAllCollectionArrayIsFiltered(false);
+  //   }
+  // }, [filteredArray]);
+
+  // useEffect(() => {
+  //   if (allCollectionArray.length === 0) {
+  //     setLoading(true);
+  //   } else {
+  //     setLoading(false);
+  //   }
+  // }, [allCollectionArray]);
+
+  // useEffect(() => {
+  //   if (allCollectionArrayIsFiltered === true) {
+  //     setTotalItems(filteredArray.length);
+  //   } else {
+  //     setTotalItems(allCollectionArray.length);
+  //   }
+  // }, [
+  //   allCollectionArrayIsFiltered,
+  //   filteredArray.length,
+  //   allCollectionArray.length,
+  // ]);
+
+  // useEffect(() => {
+  //   if (filteredArray.length === allCollectionArray.length) {
+  //     setAllCollectionArrayIsFiltered(false);
+  //   }
+  // }, [filteredArray.length, allCollectionArray.length]);
+
   return (
     <div className="container" onClick={hideAsideFilter}>
+      <div className="breadcrumbs__catalog">
+        <Breadcrumbs />
+      </div>
       <div className="grid-wrapper">
-        <div className="breadcrumbs-wrapper">
-          <Breadcrumbs />
-        </div>
         <div className="catalogPageImg-wrapper">
           <img
             src="img/catalogSectionPage/CategorySectionMainImg.jpg"
@@ -82,54 +181,54 @@ const CatalogSectionPage = () => {
           />
         </div>
         <aside
-          className={`${
-            showAsideFilter
+          className={`${showAsideFilter
               ? "asideFilter-wrapper--show"
               : "asideFilter-wrapper"
-          }`}
+            }`}
         >
-          <AsideFilter />
+          <AsideFilter
+            filterRequest={filterRequest}
+          />
         </aside>
         <div className="filter-wrapper">
-          <CategoryFilter onClickFunc={callAsideFilter} setResult={array} />
+          <CategoryFilter
+            onClickFunc={callAsideFilter}
+            setResult={productsQuantity}
+            filterRequest={filterSortRequest}
+          />
         </div>
-        <div
-          style={{
-            backgroundColor: "rgba(100, 85, 45, 0.5)",
-            width: "850px",
-            height: "510px",
-          }}
-          className="categoryCards-wrapper"
-        >
-          {!Array.isArray(showProducts)
-            ? newCollectionArray.map((item, i) => {
-                const { name, price, alt, bestseller, newProduct } = item;
-                return (
-                  <p key={i}>
-                    {i} Product:{name} price:{price} alt:{alt} bestseller:
-                    {bestseller} newProduct:{newProduct}
-                  </p>
-                );
-              })
-            : showProducts.map((item, i) => {
-                const { name, price, alt, bestseller, newProduct } = item;
-                return (
-                  <p key={i}>
-                    {i} Product:{name} price:{price} alt:{alt} bestseller:
-                    {bestseller} newProduct:{newProduct}
-                  </p>
-                );
-              })}
+        <div className="categoryCards-wrapper">
+          <CategoryCardsContainer
+            loading={loading}
+            filterSearchingResults={productsQuantity}
+            allCollectionArray={products}
+          />
         </div>
-        <div
-          style={{ backgroundColor: "grey", width: "396px", height: "88px" }}
-          className="paginnation-wrapper"
-        >
-          <Items items={currentItem} loading={loading} />
-          <Pagination itemsPerPage={itemsPerPage} totalItems={items.length} />
+        <div className="paginnation-wrapper">
+          {showPagination === false ? (
+            <div></div>
+          ) : (
+            <Pagination
+              paginationRequest={paginationRequest}
+              itemsPerPage={itemsPerPage}
+              totalItems={totalItems}
+              setCurrentPage={setCurrentPage}
+              allCollectionArrayIsFiltered={allCollectionArrayIsFiltered}
+            />
+          )}
         </div>
       </div>
     </div>
   );
 };
+
+CatalogSectionPage.propTypes = {
+  stringFilterParam: PropTypes.string
+};
+
+CatalogSectionPage.defaultProps = {
+  stringFilterParam: "",
+};
+
+export function setCurrentPage() {};
 export default CatalogSectionPage;

@@ -4,6 +4,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px 70px;
+  padding: 15px;
+  box-sizing: border-box;
 
   &-images {
     display: flex;
@@ -11,8 +13,9 @@
     text-align: start;
   }
   &-additionally {
-    display: flex;
-    padding-top: 56px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    padding-top: 36px;
   }
   &-description {
     &__subtitle {
@@ -113,7 +116,7 @@
     max-width: 350px;
   }
   .product-card__main-additionally {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
   .product-card__review-title {
     font-size: 35px;
@@ -140,5 +143,15 @@
   }
   .product-card-photo-slider-thumbs {
     max-width: 300px;
+  }
+}
+
+.card__breadcrumbs {
+  padding-top: 30px;
+  @media (max-width: 1200px) {
+    padding-left: 110px;
+  }
+  @media (max-width: 1200px) {
+    padding-left: 30px;
   }
 }

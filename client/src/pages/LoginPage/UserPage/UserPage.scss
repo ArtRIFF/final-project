@@ -1,0 +1,228 @@
+@import '../../../global_scss/vars.scss';
+@import '../../../global_scss/mixins.scss';
+@import '../../../global_scss/global_style.scss';
+
+.profile-icon {
+  width: 80px;
+  height: 56px;
+  align-self: center;
+  @media (max-width:$desktop-size) {
+    width: 60px;
+    height: 44px;
+  }
+  @media screen and (max-width: $mobile-size) {
+    width: 38px;
+    height: 28px;
+  }
+}
+.section-subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.breadcrumbs_login {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.userpage__container,
+.change__pass-container {
+  @media (max-width: 1200px){
+    margin-left: 115px;
+    margin-right: 100px;
+  }
+  @media (max-width: 768px){
+    margin-left: 30px;
+    margin-right: 50px;
+  }
+  @media (max-width: 320px){
+    margin-right: 35px;
+  }
+}
+
+.login__breadcrumbs {
+  padding-top: 30px;
+  padding-left: 75px;
+  font-family: $main-font;
+  @include font-value(400, 16px, 140%);
+  color: #B5ABAA;
+  span {
+    font-family: $main-font;
+    @include font-value(400, 16px, 140%);
+    color: #635c5b;
+  }
+}
+
+.registration__form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  padding: 40px 50px;
+  border: 1px solid #B5ABAA;
+  @media screen and (max-width: $desktop-size) {
+    padding: 30px 40px;
+  }
+  @media screen and (max-width: $mobile-size) {
+    padding: 10px 10px;
+  }
+}
+
+.registration__section-title {
+  font-family: $main-font;
+  @include font-value(500, 28px, 30px);
+  color: #311C1C;
+  @media (max-width:$desktop-size) {
+    @include font-value(500, 24px, 24px);
+
+  }
+  @media (max-width:$mobile-size) {
+    @include font-value(500, 20px, 22px);
+  }
+
+}
+.registration__section-subtitle {
+  position: relative;
+  margin-top: 16px;
+  font-family: $main-font;
+  @include font-value(500, 24px, 26px);
+  color: #311C1C;
+  @media (max-width:$desktop-size) {
+    @include font-value(500, 20px, 22px);
+
+  }
+  @media (max-width:$mobile-size) {
+    @include font-value(500, 16px, 18px);
+  }
+
+}
+
+.registration__section-input {
+  width: 100%;
+  margin-top: 5px;
+  margin-right: 50px;
+  border: 1px solid #EDE8E7;
+  padding: 15px;
+  font-family: $secondary-font;
+
+}
+
+#registration__section-input {
+  margin-top: 5px;
+  margin-right: 50px;
+  border: 1px solid #EDE8E7;
+  padding: 15px 748px 15px 10px;
+  font-family: $secondary-font;
+  display: flex;
+}
+
+.registration__show-hide{
+  display: flex;
+  position: relative;
+  align-items: center;
+  label {
+    width: 100%;
+  }
+}
+
+#hide_show {
+  position: absolute;
+  right: 16px;
+  bottom: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+
+#hide_show-mistake {
+  position: absolute;
+  right: 16px;
+  bottom: 36px;
+  cursor: pointer;
+  border: none;
+}
+
+.login__registration-section {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  @media screen and (max-width: $mobile-size) {
+    justify-content: center;
+  }
+
+}
+
+.login__registration-title {
+  font-family: $secondary-font;
+  @include font-value(400, 16px, 150%);
+  color: #311C1C;
+}
+
+.login__registration-link {
+  font-family: $secondary-font;
+  @include font-value(600, 16px, 150%);
+  color: #004C3F;
+  cursor: pointer;
+}
+
+.login__section-btn {
+  display: flex;
+  justify-content: end;
+  padding-top: 30px;
+  @media screen and (max-width: $mobile-size) {
+    justify-content: center;
+  }
+}
+
+// ------ //
+
+.pass-strength {
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
+}
+
+.strength-label {
+  font-size: 12px;
+  margin-left: 10px;
+}
+.strength-percent {
+  flex: 1;
+  height: 5px;
+  border-radius: 10px;
+  display: block;
+  background: #eee;
+}
+
+.strength-percent span {
+  display: block;
+  height: 100%;
+  transition: all 0.4s;
+  border-radius: 10px;
+}
+
+.weak {
+  background: red;
+  width: 30%;
+}
+
+.average {
+  background: #ffd000;
+  width: 50%;
+}
+
+.strong {
+  background: green;
+  width: 100%;
+}
+
+.toggle-icon-active{
+  font-size:27px;
+}
+.toggle-icon-passive{
+  font-size:25px;
+}
+
+// ------ //
+

@@ -1,10 +1,3 @@
-import { API, token } from "../config/API";
-// export const sendRequest = async (url) => {
-// 	const response = await fetch(url);
-// 	const result = await response.json();
-// 	return result;
-// }
-
 export const sendRequest = async (url, method = "GET", config) => {
   return await fetch(url, {
     method,
@@ -16,19 +9,18 @@ export const sendRequest = async (url, method = "GET", config) => {
       }
       return response;
     } else {
-      return new Error("error");
+      throw new Error("error");
     }
-  });
+  })
 };
-export const getCards = () =>
-  sendRequest(`${API}products`, "GET", {
-    headers: {
-      Authorization: token,
-    },
-  });
-export const getOneCard = (id) =>
-  sendRequest(`${API}products/${id}`, "GET", {
-    headers: {
-      Authorization: token,
-    },
-  });
+
+export const sendAuthorizedRequest = (url, method = "GET", config) => {
+  const token = sessionStorage.getItem('token');
+  const headers = config?.headers
+    ? {'Content-Type': 'application/json', 'Authorization': token, ...config.headers}
+    : {'Content-Type': 'application/json', 'Authorization': token}
+  return sendRequest(url, method, {...config, headers})
+};
+
+
+
