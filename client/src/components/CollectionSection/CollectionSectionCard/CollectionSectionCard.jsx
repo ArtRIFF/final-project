@@ -1,11 +1,9 @@
 import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import "./CollectionSectionCard.scss";
 import ButtonAll from "../../Button/ButtonAll/ButtonAll";
-import ProductCard from "../../../pages/ProductCard/ProductCard";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CollectionSectionCard = (props) => {
   const { product } = props;

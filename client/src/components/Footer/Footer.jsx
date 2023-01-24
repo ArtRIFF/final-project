@@ -71,7 +71,7 @@ const Footer = () => {
                   <li className='footer__list'>Jewelry</li>
                 </NavLink>
                 <NavLink to="/outlet">
-                  <li className='footer__list'>%Outlet</li>
+                  <li className='footer__list'>Outlet</li>
                 </NavLink>
               </ul>
             </div>

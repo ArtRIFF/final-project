@@ -5,7 +5,7 @@ import { Navigation, EffectFade } from "swiper";
 import classNames from "classnames";
 import CategorySectionCard from "./CategorySectionCard";
 import { selectorAllCollectionProduct } from "../../store/selectors";
-import { fetchAllCollectionProduct } from "../../store/actions";
+import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import "./CategorySection.scss";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -50,8 +50,6 @@ const CategorySection = (props) => {
     setSelectArr(braceletsArray);
   }, [productArray]);
 
-  // console.log(selectArr);
-  // console.log(activeTab);
   return (
     <div className="category">
       <div className="container">

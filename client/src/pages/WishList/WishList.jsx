@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectInFavorite, selectorAllCollectionProduct } from "../../store/selectors";
-import { fetchAllCollectionProduct } from "../../store/actions";
+import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import CategorySectionCard from "../../components/CatalogSection/CategorySectionCard";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 import "./WishList.scss"
@@ -19,7 +19,6 @@ const WishList = () => {
         let el = allCollectionProduct.filter(card => card.itemNo === cardID);
         favoriteCards.push(...el);
     });
-    console.log(favoriteCards)
 
     return (
         <section className="wishlist-section">

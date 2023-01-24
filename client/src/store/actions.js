@@ -24,30 +24,30 @@ export const fetchFilteredProducts = (stringFilteredParam) => (dispatch) => {
   });
 };
 
-export const fetchNewCollectionProduct = () => (dispatch) => {
-  return getCards().then((data) => {
-    dispatch(
-      setNewCollectionProduct(
-        data.filter((element) => element.statusProduct === "NEW")
-      )
-    );
-  });
-};
+// export const fetchNewCollectionProduct = () => (dispatch) => {
+//   return getCards().then((data) => {
+//     dispatch(
+//       setNewCollectionProduct(
+//         data.filter((element) => element.statusProduct === "NEW")
+//       )
+//     );
+//   });
+// };
 
-export const fetchBestsellers = () => (dispatch) => {
-  return getCards().then((data) => {
-    dispatch(
-      setBestsellers(
-        data.filter((element) => element.statusProduct === "BESTSELLER")
-      )
-    );
-  });
-};
+// export const fetchBestsellers = () => (dispatch) => {
+//   return getCards().then((data) => {
+//     dispatch(
+//       setBestsellers(
+//         data.filter((element) => element.statusProduct === "BESTSELLER")
+//       )
+//     );
+//   });
+// };
 
-export const fetchOutlet = () => (dispatch) => {
-  return getCards().then((data) => {
-    dispatch(
-      setOutlet(data.filter((element) => element.statusProduct === "OUTLET"))
-    );
-  });
-};
+// // export const fetchOutlet = () => (dispatch) => {
+// //   return getCards().then((data) => {
+// //     dispatch(
+// //       setOutlet(data.filter((element) => element.statusProduct === "OUTLET"))
+// //     );
+// //   });
+// // };
