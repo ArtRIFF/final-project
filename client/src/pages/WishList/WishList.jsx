@@ -8,6 +8,7 @@ import "./WishList.scss"
 import {UserContext} from "../../context/UserContext";
 import {sendAuthorizedRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
+import {replaceInFavorite} from "../../store/favorite/favoriteSlice";
 
 
 const WishList = () => {

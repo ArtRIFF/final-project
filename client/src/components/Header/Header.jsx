@@ -20,7 +20,7 @@ import {ReactComponent as FavIcon } from "../Header/HeaderInterAction/img/Favour
 
 import { UserContext } from "../../context/UserContext";
 import IconCart from "./HeaderInterAction/IconCart/IconCart";
-import {changeCart} from "../../store/actions";
+import {changeCart} from "../../store/cart/cartSlice";
 
 
 const Header = ({ active, setActive }) => {

@@ -9,7 +9,7 @@ import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
 import { setInCart, changeCart } from "../../store/cart/cartSlice";
-import { setInFavorite, removeFromFavorite } from "../../store/favorite/favoriteSlice";
+import { setInFavorite, removeFromFavorite, replaceInFavorite } from "../../store/favorite/favoriteSlice";
 import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import {
   selectInCart,
