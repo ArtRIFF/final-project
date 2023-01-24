@@ -10,7 +10,7 @@ import "./ShoppingCart.scss";
 import {UserContext} from "../../context/UserContext";
 import {sendAuthorizedRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
-import {changeCart} from "../../store/actions";
+import {changeCart} from "../../store/cart/cartSlice";
 
 const ShoppingCart = () => {
   const {userInfo} = useContext(UserContext);
