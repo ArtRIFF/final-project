@@ -1,21 +1,16 @@
-import React, { useEffect, createContext, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectFade, Thumbs } from "swiper";
-import { getOneCard, } from "../../API/cardsAPI";
-import { getComments } from "../../API/commentsAPI";
+import React, {createContext, useContext, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {EffectFade, Navigation, Thumbs} from "swiper";
+import {getOneCard,} from "../../API/cardsAPI";
+import {getComments} from "../../API/commentsAPI";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
-import {
-  setInCart,
-  changeCart,
-  setInFavorite,
-  removeFromFavorite,
-  fetchAllCollectionProduct,
-  fetchBestsellers,
-} from "../../store/actions";
+import { setInCart, changeCart } from "../../store/cart/cartSlice";
+import { setInFavorite, removeFromFavorite, replaceInFavorite } from "../../store/favorite/favoriteSlice";
+import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import {
   selectInCart,
   selectInFavorite,
@@ -26,8 +21,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./ProductCard.scss";
-import ModalWindow from "../../components/ModalWindow";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
+import {sendAuthorizedRequest} from "../../helpers/sendRequest";
+import {API} from "../../config/API";
+import {UserContext} from "../../context/UserContext";
 
 export const CardContext = createContext();
 
@@ -45,6 +42,7 @@ const ProductCard = (props) => {
     bestsellers,
   } = props;
   const dispatch = useDispatch();
+  const {userInfo} = useContext(UserContext)
 
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
@@ -68,10 +66,39 @@ const ProductCard = (props) => {
   }, []);
   useEffect(() => {
     localStorage.setItem("inCart", JSON.stringify(inCart));
+
+    sendAuthorizedRequest(`${API}cart`, 'PUT', {
+      body: JSON.stringify(
+        {
+          products: inCart.map(inCartItem => {
+            return {
+              product: inCartItem._id,
+              size: inCartItem.size,
+              cartQuantity: inCartItem.quantity
+            }
+          })
+        }
+      )
+    });
   }, [inCart]);
+
   useEffect(() => {
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
+    if(userInfo) {
+      if(inFavoriteStore.length === 0) {
+        sendAuthorizedRequest(`${API}wishlist`, 'DELETE')
+      } else {
+        sendAuthorizedRequest(`${API}wishlist`, 'PUT', {
+          body: JSON.stringify(
+            {
+              products: inFavoriteStore
+            }
+          )
+        });
+      }
+    }
   }, [inFavoriteStore]);
+
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
@@ -96,6 +123,7 @@ const ProductCard = (props) => {
     itemNo,
     article,
     size,
+    _id
   } = oneCard;
 
   const findSimilarProduct = (categories) => {
@@ -122,7 +150,6 @@ const ProductCard = (props) => {
       return crossArray;
     }
   };
-  // <img class="category-card__image" src="../img/galery/pendants/Pendant_014.jpg" alt="necklece pendant"></img>
 
   const oldPrice = (currentPrice, discount) => Math.round((currentPrice * 100) / (100 - discount));
 
@@ -138,7 +165,7 @@ const ProductCard = (props) => {
           if (item.cardID === cardID && item.size === selectedSize) {
             let newCart = [];
             inCart.forEach((i) => {
-              newCart.push({ ...i });
+              newCart.push({...i});
             });
             const elem = newCart.find((elem) => elem.cardID === item.cardID);
             elem.quantity += 1;
@@ -150,7 +177,8 @@ const ProductCard = (props) => {
                 quantity: 1,
                 size: selectedSize,
                 price: currentPrice,
-                discount:discount,
+                discount: discount,
+                _id: _id,
               })
             );
           }
@@ -162,19 +190,20 @@ const ProductCard = (props) => {
             quantity: 1,
             size: selectedSize,
             price: currentPrice,
-            discount:discount,
+            discount: discount,
+            _id: _id
           })
         );
       }
     }
   };
 
-  const addRemoveFavorite = (cardId) => {
-    if (inFavoriteStore.includes(cardId)) {
-      let newFavorite = inFavoriteStore.filter((id) => id !== cardId);
+  const addRemoveFavorite = (_id) => {
+    if (inFavoriteStore.includes(_id)) {
+      let newFavorite = inFavoriteStore.filter((id) => id !== _id);
       dispatch(removeFromFavorite(newFavorite));
     } else {
-      dispatch(setInFavorite(cardId));
+      dispatch(setInFavorite(_id));
     }
   };
 
@@ -262,6 +291,7 @@ const ProductCard = (props) => {
             </div>
 
             <ProductPrice
+              _id={_id}
               name={name}
               size={size}
               oldPrice={oldPrice(currentPrice, discount)}
@@ -331,6 +361,7 @@ const ProductCard = (props) => {
             <div className="product-card__main-additionally">
               <ProductReview />
               <ProductPrice
+                _id={_id}
                 name={name}
                 size={size}
                 oldPrice={oldPrice(currentPrice, discount)}

@@ -1,17 +1,46 @@
-import React, { useEffect } from "react";
-import { useSelector } from 'react-redux';
+import React, {useContext, useEffect} from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import Button from "../../components/Button/ButtonAll/ButtonAll";
-import { selectInCart } from "../../store/selectors";
-import { Link } from "react-router-dom";
+import {selectInCart} from "../../store/selectors";
+import {Link} from "react-router-dom";
 import ItemInCart from "./ItemInCart";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 
 import "./ShoppingCart.scss";
+import {UserContext} from "../../context/UserContext";
+import {sendAuthorizedRequest} from "../../helpers/sendRequest";
+import {API} from "../../config/API";
+import {changeCart} from "../../store/cart/cartSlice";
 
 const ShoppingCart = () => {
-    
-    const inCart = useSelector(selectInCart);
-    
+  const {userInfo} = useContext(UserContext);
+  const dispatch = useDispatch();
+
+  const inCart = useSelector(selectInCart);
+
+  const fetchCartFromServer = () => {
+    sendAuthorizedRequest(`${API}cart`).then(r => {
+      const prods = r.products.map(productItem => {
+        return {
+          cardID: productItem.product.itemNo,
+          discount: productItem.product.discount,
+          price: productItem.product.currentPrice,
+          quantity: productItem.cartQuantity,
+          size: productItem.size,
+          _id: productItem.product._id
+        }
+      });
+
+      dispatch(changeCart(prods));
+    })
+  };
+
+  useEffect(() => {
+    if (userInfo) {
+      fetchCartFromServer()
+    }
+  }, [userInfo]);
+
     useEffect(() => {
         localStorage.setItem("inCart", JSON.stringify(inCart));
       }, [inCart]);

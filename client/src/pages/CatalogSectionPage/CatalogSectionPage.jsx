@@ -10,8 +10,8 @@ import {useLocation} from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-import { selectorAllCollectionProduct, selectorFilteredProducts } from "../../store/selectors";
-import { fetchAllCollectionProduct, fetchFilteredProducts } from "../../store/actions";
+import { selectorFilteredProducts } from "../../store/selectors";
+import { fetchFilteredProducts } from "../../store/filteredProducts/filteredProductsSlice";
 
 const addToURLWithoutReloading = (url, addConfigSting) => window.history.pushState(null,null, `${url}${addConfigSting?"/filter?"+addConfigSting:""}`);
 

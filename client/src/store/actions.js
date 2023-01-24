@@ -10,6 +10,7 @@ export const setOutlet = createAction("SET_OUTLET");
 export const setInCart = createAction("SET_IN_CART");
 export const changeCart = createAction("CHANGE_CART");
 export const setInFavorite = createAction("SET_IN_FAVORITE");
+export const replaceInFavorite = createAction("REPLACE_IN_FAVORITE");
 export const removeFromFavorite = createAction("REMOVE_FROM_IN_FEVORITE");
 
 export const fetchAllCollectionProduct = () => (dispatch) => {
@@ -24,30 +25,30 @@ export const fetchFilteredProducts = (stringFilteredParam) => (dispatch) => {
   });
 };
 
-export const fetchNewCollectionProduct = () => (dispatch) => {
-  return getCards().then((data) => {
-    dispatch(
-      setNewCollectionProduct(
-        data.filter((element) => element.statusProduct === "NEW")
-      )
-    );
-  });
-};
+// export const fetchNewCollectionProduct = () => (dispatch) => {
+//   return getCards().then((data) => {
+//     dispatch(
+//       setNewCollectionProduct(
+//         data.filter((element) => element.statusProduct === "NEW")
+//       )
+//     );
+//   });
+// };
 
-export const fetchBestsellers = () => (dispatch) => {
-  return getCards().then((data) => {
-    dispatch(
-      setBestsellers(
-        data.filter((element) => element.statusProduct === "BESTSELLER")
-      )
-    );
-  });
-};
+// export const fetchBestsellers = () => (dispatch) => {
+//   return getCards().then((data) => {
+//     dispatch(
+//       setBestsellers(
+//         data.filter((element) => element.statusProduct === "BESTSELLER")
+//       )
+//     );
+//   });
+// };
 
-export const fetchOutlet = () => (dispatch) => {
-  return getCards().then((data) => {
-    dispatch(
-      setOutlet(data.filter((element) => element.statusProduct === "OUTLET"))
-    );
-  });
-};
+// // export const fetchOutlet = () => (dispatch) => {
+// //   return getCards().then((data) => {
+// //     dispatch(
+// //       setOutlet(data.filter((element) => element.statusProduct === "OUTLET"))
+// //     );
+// //   });
+// // };
