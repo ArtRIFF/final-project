@@ -8,14 +8,15 @@ import {getComments} from "../../API/commentsAPI";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
+import { setInCart, changeCart } from "../../store/cart/cartSlice";
+import { setInFavorite, removeFromFavorite } from "../../store/favorite/favoriteSlice";
+import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import {
-  changeCart,
-  fetchAllCollectionProduct,
-  removeFromFavorite,
-  setInCart,
-  setInFavorite,
-} from "../../store/actions";
-import {selectInCart, selectInFavorite,} from "../../store/selectors";
+  selectInCart,
+  selectInFavorite,
+  selectorAllCollectionProduct,
+} from "../../store/selectors";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";

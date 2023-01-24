@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {getOneCard} from "../../API/cardsAPI";
-import {changeCart} from "../../store/actions";
+import { changeCart } from "../../store/cart/cartSlice";
 import {selectInCart} from "../../store/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {sendAuthorizedRequest} from "../../helpers/sendRequest";

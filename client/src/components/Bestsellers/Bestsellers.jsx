@@ -1,11 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ButtonViewAll from "../Button/ViewAll/ViewAll";
 import CategorySectionCard from "../CatalogSection/CategorySectionCard";
 import { selectBestsellers } from "../../store/selectors";
-import { fetchBestsellers } from "../../store/actions";
-import { Link, useParams } from "react-router-dom";
-import { getCards } from "../../helpers/sendRequest";
+import { fetchBestsellers } from "../../store/products/productsSlice";
+import { Link } from "react-router-dom";
 
 import "./bestsellers.scss";
 
