@@ -14,34 +14,18 @@ import {useDispatch, useSelector} from "react-redux";
 
 import { Menu, MenuItem, Box, Typography, Modal } from "@mui/material";
 import { style } from "../../pages/CheckOutPage/CheckOutPage";
-import {selectInCart, selectInFavorite} from "../../store/selectors";
-import {useDispatch, useSelector} from "react-redux";
-
-import { Menu, MenuItem, Box, Typography, Modal } from "@mui/material";
-import { style } from "../../pages/CheckOutPage/CheckOutPage";
 
 import { ReactComponent as LoginIcon } from "../Header/HeaderInterAction/img/Registrationicon.svg";
-import {ReactComponent as FavIcon } from "../Header/HeaderInterAction/img/Favouritesicon.svg";
-
 import {ReactComponent as FavIcon } from "../Header/HeaderInterAction/img/Favouritesicon.svg";
 
 import { UserContext } from "../../context/UserContext";
 import IconCart from "./HeaderInterAction/IconCart/IconCart";
 import {changeCart} from "../../store/cart/cartSlice";
 
-import {changeCart} from "../../store/cart/cartSlice";
-
-
 const Header = ({ active, setActive }) => {
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState("menu hidden");
   const [isMenuCliked, setIsMenuClicked] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-
-  const dispatch = useDispatch();
-
-  const handleOpenModal = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
   const [openModal, setOpenModal] = useState(false);
 
   const dispatch = useDispatch();
@@ -83,7 +67,6 @@ const Header = ({ active, setActive }) => {
       })
   }
 
-  const inFavs = useSelector(selectInFavorite)
   const inFavs = useSelector(selectInFavorite)
   const inCart = useSelector(selectInCart);
   let itemsInCart;
