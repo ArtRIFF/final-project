@@ -44,6 +44,9 @@ export default createReducer(defaultState, {
   [actions.setInFavorite]: (state, { payload }) => {
     state.inFavorite = [...state.inFavorite, payload];
   },
+  [actions.replaceInFavorite]: (state, { payload }) => {
+    state.inFavorite = payload;
+  },
   [actions.removeFromFavorite]: (state, { payload }) => {
     state.inFavorite = payload;
   },

@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -23,6 +23,7 @@ import "./ProductCard.scss";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 import {sendAuthorizedRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
+import {UserContext} from "../../context/UserContext";
 
 export const CardContext = createContext();
 
@@ -40,6 +41,7 @@ const ProductCard = (props) => {
     bestsellers,
   } = props;
   const dispatch = useDispatch();
+  const {userInfo} = useContext(UserContext)
 
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
@@ -81,7 +83,21 @@ const ProductCard = (props) => {
 
   useEffect(() => {
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
+    if(userInfo) {
+      if(inFavoriteStore.length === 0) {
+        sendAuthorizedRequest(`${API}wishlist`, 'DELETE')
+      } else {
+        sendAuthorizedRequest(`${API}wishlist`, 'PUT', {
+          body: JSON.stringify(
+            {
+              products: inFavoriteStore
+            }
+          )
+        });
+      }
+    }
   }, [inFavoriteStore]);
+
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
   }, []);
@@ -181,12 +197,12 @@ const ProductCard = (props) => {
     }
   };
 
-  const addRemoveFavorite = (cardId) => {
-    if (inFavoriteStore.includes(cardId)) {
-      let newFavorite = inFavoriteStore.filter((id) => id !== cardId);
+  const addRemoveFavorite = (_id) => {
+    if (inFavoriteStore.includes(_id)) {
+      let newFavorite = inFavoriteStore.filter((id) => id !== _id);
       dispatch(removeFromFavorite(newFavorite));
     } else {
-      dispatch(setInFavorite(cardId));
+      dispatch(setInFavorite(_id));
     }
   };
 
@@ -274,6 +290,7 @@ const ProductCard = (props) => {
             </div>
 
             <ProductPrice
+              _id={_id}
               name={name}
               size={size}
               oldPrice={oldPrice(currentPrice, discount)}
@@ -343,6 +360,7 @@ const ProductCard = (props) => {
             <div className="product-card__main-additionally">
               <ProductReview />
               <ProductPrice
+                _id={_id}
                 name={name}
                 size={size}
                 oldPrice={oldPrice(currentPrice, discount)}
