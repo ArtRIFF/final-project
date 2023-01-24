@@ -2,38 +2,21 @@ import './style.scss';
 import ButtonAll from '../../../../components/Button/ButtonAll/ButtonAll';
 import PropTypes from 'prop-types';
 
-const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionArray,hasAnyFilters }) => {
+const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
 
   const sortByNewest = () => {
-    const sortedArray = allCollectionArray.slice().sort((a, b) => {
-      if (a.statusProduct === "NEW") {
-        return -1;
-      } else {
-        return 1;
-      }
-    });
-    filterRequest(sortedArray,false, "sort=NEW");
+    filterRequest("sort=NEW");
   }
 
   const sortByBestseller = () => {
-    const sortedArray = allCollectionArray.slice().sort((a, b) => {
-      if (a.statusProduct === "BESTSELLER") {
-        return -1;
-      } else {
-        return 1;
-      }
-    });
-    filterRequest(sortedArray,false, "sort=BESTSELLER");
+    filterRequest("sort=BESTSELLER");
   }
 
   const sortByPrice = () => {
-    const sortedArray = allCollectionArray.slice().sort((a, b) => (+a.currentPrice) - (+b.currentPrice));
-    filterRequest(sortedArray,false, "sort=byPrice");
+    filterRequest("sort=currentPrice");
   }
 
   const onSelectorChange = (e) => {
-    const dontHaveResult = !setResult && hasAnyFilters;
-    if (!dontHaveResult) {
     switch (e.target.value) {
       case "price":
         sortByPrice();
@@ -45,14 +28,13 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
         sortByBestseller();
         break;
     }
-  }
   };
   return (
     <div className="category-filter">
       <div onClick={onClickFunc} className='category-filter--btn'>
         <ButtonAll text='Filter' className='section__btn-subscribe' />
       </div>
-      <div className='category-filter__result'>Results: <span>{!setResult && hasAnyFilters?setResult:allCollectionArray.length}</span></div>
+      <div className='category-filter__result'>Results: <span>{setResult}</span></div>
       <select data-testid='select-sortBy' onChange={onSelectorChange} name="select-sortBy" defaultValue={'DEFAULT'} >
         <option value="DEFAULT" disabled>Sort by</option>
         <option value="price">Price</option>
@@ -66,14 +48,11 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest, allCollectionAr
 CategoryFilter.propTypes = {
   onClickFunc: PropTypes.func,
   setResult: PropTypes.number,
-  filterRequest: PropTypes.func,
-  allCollectionArray: PropTypes.array,
-  hasAnyFilters: PropTypes.bool
+  filterRequest: PropTypes.func
 };
 
 CategoryFilter.defaultProps = {
-  onClickFunc: null,
-  hasAnyFilters: true
+  onClickFunc: null
 };
 
 export default CategoryFilter;

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectInFavorite, selectorAllCollectionProduct } from "../../store/selectors";
-import {fetchAllCollectionProduct, replaceInFavorite, setInFavorite} from "../../store/actions";
+import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import CategorySectionCard from "../../components/CatalogSection/CategorySectionCard";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
 import "./WishList.scss"

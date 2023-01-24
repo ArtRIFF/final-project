@@ -130,7 +130,7 @@ const Header = ({ active, setActive }) => {
               </li>
               <li className="header-nav-mobil">
                 <NavLink to="/outlet" className="header-nav-mobil__menu_item">
-                  %Outlet
+                  Outlet
                 </NavLink>
               </li>
               <li className="header-nav-mobil">

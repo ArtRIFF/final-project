@@ -32,7 +32,7 @@ import {
   fetchBestsellers,
   fetchOutlet,
   fetchAllCollectionProduct,
-} from "../store/actions";
+} from "../store/products/productsSlice";
 
 import { UserContextProvider } from "../context/UserContext";
 
