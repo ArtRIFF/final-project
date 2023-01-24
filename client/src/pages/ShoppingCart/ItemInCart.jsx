@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { getOneCard } from "../../API/cardsAPI";
+import React, {useEffect, useState} from "react";
+import {getOneCard} from "../../API/cardsAPI";
 import { changeCart } from "../../store/cart/cartSlice";
-import { selectInCart } from "../../store/selectors";
-import { useDispatch, useSelector } from "react-redux";
+import {selectInCart} from "../../store/selectors";
+import {useDispatch, useSelector} from "react-redux";
+import {sendAuthorizedRequest} from "../../helpers/sendRequest";
+import {API} from "../../config/API";
 
 
 const ItemInCart = ({card}) => {
@@ -24,20 +26,39 @@ const ItemInCart = ({card}) => {
     inCart.forEach(i => {newCart.push({...i})});
     const item = newCart.find(item => item.cardID === cardID);
 
-    const increment = () => {
-        item.quantity += 1;
-        dispatch(changeCart(newCart));
-        };
-    const removeCard = () => {
-        let reducedCart = newCart.filter(i => i !== item);
-        dispatch(changeCart(reducedCart))
-        }    
-    const decrement = () => {
-        item.quantity -= 1;
-        if (item.quantity === 0) {
-            removeCard()
-        } else {dispatch(changeCart(newCart))};
-    } 
+    const updateCartOnServer = (updatedCart) => {
+      sendAuthorizedRequest(`${API}cart`, 'PUT', {
+        body: JSON.stringify({
+          products: updatedCart.map(cartItem => {
+            return {
+              product: cartItem._id,
+              size: cartItem.size,
+              cartQuantity: cartItem.quantity
+            }
+          })
+        })
+      }).then(console.log)
+    }
+
+  const increment = () => {
+    item.quantity += 1;
+    dispatch(changeCart(newCart));
+    updateCartOnServer(newCart);
+  };
+  const removeCard = () => {
+    let reducedCart = newCart.filter(i => i !== item);
+    dispatch(changeCart(reducedCart))
+    updateCartOnServer(reducedCart);
+  }
+  const decrement = () => {
+    item.quantity -= 1;
+    if (item.quantity === 0) {
+      removeCard()
+    } else {
+      dispatch(changeCart(newCart));
+      updateCartOnServer(newCart);
+    }
+  }
     
     return(
         <div className="cart-section__products-item">

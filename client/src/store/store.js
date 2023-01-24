@@ -1,13 +1,22 @@
-// import { createStore, applyMiddleware } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import thunk from "redux-thunk";
-// import logger from "redux-logger";
+import { configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import productsSlice from "./products/productsSlice";
+import favoriteSlice from "./favorite/favoriteSlice";
+import cartSlice from "./cart/cartSlice";
+import filteredProductsSlice from "./filteredProducts/filteredProductsSlice"
 
-// import rootReducers from "./reducers";
+const store = configureStore ({
+    reducer: {
+        products: productsSlice.reducer,
+        cart: cartSlice.reducer,
+        favorite: favoriteSlice.reducer,
+        filteredProducts: filteredProductsSlice.reducer,
+        // composeWithDevTools(applyMiddleware(thunk, logger))
+    },
+    // middleware: 
+})
 
-// const store = createStore(
-//   rootReducers,
-//   composeWithDevTools(applyMiddleware(thunk, logger))
-// );
-
-// export default store;
+export default store
