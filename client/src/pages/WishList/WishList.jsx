@@ -23,7 +23,7 @@ const WishList = () => {
         return allCollectionProduct.find(product => {
           return product._id === id
         });
-    }).filter(Boolean)
+    })
     useEffect(() => {
       if (userInfo) {
         sendAuthorizedRequest(`${API}wishlist`)
