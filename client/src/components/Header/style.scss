@@ -129,6 +129,13 @@
     }
   }
 }
+.header__favorite {
+  .filled {
+    path {
+      fill: black;
+    }
+  }
+}
 .admin-icon {
   width: 32px;
   height: 16px;

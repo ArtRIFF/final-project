@@ -20,6 +20,7 @@ const ProductPrice = (props) => {
     rating,
     size,
     selectedSize,
+    _id
   } = props;
 
   const inFavoriteStore = useSelector(selectInFavorite);
@@ -30,10 +31,10 @@ const ProductPrice = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    if (inFavoriteStore.includes(cardID)) {
+    if (inFavoriteStore.includes(_id)) {
       setIsFavorite(true);
     }
-  }, []);
+  }, [_id]);
   const buyNow = () => {
     if (selectedSize === false || selectedSize === "not choose") {
       return "";
@@ -88,8 +89,8 @@ const ProductPrice = (props) => {
         </Link>
         <div
           onClick={() => {
-            addRemoveFavorite(cardID);
-            changeIsFavorite(cardID);
+            addRemoveFavorite(_id);
+            changeIsFavorite(_id);
           }}
         >
           <ButtonAll
