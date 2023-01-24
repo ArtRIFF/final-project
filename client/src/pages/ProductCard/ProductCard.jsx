@@ -199,11 +199,16 @@ const ProductCard = (props) => {
   };
 
   const addRemoveFavorite = (_id) => {
-    if (inFavoriteStore.includes(_id)) {
-      let newFavorite = inFavoriteStore.filter((id) => id !== _id);
-      dispatch(removeFromFavorite(newFavorite));
+    if (!userInfo) {
+      setModalActive(true);
+      setModalText("Available after login");
     } else {
-      dispatch(setInFavorite(_id));
+      if (inFavoriteStore.includes(_id)) {
+        let newFavorite = inFavoriteStore.filter((id) => id !== _id);
+        dispatch(removeFromFavorite(newFavorite));
+      } else {
+        dispatch(setInFavorite(_id));
+      }
     }
   };
 
