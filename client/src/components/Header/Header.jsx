@@ -9,18 +9,30 @@ import { sendRequest } from "../../helpers/sendRequest";
 import { API } from "../../config/API";
 import Button from "../Button/ButtonAll/ButtonAll";
 
-import { selectInCart } from "../../store/selectors";
-import { useSelector } from "react-redux";
+import {selectInCart, selectInFavorite} from "../../store/selectors";
+import {useDispatch, useSelector} from "react-redux";
 
-import { Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem, Box, Typography, Modal } from "@mui/material";
+import { style } from "../../pages/CheckOutPage/CheckOutPage";
+
 import { ReactComponent as LoginIcon } from "../Header/HeaderInterAction/img/Registrationicon.svg";
+import {ReactComponent as FavIcon } from "../Header/HeaderInterAction/img/Favouritesicon.svg";
+
 import { UserContext } from "../../context/UserContext";
 import IconCart from "./HeaderInterAction/IconCart/IconCart";
+import {changeCart} from "../../store/cart/cartSlice";
+
 
 const Header = ({ active, setActive }) => {
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState("menu hidden");
   const [isMenuCliked, setIsMenuClicked] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
 
   const updateMenu = () => {
     if (!isMenuCliked) {
@@ -56,6 +68,7 @@ const Header = ({ active, setActive }) => {
       })
   }
 
+  const inFavs = useSelector(selectInFavorite)
   const inCart = useSelector(selectInCart);
   let itemsInCart;
   if (inCart.length > 0) {
@@ -76,7 +89,9 @@ const Header = ({ active, setActive }) => {
 
   const handleLogOut = () => {
     setUserInfo(null);
-    clearToken()
+    clearToken();
+    dispatch(changeCart([]))
+    localStorage.setItem("inFavorite", JSON.stringify([]));
   }
   return (
     <header className="header">
@@ -160,13 +175,10 @@ const Header = ({ active, setActive }) => {
                 />
               </NavLink>
             </div>
-            <div className="header__favorites">
-              <NavLink to="/wishlist" >
-                <img
-                  className="header__favorite-icon"
-                  src="img/header-icon/Favouritesicon.svg"
-                  alt="favorites"
-                ></img>
+            <div className="header__favorite">
+              <NavLink to={userInfo && "/wishlist"}>
+                <FavIcon className={userInfo ? "filled" : "header__favorite-icon"}
+                onClick={!userInfo ? handleOpenModal : undefined}/>
               </NavLink>
             </div>
             <IconCart/>
@@ -201,6 +213,30 @@ const Header = ({ active, setActive }) => {
         </div>
 
       </div>
+
+      {openModal &&
+        <Modal
+          open={openModal}
+          onClose={handleCloseModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              <FavIcon/>
+            </Typography>
+            <Typography id="modal-modal-description" sx={{mt: 2}}>
+              Favourites page is available only for registered users. Please login in your profile.
+            </Typography>
+            <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
+              <NavLink to="/login">
+                <Button type="submit" text="Login" className="section__btn-checkout" onClick={handleCloseModal}/>
+              </NavLink>
+            </div>
+
+          </Box>
+        </Modal>
+      }
     </header>
   );
 }

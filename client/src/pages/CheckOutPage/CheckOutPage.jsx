@@ -20,7 +20,7 @@ import * as Yup from "yup";
 import {UserContext} from "../../context/UserContext";
 import valid from 'card-validator';
 
-const style = {
+export const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -82,7 +82,6 @@ export const validationSchema = Yup.object().shape({
 
 });
 
-const orderNumber = (Math.random() * 10000).toFixed(0);
 
 const CheckOutPage = () => {
 
@@ -99,7 +98,7 @@ const CheckOutPage = () => {
 
   useEffect(() => {
     const cartProductIds = inCart.map(inCartItem => inCartItem._id);
-    sendAuthorizedRequest(`${API}products/filter?_id=${cartProductIds.join(',')}`).then(response => {
+    sendRequest(`${API}products/filter?_id=${cartProductIds.join(',')}`).then(response => {
       setCartProducts(response.products);
     })
   }, [inCart]);
@@ -122,7 +121,7 @@ const CheckOutPage = () => {
     }
     const mobile = values.phoneShip;
     const letterSubject = 'Subject';
-    const letterHtml = `<h1> Your order # ${orderNumber} is placed. Our managers will contact you as soon as possible </h1>`;
+    const letterHtml = `<h1> Your order is placed. Our managers will contact you as soon as possible </h1>`;
     const canceled = false;
 
     const requestPayload = {
