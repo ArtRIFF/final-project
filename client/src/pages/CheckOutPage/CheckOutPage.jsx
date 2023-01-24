@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -8,7 +8,7 @@ import PaymentMethod from "./PaymentMethod/PaymentMethod";
 import ShipAddress from "./ShipAddress/ShipAddress";
 
 import "./style.scss";
-import {sendRequest} from "../../helpers/sendRequest";
+import {sendAuthorizedRequest, sendRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
 import {useSelector} from "react-redux";
 import {selectInCart} from "../../store/selectors";
@@ -95,21 +95,32 @@ const CheckOutPage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [cartProducts, setCartProducts] = useState([]);
+
+  useEffect(() => {
+    const cartProductIds = inCart.map(inCartItem => inCartItem._id);
+    sendAuthorizedRequest(`${API}products/filter?_id=${cartProductIds.join(',')}`).then(response => {
+      setCartProducts(response.products);
+    })
+  }, [inCart]);
+
   const handleSubmit = (values) => {
-    const products = inCart.map((product) => {
+    const products = cartProducts.map(cartProduct => {
+      const productInLSCart = inCart.find(inCartItem => inCartItem._id === cartProduct._id);
       return {
-        product: product,
-        cartQuantity: product.quantity
+        product: {...cartProduct, size: productInLSCart.size},
+        cartQuantity: productInLSCart.quantity
       }
     })
 
     const deliveryAddress = {
       country: values.countryShip,
       city: values.cityShip,
+      state: values.stateShip,
       address: values.streetShip,
       postal: values.codeShip
     }
-    const mobile = values.phoneNumber;
+    const mobile = values.phoneShip;
     const letterSubject = 'Subject';
     const letterHtml = `<h1> Your order # ${orderNumber} is placed. Our managers will contact you as soon as possible </h1>`;
     const canceled = false;
@@ -128,7 +139,7 @@ const CheckOutPage = () => {
     sendRequest(`${API}orders`, 'POST', {
       body: JSON.stringify(requestPayload),
       headers: {'Content-Type': 'application/json'}
-    }).then(r => setOrderResult(`Your order number is ${orderNumber}. Our managers will contact you shortly!`))
+    }).then(response => setOrderResult(`Your order number is ${response.order.orderNo}. Our managers will contact you shortly!`))
       .then(handleOpen)
       .catch(e => {
         setErrResult(e.message)
