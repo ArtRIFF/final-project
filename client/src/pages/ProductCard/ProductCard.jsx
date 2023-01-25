@@ -5,18 +5,10 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {EffectFade, Navigation, Thumbs} from "swiper";
 import {getOneCard,} from "../../API/cardsAPI";
 import {getComments} from "../../API/commentsAPI";
-import React, {createContext, useContext, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {EffectFade, Navigation, Thumbs} from "swiper";
-import {getOneCard,} from "../../API/cardsAPI";
-import {getComments} from "../../API/commentsAPI";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
 import { setInCart, changeCart } from "../../store/cart/cartSlice";
-import { setInFavorite, removeFromFavorite, replaceInFavorite } from "../../store/favorite/favoriteSlice";
 import { setInFavorite, removeFromFavorite, replaceInFavorite } from "../../store/favorite/favoriteSlice";
 import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
 import {
@@ -30,9 +22,6 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./ProductCard.scss";
 import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
-import {sendAuthorizedRequest} from "../../helpers/sendRequest";
-import {API} from "../../config/API";
-import {UserContext} from "../../context/UserContext";
 import {sendAuthorizedRequest} from "../../helpers/sendRequest";
 import {API} from "../../config/API";
 import {UserContext} from "../../context/UserContext";
@@ -54,8 +43,7 @@ const ProductCard = (props) => {
   } = props;
   const dispatch = useDispatch();
   const {userInfo} = useContext(UserContext)
-  const {userInfo} = useContext(UserContext)
-
+  
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
   const [comments, setComments] = useState([]);
@@ -92,22 +80,7 @@ const ProductCard = (props) => {
         }
       )
     });
-
-    sendAuthorizedRequest(`${API}cart`, 'PUT', {
-      body: JSON.stringify(
-        {
-          products: inCart.map(inCartItem => {
-            return {
-              product: inCartItem._id,
-              size: inCartItem.size,
-              cartQuantity: inCartItem.quantity
-            }
-          })
-        }
-      )
-    });
   }, [inCart]);
-
 
   useEffect(() => {
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
@@ -124,21 +97,7 @@ const ProductCard = (props) => {
         });
       }
     }
-    if(userInfo) {
-      if(inFavoriteStore.length === 0) {
-        sendAuthorizedRequest(`${API}wishlist`, 'DELETE')
-      } else {
-        sendAuthorizedRequest(`${API}wishlist`, 'PUT', {
-          body: JSON.stringify(
-            {
-              products: inFavoriteStore
-            }
-          )
-        });
-      }
-    }
   }, [inFavoriteStore]);
-
 
   useEffect(() => {
     dispatch(fetchAllCollectionProduct());
@@ -164,7 +123,6 @@ const ProductCard = (props) => {
     itemNo,
     article,
     size,
-    _id
     _id
   } = oneCard;
 
@@ -208,7 +166,6 @@ const ProductCard = (props) => {
             let newCart = [];
             inCart.forEach((i) => {
               newCart.push({...i});
-              newCart.push({...i});
             });
             const elem = newCart.find((elem) => elem.cardID === item.cardID);
             elem.quantity += 1;
@@ -222,8 +179,6 @@ const ProductCard = (props) => {
                 price: currentPrice,
                 discount: discount,
                 _id: _id,
-                discount: discount,
-                _id: _id,
               })
             );
           }
@@ -235,8 +190,6 @@ const ProductCard = (props) => {
             quantity: 1,
             size: selectedSize,
             price: currentPrice,
-            discount: discount,
-            _id: _id
             discount: discount,
             _id: _id
           })
@@ -344,7 +297,6 @@ const ProductCard = (props) => {
 
             <ProductPrice
               _id={_id}
-              _id={_id}
               name={name}
               size={size}
               oldPrice={oldPrice(currentPrice, discount)}
@@ -414,7 +366,6 @@ const ProductCard = (props) => {
             <div className="product-card__main-additionally">
               <ProductReview />
               <ProductPrice
-                _id={_id}
                 _id={_id}
                 name={name}
                 size={size}
