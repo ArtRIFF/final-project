@@ -27,17 +27,21 @@ const ItemInCart = ({card}) => {
     const item = newCart.find(item => item.cardID === cardID);
 
     const updateCartOnServer = (updatedCart) => {
-      sendAuthorizedRequest(`${API}cart`, 'PUT', {
-        body: JSON.stringify({
-          products: updatedCart.map(cartItem => {
-            return {
-              product: cartItem._id,
-              size: cartItem.size,
-              cartQuantity: cartItem.quantity
-            }
+      if (updatedCart.length === 0) {
+            sendAuthorizedRequest(`${API}cart`, 'DELETE')
+          } else {
+        sendAuthorizedRequest(`${API}cart`, 'PUT', {
+          body: JSON.stringify({
+            products: updatedCart.map(cartItem => {
+              return {
+                product: cartItem._id,
+                size: cartItem.size,
+                cartQuantity: cartItem.quantity
+              }
+            })
           })
         })
-      }).then(console.log)
+      }
     }
 
   const increment = () => {
