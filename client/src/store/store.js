@@ -1,13 +1,24 @@
-// import { createStore, applyMiddleware } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import thunk from "redux-thunk";
-// import logger from "redux-logger";
+import { configureStore } from "@reduxjs/toolkit";
+import { batchedSubscribe } from 'redux-batched-subscribe';
+import debounce from 'lodash.debounce';
+import logger from "redux-logger";
+import productsSlice from "./products/productsSlice";
+import favoriteSlice from "./favorite/favoriteSlice";
+import cartSlice from "./cart/cartSlice";
+import filteredProductsSlice from "./filteredProducts/filteredProductsSlice"
 
-// import rootReducers from "./reducers";
+const debounceNotify = debounce(notify => notify());
 
-// const store = createStore(
-//   rootReducers,
-//   composeWithDevTools(applyMiddleware(thunk, logger))
-// );
+const store = configureStore ({
+    reducer: {
+        products: productsSlice.reducer,
+        cart: cartSlice.reducer,
+        favorite: favoriteSlice.reducer,
+        filteredProducts: filteredProductsSlice.reducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    devTools: process.env.NODE_ENV !== 'production',
+    enhancers: [batchedSubscribe(debounceNotify)],
+})
 
-// export default store;
+export default store
