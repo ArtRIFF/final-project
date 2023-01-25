@@ -177,7 +177,7 @@ const Header = ({ active, setActive }) => {
             </div>
             <div className="header__favorite">
               <NavLink to={userInfo && "/wishlist"}>
-                <FavIcon className={userInfo ? "filled" : "header__favorite-icon"}
+                <FavIcon className={inFavs.length > 0 ? "filled" : "header__favorite-icon"}
                 onClick={!userInfo ? handleOpenModal : undefined}/>
               </NavLink>
             </div>
