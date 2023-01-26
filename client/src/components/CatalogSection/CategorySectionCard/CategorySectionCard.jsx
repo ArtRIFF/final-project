@@ -28,7 +28,7 @@ const CategorySectionCard = (props) => {
 
       <img
         className="category-card__image"
-        src={`${additionalLink}${imageUrls[0]}`}
+        src={`/${additionalLink}${imageUrls[0]}`}
         alt={name}
       />
 
