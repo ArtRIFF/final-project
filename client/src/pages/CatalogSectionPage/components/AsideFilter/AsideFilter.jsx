@@ -3,7 +3,13 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const AsideFilter = ({ filterRequest }) => {
-  const [productsType, setProductsType] = useState([]);
+  const url = window.location.search;
+    const params = new URLSearchParams(url);
+    const categoriesParam = params.get('categories')?.split(",");
+    console.log("window.location.search",window.location.search);
+   console.log(categoriesParam);
+   
+  const [productsType, setProductsType] = useState(categoriesParam || []);
   const [metalType, setMetalType] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
   const [sampleType, setSampleType] = useState([]);
@@ -39,7 +45,7 @@ const AsideFilter = ({ filterRequest }) => {
     pushToFilterParamArray(insertTypeParam);
     const insertNumberParam = insertNumber !== 0 ? `insertNumber=${insertNumber}` : "";
     pushToFilterParamArray(insertNumberParam);
-    const priceRangeParam = (price[0] !== "" || price[1] !== "") ? `price=${price[1] !== "" ? `${price[0]}-${price[1]}` : `${price[0]}`}` : "";
+    const priceRangeParam = (price[0] !== "" || price[1] !== "") ? `currentPrice=${price[1] !== "" ? `${price[0]}-${price[1]}` : `${price[0]}`}` : "";
     pushToFilterParamArray(priceRangeParam);
 
     const filterParam = filterParamArray.length ? `${filterParamArray.join('&')}` : "";
