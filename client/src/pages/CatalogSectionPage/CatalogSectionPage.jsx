@@ -25,7 +25,7 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   const [showAsideFilter, setModalRender] = useState(false);
   const [totalItems, setTotalItems] = useState(5);
 
-  const [filterURL, setFilterURL] = useState('');
+  const [productTypeUrl, setProductTypeUrl] = useState(null);
   const [sortURL, setSortURL] = useState('');
   const [paginationURL, setPaginationURL] = useState('1');
 
@@ -34,21 +34,13 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   };
 
   useEffect(() => {
-    // const url = window.location.search;
-    // const params = new URLSearchParams(url);
-    // const categoriesParam = params.get('categories');
-//set Timeout
-    // if (categoriesParam) {
-    //   setFilterURL("categories=" + categoriesParam);
-    // }
-  
-  }, []);
+    if (productTypeUrl !== null) {
+      const summaryFilterParam = productTypeUrl + (sortURL ? "&" + sortURL : "") + (paginationURL ? "&perPage=12&startPage=" + paginationURL : "")
+      addToURLWithoutReloading(location.pathname, summaryFilterParam);
+      dispatch(fetchFilteredProducts(summaryFilterParam));
 
-  useEffect(() => {
-    const summaryFilterParam = filterURL + (sortURL ? "&" + sortURL : "") + (paginationURL ? "&perPage=12&startPage=" + paginationURL : "")
-    addToURLWithoutReloading(location.pathname, summaryFilterParam);
-    dispatch(fetchFilteredProducts(summaryFilterParam));
-  }, [filterURL, sortURL, paginationURL]);
+    }
+  }, [productTypeUrl, sortURL, paginationURL]);
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
@@ -72,9 +64,10 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
 
 
   const filterRequest = (url) => {
-    setFilterURL(url);
+    setProductTypeUrl(url);
     setSortURL("");
     setPaginationURL(1);
+    document.querySelector('.category-filter select').value = "DEFAULT";
   };
 
   const filterSortRequest = (url) => {
@@ -89,7 +82,7 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="breadcrumbs__catalog">
-        {/* <Breadcrumbs /> */}
+        <Breadcrumbs />
       </div>
       <div className="grid-wrapper">
         <div className="catalogPageImg-wrapper">
