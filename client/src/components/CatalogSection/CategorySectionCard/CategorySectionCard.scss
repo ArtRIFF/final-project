@@ -77,11 +77,6 @@
     }
   }
 }
-@media screen and (max-width: 991px) {
-  .category-card {
-    //margin-right: 20px;
-  }
-}
 @media screen and (max-width: $desktop-size) {
   .category-card {
     &__sale,

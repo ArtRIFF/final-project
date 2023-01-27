@@ -39,9 +39,10 @@
       padding: 40px 60px 40px 20px;
       margin-bottom: 20px;
       border: 1px solid #B7BAC0;
-      @media (max-width:320px) {
+      @media (max-width:767px) and (min-width: 320px) {
         display: block;
         padding-bottom: 20px;
+        text-align: center;
       }
       .item-image {
         max-width: 100px;

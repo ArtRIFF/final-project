@@ -14,6 +14,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width:1200px) {
+    justify-content: space-around;
+  }
   @media (max-width:730px) {
     justify-content: space-around;
   }
@@ -101,7 +104,8 @@
     }
     &__hidden {
       opacity: 0;
-      top: -1000px
+      top: -10000px;
+      overflow: hidden;
     }
     &__shown {
       opacity: 1;

@@ -14,8 +14,7 @@ const SubscribeSection = () => {
 
 
   const handleSubmit = () => {
-    /*Fixme лист на пошту поки що не приходить, в перспективі можна зверстати тематичну newsletter, що буде надходити підписнику */
-    const newSubscriber = {
+      const newSubscriber = {
       email: subscriberEmail,
       letterSubject: "Welcome subscribe letter from Jewelry Store",
       letterHtml: "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> div { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <div><h2>You have successfully subscribed to our newsletter</h2><p>We will keep you updated on discount and new collection information!</p></div></body></html>"
