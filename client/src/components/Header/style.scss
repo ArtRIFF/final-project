@@ -101,7 +101,8 @@
     }
     &__hidden {
       opacity: 0;
-      top: -1000px
+      top: -10000px;
+      overflow: hidden;
     }
     &__shown {
       opacity: 1;
