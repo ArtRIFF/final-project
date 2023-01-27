@@ -45,11 +45,6 @@ const NewsSection = () => {
                 jewelry story you will feel the ease of life.
               </div>
               </div>
-            {/* <Button
-              text="SeeMore"
-              className="section__btn-header"
-              id="section__btn"
-            /> */}
           </div>
         </div>
       </div>
