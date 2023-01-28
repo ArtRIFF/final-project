@@ -122,7 +122,6 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
               paginationRequest={paginationRequest}
               itemsPerPage={itemsPerPage}
               totalItems={productsQuantity}
-              setCurrentPage={setCurrentPage}
             />
           )}
         </div>
@@ -139,5 +138,4 @@ CatalogSectionPage.defaultProps = {
   stringFilterParam: "",
 };
 
-export function setCurrentPage() { };
 export default CatalogSectionPage;
