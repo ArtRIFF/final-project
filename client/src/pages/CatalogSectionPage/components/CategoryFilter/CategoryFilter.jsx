@@ -20,7 +20,7 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
   },[sortType])
 
   const sortByNewest = () => {
-    setSortType("NEW");
+    setSortType("date");
   }
 
   const sortByBestseller = () => {
@@ -36,7 +36,7 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
       case "currentPrice":
         sortByPrice();
         break;
-      case "NEW":
+      case "date":
         sortByNewest();
         break;
       case "BESTSELLER":
@@ -53,7 +53,7 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
       <select data-testid='select-sortBy' onChange={onSelectorChange} name="select-sortBy" defaultValue={'DEFAULT'} >
         <option value="DEFAULT" disabled>Sort by</option>
         <option value="currentPrice">Price</option>
-        <option value="NEW">Newest</option>
+        <option value="date">Newest</option>
         <option value="BESTSELLER">Bestseller</option>
       </select>
     </div>
