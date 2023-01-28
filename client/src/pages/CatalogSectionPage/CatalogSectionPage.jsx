@@ -23,9 +23,8 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
 
   const { products, productsQuantity } = useSelector(selectorFilteredProducts);
   const [showAsideFilter, setModalRender] = useState(false);
-  const [totalItems, setTotalItems] = useState(5);
 
-  const [filterURL, setFilterURL] = useState('');
+  const [productTypeUrl, setProductTypeUrl] = useState(null);
   const [sortURL, setSortURL] = useState('');
   const [paginationURL, setPaginationURL] = useState('1');
 
@@ -34,21 +33,13 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   };
 
   useEffect(() => {
-    // const url = window.location.search;
-    // const params = new URLSearchParams(url);
-    // const categoriesParam = params.get('categories');
-//set Timeout
-    // if (categoriesParam) {
-    //   setFilterURL("categories=" + categoriesParam);
-    // }
-  
-  }, []);
+    if (productTypeUrl !== null) {
+      const summaryFilterParam = productTypeUrl + (sortURL ? "&" + sortURL : "") + (paginationURL ? "&perPage=12&startPage=" + paginationURL : "")
+      addToURLWithoutReloading(location.pathname, summaryFilterParam);
+      dispatch(fetchFilteredProducts(summaryFilterParam));
 
-  useEffect(() => {
-    const summaryFilterParam = filterURL + (sortURL ? "&" + sortURL : "") + (paginationURL ? "&perPage=12&startPage=" + paginationURL : "")
-    addToURLWithoutReloading(location.pathname, summaryFilterParam);
-    dispatch(fetchFilteredProducts(summaryFilterParam));
-  }, [filterURL, sortURL, paginationURL]);
+    }
+  }, [productTypeUrl, sortURL, paginationURL]);
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
@@ -62,19 +53,23 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   };
 
   const [loading, setLoading] = useState(false);
-  const [itemsPerPage] = useState(12);
-
-
-  const [allCollectionArrayIsFiltered, setAllCollectionArrayIsFiltered] =
-    useState(false);
-  const [hasAnyFilters, setHasAnyFilters] = useState();
+  const itemsPerPage = 12;
   const [showPagination, setShowPagination] = useState(true);
+
+     useEffect(() => {
+       if (productsQuantity === 0) {
+         setLoading(true);
+       } else {
+         setLoading(false);
+       }
+     }, [products]);
 
 
   const filterRequest = (url) => {
-    setFilterURL(url);
+    setProductTypeUrl(url);
     setSortURL("");
     setPaginationURL(1);
+    document.querySelector('.category-filter select').value = "DEFAULT";
   };
 
   const filterSortRequest = (url) => {
@@ -89,7 +84,7 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   return (
     <div className="container" onClick={hideAsideFilter}>
       <div className="breadcrumbs__catalog">
-        {/* <Breadcrumbs /> */}
+        <Breadcrumbs />
       </div>
       <div className="grid-wrapper">
         <div className="catalogPageImg-wrapper">
@@ -99,14 +94,13 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
           />
         </div>
         <aside
-          className={`${showAsideFilter
-            ? "asideFilter-wrapper--show"
-            : "asideFilter-wrapper"
-            }`}
+          className={`${
+            showAsideFilter
+              ? "asideFilter-wrapper--show"
+              : "asideFilter-wrapper"
+          }`}
         >
-          <AsideFilter
-            filterRequest={filterRequest}
-          />
+          <AsideFilter filterRequest={filterRequest} />
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter
@@ -123,15 +117,12 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
           />
         </div>
         <div className="paginnation-wrapper">
-          {showPagination === false ? (
-            <div></div>
-          ) : (
+          {showPagination && (
             <Pagination
               paginationRequest={paginationRequest}
               itemsPerPage={itemsPerPage}
-              totalItems={totalItems}
+              totalItems={productsQuantity}
               setCurrentPage={setCurrentPage}
-              allCollectionArrayIsFiltered={allCollectionArrayIsFiltered}
             />
           )}
         </div>
