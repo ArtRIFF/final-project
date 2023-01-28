@@ -23,7 +23,6 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
 
   const { products, productsQuantity } = useSelector(selectorFilteredProducts);
   const [showAsideFilter, setModalRender] = useState(false);
-  const [totalItems, setTotalItems] = useState(5);
 
   const [productTypeUrl, setProductTypeUrl] = useState(null);
   const [sortURL, setSortURL] = useState('');
@@ -54,13 +53,16 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   };
 
   const [loading, setLoading] = useState(false);
-  const [itemsPerPage] = useState(12);
-
-
-  const [allCollectionArrayIsFiltered, setAllCollectionArrayIsFiltered] =
-    useState(false);
-  const [hasAnyFilters, setHasAnyFilters] = useState();
+  const itemsPerPage = 12;
   const [showPagination, setShowPagination] = useState(true);
+
+     useEffect(() => {
+       if (productsQuantity === 0) {
+         setLoading(true);
+       } else {
+         setLoading(false);
+       }
+     }, [products]);
 
 
   const filterRequest = (url) => {
@@ -92,14 +94,13 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
           />
         </div>
         <aside
-          className={`${showAsideFilter
-            ? "asideFilter-wrapper--show"
-            : "asideFilter-wrapper"
-            }`}
+          className={`${
+            showAsideFilter
+              ? "asideFilter-wrapper--show"
+              : "asideFilter-wrapper"
+          }`}
         >
-          <AsideFilter
-            filterRequest={filterRequest}
-          />
+          <AsideFilter filterRequest={filterRequest} />
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter
@@ -116,15 +117,12 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
           />
         </div>
         <div className="paginnation-wrapper">
-          {showPagination === false ? (
-            <div></div>
-          ) : (
+          {showPagination && (
             <Pagination
               paginationRequest={paginationRequest}
               itemsPerPage={itemsPerPage}
-              totalItems={totalItems}
+              totalItems={productsQuantity}
               setCurrentPage={setCurrentPage}
-              allCollectionArrayIsFiltered={allCollectionArrayIsFiltered}
             />
           )}
         </div>
