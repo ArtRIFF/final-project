@@ -3,17 +3,69 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const AsideFilter = ({ filterRequest }) => {
-  const [productsType, setProductsType] = useState([]);
-  const [metalType, setMetalType] = useState([]);
-  const [collectionType, setCollectionType] = useState([]);
-  const [sampleType, setSampleType] = useState([]);
-  const [metalColorType, setMetalColorType] = useState([]);
-  const [insertType, setInsertType] = useState([]);
-  const [price, setPrice] = useState(['', '']);
-  const [insertNumber, setInsertNumber] = useState(0);
+  const url = window.location.search;
+  const params = new URLSearchParams(url);
+
+  const categoriesParam = params.get('categories')?.split(",");
+  const metalParam = params.get('metal')?.split(",");
+  const collectionParam = params.get('collectionName')?.split(",");
+  const sampleParam = params.get('sample')?.split(",");
+  const metalColorParam = params.get('metalColor')?.split(",");
+  const insertTypeParam = params.get('insertType')?.split(",");
+  const priceParam = params.get('price')?.split(",");
+  const insertNumberParam = params.get('insertNumber')?.split(",");
+
+  const [productsType, setProductsType] = useState(categoriesParam || []);
+  const [metalType, setMetalType] = useState(metalParam || []);
+  const [collectionType, setCollectionType] = useState(collectionParam || []);
+  const [sampleType, setSampleType] = useState(sampleParam || []);
+  const [metalColorType, setMetalColorType] = useState(metalColorParam || []);
+  const [insertType, setInsertType] = useState(insertTypeParam || []);
+  const [price, setPrice] = useState(priceParam || ['', '']);
+  const [insertNumber, setInsertNumber] = useState(insertNumberParam || 0);
 
   useEffect(() => {
     updateFilter();
+    const value = document.querySelectorAll('.filter-parameter__checkbox');
+    value.forEach(item => {
+
+      productsType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
+
+      metalType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
+
+      collectionType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
+
+      sampleType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
+
+      metalColorType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
+
+      insertType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
+    })
+
   }, [productsType, metalType, collectionType, sampleType, metalColorType, insertType, price, insertNumber]);
 
   const updateFilter = () => {
@@ -39,12 +91,12 @@ const AsideFilter = ({ filterRequest }) => {
     pushToFilterParamArray(insertTypeParam);
     const insertNumberParam = insertNumber !== 0 ? `insertNumber=${insertNumber}` : "";
     pushToFilterParamArray(insertNumberParam);
-    const priceRangeParam = (price[0] !== "" || price[1] !== "") ? `price=${price[1] !== "" ? `${price[0]}-${price[1]}` : `${price[0]}`}` : "";
-    pushToFilterParamArray(priceRangeParam);
+    const minPriceParam = price[0]? `minPrice=${price[0]}` : "";
+    pushToFilterParamArray(minPriceParam);
+    const maxPriceParam = price[1]? `maxPrice=${price[1]}` : "";
+    pushToFilterParamArray(maxPriceParam);
 
     const filterParam = filterParamArray.length ? `${filterParamArray.join('&')}` : "";
-
-    document.querySelector('.category-filter select').value = "DEFAULT";
     filterRequest(filterParam);
   };
 
@@ -177,9 +229,9 @@ const AsideFilter = ({ filterRequest }) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container price-container">
-            <input onChange={onPriceChange} data-index={0} value={price[0]} type="text" placeholder='51' />
+            <input onChange={onPriceChange} data-index={0} value={price[0]} type="text" placeholder={price[0] ? price[0] : "0"} />
             <span>-</span>
-            <input onChange={onPriceChange} data-index={1} value={price[1]} type="text" placeholder='214453' />
+            <input onChange={onPriceChange} data-index={1} value={price[1]} type="text" placeholder={price[1] ? price[1] : "20000"} />
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">
@@ -260,7 +312,7 @@ const AsideFilter = ({ filterRequest }) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container price-container">
-            <input onChange={onInsertNumberChange} value={insertNumber} type="text" placeholder='1' />
+            <input onChange={onInsertNumberChange} value={insertNumber} type="text" placeholder={insertNumber ? insertNumber : "0"} />
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">

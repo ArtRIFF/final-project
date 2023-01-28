@@ -8,14 +8,10 @@ import {getComments} from "../../API/commentsAPI";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
-import { setInCart, changeCart } from "../../store/cart/cartSlice";
-import { setInFavorite, removeFromFavorite, replaceInFavorite } from "../../store/favorite/favoriteSlice";
-import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
-import {
-  selectInCart,
-  selectInFavorite,
-  selectorAllCollectionProduct,
-} from "../../store/selectors";
+import {changeCart, setInCart} from "../../store/cart/cartSlice";
+import {removeFromFavorite, setInFavorite} from "../../store/favorite/favoriteSlice";
+import {fetchAllCollectionProduct} from "../../store/products/productsSlice";
+import {selectInCart, selectInFavorite,} from "../../store/selectors";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -48,7 +44,7 @@ const ProductCard = (props) => {
   const [aciveThumb, setAciveThumb] = useState();
   const [comments, setComments] = useState([]);
   let [selectedSize, setSelectedSize] = useState(false);
-  const { cardID } = useParams();
+  const {cardID} = useParams();
   let linkViewAll = "/";
   const inCart = useSelector(selectInCart);
   const inFavoriteStore = useSelector(selectInFavorite);
@@ -84,8 +80,8 @@ const ProductCard = (props) => {
 
   useEffect(() => {
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
-    if(userInfo) {
-      if(inFavoriteStore.length === 0) {
+    if (userInfo) {
+      if (inFavoriteStore.length === 0) {
         sendAuthorizedRequest(`${API}wishlist`, 'DELETE')
       } else {
         sendAuthorizedRequest(`${API}wishlist`, 'PUT', {
@@ -161,28 +157,22 @@ const ProductCard = (props) => {
       setModalText("Choose size");
     } else {
       if (inCart.length > 0) {
-        inCart.forEach((item) => {
-          if (item.cardID === cardID && item.size === selectedSize) {
-            let newCart = [];
-            inCart.forEach((i) => {
-              newCart.push({...i});
-            });
-            const elem = newCart.find((elem) => elem.cardID === item.cardID);
-            elem.quantity += 1;
-            dispatch(changeCart(newCart));
-          } else {
-            dispatch(
-              setInCart({
-                cardID: cardID,
-                quantity: 1,
-                size: selectedSize,
-                price: currentPrice,
-                discount: discount,
-                _id: _id,
-              })
-            );
-          }
-        });
+        const existingElement = inCart.find(item => item.cardID === cardID && item.size === selectedSize);
+        if (existingElement) {
+          existingElement.quantity += 1
+          dispatch(changeCart(...inCart))
+        } else {
+          dispatch(
+            setInCart({
+              cardID: cardID,
+              quantity: 1,
+              size: selectedSize,
+              price: currentPrice,
+              discount: discount,
+              _id: _id,
+            })
+          );
+        }
       } else {
         dispatch(
           setInCart({
@@ -227,10 +217,10 @@ const ProductCard = (props) => {
     }
   };
   return (
-    <CardContext.Provider value={{ oneCard, productComments }}>
+    <CardContext.Provider value={{oneCard, productComments}}>
       <div className="container">
         <div className="card__breadcrumbs">
-          <Breadcrumbs />
+          <Breadcrumbs/>
         </div>
         <div className="product-card">
           <div className="product-card__main">
@@ -245,10 +235,10 @@ const ProductCard = (props) => {
                 className="product-card-photo-slider"
                 grabCursor={true}
                 spaceBetween={10}
-                thumbs={{ swiper: aciveThumb }}
+                thumbs={{swiper: aciveThumb}}
               >
                 {imageUrls !== undefined &&
-                  imageUrls.map((photo,index) => {
+                  imageUrls.map((photo, index) => {
                     return (
                       <SwiperSlide key={index}>
                         <img src={`../${photo}`} alt={name}></img>
@@ -284,7 +274,7 @@ const ProductCard = (props) => {
               >
                 <div className="product-card-photo-slider-thumbs-wrapper">
                   {imageUrls !== undefined &&
-                    imageUrls.map((photo,index) => {
+                    imageUrls.map((photo, index) => {
                       return (
                         <SwiperSlide key={index}>
                           <img src={`../${photo}`} alt={name}></img>
@@ -314,15 +304,15 @@ const ProductCard = (props) => {
               </h5>
               <p className="product-card__main-description__details">
                 Material: {metal} {sample}
-                <br />
-                Metal color: {metalColor} <br />
-                Collection: {collectionName} <br />
+                <br/>
+                Metal color: {metalColor} <br/>
+                Collection: {collectionName} <br/>
                 Insert: {insertType}
-                <br />
+                <br/>
                 Average insert characteristics: {insertNumber}
-                <br />
+                <br/>
                 Average weight: {averageWeight}
-                <br />
+                <br/>
                 Length {categories}: {length}
               </p>
 
@@ -336,20 +326,20 @@ const ProductCard = (props) => {
                 Delivery
               </h5>
               <p className="product-card__main-description__details">
-                Nova Poshta (branch): {shipping} <br />
-                By courier (in Ukraine) {shipping} <br />
+                Nova Poshta (branch): {shipping} <br/>
+                By courier (in Ukraine) {shipping} <br/>
                 Self-pickup from the store: In any of the network's 37 stores
-                Booking for 3 days <br /> Moving to the store up to 4 days.
-                <br />
+                Booking for 3 days <br/> Moving to the store up to 4 days.
+                <br/>
                 Delivery time 2-4 days
               </p>
               <h5 className="product-card__main-description__subtitle">
                 Payment
               </h5>
               <p className="product-card__main-description__details">
-                Cash on receipt <br />
+                Cash on receipt <br/>
                 VISA / Mastercard (LIQPAY)
-                <br />
+                <br/>
                 Instant installments
               </p>
             </div>
@@ -364,7 +354,7 @@ const ProductCard = (props) => {
           <section className="product-card__review">
             <h2 className="product-card__review-title">Review</h2>
             <div className="product-card__main-additionally">
-              <ProductReview />
+              <ProductReview/>
               <ProductPrice
                 _id={_id}
                 name={name}

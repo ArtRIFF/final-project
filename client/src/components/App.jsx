@@ -84,8 +84,6 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          {/* <Route path="" element={<Header />} /> */}
-          {/* <Route path="/cart" element={<CheckOutPage/>}/> */}
           <Route path="/userPage" element={<UserPage />} />
           <Route path="/changeUserPassword" element={<ChangePass />} />
           <Route path="/login" element={<Login />} />
@@ -126,12 +124,9 @@ const App = () => {
             path="/Outlet"
             element={<CatalogSectionPage arrProduct={outlet} />}
           />
-          {/* <Route path="" element={}/> */}
           <Route path="/our_production" element={<OurProductionPage />} />
-          {/* <Route path="" element={}/> */}
           <Route path="/search" element={<SearchPage />} />
-          {/* <Route path="" element={}/> */}
-          <Route path="/jewelry/*" element={<CatalogSectionPage />}/>
+          <Route path="/jewelry" element={<CatalogSectionPage />}/>
           <Route
             path="products/:cardID"
             element={
