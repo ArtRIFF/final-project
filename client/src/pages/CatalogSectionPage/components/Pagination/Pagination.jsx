@@ -6,7 +6,6 @@ const Pagination = ({
   itemsPerPage,
   totalItems,
   setCurrentPage,
-  allCollectionArrayIsFiltered,
   paginationRequest
 }) => {
   const pageNumbers = [];
@@ -20,8 +19,8 @@ const Pagination = ({
   }
 
   useEffect(() => {
-    if (currentButton !== 1) {
-      paginationRequest(currentButton);   
+    if (currentButton) { //перевірити з !== 
+      paginationRequest(currentButton);
     }
   }, [currentButton]);
 
@@ -69,12 +68,10 @@ const Pagination = ({
 
 
   useEffect(() => {
-    if (allCollectionArrayIsFiltered === true) {
-      if (currentButton > arrayOfCurrentButtons.length / itemsPerPage) {
-        setCurrentButton(1);
-      }
+    if (currentButton > arrayOfCurrentButtons.length / itemsPerPage) {
+      setCurrentButton(1);
     }
-  }, [allCollectionArrayIsFiltered]);
+  }, [totalItems]);
 
   return (
     <div style={{marginTop:"30px"}}>
