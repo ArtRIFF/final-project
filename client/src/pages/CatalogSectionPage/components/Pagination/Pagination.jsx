@@ -5,28 +5,27 @@ import "./Pagination.scss";
 const Pagination = ({
   itemsPerPage,
   totalItems,
-  setCurrentPage,
   paginationRequest
 }) => {
   const pageNumbers = [];
 
 
-  const [currentButton, setCurrentButton] = useState(1);
-  const [arrayOfCurrentButtons, setArrayOfCurrentButtons] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]);
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   useEffect(() => {
-    if (currentButton) { //перевірити з !== 
-      paginationRequest(currentButton);
+    if (currentPage) { //перевірити з !== 
+      paginationRequest(currentPage);
     }
-  }, [currentButton]);
+  }, [currentPage]);
 
 
   useEffect(() => {
-    let tempNumberOfPages = [...arrayOfCurrentButtons];
+    let tempNumberOfPages = [...arrayOfCurrentPages];
 
     let dotsInitial = "...";
     let dotsLeft = "... ";
@@ -34,14 +33,14 @@ const Pagination = ({
 
     if (pageNumbers.length < 6) {
       tempNumberOfPages = pageNumbers;
-    } else if (currentButton >= 1 && currentButton <= 3) {
+    } else if (currentPage >= 1 && currentPage <= 3) {
       tempNumberOfPages = [1, 2, 3, 4, dotsInitial, pageNumbers.length];
-    } else if (currentButton === 4) {
+    } else if (currentPage === 4) {
       const sliced = pageNumbers.slice(0, 5);
       tempNumberOfPages = [...sliced, dotsInitial, pageNumbers.length];
-    } else if (currentButton > 4 && currentButton < pageNumbers.length - 2) {
-      const sliced1 = pageNumbers.slice(currentButton - 2, currentButton);
-      const sliced2 = pageNumbers.slice(currentButton, currentButton + 1);
+    } else if (currentPage > 4 && currentPage < pageNumbers.length - 2) {
+      const sliced1 = pageNumbers.slice(currentPage - 2, currentPage);
+      const sliced2 = pageNumbers.slice(currentPage, currentPage + 1);
       tempNumberOfPages = [
         1,
         dotsLeft,
@@ -50,71 +49,65 @@ const Pagination = ({
         dotsRight,
         pageNumbers.length,
       ];
-    } else if (currentButton > pageNumbers.length - 3) {
+    } else if (currentPage > pageNumbers.length - 3) {
       const sliced = pageNumbers.slice(pageNumbers.length - 4);
       tempNumberOfPages = [1, dotsLeft, ...sliced];
-    } else if (currentButton === dotsInitial) {
-      setCurrentButton(
-        arrayOfCurrentButtons[arrayOfCurrentButtons.length - 3] + 1
+    } else if (currentPage === dotsInitial) {
+      setCurrentPage(
+        arrayOfCurrentPages[arrayOfCurrentPages.length - 3] + 1
       );
-    } else if (currentButton === dotsRight) {
-      setCurrentButton(arrayOfCurrentButtons[3] + 2);
-    } else if (currentButton === dotsLeft) {
-      setCurrentButton(arrayOfCurrentButtons[3] - 2);
+    } else if (currentPage === dotsRight) {
+      setCurrentPage(arrayOfCurrentPages[3] + 2);
+    } else if (currentPage === dotsLeft) {
+      setCurrentPage(arrayOfCurrentPages[3] - 2);
     }
-    setArrayOfCurrentButtons(tempNumberOfPages);
-    setCurrentPage(currentButton);
-  }, [currentButton, totalItems]);
+    setArrayOfCurrentPages(tempNumberOfPages);
+  }, [currentPage, totalItems]);
 
 
   useEffect(() => {
-    if (currentButton > arrayOfCurrentButtons.length / itemsPerPage) {
-      setCurrentButton(1);
+    if (currentPage > arrayOfCurrentPages.length / itemsPerPage) {
+      setCurrentPage(1);
     }
   }, [totalItems]);
 
   return (
     <div style={{marginTop:"30px"}}>
       <ul className="pagination-container">
-        <Link
-          href="javascript:void(0)"
-          className={`${currentButton === 1 ? "disabled" : ""}`}
+        <span
+          className={`page-button ${currentPage === 1 ? "disabled" : ""}`}
           onClick={() =>
-            setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
+            setCurrentPage((prev) => (prev <= 1 ? prev : prev - 1))
           }
         >
           Prev
-        </Link>
-        {arrayOfCurrentButtons.map((page) => (
+        </span>
+        {arrayOfCurrentPages.map((page) => (
           <li key={page}>
-            <Link
+            <span
               key={page}
-              href="javascript:void(0);"
-              // href="#"
-              className={`${currentButton === page ? "active" : ""}`}
+              className={`page-button ${currentPage === page ? "active" : ""}`}
               onClick={() => {
-                setCurrentButton(page);
+                setCurrentPage(page);
               }}
             >
               {" "}
               {page}{" "}
-            </Link>
+            </span>
           </li>
         ))}
-        <Link
-          href="javascript:void(0)"
-          // href="#"
-          className={`${
-            currentButton === pageNumbers.length ? "disabled" : ""
+        <span
+          className={`page-button ${
+            currentPage === pageNumbers.length ? "disabled" : ""
           }`}
           onClick={() =>
-            setCurrentButton((prev) =>
+            setCurrentPage((prev) =>
               prev >= pageNumbers.length ? prev : prev + 1
             )
           }
         >
           Next
-        </Link>
+        </span>
       </ul>
     </div>
   );

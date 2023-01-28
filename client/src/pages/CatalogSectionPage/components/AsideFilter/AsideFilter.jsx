@@ -91,8 +91,10 @@ const AsideFilter = ({ filterRequest }) => {
     pushToFilterParamArray(insertTypeParam);
     const insertNumberParam = insertNumber !== 0 ? `insertNumber=${insertNumber}` : "";
     pushToFilterParamArray(insertNumberParam);
-    const priceRangeParam = (price[0] !== "" || price[1] !== "") ? `price=${price[1] !== "" ? `${price[0]}-${price[1]}` : `${price[0]}`}` : "";
-    pushToFilterParamArray(priceRangeParam);
+    const minPriceParam = price[0]? `minPrice=${price[0]}` : "";
+    pushToFilterParamArray(minPriceParam);
+    const maxPriceParam = price[1]? `maxPrice=${price[1]}` : "";
+    pushToFilterParamArray(maxPriceParam);
 
     const filterParam = filterParamArray.length ? `${filterParamArray.join('&')}` : "";
     filterRequest(filterParam);

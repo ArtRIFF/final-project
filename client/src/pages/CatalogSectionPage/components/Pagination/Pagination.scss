@@ -7,7 +7,7 @@
   font-style: 15px;
 }
 
-.pagination-container a {
+.pagination-container .page-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,14 +20,14 @@
   cursor: pointer;
 }
 
-.pagination-container a.active {
+.pagination-container .page-button.active {
   background-color: #E36709;
   color: white;
   border: 1px solid #e55209;
 }
 
-.pagination-container a.disabled {
+.pagination-container .page-button.disabled {
   opacity: 0.2;
 }
 
-.pagination-container a:hover:not(.active) {background-color: rgb(238, 238, 238);}
+.pagination-container .page-button:hover:not(.active) {background-color: rgb(238, 238, 238);}
