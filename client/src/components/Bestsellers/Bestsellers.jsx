@@ -11,21 +11,17 @@ import "./bestsellers.scss";
 const Bestsellers = (props) => {
   const dispatch = useDispatch();
   const bestsellers = useSelector(selectBestsellers);
-  const [viewAll, setViewAll] = useState(false);
+
   useEffect(() => {
     dispatch(fetchBestsellers());
   }, []);
   const numberOfItems = () => {
-    if (viewAll) {
-      return bestsellers.length;
-    } else {
-      if (window.screen.width > 768) {
-        return 4;
-      } else if (window.screen.width <= 768 && window.screen.width >= 481) {
-        return 3;
-      } else if (window.screen.width < 480) {
-        return 2;
-      }
+    if (window.screen.width > 768) {
+      return 4;
+    } else if (window.screen.width <= 768 && window.screen.width >= 481) {
+      return 3;
+    } else if (window.screen.width < 480) {
+      return 2;
     }
   };
 
@@ -34,7 +30,10 @@ const Bestsellers = (props) => {
       <div className="container">
         <div className="bestsellers__header">
           <h2 className="bestsellers__title">Bestsellers</h2>
-          <Link to={"/jewelry?statusProduct=BESTSELLER&perPage=12&startPage=1"} className="btn__bestsellers">
+          <Link
+            to={"/jewelry?statusProduct=BESTSELLER&perPage=12&startPage=1"}
+            className="btn__bestsellers"
+          >
             <ButtonViewAll />
           </Link>
         </div>

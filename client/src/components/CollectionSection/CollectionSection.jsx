@@ -9,28 +9,29 @@ import "./CollectionSection.scss";
 import ButtonViewAll from "../Button/ViewAll/ViewAll";
 import CatalogSectionPage from "../../pages/CatalogSectionPage/CatalogSectionPage";
 
-
 const CollectionSection = (props) => {
   const dispatch = useDispatch();
-  const [viewAll, setViewAll] = useState(false);
+
   const newCollectionArray = useSelector(selectorNewCollectionProduct);
-  
+
   useEffect(() => {
     dispatch(fetchNewCollectionProduct());
   }, []);
 
-  const numberOfItems = viewAll ? newCollectionArray.length : 4;
   return (
     <div className="collection-section">
       <div className="container">
         <div className="collection-section__header">
           <h2 className="collection-section__header_title">New Collection</h2>
-          <Link to={"/jewelry?statusProduct=NEW&perPage=12&startPage=1"} className="btn">
+          <Link
+            to={"/jewelry?statusProduct=NEW&perPage=12&startPage=1"}
+            className="btn"
+          >
             <ButtonViewAll />
           </Link>
         </div>
         <div className="collection-section__content">
-          {newCollectionArray.slice(0, numberOfItems).map((card, index) => {
+          {newCollectionArray.slice(0, 4).map((card, index) => {
             return <CollectionSectionCard product={card} key={index} />;
           })}
         </div>

@@ -1,26 +1,29 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {EffectFade, Navigation, Thumbs} from "swiper";
-import {getOneCard,} from "../../API/cardsAPI";
-import {getComments} from "../../API/commentsAPI";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade, Navigation, Thumbs } from "swiper";
+import { getOneCard } from "../../API/cardsAPI";
+import { getComments } from "../../API/commentsAPI";
 import ProductPrice from "./ProductPrice";
 import AdditionalProducts from "./AdditionalProducts";
 import ProductReview from "./ProductRewier";
-import {changeCart, setInCart} from "../../store/cart/cartSlice";
-import {removeFromFavorite, setInFavorite} from "../../store/favorite/favoriteSlice";
-import {fetchAllCollectionProduct} from "../../store/products/productsSlice";
-import {selectInCart, selectInFavorite,} from "../../store/selectors";
+import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
+import { sendAuthorizedRequest } from "../../helpers/sendRequest";
+import { API } from "../../config/API";
+import { UserContext } from "../../context/UserContext";
+import { changeCart, setInCart } from "../../store/cart/cartSlice";
+import {
+  removeFromFavorite,
+  setInFavorite,
+} from "../../store/favorite/favoriteSlice";
+import { fetchAllCollectionProduct } from "../../store/products/productsSlice";
+import { selectInCart, selectInFavorite } from "../../store/selectors";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./ProductCard.scss";
-import Breadcrumbs from "../CatalogSectionPage/components/Breadcrumbs/Breadcrumbs";
-import {sendAuthorizedRequest} from "../../helpers/sendRequest";
-import {API} from "../../config/API";
-import {UserContext} from "../../context/UserContext";
 
 export const CardContext = createContext();
 
@@ -38,20 +41,20 @@ const ProductCard = (props) => {
     bestsellers,
   } = props;
   const dispatch = useDispatch();
-  const {userInfo} = useContext(UserContext)
-  
+  const { userInfo } = useContext(UserContext);
+
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
   const [comments, setComments] = useState([]);
   let [selectedSize, setSelectedSize] = useState(false);
-  const {cardID} = useParams();
+  const { cardID } = useParams();
   let linkViewAll = "/";
   const inCart = useSelector(selectInCart);
   const inFavoriteStore = useSelector(selectInFavorite);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     getOneCard(cardID).then((data) => {
       setCard(data);
@@ -63,18 +66,16 @@ const ProductCard = (props) => {
   useEffect(() => {
     localStorage.setItem("inCart", JSON.stringify(inCart));
 
-    sendAuthorizedRequest(`${API}cart`, 'PUT', {
-      body: JSON.stringify(
-        {
-          products: inCart.map(inCartItem => {
-            return {
-              product: inCartItem._id,
-              size: inCartItem.size,
-              cartQuantity: inCartItem.quantity
-            }
-          })
-        }
-      )
+    sendAuthorizedRequest(`${API}cart`, "PUT", {
+      body: JSON.stringify({
+        products: inCart.map((inCartItem) => {
+          return {
+            product: inCartItem._id,
+            size: inCartItem.size,
+            cartQuantity: inCartItem.quantity,
+          };
+        }),
+      }),
     });
   }, [inCart]);
 
@@ -82,14 +83,12 @@ const ProductCard = (props) => {
     localStorage.setItem("inFavorite", JSON.stringify(inFavoriteStore));
     if (userInfo) {
       if (inFavoriteStore.length === 0) {
-        sendAuthorizedRequest(`${API}wishlist`, 'DELETE')
+        sendAuthorizedRequest(`${API}wishlist`, "DELETE");
       } else {
-        sendAuthorizedRequest(`${API}wishlist`, 'PUT', {
-          body: JSON.stringify(
-            {
-              products: inFavoriteStore
-            }
-          )
+        sendAuthorizedRequest(`${API}wishlist`, "PUT", {
+          body: JSON.stringify({
+            products: inFavoriteStore,
+          }),
         });
       }
     }
@@ -119,35 +118,37 @@ const ProductCard = (props) => {
     itemNo,
     article,
     size,
-    _id
+    _id,
   } = oneCard;
 
   const findSimilarProduct = (categories) => {
     if (categories === "earring" || categories === "child-earrings") {
-      linkViewAll = "/Earrings";
+      linkViewAll = "/jewelry?categories=earring&perPage=12&startPage=1";
       return earringsArray;
     } else if (categories === "bracelet") {
-      linkViewAll = "/Bracelets";
+      linkViewAll = "/jewelry?categories=bracelet&perPage=12&startPage=1";
       return braceletsArray;
     } else if (categories === "pendant") {
-      linkViewAll = "/Pendant";
+      linkViewAll = "/jewelry?categories=pendant&perPage=12&startPage=1";
       return pendantArray;
-    } else if (
-      categories === "engagement-ring" ||
-      categories === "wedding-ring"
-    ) {
-      linkViewAll = "/Rings";
+    } else if (categories === "wedding-ring") {
+      linkViewAll = "/jewelry?categories=wedding-ring&perPage=12&startPage=1";
+      return ringsArray;
+    } else if (categories === "engagement-ring") {
+      linkViewAll =
+        "/jewelry?categories=engagement-ring&perPage=12&startPage=1";
       return ringsArray;
     } else if (categories === "pearl") {
-      linkViewAll = "/Pearl";
+      linkViewAll = "/jewelry?categories=pearl&perPage=12&startPage=1";
       return pearlArray;
     } else if (categories === "cross") {
-      linkViewAll = "/Cross";
+      linkViewAll = "/jewelry?categories=cross&perPage=12&startPage=1";
       return crossArray;
     }
   };
 
-  const oldPrice = (currentPrice, discount) => Math.round((currentPrice * 100) / (100 - discount));
+  const oldPrice = (currentPrice, discount) =>
+    Math.round((currentPrice * 100) / (100 - discount));
 
   const handleChange = (e) => setSelectedSize(e.target.value);
 
@@ -157,10 +158,12 @@ const ProductCard = (props) => {
       setModalText("Choose size");
     } else {
       if (inCart.length > 0) {
-        const existingElement = inCart.find(item => item.cardID === cardID && item.size === selectedSize);
+        const existingElement = inCart.find(
+          (item) => item.cardID === cardID && item.size === selectedSize
+        );
         if (existingElement) {
-          existingElement.quantity += 1
-          dispatch(changeCart(...inCart))
+          existingElement.quantity += 1;
+          dispatch(changeCart(...inCart));
         } else {
           dispatch(
             setInCart({
@@ -181,7 +184,7 @@ const ProductCard = (props) => {
             size: selectedSize,
             price: currentPrice,
             discount: discount,
-            _id: _id
+            _id: _id,
           })
         );
       }
@@ -217,10 +220,10 @@ const ProductCard = (props) => {
     }
   };
   return (
-    <CardContext.Provider value={{oneCard, productComments}}>
+    <CardContext.Provider value={{ oneCard, productComments }}>
       <div className="container">
         <div className="card__breadcrumbs">
-          <Breadcrumbs/>
+          <Breadcrumbs />
         </div>
         <div className="product-card">
           <div className="product-card__main">
@@ -235,31 +238,30 @@ const ProductCard = (props) => {
                 className="product-card-photo-slider"
                 grabCursor={true}
                 spaceBetween={10}
-                thumbs={{swiper: aciveThumb}}
+                thumbs={{ swiper: aciveThumb }}
               >
-                {imageUrls !== undefined &&
-                  imageUrls.map((photo, index) => {
-                    return (
-                      <SwiperSlide key={index}>
-                        <img src={`../${photo}`} alt={name}></img>
-                        {discount > 0 && (
-                          <div className="category-card__sale product-card-sale">
-                            sale
-                          </div>
-                        )}
-                        {statusProduct === "BESTSELLER" && (
-                          <div className="category-card__bestseller product-card-bestseller">
-                            bestseller
-                          </div>
-                        )}
-                        {statusProduct === "NEW" && (
-                          <div className="category-card__new product-card-new">
-                            new
-                          </div>
-                        )}
-                      </SwiperSlide>
-                    );
-                  })}
+                {imageUrls?.map((photo, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <img src={`../${photo}`} alt={name}></img>
+                      {discount > 0 && (
+                        <div className="category-card__sale product-card-sale">
+                          sale
+                        </div>
+                      )}
+                      {statusProduct === "BESTSELLER" && (
+                        <div className="category-card__bestseller product-card-bestseller">
+                          bestseller
+                        </div>
+                      )}
+                      {statusProduct === "NEW" && (
+                        <div className="category-card__new product-card-new">
+                          new
+                        </div>
+                      )}
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
               <Swiper
                 onSwiper={setAciveThumb}
@@ -273,14 +275,13 @@ const ProductCard = (props) => {
                 spaceBetween={10}
               >
                 <div className="product-card-photo-slider-thumbs-wrapper">
-                  {imageUrls !== undefined &&
-                    imageUrls.map((photo, index) => {
-                      return (
-                        <SwiperSlide key={index}>
-                          <img src={`../${photo}`} alt={name}></img>
-                        </SwiperSlide>
-                      );
-                    })}
+                  {imageUrls?.map((photo, index) => {
+                    return (
+                      <SwiperSlide key={index}>
+                        <img src={`../${photo}`} alt={name}></img>
+                      </SwiperSlide>
+                    );
+                  })}
                 </div>
               </Swiper>
             </div>
@@ -304,15 +305,15 @@ const ProductCard = (props) => {
               </h5>
               <p className="product-card__main-description__details">
                 Material: {metal} {sample}
-                <br/>
-                Metal color: {metalColor} <br/>
-                Collection: {collectionName} <br/>
+                <br />
+                Metal color: {metalColor} <br />
+                Collection: {collectionName} <br />
                 Insert: {insertType}
-                <br/>
+                <br />
                 Average insert characteristics: {insertNumber}
-                <br/>
+                <br />
                 Average weight: {averageWeight}
-                <br/>
+                <br />
                 Length {categories}: {length}
               </p>
 
@@ -326,20 +327,20 @@ const ProductCard = (props) => {
                 Delivery
               </h5>
               <p className="product-card__main-description__details">
-                Nova Poshta (branch): {shipping} <br/>
-                By courier (in Ukraine) {shipping} <br/>
+                Nova Poshta (branch): {shipping} <br />
+                By courier (in Ukraine) {shipping} <br />
                 Self-pickup from the store: In any of the network's 37 stores
-                Booking for 3 days <br/> Moving to the store up to 4 days.
-                <br/>
+                Booking for 3 days <br /> Moving to the store up to 4 days.
+                <br />
                 Delivery time 2-4 days
               </p>
               <h5 className="product-card__main-description__subtitle">
                 Payment
               </h5>
               <p className="product-card__main-description__details">
-                Cash on receipt <br/>
+                Cash on receipt <br />
                 VISA / Mastercard (LIQPAY)
-                <br/>
+                <br />
                 Instant installments
               </p>
             </div>
@@ -354,7 +355,7 @@ const ProductCard = (props) => {
           <section className="product-card__review">
             <h2 className="product-card__review-title">Review</h2>
             <div className="product-card__main-additionally">
-              <ProductReview/>
+              <ProductReview />
               <ProductPrice
                 _id={_id}
                 name={name}
@@ -374,7 +375,9 @@ const ProductCard = (props) => {
             cardsArray={bestsellers}
             title={"popular cards"}
             sectionTitle="Popular"
-            linkViewAll={"/Bestsellers"}
+            linkViewAll={
+              "/jewelry?statusProduct=BESTSELLER&perPage=12&startPage=1"
+            }
           />
         </div>
       </div>

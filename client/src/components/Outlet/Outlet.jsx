@@ -11,22 +11,18 @@ import "./outlet.scss";
 const Outlet = (props) => {
   const dispatch = useDispatch();
   const outlet = useSelector(selectOutlet);
-  const [viewAll, setViewAll] = useState(false);
+
   useEffect(() => {
     dispatch(fetchOutlet());
   }, []);
 
   const numberOfItems = () => {
-    if (viewAll) {
-      return outlet.length;
-    } else {
-      if (window.screen.width > 768) {
-        return 4;
-      } else if (window.screen.width <= 768 && window.screen.width >= 481) {
-        return 3;
-      } else if (window.screen.width < 480) {
-        return 2;
-      }
+    if (window.screen.width > 768) {
+      return 4;
+    } else if (window.screen.width <= 768 && window.screen.width >= 481) {
+      return 3;
+    } else if (window.screen.width < 480) {
+      return 2;
     }
   };
   return (
@@ -34,7 +30,10 @@ const Outlet = (props) => {
       <div className="container">
         <div className="outlet__header">
           <h2 className="outlet__title">Outlet</h2>
-          <Link to={"/jewelry?statusProduct=OUTLET&perPage=12&startPage=1"} className="btn__outlet">
+          <Link
+            to={"/jewelry?statusProduct=OUTLET&perPage=12&startPage=1"}
+            className="btn__outlet"
+          >
             <ButtonViewAll />
           </Link>
         </div>
