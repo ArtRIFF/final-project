@@ -39,7 +39,7 @@ const ProductCard = (props) => {
   } = props;
   const dispatch = useDispatch();
   const {userInfo} = useContext(UserContext)
-  
+
   const [oneCard, setCard] = useState({});
   const [aciveThumb, setAciveThumb] = useState();
   const [comments, setComments] = useState([]);

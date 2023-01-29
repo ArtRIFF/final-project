@@ -21,4 +21,4 @@ const filteredProductsSlice = createSlice({
   }
 })
 
-export default filteredProductsSlice.reducer
+export default filteredProductsSlice

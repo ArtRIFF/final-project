@@ -11,10 +11,10 @@ const debounceNotify = debounce(notify => notify());
 
 const store = configureStore ({
     reducer: {
-        products: productsSlice,
-        cart: cartSlice,
-        favorite: favoriteSlice,
-        filteredProducts: filteredProductsSlice,
+        products: productsSlice.reducer,
+        cart: cartSlice.reducer,
+        favorite: favoriteSlice.reducer,
+        filteredProducts: filteredProductsSlice.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
     devTools: process.env.NODE_ENV !== 'production',
