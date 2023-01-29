@@ -9,7 +9,6 @@ const AsideFilter = ({ filterRequest }) => {
   const categoriesParam = params.get('categories')?.split(",");
   const metalParam = params.get('metal')?.split(",");
   const collectionParam = params.get('collectionName')?.split(",");
-  const sampleParam = params.get('sample')?.split(",");
   const metalColorParam = params.get('metalColor')?.split(",");
   const insertTypeParam = params.get('insertType')?.split(",");
   const statusTypeParam = params.get('statusProduct')?.split(",");
@@ -19,7 +18,6 @@ const AsideFilter = ({ filterRequest }) => {
   const [productsType, setProductsType] = useState(categoriesParam || []);
   const [metalType, setMetalType] = useState(metalParam || []);
   const [collectionType, setCollectionType] = useState(collectionParam || []);
-  const [sampleType, setSampleType] = useState(sampleParam || []);
   const [metalColorType, setMetalColorType] = useState(metalColorParam || []);
   const [insertType, setInsertType] = useState(insertTypeParam || []);
   const [statusType, setStatusType] = useState(statusTypeParam || []);
@@ -49,12 +47,6 @@ const AsideFilter = ({ filterRequest }) => {
         }
       });
 
-      sampleType.forEach((param) => {
-        if (item.dataset.categoryName === param) {
-          item.querySelector('input').checked = true;
-        }
-      });
-
       metalColorType.forEach((param) => {
         if (item.dataset.categoryName === param) {
           item.querySelector('input').checked = true;
@@ -74,7 +66,7 @@ const AsideFilter = ({ filterRequest }) => {
       });
     })
 
-  }, [productsType, metalType, collectionType, sampleType, metalColorType, insertType, minPrice, maxPrice,statusType]);
+  }, [productsType, metalType, collectionType, metalColorType, insertType, minPrice, maxPrice,statusType]);
 
   const updateFilter = () => {
     let filterParamArray = [];
@@ -91,8 +83,6 @@ const AsideFilter = ({ filterRequest }) => {
     pushToFilterParamArray(metalTypeParam);
     const collectionTypeParam = collectionType.length ? `collectionName=${collectionType.join(',')}` : "";
     pushToFilterParamArray(collectionTypeParam);
-    const sampleTypeParam = sampleType.length ? `sample=${sampleType.join(',')}` : "";
-    pushToFilterParamArray(sampleTypeParam);
     const metalColorTypeParam = metalColorType.length ? `metalColor=${metalColorType.join(',')}` : "";
     pushToFilterParamArray(metalColorTypeParam);
     const statusTypeParam = statusType.length ? `statusProduct=${statusType.join(',')}` : "";
@@ -151,15 +141,6 @@ const AsideFilter = ({ filterRequest }) => {
     setCollectionType((!collectionType.includes(value) && checked)
       ? [...collectionType, value]
       : collectionType.filter(n => n !== value)
-    );
-  };
-
-  const onSampleChange = (e) => {
-    const checked = e.target.checked;
-    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
-    setSampleType((!sampleType.includes(value) && checked)
-      ? [...sampleType, value]
-      : sampleType.filter(n => n !== value)
     );
   };
 
@@ -238,7 +219,6 @@ const AsideFilter = ({ filterRequest }) => {
     setCollectionType([]);
     setProductsType([]);
     setMetalType([]);
-    setSampleType([]);
     setMetalColorType([]);
     setInsertType([]);
     setMaxPrice(0);
@@ -371,34 +351,6 @@ const AsideFilter = ({ filterRequest }) => {
             <label onClick={onMetalColorChange} data-category-name={"Red"} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Red</span>
-            </label>
-          </div>
-        </div>
-        <div className="filter-parameter filter-parameter__hide">
-          <div className="filter-parameter__header">
-            <h5 className="filter-parameter__title">Sample</h5>
-            <button onClick={accordionAnimate} className="filter-parameter__button"></button>
-          </div>
-          <div className="filter-parameter__container">
-            <label onClick={onSampleChange} data-category-name={575} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>575</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={585} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>585</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={750} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>750</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={958} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>958</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={985} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>985</span>
             </label>
           </div>
         </div>
