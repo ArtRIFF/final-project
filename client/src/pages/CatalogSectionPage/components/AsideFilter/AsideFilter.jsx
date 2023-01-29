@@ -12,8 +12,9 @@ const AsideFilter = ({ filterRequest }) => {
   const sampleParam = params.get('sample')?.split(",");
   const metalColorParam = params.get('metalColor')?.split(",");
   const insertTypeParam = params.get('insertType')?.split(",");
-  const priceParam = params.get('price')?.split(",");
-  const insertNumberParam = params.get('insertNumber')?.split(",");
+  const statusTypeParam = params.get('statusProduct')?.split(",");
+  const minPriceParam = params.get('minPrice');
+  const maxPriceParam = params.get('maxPrice');
 
   const [productsType, setProductsType] = useState(categoriesParam || []);
   const [metalType, setMetalType] = useState(metalParam || []);
@@ -21,8 +22,9 @@ const AsideFilter = ({ filterRequest }) => {
   const [sampleType, setSampleType] = useState(sampleParam || []);
   const [metalColorType, setMetalColorType] = useState(metalColorParam || []);
   const [insertType, setInsertType] = useState(insertTypeParam || []);
-  const [price, setPrice] = useState(priceParam || ['', '']);
-  const [insertNumber, setInsertNumber] = useState(insertNumberParam || 0);
+  const [statusType, setStatusType] = useState(statusTypeParam || []);
+  const [minPrice, setMinPrice] = useState(minPriceParam || 0);
+  const [maxPrice, setMaxPrice] = useState(maxPriceParam || 0);
 
   useEffect(() => {
     updateFilter();
@@ -64,9 +66,15 @@ const AsideFilter = ({ filterRequest }) => {
           item.querySelector('input').checked = true;
         }
       });
+
+      statusType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
     })
 
-  }, [productsType, metalType, collectionType, sampleType, metalColorType, insertType, price, insertNumber]);
+  }, [productsType, metalType, collectionType, sampleType, metalColorType, insertType, minPrice, maxPrice,statusType]);
 
   const updateFilter = () => {
     let filterParamArray = [];
@@ -87,14 +95,23 @@ const AsideFilter = ({ filterRequest }) => {
     pushToFilterParamArray(sampleTypeParam);
     const metalColorTypeParam = metalColorType.length ? `metalColor=${metalColorType.join(',')}` : "";
     pushToFilterParamArray(metalColorTypeParam);
+    const statusTypeParam = statusType.length ? `statusProduct=${statusType.join(',')}` : "";
+    pushToFilterParamArray(statusTypeParam);
     const insertTypeParam = insertType.length ? `insertType=${insertType.join(',')}` : "";
     pushToFilterParamArray(insertTypeParam);
-    const insertNumberParam = insertNumber !== 0 ? `insertNumber=${insertNumber}` : "";
-    pushToFilterParamArray(insertNumberParam);
-    const minPriceParam = price[0]? `minPrice=${price[0]}` : "";
-    pushToFilterParamArray(minPriceParam);
-    const maxPriceParam = price[1]? `maxPrice=${price[1]}` : "";
-    pushToFilterParamArray(maxPriceParam);
+  
+    let rangePriceParam = '';
+    if (maxPrice && minPrice) {
+      rangePriceParam = `maxPrice=${maxPrice}&minPrice=${minPrice}`;
+    }
+    if (maxPrice && !minPrice) {
+      rangePriceParam = `maxPrice=${maxPrice}&minPrice=0`;
+    }
+    if ((!maxPrice && minPrice) || (!maxPrice && !minPrice)) {
+      rangePriceParam = "";
+    }
+
+    pushToFilterParamArray(rangePriceParam);
 
     const filterParam = filterParamArray.length ? `${filterParamArray.join('&')}` : "";
     filterRequest(filterParam);
@@ -155,6 +172,16 @@ const AsideFilter = ({ filterRequest }) => {
     );
   };
 
+  const onStatusChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setStatusType((!statusType.includes(value) && checked)
+      ? [...statusType, value]
+      : statusType.filter(n => n !== value)
+    );
+  };
+
+
   const onInsertChange = (e) => {
     const checked = e.target.checked;
     const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
@@ -164,12 +191,16 @@ const AsideFilter = ({ filterRequest }) => {
     );
   };
 
-  const onPriceChange = ({ target: { value, dataset: { index } } }) => {
-    setPrice(price.map((n, i) => i === +index ? value : n));
+  const onMinPriceChange = ({ target: { value } }) => {
+    if (Number.isFinite(+value)) {
+      setMinPrice(value);
+    }
   };
 
-  const onInsertNumberChange = ({ target: { value } }) => {
-    setInsertNumber(+value);
+  const onMaxPriceChange = ({ target: { value } }) => {
+    if (Number.isFinite(+value)) {
+      setMaxPrice(value);
+    }
   };
 
   const accordionAnimate = (e) => {
@@ -210,8 +241,9 @@ const AsideFilter = ({ filterRequest }) => {
     setSampleType([]);
     setMetalColorType([]);
     setInsertType([]);
-    setPrice(['', '']);
-    setInsertNumber(0);
+    setMaxPrice(0);
+    setMinPrice(0);
+    setStatusType([]);
 
     updateFilter([]);
   }
@@ -229,9 +261,9 @@ const AsideFilter = ({ filterRequest }) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container price-container">
-            <input onChange={onPriceChange} data-index={0} value={price[0]} type="text" placeholder={price[0] ? price[0] : "0"} />
+            <input onChange={onMinPriceChange} data-index={0} value={minPrice} type="text" placeholder={minPrice} />
             <span>-</span>
-            <input onChange={onPriceChange} data-index={1} value={price[1]} type="text" placeholder={price[1] ? price[1] : "20000"} />
+            <input onChange={onMaxPriceChange} data-index={1} value={maxPrice} type="text" placeholder={maxPrice} />
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">
@@ -304,15 +336,6 @@ const AsideFilter = ({ filterRequest }) => {
               <input type="checkbox" />
               <span>Onixl</span>
             </label>
-          </div>
-        </div>
-        <div className="filter-parameter filter-parameter__hide">
-          <div className="filter-parameter__header">
-            <h5 className="filter-parameter__title">Insert number</h5>
-            <button onClick={accordionAnimate} className="filter-parameter__button"></button>
-          </div>
-          <div className="filter-parameter__container price-container">
-            <input onChange={onInsertNumberChange} value={insertNumber} type="text" placeholder={insertNumber ? insertNumber : "0"} />
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">
@@ -408,6 +431,26 @@ const AsideFilter = ({ filterRequest }) => {
             <label onChange={onTypeChange} data-category-name={'pearl'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Pearl</span>
+            </label>
+          </div>
+        </div>
+        <div className="filter-parameter filter-parameter__hide">
+          <div className="filter-parameter__header">
+            <h5 className="filter-parameter__title">Product Status</h5>
+            <button onClick={accordionAnimate} className="filter-parameter__button"></button>
+          </div>
+          <div className="filter-parameter__container">
+            <label onChange={onStatusChange} data-category-name={'BESTSELLER'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Bestseller</span>
+            </label>
+            <label onChange={onStatusChange} data-category-name={'OUTLET'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Outlet</span>
+            </label>
+            <label onChange={onStatusChange} data-category-name={'NEW'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>New Collection</span>
             </label>
           </div>
         </div>
