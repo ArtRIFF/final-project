@@ -13,22 +13,6 @@ const renderComponent = () => {
     onClickFunc={onClickFunc}
     setResult={10}
     filterRequest={filterRequest}
-    allCollectionArray={[
-      {
-        statusProduct: 'NEW',
-        currentPrice: 12
-      },
-      {
-        statusProduct: 'BESTSELLER',
-        currentPrice: 6
-      },
-      {
-        statusProduct: 'BESTSELLER',
-        currentPrice: 3
-      }
-
-    ]}
-    hasAnyFilters={true}
   />))
 }
 
@@ -37,14 +21,13 @@ it("renders with snapshot", () => {
     onClickFunc={onClickFunc}
     setResult={10}
     filterRequest={filterRequest}
-    allCollectionArray={[]}
   />).toJSON()
   expect(categoryFilter).toMatchSnapshot();
 });
 
 it("renders first result from arrayCollection", () => {
   renderComponent();
-  expect(screen.getByText("3")).toBeInTheDocument();
+  expect(screen.getByText("10")).toBeInTheDocument();
 });
 
 it("test onclick event", () => {
@@ -56,6 +39,6 @@ it("test onclick event", () => {
 it("test onchange event", () => {
   renderComponent();
   const selectElem = screen.getByTestId("select-sortBy");
-  fireEvent.change(selectElem, { target: { value: 'price' } });
+  fireEvent.change(selectElem, { target: { value: 'currentPrice' } });
   expect(filterRequest).toHaveBeenCalledTimes(1);
 });
