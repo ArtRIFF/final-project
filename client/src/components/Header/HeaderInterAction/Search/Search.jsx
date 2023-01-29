@@ -5,7 +5,7 @@ import "../HeaderInterAction.scss";
 
 import {useState} from "react";
 import {sendRequest} from "../../../../helpers/sendRequest";
-import {API} from "../../../../config/API";
+import {API} from "../../../../config/API"
 
 const Search = () => {
     const [searchPhrase, setSearchPhrase] = useState("");
