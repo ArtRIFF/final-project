@@ -21,7 +21,7 @@ exports[`renders with snapshot 1`] = `
   >
     Results: 
     <span>
-      0
+      10
     </span>
   </div>
   <select
@@ -37,19 +37,14 @@ exports[`renders with snapshot 1`] = `
       Sort by
     </option>
     <option
-      value="price"
+      value="currentPrice"
     >
       Price
     </option>
     <option
-      value="newest"
+      value="date"
     >
       Newest
-    </option>
-    <option
-      value="bestseller"
-    >
-      Bestseller
     </option>
   </select>
 </div>

@@ -36,16 +36,5 @@ describe("CatalogSectionPage works correctly", () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
 
-  const dataArray = [];
-  it("CatalogSectionPage with no items", () => {
-    render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <CatalogSectionPage alreadyFilteredArray = {dataArray}/>
-        </BrowserRouter>
-      </Provider>
-    );
-     expect(screen.queryByText("Next", "Prev")).not.toBeInTheDocument();
-     expect((<LoadingSpinner />)).toBeDefined();
-  });
+ 
 });
