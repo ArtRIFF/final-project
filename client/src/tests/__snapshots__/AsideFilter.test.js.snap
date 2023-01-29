@@ -44,9 +44,9 @@ exports[`renders with snapshot 1`] = `
         <input
           data-index={0}
           onChange={[Function]}
-          placeholder="51"
+          placeholder={0}
           type="text"
-          value=""
+          value={0}
         />
         <span>
           -
@@ -54,9 +54,9 @@ exports[`renders with snapshot 1`] = `
         <input
           data-index={1}
           onChange={[Function]}
-          placeholder="214453"
+          placeholder={0}
           type="text"
-          value=""
+          value={0}
         />
       </div>
     </div>
@@ -279,33 +279,6 @@ exports[`renders with snapshot 1`] = `
         <h5
           className="filter-parameter__title"
         >
-          Insert number
-        </h5>
-        <button
-          className="filter-parameter__button"
-          onClick={[Function]}
-        />
-      </div>
-      <div
-        className="filter-parameter__container price-container"
-      >
-        <input
-          onChange={[Function]}
-          placeholder="1"
-          type="text"
-          value={0}
-        />
-      </div>
-    </div>
-    <div
-      className="filter-parameter filter-parameter__hide"
-    >
-      <div
-        className="filter-parameter__header"
-      >
-        <h5
-          className="filter-parameter__title"
-        >
           Metal
         </h5>
         <button
@@ -408,87 +381,6 @@ exports[`renders with snapshot 1`] = `
         <h5
           className="filter-parameter__title"
         >
-          Sample
-        </h5>
-        <button
-          className="filter-parameter__button"
-          onClick={[Function]}
-        />
-      </div>
-      <div
-        className="filter-parameter__container"
-      >
-        <label
-          className="filter-parameter__checkbox"
-          data-category-name={575}
-          onClick={[Function]}
-        >
-          <input
-            type="checkbox"
-          />
-          <span>
-            575
-          </span>
-        </label>
-        <label
-          className="filter-parameter__checkbox"
-          data-category-name={585}
-          onClick={[Function]}
-        >
-          <input
-            type="checkbox"
-          />
-          <span>
-            585
-          </span>
-        </label>
-        <label
-          className="filter-parameter__checkbox"
-          data-category-name={750}
-          onClick={[Function]}
-        >
-          <input
-            type="checkbox"
-          />
-          <span>
-            750
-          </span>
-        </label>
-        <label
-          className="filter-parameter__checkbox"
-          data-category-name={958}
-          onClick={[Function]}
-        >
-          <input
-            type="checkbox"
-          />
-          <span>
-            958
-          </span>
-        </label>
-        <label
-          className="filter-parameter__checkbox"
-          data-category-name={985}
-          onClick={[Function]}
-        >
-          <input
-            type="checkbox"
-          />
-          <span>
-            985
-          </span>
-        </label>
-      </div>
-    </div>
-    <div
-      className="filter-parameter filter-parameter__hide"
-    >
-      <div
-        className="filter-parameter__header"
-      >
-        <h5
-          className="filter-parameter__title"
-        >
           Product Type
         </h5>
         <button
@@ -569,6 +461,63 @@ exports[`renders with snapshot 1`] = `
           />
           <span>
             Pearl
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="filter-parameter filter-parameter__hide"
+    >
+      <div
+        className="filter-parameter__header"
+      >
+        <h5
+          className="filter-parameter__title"
+        >
+          Product Status
+        </h5>
+        <button
+          className="filter-parameter__button"
+          onClick={[Function]}
+        />
+      </div>
+      <div
+        className="filter-parameter__container"
+      >
+        <label
+          className="filter-parameter__checkbox"
+          data-category-name="BESTSELLER"
+          onChange={[Function]}
+        >
+          <input
+            type="checkbox"
+          />
+          <span>
+            Bestseller
+          </span>
+        </label>
+        <label
+          className="filter-parameter__checkbox"
+          data-category-name="OUTLET"
+          onChange={[Function]}
+        >
+          <input
+            type="checkbox"
+          />
+          <span>
+            Outlet
+          </span>
+        </label>
+        <label
+          className="filter-parameter__checkbox"
+          data-category-name="NEW"
+          onChange={[Function]}
+        >
+          <input
+            type="checkbox"
+          />
+          <span>
+            New Collection
           </span>
         </label>
       </div>

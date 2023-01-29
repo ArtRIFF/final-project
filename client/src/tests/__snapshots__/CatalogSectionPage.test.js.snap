@@ -33,7 +33,7 @@ exports[`renders with snapshot 1`] = `
     >
       <img
         alt="Category Section Main Imgage"
-        src="img/catalogSectionPage/CategorySectionMainImg.jpg"
+        src="/img/catalogSectionPage/CategorySectionMainImg.jpg"
       />
     </div>
     <aside
@@ -82,9 +82,9 @@ exports[`renders with snapshot 1`] = `
               <input
                 data-index={0}
                 onChange={[Function]}
-                placeholder="51"
+                placeholder={0}
                 type="text"
-                value=""
+                value={0}
               />
               <span>
                 -
@@ -92,9 +92,9 @@ exports[`renders with snapshot 1`] = `
               <input
                 data-index={1}
                 onChange={[Function]}
-                placeholder="214453"
+                placeholder={0}
                 type="text"
-                value=""
+                value={0}
               />
             </div>
           </div>
@@ -317,33 +317,6 @@ exports[`renders with snapshot 1`] = `
               <h5
                 className="filter-parameter__title"
               >
-                Insert number
-              </h5>
-              <button
-                className="filter-parameter__button"
-                onClick={[Function]}
-              />
-            </div>
-            <div
-              className="filter-parameter__container price-container"
-            >
-              <input
-                onChange={[Function]}
-                placeholder="1"
-                type="text"
-                value={0}
-              />
-            </div>
-          </div>
-          <div
-            className="filter-parameter filter-parameter__hide"
-          >
-            <div
-              className="filter-parameter__header"
-            >
-              <h5
-                className="filter-parameter__title"
-              >
                 Metal
               </h5>
               <button
@@ -446,87 +419,6 @@ exports[`renders with snapshot 1`] = `
               <h5
                 className="filter-parameter__title"
               >
-                Sample
-              </h5>
-              <button
-                className="filter-parameter__button"
-                onClick={[Function]}
-              />
-            </div>
-            <div
-              className="filter-parameter__container"
-            >
-              <label
-                className="filter-parameter__checkbox"
-                data-category-name={575}
-                onClick={[Function]}
-              >
-                <input
-                  type="checkbox"
-                />
-                <span>
-                  575
-                </span>
-              </label>
-              <label
-                className="filter-parameter__checkbox"
-                data-category-name={585}
-                onClick={[Function]}
-              >
-                <input
-                  type="checkbox"
-                />
-                <span>
-                  585
-                </span>
-              </label>
-              <label
-                className="filter-parameter__checkbox"
-                data-category-name={750}
-                onClick={[Function]}
-              >
-                <input
-                  type="checkbox"
-                />
-                <span>
-                  750
-                </span>
-              </label>
-              <label
-                className="filter-parameter__checkbox"
-                data-category-name={958}
-                onClick={[Function]}
-              >
-                <input
-                  type="checkbox"
-                />
-                <span>
-                  958
-                </span>
-              </label>
-              <label
-                className="filter-parameter__checkbox"
-                data-category-name={985}
-                onClick={[Function]}
-              >
-                <input
-                  type="checkbox"
-                />
-                <span>
-                  985
-                </span>
-              </label>
-            </div>
-          </div>
-          <div
-            className="filter-parameter filter-parameter__hide"
-          >
-            <div
-              className="filter-parameter__header"
-            >
-              <h5
-                className="filter-parameter__title"
-              >
                 Product Type
               </h5>
               <button
@@ -611,6 +503,63 @@ exports[`renders with snapshot 1`] = `
               </label>
             </div>
           </div>
+          <div
+            className="filter-parameter filter-parameter__hide"
+          >
+            <div
+              className="filter-parameter__header"
+            >
+              <h5
+                className="filter-parameter__title"
+              >
+                Product Status
+              </h5>
+              <button
+                className="filter-parameter__button"
+                onClick={[Function]}
+              />
+            </div>
+            <div
+              className="filter-parameter__container"
+            >
+              <label
+                className="filter-parameter__checkbox"
+                data-category-name="BESTSELLER"
+                onChange={[Function]}
+              >
+                <input
+                  type="checkbox"
+                />
+                <span>
+                  Bestseller
+                </span>
+              </label>
+              <label
+                className="filter-parameter__checkbox"
+                data-category-name="OUTLET"
+                onChange={[Function]}
+              >
+                <input
+                  type="checkbox"
+                />
+                <span>
+                  Outlet
+                </span>
+              </label>
+              <label
+                className="filter-parameter__checkbox"
+                data-category-name="NEW"
+                onChange={[Function]}
+              >
+                <input
+                  type="checkbox"
+                />
+                <span>
+                  New Collection
+                </span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </aside>
@@ -636,9 +585,7 @@ exports[`renders with snapshot 1`] = `
           className="category-filter__result"
         >
           Results: 
-          <span>
-            0
-          </span>
+          <span />
         </div>
         <select
           data-testid="select-sortBy"
@@ -653,19 +600,14 @@ exports[`renders with snapshot 1`] = `
             Sort by
           </option>
           <option
-            value="price"
+            value="currentPrice"
           >
             Price
           </option>
           <option
-            value="newest"
+            value="date"
           >
             Newest
-          </option>
-          <option
-            value="bestseller"
-          >
-            Bestseller
           </option>
         </select>
       </div>
@@ -673,9 +615,284 @@ exports[`renders with snapshot 1`] = `
     <div
       className="categoryCards-wrapper"
     >
-      <div
-        className="categoryCards__grid"
-      />
+      <svg
+        height="110px"
+        preserveAspectRatio="xMidYMid"
+        style={
+          Object {
+            "display": "block",
+            "margin": "auto",
+            "shapRendering": "auto",
+          }
+        }
+        viewBox="0 0 100 100"
+        width="110px"
+      >
+        <g
+          transform="rotate(0 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.9166666666666666s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(30 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.8333333333333334s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(60 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.75s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(90 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.6666666666666666s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(120 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.5833333333333334s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(150 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.5s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(180 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.4166666666666667s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(210 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.3333333333333333s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(240 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.25s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(270 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.16666666666666666s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(300 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="-0.08333333333333333s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+        <g
+          transform="rotate(330 50 50)"
+        >
+          <rect
+            fill="#0a0a0a"
+            height="12"
+            rx="4"
+            ry="4.92"
+            width="8"
+            x="46"
+            y="24"
+          >
+            <animate
+              attributeName="opacity"
+              begin="0s"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+              values="1;0"
+            />
+          </rect>
+        </g>
+      </svg>
     </div>
     <div
       className="paginnation-wrapper"
@@ -690,20 +907,18 @@ exports[`renders with snapshot 1`] = `
         <ul
           className="pagination-container"
         >
-          <a
-            className="disabled"
-            href="/"
+          <span
+            className="page-button disabled"
             onClick={[Function]}
           >
             Prev
-          </a>
-          <a
-            className=""
-            href="/"
+          </span>
+          <span
+            className="page-button "
             onClick={[Function]}
           >
             Next
-          </a>
+          </span>
         </ul>
       </div>
     </div>
