@@ -34,7 +34,7 @@ const Outlet = (props) => {
       <div className="container">
         <div className="outlet__header">
           <h2 className="outlet__title">Outlet</h2>
-          <Link to={"/Outlet"} className="btn__outlet">
+          <Link to={"/jewelry?statusProduct=OUTLET&perPage=12&startPage=1"} className="btn__outlet">
             <ButtonViewAll />
           </Link>
         </div>

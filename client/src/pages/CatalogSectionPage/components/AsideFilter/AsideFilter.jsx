@@ -9,20 +9,20 @@ const AsideFilter = ({ filterRequest }) => {
   const categoriesParam = params.get('categories')?.split(",");
   const metalParam = params.get('metal')?.split(",");
   const collectionParam = params.get('collectionName')?.split(",");
-  const sampleParam = params.get('sample')?.split(",");
   const metalColorParam = params.get('metalColor')?.split(",");
   const insertTypeParam = params.get('insertType')?.split(",");
-  const priceParam = params.get('price')?.split(",");
-  const insertNumberParam = params.get('insertNumber')?.split(",");
+  const statusTypeParam = params.get('statusProduct')?.split(",");
+  const minPriceParam = params.get('minPrice');
+  const maxPriceParam = params.get('maxPrice');
 
   const [productsType, setProductsType] = useState(categoriesParam || []);
   const [metalType, setMetalType] = useState(metalParam || []);
   const [collectionType, setCollectionType] = useState(collectionParam || []);
-  const [sampleType, setSampleType] = useState(sampleParam || []);
   const [metalColorType, setMetalColorType] = useState(metalColorParam || []);
   const [insertType, setInsertType] = useState(insertTypeParam || []);
-  const [price, setPrice] = useState(priceParam || ['', '']);
-  const [insertNumber, setInsertNumber] = useState(insertNumberParam || 0);
+  const [statusType, setStatusType] = useState(statusTypeParam || []);
+  const [minPrice, setMinPrice] = useState(minPriceParam || 0);
+  const [maxPrice, setMaxPrice] = useState(maxPriceParam || 0);
 
   useEffect(() => {
     updateFilter();
@@ -47,12 +47,6 @@ const AsideFilter = ({ filterRequest }) => {
         }
       });
 
-      sampleType.forEach((param) => {
-        if (item.dataset.categoryName === param) {
-          item.querySelector('input').checked = true;
-        }
-      });
-
       metalColorType.forEach((param) => {
         if (item.dataset.categoryName === param) {
           item.querySelector('input').checked = true;
@@ -64,9 +58,15 @@ const AsideFilter = ({ filterRequest }) => {
           item.querySelector('input').checked = true;
         }
       });
+
+      statusType.forEach((param) => {
+        if (item.dataset.categoryName === param) {
+          item.querySelector('input').checked = true;
+        }
+      });
     })
 
-  }, [productsType, metalType, collectionType, sampleType, metalColorType, insertType, price, insertNumber]);
+  }, [productsType, metalType, collectionType, metalColorType, insertType, minPrice, maxPrice,statusType]);
 
   const updateFilter = () => {
     let filterParamArray = [];
@@ -83,18 +83,25 @@ const AsideFilter = ({ filterRequest }) => {
     pushToFilterParamArray(metalTypeParam);
     const collectionTypeParam = collectionType.length ? `collectionName=${collectionType.join(',')}` : "";
     pushToFilterParamArray(collectionTypeParam);
-    const sampleTypeParam = sampleType.length ? `sample=${sampleType.join(',')}` : "";
-    pushToFilterParamArray(sampleTypeParam);
     const metalColorTypeParam = metalColorType.length ? `metalColor=${metalColorType.join(',')}` : "";
     pushToFilterParamArray(metalColorTypeParam);
+    const statusTypeParam = statusType.length ? `statusProduct=${statusType.join(',')}` : "";
+    pushToFilterParamArray(statusTypeParam);
     const insertTypeParam = insertType.length ? `insertType=${insertType.join(',')}` : "";
     pushToFilterParamArray(insertTypeParam);
-    const insertNumberParam = insertNumber !== 0 ? `insertNumber=${insertNumber}` : "";
-    pushToFilterParamArray(insertNumberParam);
-    const minPriceParam = price[0]? `minPrice=${price[0]}` : "";
-    pushToFilterParamArray(minPriceParam);
-    const maxPriceParam = price[1]? `maxPrice=${price[1]}` : "";
-    pushToFilterParamArray(maxPriceParam);
+  
+    let rangePriceParam = '';
+    if (maxPrice && minPrice) {
+      rangePriceParam = `maxPrice=${maxPrice}&minPrice=${minPrice}`;
+    }
+    if (maxPrice && !minPrice) {
+      rangePriceParam = `maxPrice=${maxPrice}&minPrice=0`;
+    }
+    if ((!maxPrice && minPrice) || (!maxPrice && !minPrice)) {
+      rangePriceParam = "";
+    }
+
+    pushToFilterParamArray(rangePriceParam);
 
     const filterParam = filterParamArray.length ? `${filterParamArray.join('&')}` : "";
     filterRequest(filterParam);
@@ -137,15 +144,6 @@ const AsideFilter = ({ filterRequest }) => {
     );
   };
 
-  const onSampleChange = (e) => {
-    const checked = e.target.checked;
-    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
-    setSampleType((!sampleType.includes(value) && checked)
-      ? [...sampleType, value]
-      : sampleType.filter(n => n !== value)
-    );
-  };
-
   const onMetalColorChange = (e) => {
     const checked = e.target.checked;
     const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
@@ -154,6 +152,16 @@ const AsideFilter = ({ filterRequest }) => {
       : metalColorType.filter(n => n !== value)
     );
   };
+
+  const onStatusChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.closest('.filter-parameter__checkbox').dataset.categoryName;
+    setStatusType((!statusType.includes(value) && checked)
+      ? [...statusType, value]
+      : statusType.filter(n => n !== value)
+    );
+  };
+
 
   const onInsertChange = (e) => {
     const checked = e.target.checked;
@@ -164,12 +172,16 @@ const AsideFilter = ({ filterRequest }) => {
     );
   };
 
-  const onPriceChange = ({ target: { value, dataset: { index } } }) => {
-    setPrice(price.map((n, i) => i === +index ? value : n));
+  const onMinPriceChange = ({ target: { value } }) => {
+    if (Number.isFinite(+value)) {
+      setMinPrice(value);
+    }
   };
 
-  const onInsertNumberChange = ({ target: { value } }) => {
-    setInsertNumber(+value);
+  const onMaxPriceChange = ({ target: { value } }) => {
+    if (Number.isFinite(+value)) {
+      setMaxPrice(value);
+    }
   };
 
   const accordionAnimate = (e) => {
@@ -207,11 +219,11 @@ const AsideFilter = ({ filterRequest }) => {
     setCollectionType([]);
     setProductsType([]);
     setMetalType([]);
-    setSampleType([]);
     setMetalColorType([]);
     setInsertType([]);
-    setPrice(['', '']);
-    setInsertNumber(0);
+    setMaxPrice(0);
+    setMinPrice(0);
+    setStatusType([]);
 
     updateFilter([]);
   }
@@ -229,9 +241,9 @@ const AsideFilter = ({ filterRequest }) => {
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
           <div className="filter-parameter__container price-container">
-            <input onChange={onPriceChange} data-index={0} value={price[0]} type="text" placeholder={price[0] ? price[0] : "0"} />
+            <input onChange={onMinPriceChange} data-index={0} value={minPrice} type="text" placeholder={minPrice} />
             <span>-</span>
-            <input onChange={onPriceChange} data-index={1} value={price[1]} type="text" placeholder={price[1] ? price[1] : "20000"} />
+            <input onChange={onMaxPriceChange} data-index={1} value={maxPrice} type="text" placeholder={maxPrice} />
           </div>
         </div>
         <div className="filter-parameter filter-parameter__hide">
@@ -308,15 +320,6 @@ const AsideFilter = ({ filterRequest }) => {
         </div>
         <div className="filter-parameter filter-parameter__hide">
           <div className="filter-parameter__header">
-            <h5 className="filter-parameter__title">Insert number</h5>
-            <button onClick={accordionAnimate} className="filter-parameter__button"></button>
-          </div>
-          <div className="filter-parameter__container price-container">
-            <input onChange={onInsertNumberChange} value={insertNumber} type="text" placeholder={insertNumber ? insertNumber : "0"} />
-          </div>
-        </div>
-        <div className="filter-parameter filter-parameter__hide">
-          <div className="filter-parameter__header">
             <h5 className="filter-parameter__title">Metal</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
@@ -353,34 +356,6 @@ const AsideFilter = ({ filterRequest }) => {
         </div>
         <div className="filter-parameter filter-parameter__hide">
           <div className="filter-parameter__header">
-            <h5 className="filter-parameter__title">Sample</h5>
-            <button onClick={accordionAnimate} className="filter-parameter__button"></button>
-          </div>
-          <div className="filter-parameter__container">
-            <label onClick={onSampleChange} data-category-name={575} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>575</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={585} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>585</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={750} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>750</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={958} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>958</span>
-            </label>
-            <label onClick={onSampleChange} data-category-name={985} className='filter-parameter__checkbox'>
-              <input type="checkbox" />
-              <span>985</span>
-            </label>
-          </div>
-        </div>
-        <div className="filter-parameter filter-parameter__hide">
-          <div className="filter-parameter__header">
             <h5 className="filter-parameter__title">Product Type</h5>
             <button onClick={accordionAnimate} className="filter-parameter__button"></button>
           </div>
@@ -408,6 +383,26 @@ const AsideFilter = ({ filterRequest }) => {
             <label onChange={onTypeChange} data-category-name={'pearl'} className='filter-parameter__checkbox'>
               <input type="checkbox" />
               <span>Pearl</span>
+            </label>
+          </div>
+        </div>
+        <div className="filter-parameter filter-parameter__hide">
+          <div className="filter-parameter__header">
+            <h5 className="filter-parameter__title">Product Status</h5>
+            <button onClick={accordionAnimate} className="filter-parameter__button"></button>
+          </div>
+          <div className="filter-parameter__container">
+            <label onChange={onStatusChange} data-category-name={'BESTSELLER'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Bestseller</span>
+            </label>
+            <label onChange={onStatusChange} data-category-name={'OUTLET'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>Outlet</span>
+            </label>
+            <label onChange={onStatusChange} data-category-name={'NEW'} className='filter-parameter__checkbox'>
+              <input type="checkbox" />
+              <span>New Collection</span>
             </label>
           </div>
         </div>

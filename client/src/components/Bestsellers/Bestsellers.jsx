@@ -34,7 +34,7 @@ const Bestsellers = (props) => {
       <div className="container">
         <div className="bestsellers__header">
           <h2 className="bestsellers__title">Bestsellers</h2>
-          <Link to={"/Bestsellers"} className="btn__bestsellers">
+          <Link to={"/jewelry?statusProduct=BESTSELLER&perPage=12&startPage=1"} className="btn__bestsellers">
             <ButtonViewAll />
           </Link>
         </div>

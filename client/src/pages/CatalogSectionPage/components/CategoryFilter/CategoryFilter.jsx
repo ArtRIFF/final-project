@@ -4,27 +4,22 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
-  const url = window.location.search; 
+  const url = window.location.search;
   const params = new URLSearchParams(url);
   const sortParam = params.get('sort');
-  
-  const [sortType, setSortType] = useState(sortParam || null);
- 
 
-  useEffect(()=>{
+  const [sortType, setSortType] = useState(sortParam || null);
+
+
+  useEffect(() => {
     if (sortType) {
-      filterRequest("sort="+ sortType);
+      filterRequest("sort=" + sortType);
       document.querySelector('.category-filter select').value = sortType;
     }
-
-  },[sortType])
+  }, [sortType])
 
   const sortByNewest = () => {
     setSortType("date");
-  }
-
-  const sortByBestseller = () => {
-    setSortType("BESTSELLER");
   }
 
   const sortByPrice = () => {
@@ -39,9 +34,6 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
       case "date":
         sortByNewest();
         break;
-      case "BESTSELLER":
-        sortByBestseller();
-        break;
     }
   };
   return (
@@ -54,7 +46,6 @@ const CategoryFilter = ({ onClickFunc, setResult, filterRequest }) => {
         <option value="DEFAULT" disabled>Sort by</option>
         <option value="currentPrice">Price</option>
         <option value="date">Newest</option>
-        <option value="BESTSELLER">Bestseller</option>
       </select>
     </div>
   );
