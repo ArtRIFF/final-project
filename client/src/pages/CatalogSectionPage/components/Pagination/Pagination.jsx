@@ -1,28 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import "./Pagination.scss";
 
 const Pagination = ({
   itemsPerPage,
-  totalItems,
-  paginationRequest
+  productsQuantity,
+  currentPage,
+  setCurrentPage,
 }) => {
   const pageNumbers = [];
 
-
-  const [currentPage, setCurrentPage] = useState(1);
   const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]);
 
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(productsQuantity / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
-
-  useEffect(() => {
-    if (currentPage) { //перевірити з !== 
-      paginationRequest(currentPage);
-    }
-  }, [currentPage]);
-
 
   useEffect(() => {
     let tempNumberOfPages = [...arrayOfCurrentPages];
@@ -53,26 +44,17 @@ const Pagination = ({
       const sliced = pageNumbers.slice(pageNumbers.length - 4);
       tempNumberOfPages = [1, dotsLeft, ...sliced];
     } else if (currentPage === dotsInitial) {
-      setCurrentPage(
-        arrayOfCurrentPages[arrayOfCurrentPages.length - 3] + 1
-      );
+      setCurrentPage(arrayOfCurrentPages[arrayOfCurrentPages.length - 3] + 1);
     } else if (currentPage === dotsRight) {
       setCurrentPage(arrayOfCurrentPages[3] + 2);
     } else if (currentPage === dotsLeft) {
       setCurrentPage(arrayOfCurrentPages[3] - 2);
     }
     setArrayOfCurrentPages(tempNumberOfPages);
-  }, [currentPage, totalItems]);
-
-
-  useEffect(() => {
-    if (currentPage > arrayOfCurrentPages.length / itemsPerPage) {
-      setCurrentPage(1);
-    }
-  }, [totalItems]);
+  }, [currentPage, productsQuantity]);
 
   return (
-    <div style={{marginTop:"30px"}}>
+    <div style={{ marginTop: "30px" }}>
       <ul className="pagination-container">
         <span
           className={`page-button ${currentPage === 1 ? "disabled" : ""}`}
