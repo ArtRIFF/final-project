@@ -224,7 +224,7 @@ const AsideFilter = ({ filterRequest }) => {
     setMaxPrice(0);
     setMinPrice(0);
     setStatusType([]);
-
+    //setCurrentPage(1) ??
     updateFilter([]);
   }
 
