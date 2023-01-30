@@ -146,7 +146,6 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
             <Pagination
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}
-              // paginationRequest={paginationRequest}
               itemsPerPage={itemsPerPage}
               productsQuantity={productsQuantity}
             />
