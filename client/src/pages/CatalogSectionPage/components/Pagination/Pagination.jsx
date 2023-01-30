@@ -1,28 +1,40 @@
 import React, { useState, useEffect } from "react";
 import "./Pagination.scss";
 
-const Pagination = ({ itemsPerPage, productsQuantity, paginationRequest }) => {
+const Pagination = ({
+  itemsPerPage,
+  productsQuantity,
+  // paginationRequest,
+  currentPage,
+  setCurrentPage,
+}) => {
   const pageNumbers = [];
 
-  const url = window.location.search;
-  const params = new URLSearchParams(url);
-  const startPageParameter = params.get("startPage");
+  // const url = window.location.search;
+  // const params = new URLSearchParams(url);
+  // const startPageParameter = params.get("startPage");
 
-  const [currentPage, setCurrentPage] = useState(Number(startPageParameter) || 1);
+  // const [currentPage, setCurrentPage] = useState(Number(startPageParameter) || 1);
   const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]);
 
   for (let i = 1; i <= Math.ceil(productsQuantity / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
-  
-  useEffect(() => {
-    if (currentPage !== undefined) {
-      paginationRequest(currentPage);
-    }
-    if (currentPage > Math.ceil(productsQuantity / itemsPerPage)) {
-      setCurrentPage(1);
-    }
-  }, [currentPage, productsQuantity, itemsPerPage, paginationRequest]);
+
+  // useEffect(() => {
+  //   if (currentPage !== undefined) {
+  //     paginationRequest(currentPage);
+  //   }
+  //   if (currentPage > Math.ceil(productsQuantity / itemsPerPage)) {
+  //     setCurrentPage(1);
+  //   }
+  // }, [
+  //   currentPage,
+  //   productsQuantity,
+  //   itemsPerPage,
+  //   paginationRequest,
+  //   setCurrentPage,
+  // ]);
 
   useEffect(() => {
     let tempNumberOfPages = [...arrayOfCurrentPages];

@@ -26,31 +26,40 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   const location = useLocation();
 
   const { products, productsQuantity } = useSelector(selectorFilteredProducts);
-  const  isProductsLoading  = useSelector(selectorIsProductsLoading);
+  const isProductsLoading = useSelector(selectorIsProductsLoading);
   const [showAsideFilter, setModalRender] = useState(false);
   
   console.log("isProductsLoading", isProductsLoading);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const itemsPerPage = 12;
+  const [showPagination, setShowPagination] = useState(false);
+
+  const url = window.location.search;
+  const params = new URLSearchParams(url);
+  const startPageParameter = params.get("startPage");
+  const [currentPage, setCurrentPage] = useState(
+    Number(startPageParameter) || 1
+  );
 
   const [productTypeUrl, setProductTypeUrl] = useState(null);
   const [sortURL, setSortURL] = useState("");
   const [paginationURL, setPaginationURL] = useState("1");
 
-  const [loading, setLoading] = useState(false);
-  const itemsPerPage = 12;
-  const [showPagination, setShowPagination] = useState(false);
+  console.log(typeof currentPage);
 
   const callAsideFilter = () => {
     setModalRender(true);
   };
 
   useEffect(() => {
-    productsQuantity === undefined ? setLoading(true) : setLoading(false);
+    productsQuantity === undefined ? setIsLoading(true) : setIsLoading(false);
   }, [productsQuantity]);
 
   useEffect(() => {
-    const shouldShowPagination = loading === false && productsQuantity > 0;
+    const shouldShowPagination = isLoading === false && productsQuantity > 0;
     setShowPagination(shouldShowPagination);
-  }, [loading, productsQuantity]);
+  }, [isLoading, productsQuantity]);
 
   useEffect(() => {
     if (productTypeUrl !== null) {
@@ -61,7 +70,7 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
       addToURLWithoutReloading(location.pathname, summaryFilterParam);
       dispatch(fetchFilteredProducts(summaryFilterParam));
     }
-  }, [productTypeUrl, sortURL, paginationURL]);
+  }, [productTypeUrl, sortURL, paginationURL, dispatch, location.pathname]);
 
   const hideAsideFilter = (event) => {
     const isFilterElement = !!event.target.closest(
@@ -85,9 +94,14 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
     setSortURL(url);
   };
 
-  const paginationRequest = (url) => {
-    setPaginationURL(url);
-  };
+  useEffect(() => {
+    if (currentPage !== undefined) {
+      setPaginationURL(currentPage);
+    }
+    if (currentPage > Math.ceil(productsQuantity / itemsPerPage)) {
+      setPaginationURL(1);
+    }
+  }, [currentPage, setPaginationURL, productsQuantity]);
 
   return (
     <div className="container" onClick={hideAsideFilter}>
@@ -108,7 +122,10 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
               : "asideFilter-wrapper"
           }`}
         >
-          <AsideFilter filterRequest={filterRequest} />
+          <AsideFilter
+            filterRequest={filterRequest}
+            setCurrentPage={setCurrentPage}
+          />
         </aside>
         <div className="filter-wrapper">
           <CategoryFilter
@@ -127,7 +144,9 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
         <div className="paginnation-wrapper">
           {showPagination && (
             <Pagination
-              paginationRequest={paginationRequest}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+              // paginationRequest={paginationRequest}
               itemsPerPage={itemsPerPage}
               productsQuantity={productsQuantity}
             />
