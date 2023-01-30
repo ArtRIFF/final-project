@@ -29,8 +29,6 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   const isProductsLoading = useSelector(selectorIsProductsLoading);
   const [showAsideFilter, setModalRender] = useState(false);
   
-  console.log("isProductsLoading", isProductsLoading);
-
   const [isLoading, setIsLoading] = useState(false);
   const itemsPerPage = 12;
   const [showPagination, setShowPagination] = useState(false);
@@ -45,8 +43,6 @@ const CatalogSectionPage = ({ stringFilterParam }) => {
   const [productTypeUrl, setProductTypeUrl] = useState(null);
   const [sortURL, setSortURL] = useState("");
   const [paginationURL, setPaginationURL] = useState("1");
-
-  console.log(typeof currentPage);
 
   const callAsideFilter = () => {
     setModalRender(true);
