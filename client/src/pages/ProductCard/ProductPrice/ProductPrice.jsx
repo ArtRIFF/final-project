@@ -20,7 +20,7 @@ const ProductPrice = (props) => {
     rating,
     size,
     selectedSize,
-    _id
+    _id,
   } = props;
 
   const inFavoriteStore = useSelector(selectInFavorite);
@@ -50,7 +50,7 @@ const ProductPrice = (props) => {
           <ProductRating value={rating} />
         </div>
         <h3 className="product-card__price__header-title">
-          {name !== undefined && name.toUpperCase()}
+          {name?.toUpperCase()}
         </h3>
       </div>
       <div className="product-card__price__body">
@@ -69,10 +69,13 @@ const ProductPrice = (props) => {
             onChange={handleChange}
           >
             <option value="not choose"></option>
-            {size !== undefined &&
-              size.split(",").map((el, index) => {
-                return <option key={index} value={el}>{el}</option>;
-              })}
+            {size?.split(",").map((el, index) => {
+              return (
+                <option key={index} value={el}>
+                  {el}
+                </option>
+              );
+            })}
           </select>
           <div className="select-arrow"></div>
         </div>

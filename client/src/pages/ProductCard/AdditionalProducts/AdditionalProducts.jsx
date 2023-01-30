@@ -18,16 +18,15 @@ const AdditionalProducts = (props) => {
         </Link>
       </div>
       <div className="bestsellers__cards-container">
-        {cardsArray !== undefined &&
-          cardsArray.slice(0, 4).map((card, index) => {
-            return (
-              <CategorySectionCard
-                key={index}
-                product={card}
-                additionalLink={"../"}
-              />
-            );
-          })}
+        {cardsArray?.slice(0, 4).map((card, index) => {
+          return (
+            <CategorySectionCard
+              key={index}
+              product={card}
+              additionalLink={"../"}
+            />
+          );
+        })}
       </div>
     </section>
   );
