@@ -5,7 +5,7 @@ import "./SearchPage.scss";
 
 import SearchCardsContainer from "./SearchCardsContainer"
 import axios from "axios"
-import Pagination from "../../../../../pages/CatalogSectionPage/components/Pagination/Pagination";
+import PaginationSearch from "./PaginationSearch";
 
 const SearchPage = () => {
     const [products, setProducts] = useState([])
@@ -37,7 +37,7 @@ const SearchPage = () => {
           </div>
             <SearchCardsContainer products={courentProducts}/>
             <div className="pagination-container">
-              <Pagination
+              <PaginationSearch
                 paginationRequest={paginationRequest}
                 itemsPerPage={itemsPerPage}
                 totalItems={products.length}
